@@ -8,6 +8,7 @@
 		/datum/reagent/medicine/salglu_solution,\
 		/datum/reagent/medicine/spaceacillin\
 	)
+
 #define EXPANDED_MEDICAL_REAGENTS list(\
 		/datum/reagent/medicine/haloperidol,\
 		/datum/reagent/medicine/inacusiate,\
@@ -239,6 +240,10 @@
 /obj/item/reagent_containers/borghypo/medical
 	default_reagent_types = BASE_MEDICAL_REAGENTS
 	expanded_reagent_types = EXPANDED_MEDICAL_REAGENTS
+
+/// Epinephrine Hypospray
+/obj/item/reagent_containers/borghypo/epi
+	default_reagent_types = list(/datum/reagent/medicine/epinephrine)
 
 /// Upgrade our hypospray to hold even more new reagents!
 /obj/item/reagent_containers/borghypo/medical/proc/upgrade_hypo()
