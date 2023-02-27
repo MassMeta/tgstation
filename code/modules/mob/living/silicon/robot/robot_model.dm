@@ -281,6 +281,7 @@
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/reagent_containers/borghypo/epi,
+		/obj/item/reagent_containers/borghypo/borgshaker/standard,
 		/obj/item/healthanalyzer,
 		/obj/item/weldingtool/largetank/cyborg,
 		/obj/item/wrench/cyborg,

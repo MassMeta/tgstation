@@ -75,6 +75,17 @@
 		/datum/reagent/consumable/ethanol/fernet\
 	)
 
+#define BASE_STANDARD_REAGENTS list(/datum/reagent/consumable/coffee, /datum/reagent/consumable/ice, /datum/reagent/consumable/lemonjuice,\
+		/datum/reagent/consumable/milk, /datum/reagent/consumable/nothing, /datum/reagent/consumable/orangejuice,\
+		/datum/reagent/consumable/peachjuice, /datum/reagent/consumable/pineapplejuice,\
+		/datum/reagent/consumable/pwr_game, /datum/reagent/consumable/shamblers, /datum/reagent/consumable/sodawater,\
+		/datum/reagent/consumable/sol_dry, /datum/reagent/consumable/soymilk, /datum/reagent/consumable/space_cola,\
+		/datum/reagent/consumable/sugar, /datum/reagent/water,/datum/reagent/consumable/ethanol/beer,\
+		/datum/reagent/consumable/ethanol/champagne, /datum/reagent/consumable/ethanol/cognac, \
+		/datum/reagent/consumable/ethanol/rum, /datum/reagent/consumable/ethanol/triple_sec, \
+		/datum/reagent/consumable/ethanol/vodka, /datum/reagent/consumable/ethanol/whiskey, /datum/reagent/consumable/ethanol/wine\
+	)
+
 ///Borg Hypospray
 /obj/item/reagent_containers/borghypo
 	name = "cyborg hypospray"
@@ -315,6 +326,9 @@
 	recharge_time = 3
 	dispensed_temperature = WATER_MATTERSTATE_CHANGE_TEMP //Water stays wet, ice stays ice
 	default_reagent_types = BASE_SERVICE_REAGENTS
+
+/obj/item/reagent_containers/borghypo/borgshaker/standard
+	default_reagent_types = BASE_STANDARD_REAGENTS
 
 /obj/item/reagent_containers/borghypo/borgshaker/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
