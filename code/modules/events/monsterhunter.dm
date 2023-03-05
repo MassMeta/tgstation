@@ -25,15 +25,11 @@
 			continue
 		if(all_players.stat == DEAD)
 			continue
-		if(!SSjob.GetJob(all_players.mind.assigned_role) || (all_players.mind.assigned_role in GLOB.nonhuman_positions)) // Only crewmembers on-station.
-			continue
-		if(!SSjob.GetJob(all_players.mind.assigned_role) || (all_players.mind.assigned_role in GLOB.command_positions))
-			continue
-		if(!SSjob.GetJob(all_players.mind.assigned_role) || (all_players.mind.assigned_role in GLOB.security_positions))
+		if(!SSjob.GetJob(all_players.mind.assigned_role) || !is_station_level(all_players)) // Only crewmembers on-station.
 			continue
 		if(IS_BLOODSUCKER(all_players) || IS_VASSAL(all_players) || IS_HERETIC(all_players) || IS_CULTIST(all_players) || IS_WIZARD(all_players) || all_players.mind.has_antag_datum(/datum/antagonist/changeling))
 			continue
-		if(!all_players.getorgan(/obj/item/organ/brain))
+		if(!all_players.getorgan(/obj/item/organ/internal/brain))
 			continue
 		all_players.mind.add_antag_datum(/datum/antagonist/monsterhunter)
 		message_admins("BLOODSUCKER NOTICE: [all_players] has awoken as a Monster Hunter.")
