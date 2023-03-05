@@ -26,7 +26,7 @@
 		if(all_players.stat == DEAD)
 			continue
 		if(!SSjob.GetJob(all_players.mind.assigned_role) || !is_station_level(all_players)) // Only crewmembers on-station.
-			continue
+			continue 
 		if(IS_BLOODSUCKER(all_players) || IS_VASSAL(all_players) || IS_HERETIC(all_players) || IS_CULTIST(all_players) || IS_WIZARD(all_players) || all_players.mind.has_antag_datum(/datum/antagonist/changeling))
 			continue
 		if(!all_players.getorgan(/obj/item/organ/internal/brain))
