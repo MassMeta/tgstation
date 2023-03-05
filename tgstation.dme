@@ -3215,6 +3215,7 @@
 #include "code\modules\events\mass_hallucination.dm"
 #include "code\modules\events\meteor_wave.dm"
 #include "code\modules\events\mice_migration.dm"
+#include "code\modules\events\monsterhunter.dm"
 #include "code\modules\events\portal_storm.dm"
 #include "code\modules\events\processor_overload.dm"
 #include "code\modules\events\radiation_leak.dm"
