@@ -41,7 +41,6 @@
 #define ROLE_WIZARD_MIDROUND "Wizard (Midround)"
 #define ROLE_BLOODSUCKERBREAKOUT "Bloodsucker Breakout"
 #define ROLE_MONSTERHUNTER "Monster Hunter"
-#define ROLE_INFILTRATOR "Infiltrator"
 
 // Latejoin roles
 #define ROLE_HERETIC_SMUGGLER "Heretic Smuggler"
@@ -146,7 +145,6 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_WIZARD_MIDROUND = 14,
 	ROLE_BLOODSUCKERBREAKOUT = 0,
 	ROLE_MONSTERHUNTER = 0,
-	ROLE_INFILTRATOR = 0,
 
 	// Latejoin
 	ROLE_HERETIC_SMUGGLER = 0,
