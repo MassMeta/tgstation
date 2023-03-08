@@ -197,7 +197,7 @@
 		target.Paralyze((isnull(stun_override) ? stun_time_cyborg : stun_override) * (trait_check ? 0.1 : 1))
 		additional_effects_cyborg(target, user)
 	else
-		target.apply_damage(stamina_damage, STAMINA)
+		addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/living, apply_damage), stamina_damage, STAMINA), 0.2 SECONDS)
 		if(!trait_check)
 			target.Knockdown((isnull(stun_override) ? knockdown_time : stun_override))
 		additional_effects_non_cyborg(target, user)
