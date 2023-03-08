@@ -777,7 +777,6 @@
 	icon_state = "sheath"
 	inhand_icon_state = "sheath"
 	worn_icon_state = "sheath"
-	w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/storage/belt/sabre/Initialize(mapload)
 	. = ..()
