@@ -16,8 +16,10 @@
 #define ROLE_OPERATIVE "Operative"
 #define ROLE_TRAITOR "Traitor"
 #define ROLE_WIZARD "Wizard"
+//Massmeta edit - start
 #define ROLE_BLOODSUCKER "Bloodsucker"
 #define ROLE_INTERNAL_AFFAIRS "Internal Affairs Agent"
+#define ROLE_DARKSPAWN "darkspawn" //Massmeta edit end
 
 // Midround roles
 #define ROLE_ABDUCTOR "Abductor"
@@ -120,8 +122,9 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_REV_HEAD = 14,
 	ROLE_TRAITOR = 0,
 	ROLE_WIZARD = 14,
-	ROLE_BLOODSUCKER = 0,
-	ROLE_INTERNAL_AFFAIRS = 0,
+	ROLE_BLOODSUCKER = 14, //Massmeta edit
+	ROLE_INTERNAL_AFFAIRS = 0, //Massmeta edit
+	ROLE_DARKSPAWN = 14, //Massmeta edit
 
 	// Midround
 	ROLE_ABDUCTOR = 0,
@@ -143,14 +146,14 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_SPACE_DRAGON = 0,
 	ROLE_SPIDER = 0,
 	ROLE_WIZARD_MIDROUND = 14,
-	ROLE_BLOODSUCKERBREAKOUT = 0,
+	ROLE_BLOODSUCKERBREAKOUT = 14, //Massmeta edit
 	ROLE_MONSTERHUNTER = 0,
 
 	// Latejoin
 	ROLE_HERETIC_SMUGGLER = 0,
 	ROLE_PROVOCATEUR = 14,
 	ROLE_SYNDICATE_INFILTRATOR = 0,
-	ROLE_VAMPIRICACCIDENT = 0,
+	ROLE_VAMPIRICACCIDENT = 14, //Massmeta edit
 
 	// I'm not too sure why these are here, but they're not moving.
 	ROLE_PAI = 0,

@@ -362,6 +362,10 @@
 		deconstruct()
 		return
 	to_chat(user, span_userdanger("You stick \the [tool] into the light socket!"))
+	if(istype(tool, /obj/item/umbral_tendrils))
+		break_light_tube()
+		..()
+	return
 	if(has_power() && (tool.flags_1 & CONDUCT_1))
 		do_sparks(3, TRUE, src)
 		if (prob(75))

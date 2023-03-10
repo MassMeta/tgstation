@@ -42,6 +42,8 @@
 #define MODE_PUPPET "puppet"
 #define MODE_KEY_PUPPET "j"
 
+#define MODE_DARKSPAWN "mindlink" //Massmeta edit
+
 #define MODE_ALIEN "alientalk"
 #define MODE_HOLOPAD "holopad"
 
