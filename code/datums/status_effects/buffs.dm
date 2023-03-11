@@ -617,8 +617,10 @@
 	id = "creep"
 	duration = -1
 	alert_type = /obj/screen/alert/status_effect/creep
-	examine_text = "<span class='warning'>SUBJECTPRONOUN is surrounded by velvety, gently-waving black shadows!</span>"
 	var/datum/antagonist/darkspawn/darkspawn
+
+/datum/status_effect/creep/get_examine_text()
+	return span_warning("[owner.p_they(TRUE)] is surrounded by velvety, gently-waving black shadows!")
 
 /datum/status_effect/creep/on_creation(mob/living/owner, datum/antagonist/darkspawn)
 	. = ..()
@@ -642,21 +644,22 @@
 	icon = 'massmeta/icons/mob/actions/actions_darkspawn.dmi'
 	icon_state = "creep"
 
-
 /datum/status_effect/time_dilation //used by darkspawn; greatly increases action times etc
 	id = "time_dilation"
 	duration = 600
 	alert_type = /obj/screen/alert/status_effect/time_dilation
-	examine_text = "<span class='warning'>SUBJECTPRONOUN is moving jerkily and unpredictably!</span>"
+
+/datum/status_effect/time_dilation/get_examine_text()
+	return span_warning("[owner.p_they(TRUE)] is moving jerkily and unpredictably!")
 
 /datum/status_effect/time_dilation/on_apply()
-	owner.next_move_modifier *= 0.5
-	owner.action_speed_modifier *= 0.5
+	owner.add_movespeed_modifier(/datum/movespeed_modifier/time_dilation)
+	owner.add_actionspeed_modifier(/datum/actionspeed_modifier/time_dilation)
 	return TRUE
 
 /datum/status_effect/time_dilation/on_remove()
-	owner.next_move_modifier *= 2
-	owner.action_speed_modifier *= 2
+	owner.remove_movespeed_modifier(/datum/movespeed_modifier/time_dilation)
+	owner.remove_actionspeed_modifier(/datum/actionspeed_modifier/time_dilation)
 
 /obj/screen/alert/status_effect/time_dilation
 	name = "Time Dilation"

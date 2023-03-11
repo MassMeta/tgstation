@@ -49,10 +49,10 @@
 			return
 		playsound(C, "terminal_type", 50, TRUE)
 		if(prob(25))
-			playsound(C, 'sounds/machines/terminal_alert.ogg', 50, FALSE)
+			playsound(C, 'sound/machines/terminal_alert.ogg', 50, FALSE)
 			do_sparks(5, TRUE, get_turf(C))
-	playsound(C, 'sounds/machines/terminal_prompt.ogg', 50, FALSE)
+	playsound(C, 'sound/machines/terminal_prompt.ogg', 50, FALSE)
 	sleep(0.5 SECONDS)
 	if(!C || C.stat)
 		return
-	playsound(C, 'sounds/machines/terminal_prompt_confirm.ogg', 50, FALSE)
+	playsound(C, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)

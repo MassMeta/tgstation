@@ -8,7 +8,7 @@
 /datum/hud
 	var/obj/screen/darkspawn_psi/psi_counter
 
-/datum/hud/New(mob/owner, ui_style = 'icons/mob/screen_midnight.dmi')
+/datum/hud/New(mob/owner, ui_style = 'icons/hud/screen_midnight.dmi')
 	. = ..()
 	psi_counter = new /obj/screen/darkspawn_psi
 

@@ -2,7 +2,7 @@
 	name = "darkspawn ability"
 	var/id //The ability's ID, for giving, taking and such
 	desc = "This probably shouldn't exist."
-	icon_icon = 'massmeta/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon = 'massmeta/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	buttontooltipstyle = "alien"
 
@@ -20,9 +20,6 @@
 /datum/action/innate/darkspawn/Destroy()
 	STOP_PROCESSING(SSfastprocess, src)
 	return ..()
-
-/datum/action/innate/darkspawn/process()
-	UpdateButtonIcon() //so as to be consistent with psi costs and situational requirements, keep the button updated
 
 /datum/action/innate/darkspawn/Trigger()
 	var/activated = FALSE

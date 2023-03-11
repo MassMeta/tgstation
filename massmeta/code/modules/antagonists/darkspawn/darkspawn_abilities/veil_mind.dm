@@ -4,7 +4,7 @@
 	id = "veil_mind"
 	desc = "Converts nearby eligible targets into veils. To be eligible, they must be alive and recently drained by Devour Will."
 	button_icon_state = "veil_mind"
-	check_flags = AB_CHECK_STUN|AB_CHECK_CONSCIOUS
+	check_flags = AB_CHECK_INCAPACITATED|AB_CHECK_CONSCIOUS
 	psi_cost = 60 //since this is only useful when cast directly after a succ it should be pretty expensive
 	lucidity_price = 2
 
@@ -25,8 +25,8 @@
 		if(L == owner)
 			continue
 		if(issilicon(L))
-			to_chat(L, span_ownerdanger("$@!) ERR: RECEPTOR OVERLOAD ^!</"))
-			SEND_SOUND(L, sound('sounds/misc/interference.ogg', volume = 50))
+			to_chat(L, span_userdanger("$@!) ERR: RECEPTOR OVERLOAD ^!</"))
+			SEND_SOUND(L, sound('sound/misc/interference.ogg', volume = 50))
 			L.emote("alarm")
 			L.Stun(20)
 			L.overlay_fullscreen("flash", /atom/movable/screen/fullscreen/flash/static)
