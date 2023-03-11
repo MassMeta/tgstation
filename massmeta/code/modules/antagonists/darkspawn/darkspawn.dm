@@ -54,23 +54,17 @@
 	STOP_PROCESSING(SSprocessing, src)
 	return ..()
 
-/datum/antagonist/darkspawn/apply_innate_effects()
-	if(owner.assigned_role == "Clown")
-		var/mob/living/carbon/human/traitor_mob = owner.current
-		if(traitor_mob && istype(traitor_mob))
-			if(!silent)
-				to_chat(traitor_mob, "Our powers allow us to overcome our clownish nature, allowing us to wield weapons with impunity.")
-			traitor_mob.dna.remove_mutation(CLOWNMUT)
+/datum/antagonist/darkspawn/apply_innate_effects(mob/living/mob_override)
+	var/mob/living/current_mob = mob_override || owner.current
+	handle_clown_mutation(current_mob, mob_override ? null : "Our powers allow us to overcome our clownish nature, allowing us to wield weapons with impunity.")
 	adjust_darkspawn_hud(TRUE)
-	owner.current.grant_language(/datum/language/darkspawn)
+	current_mob.grant_language(/datum/language/darkspawn)
 
-/datum/antagonist/darkspawn/remove_innate_effects()
-	if(owner.assigned_role == "Clown")
-		var/mob/living/carbon/human/traitor_mob = owner.current
-		if(traitor_mob && istype(traitor_mob))
-			traitor_mob.dna.add_mutation(CLOWNMUT)
+/datum/antagonist/darkspawn/remove_innate_effects(mob/living/mob_override)
+	var/mob/living/current_mob = mob_override || owner.current
+	handle_clown_mutation(current_mob, removing = FALSE)
 	adjust_darkspawn_hud(FALSE)
-	owner.current.remove_language(/datum/language/darkspawn)
+	current_mob.remove_language(/datum/language/darkspawn)
 
 //Round end stuff
 /datum/antagonist/darkspawn/proc/check_darkspawn_death()

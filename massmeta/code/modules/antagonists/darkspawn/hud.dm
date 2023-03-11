@@ -12,7 +12,7 @@
 	. = ..()
 	psi_counter = new /obj/screen/darkspawn_psi
 
-/datum/hud/human/New(mob/living/carbon/human/owner, ui_style = 'icons/mob/screen_midnight.dmi')
+/datum/hud/human/New(mob/living/carbon/human/owner, ui_style = 'icons/hud/screen_midnight.dmi')
 	. = ..()
 	psi_counter = new /obj/screen/darkspawn_psi
 	infodisplay += psi_counter
