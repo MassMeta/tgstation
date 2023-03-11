@@ -71,7 +71,7 @@
 				H.adjustFireLoss(DARKSPAWN_LIGHT_BURN * 0.5)
 
 /datum/species/darkspawn/spec_death(gibbed, mob/living/carbon/human/H)
-	playsound(H, 'massmeta/sound/creatures/darkspawn_death.ogg', 50, FALSE)
+	playsound(H, 'massmeta/sounds/creatures/darkspawn_death.ogg', 50, FALSE)
 
 /datum/species/darkspawn/proc/handle_upgrades(mob/living/carbon/human/H)
 	var/datum/antagonist/darkspawn/darkspawn

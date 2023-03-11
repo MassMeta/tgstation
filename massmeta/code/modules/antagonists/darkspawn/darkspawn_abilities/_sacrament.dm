@@ -4,7 +4,7 @@
 	id = "sacrament"
 	desc = "Ascends into a progenitor. Unless someone else has performed the Sacrament, you must have drained lucidity from 15-30 (check your objective) different people for this to work, and purchased all passive upgrades."
 	button_icon_state = "sacrament"
-	check_flags = AB_CHECK_STUN | AB_CHECK_CONSCIOUS
+	check_flags = AB_CHECK_INCAPACITATED | AB_CHECK_CONSCIOUS
 	blacklisted = TRUE //baseline
 	var/datum/looping_sound/sacrament/soundloop
 
@@ -29,12 +29,12 @@
 	in_use = TRUE
 	var/mob/living/carbon/human/user = usr
 	user.visible_message(span_warning("[user]'s sigils flare as energy swirls around them..."), span_velvet("You begin creating a psychic barrier around yourself..."))
-	playsound(user, 'massmeta/sound/magic/sacrament_begin.ogg', 50, FALSE)
+	playsound(user, 'massmeta/sounds/magic/sacrament_begin.ogg', 50, FALSE)
 	if(!do_after(user, 3 SECONDS, user))
 		in_use = FALSE
 		return
 	var/image/alert_overlay = image('massmeta/icons/mob/actions/actions_darkspawn.dmi', "sacrament")
-	notify_ghosts("Darkspawn [user.real_name] has begun the Sacrament at [get_area(user)]! ", source = user, ghost_sound = 'massmeta/sound/magic/devour_will_victim.ogg', alert_overlay = alert_overlay, action = NOTIFY_ORBIT)
+	notify_ghosts("Darkspawn [user.real_name] has begun the Sacrament at [get_area(user)]! ", source = user, ghost_sound = 'massmeta/sounds/magic/devour_will_victim.ogg', alert_overlay = alert_overlay, action = NOTIFY_ORBIT)
 	user.visible_message(span_warning("A vortex of violet energies surrounds [user]!"), span_velvet("Your barrier will protect you."))
 	user.visible_message(span_danger("[user] suddenly jolts into the air, pulsing with screaming violet light."), \
 						"<span class='velvet big'><b>You begin the Sacrament.</b></span>")
@@ -48,14 +48,14 @@
 				user.visible_message(span_userdanger("[user]'s sigils howl out light. Their limbs twist and move, glowing cracks forming across their chitin."), \
 									span_velvet("Power... <i>power...</i> flooding through you, the dreams and thoughts of those you've touched whispering in your ears..."))
 				for(var/mob/M in GLOB.player_list)
-					M.playsound_local(M, 'massmeta/sound/magic/sacrament_01.ogg', 20, FALSE, pressure_affected = FALSE)
+					M.playsound_local(M, 'massmeta/sounds/magic/sacrament_01.ogg', 20, FALSE, pressure_affected = FALSE)
 					if(M != user)
 						to_chat(M, span_warning("What is that sound...?"))
 			if(2)
 				user.visible_message(span_userdanger("[user] begins to... <i>grow.</i>."), \
 									span_velvet("Yes! <font size=3>Yes! You feel the weak mortal shell coming apart!</font>"))
 				for(var/mob/M in GLOB.player_list)
-					M.playsound_local(M, 'massmeta/sound/magic/sacrament_02.ogg', 20, FALSE, pressure_affected = FALSE)
+					M.playsound_local(M, 'massmeta/sounds/magic/sacrament_02.ogg', 20, FALSE, pressure_affected = FALSE)
 				animate(user, transform = matrix() * 2, time = 15 SECONDS)
 		if(!do_after(user, 15 SECONDS, user))
 			user.visible_message(span_warning("[user] falls to the ground!"), span_userdanger("Your transformation was interrupted!"))
@@ -64,7 +64,7 @@
 			QDEL_NULL(soundloop)
 			return
 	for(var/mob/M in GLOB.player_list)
-		M.playsound_local(M, 'massmeta/sound/magic/sacrament_ending.ogg', 75, FALSE, pressure_affected = FALSE)
+		M.playsound_local(M, 'massmeta/sounds/magic/sacrament_ending.ogg', 75, FALSE, pressure_affected = FALSE)
 	soundloop.stage = 3
 	user.visible_message(span_userdanger("[user] rises into the air, crackling with power!"), "<span class='velvet bold'>AND THE WEAK WILL KNOW <i>FEAR--</i></span>")
 	for(var/turf/T in range(7, owner))
@@ -76,7 +76,7 @@
 	addtimer(CALLBACK(darkspawn, /datum/antagonist/darkspawn/.proc/sacrament), 4 SECONDS)
 
 /datum/action/innate/darkspawn/sacrament/proc/unleashed_psi(turf/T)
-	playsound(T, 'massmeta/sound/magic/divulge_end.ogg', 25, FALSE)
+	playsound(T, 'massmeta/sounds/magic/divulge_end.ogg', 25, FALSE)
 	new/obj/effect/temp_visual/revenant/cracks(T)
 
 /datum/action/innate/darkspawn/sacrament/proc/shatter_lights()

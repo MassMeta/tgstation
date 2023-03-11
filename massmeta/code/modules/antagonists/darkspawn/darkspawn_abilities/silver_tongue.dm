@@ -4,7 +4,7 @@
 	id = "silver_tongue"
 	desc = "When used near a communications console, allows you to forcefully transmit a message to Central Command, initiating a shuttle recall. Only usable if the shuttle is inbound. Costs 60 Psi."
 	button_icon_state = "silver_tongue"
-	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_STUN
+	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_INCAPACITATED
 	psi_cost = 60
 	lucidity_price = 1 //Very niche, so low cost
 
@@ -49,10 +49,10 @@
 			return
 		playsound(C, "terminal_type", 50, TRUE)
 		if(prob(25))
-			playsound(C, 'sound/machines/terminal_alert.ogg', 50, FALSE)
+			playsound(C, 'sounds/machines/terminal_alert.ogg', 50, FALSE)
 			do_sparks(5, TRUE, get_turf(C))
-	playsound(C, 'sound/machines/terminal_prompt.ogg', 50, FALSE)
+	playsound(C, 'sounds/machines/terminal_prompt.ogg', 50, FALSE)
 	sleep(0.5 SECONDS)
 	if(!C || C.stat)
 		return
-	playsound(C, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
+	playsound(C, 'sounds/machines/terminal_prompt_confirm.ogg', 50, FALSE)

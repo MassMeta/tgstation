@@ -64,7 +64,7 @@
 		[span_danger("You begin siphoning [L]'s mental energy...")]")
 		to_chat(L, span_userdanger("<i>AAAAAAAAAAAAAA-</i>"))
 		L.silent += 4
-		playsound(L, 'massmeta/sound/magic/devour_will.ogg', 65, FALSE) //T A S T Y   S O U L S
+		playsound(L, 'massmeta/sounds/magic/devour_will.ogg', 65, FALSE) //T A S T Y   S O U L S
 		if(!do_mob(user, L, 3 SECONDS))
 			REMOVE_TRAIT(L, TRAIT_PARALYSIS, "bead-trait")
 			user.Knockdown(3 SECONDS)
@@ -76,7 +76,7 @@
 		L.visible_message("<span class='userdanger italics'>[L] suddenly howls and clutches as their face as violet light screams from their eyes!</span>", \
 		"<span class='userdanger italics'>AAAAAAAAAAAAAAA-</span>")
 		to_chat(user, span_velvet("<b>cera qo...</b><br>You begin siphoning [L]'s will..."))
-		playsound(L, 'massmeta/sound/magic/devour_will_long.ogg', 65, FALSE)
+		playsound(L, 'massmeta/sounds/magic/devour_will_long.ogg', 65, FALSE)
 		if(!do_mob(user, L, 5 SECONDS))
 			REMOVE_TRAIT(L, TRAIT_PARALYSIS, "bead-trait")
 			user.Knockdown(5 SECONDS)
@@ -90,7 +90,7 @@
 	Additionally, you have gained one lucidity. Use it to purchase and upgrade abilities."]<br>\
 	[span_warning("[L] is now severely weakened and will take some time to recover.")] \
 	[span_warning("Additionally, you can not drain them again without first draining someone else.")]")
-	playsound(L, 'massmeta/sound/magic/devour_will_victim.ogg', 50, FALSE)
+	playsound(L, 'massmeta/sounds/magic/devour_will_victim.ogg', 50, FALSE)
 	if(full_restore)
 		darkspawn.psi = darkspawn.psi_cap
 	else //no getting free lucidity from veils that wouldn't be fun. They'll still count towards winning though.
@@ -105,7 +105,7 @@
 	linked_ability.victims[L] = TRUE
 	linked_ability.last_victim = L.ckey
 	to_chat(L, span_userdanger("You suddenly feel... empty. Thoughts try to form, but flit away. You slip into a deep, deep slumber..."))
-	L.playsound_local(L, 'massmeta/sound/magic/devour_will_end.ogg', 75, FALSE)
+	L.playsound_local(L, 'massmeta/sounds/magic/devour_will_end.ogg', 75, FALSE)
 	L.Unconscious(15)
 	L.apply_effect(EFFECT_STUTTER, 20)
 	L.apply_status_effect(STATUS_EFFECT_BROKEN_WILL)
