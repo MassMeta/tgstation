@@ -4,11 +4,13 @@
 	icon = 'icons/effects/effects.dmi' //Placeholder sprite
 	icon_state = "blank_dspawn"
 	icon_living = "blank_dspawn"
-	response_help = "backs away from"
-	response_disarm = "shoves away"
-	response_harm = "flails at"
+	response_help_continuous = "backs away from"
+	response_help_simple = "backs away from"
+	response_disarm_continuous = "shoves away"
+	response_disarm_simple = "shove away"
+	response_harm_continuous = "flails at"
+	response_harm_simple = "flail at"
 	speed = 0
-	ventcrawler = TRUE
 	maxHealth = 125
 	health = 125
 
@@ -16,7 +18,8 @@
 	obj_damage = 50
 	melee_damage_lower = 5 //it has a built in stun if you want to kill someone kill them like a man
 	melee_damage_upper = 5
-	attacktext = "claws"
+	attack_verb_continuous = "claws"
+	attack_verb_simple = "claw"
 	attack_sound = 'sound/magic/demon_attack1.ogg'
 	speak_emote = list("whispers")
 
@@ -41,6 +44,7 @@
 /mob/living/simple_animal/hostile/crawling_shadows/New()
 	..()
 	addtimer(CALLBACK(src, .proc/check_darkspawn), 1)
+	ADD_TRAIT(src, TRAIT_VENTCRAWLER_ALWAYS, INNATE_TRAIT)
 
 /mob/living/simple_animal/hostile/crawling_shadows/Destroy()
 	if(darkspawn_mob && mind)

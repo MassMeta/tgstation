@@ -2,13 +2,12 @@
 	name = "Darkspawn"
 	id = "darkspawn"
 	sexes = FALSE
-	nojumpsuit = TRUE
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE
 	siemens_coeff = 0
 	brutemod = 0.9
 	heatmod = 1.5
 	no_equip_flags = ITEM_SLOT_MASK | ITEM_SLOT_OCLOTHING | ITEM_SLOT_GLOVES | ITEM_SLOT_FEET | ITEM_SLOT_ICLOTHING | ITEM_SLOT_SUITSTORE
-	species_traits = list(NO_UNDERWEAR,NO_DNA_COPY,NOTRANSSTING,NOEYESPRITES,NOFLASH)
+	species_traits = list(NO_UNDERWEAR,NO_DNA_COPY,NOTRANSSTING,NOEYESPRITES)
 	inherent_traits = list(
 		TRAIT_ADVANCEDTOOLUSER,
 		TRAIT_CAN_STRIP,
@@ -23,7 +22,7 @@
 		TRAIT_NOHUNGER,
 		TRAIT_NOBLOOD,
 	)
-	mutanteyes = /obj/item/organ/eyes/night_vision/alien
+	mutanteyes = /obj/item/organ/internal/eyes/night_vision/alien
 	var/list/upgrades = list()
 
 /datum/species/darkspawn/on_species_gain(mob/living/carbon/C, datum/species/old_species)
