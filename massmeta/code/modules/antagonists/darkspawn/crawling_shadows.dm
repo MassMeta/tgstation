@@ -32,7 +32,7 @@
 
 	del_on_death = TRUE
 	deathmessage = "tremble, break form, and disperse!"
-	deathsound = 'yogstation/sound/magic/devour_will_victim.ogg'
+	deathsound = 'massmeta/sound/magic/devour_will_victim.ogg'
 
 	var/move_count = 0 //For spooky sound effects
 	var/knocking_out = FALSE
@@ -45,7 +45,7 @@
 /mob/living/simple_animal/hostile/crawling_shadows/Destroy()
 	if(darkspawn_mob && mind)
 		visible_message(span_warning("[src] transforms into a humanoid figure!"), span_warning("You return to your normal form."))
-		playsound(src, 'yogstation/sound/magic/devour_will_end.ogg', 50, 1)
+		playsound(src, 'massmeta/sound/magic/devour_will_end.ogg', 50, 1)
 		if(mind)
 			mind.transfer_to(darkspawn_mob)
 		darkspawn_mob.forceMove(get_turf(src))

@@ -15,12 +15,12 @@
 		return
 	owner.visible_message(span_warning("[owner]'s sigils flare as they inhale..."), "<span class='velvet bold'>dawn kqn okjc...</span><br>\
 	[span_notice("You take a deep breath...")]")
-	playsound(owner, 'yogstation/sound/ambience/antag/veil_mind_gasp.ogg', 25)
+	playsound(owner, 'massmeta/sound/ambience/antag/veil_mind_gasp.ogg', 25)
 	if(!do_after(owner, 1 SECONDS, owner))
 		return
 	owner.visible_message(span_boldwarning("[owner] lets out a chilling cry!"), "<span class='velvet bold'>...wjz oanra</span><br>\
 	[span_notice("You veil the minds of everyone nearby.")]")
-	playsound(owner, 'yogstation/sound/ambience/antag/veil_mind_scream.ogg', 100)
+	playsound(owner, 'massmeta/sound/ambience/antag/veil_mind_scream.ogg', 100)
 	for(var/mob/living/L in view(3, owner))
 		if(L == owner)
 			continue

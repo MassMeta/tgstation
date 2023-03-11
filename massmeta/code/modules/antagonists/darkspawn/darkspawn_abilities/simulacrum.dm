@@ -17,7 +17,7 @@
 	else
 		owner.visible_message(span_warning("[owner] splits in two!"), \
 		span_velvet("<b>zayaera</b><br>You create an illusion of yourself."))
-	playsound(owner, 'yogstation/sound/magic/devour_will_form.ogg', 50, 1)
+	playsound(owner, 'massmeta/sound/magic/devour_will_form.ogg', 50, 1)
 	var/obj/effect/simulacrum/simulacrum = new(get_turf(owner))
 	simulacrum.mimic(owner)
 	return TRUE

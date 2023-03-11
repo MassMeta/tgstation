@@ -191,7 +191,7 @@
 	to_chat(owner.current, "<i>When you're ready, retreat to a hidden location and Divulge to shed your human skin.</i>")
 	to_chat(owner.current, span_boldwarning("If you do not do this within twenty five minutes, this will happen involuntarily. Prepare quickly."))
 	to_chat(owner.current, "<i>Remember that this will make you die in the light and heal in the dark - keep to the shadows.</i>")
-	owner.current.playsound_local(get_turf(owner.current), 'yogstation/sound/ambience/antag/darkspawn.ogg', 50, FALSE)
+	owner.current.playsound_local(get_turf(owner.current), 'massmeta/sound/ambience/antag/darkspawn.ogg', 50, FALSE)
 
 /datum/objective/darkspawn
 	explanation_text = "Become lucid and perform the Sacrament."
@@ -317,7 +317,7 @@
 	if(darkspawn_state != MUNDANE)
 		return
 	to_chat(owner.current, span_userdanger("You feel the skin you're wearing crackling like paper - you will forcefully divulge soon! Get somewhere hidden and dark!"))
-	owner.current.playsound_local(owner.current, 'yogstation/sound/magic/divulge_01.ogg', 50, FALSE, pressure_affected = FALSE)
+	owner.current.playsound_local(owner.current, 'massmeta/sound/magic/divulge_01.ogg', 50, FALSE, pressure_affected = FALSE)
 	addtimer(CALLBACK(src, .proc/force_divulge), 1200)
 
 /datum/antagonist/darkspawn/proc/force_divulge()
@@ -331,7 +331,7 @@
 		owner.current.gib(TRUE)
 	H.visible_message(span_boldwarning("[H]'s skin begins to slough off in sheets!"), \
 	span_userdanger("You can't maintain your disguise any more! It begins sloughing off!"))
-	playsound(H, 'yogstation/sound/creatures/darkspawn_force_divulge.ogg', 50, FALSE)
+	playsound(H, 'massmeta/sound/creatures/darkspawn_force_divulge.ogg', 50, FALSE)
 	H.do_jitter_animation(1000)
 	var/processed_message = span_velvet("<b>\[Mindlink\] [H.real_name] has not divulged in time and is now forcefully divulging.</b>")
 	for(var/mob/M in GLOB.player_list)
@@ -372,7 +372,7 @@
 	user.status_flags |= GODMODE
 	user.mind.transfer_to(progenitor)
 	progenitor.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/progenitor_curse(null))
-	sound_to_playing_players('yogstation/sound/magic/sacrament_complete.ogg', 50, FALSE, pressure_affected = FALSE)
+	sound_to_playing_players('massmeta/sound/magic/sacrament_complete.ogg', 50, FALSE, pressure_affected = FALSE)
 	psi = 9999
 	psi_cap = 9999
 	psi_regen = 9999
@@ -441,7 +441,7 @@
 	return data
 
 /datum/antagonist/darkspawn/get_preview_icon()
-	var/icon/darkspawn_icon = icon('yogstation/icons/mob/darkspawn_progenitor.dmi', "darkspawn_progenitor")
+	var/icon/darkspawn_icon = icon('massmeta/icons/mob/darkspawn_progenitor.dmi', "darkspawn_progenitor")
 
 	darkspawn_icon.Scale(ANTAGONIST_PREVIEW_ICON_SIZE, ANTAGONIST_PREVIEW_ICON_SIZE)
 

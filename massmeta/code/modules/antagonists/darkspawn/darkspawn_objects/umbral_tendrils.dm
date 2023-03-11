@@ -13,6 +13,7 @@
 	item_flags = ABSTRACT | DROPDEL
 	var/datum/antagonist/darkspawn/darkspawn
 	var/obj/item/umbral_tendrils/twin
+	var/ranged_mode = FALSE
 
 /obj/item/umbral_tendrils/Initialize(mapload, new_darkspawn)
 	. = ..()
@@ -24,6 +25,7 @@
 			U.twin = src
 			force = 12
 			U.force = 12
+			U.ranged_mode = ranged_mode
 
 /obj/item/umbral_tendrils/Destroy()
 	if(!QDELETED(twin))
@@ -34,12 +36,17 @@
 	. = ..()
 	if(isobserver(user) || isdarkspawn(user))
 		to_chat(user, "<span class='velvet bold'>Functions:<span>")
-		to_chat(user, span_velvet("<b>Help intent:</b> Click on an open tile within seven tiles to jump to it for 10 Psi."))
-		to_chat(user, span_velvet("<b>Disarm intent:</b> Click on an airlock to force it open for 15 Psi (or 30 if it's bolted.)"))
-		to_chat(user, span_velvet("<b>Harm intent:</b> Fire a projectile that travels up to five tiles, knocking down[twin ? " and pulling forwards" : ""] the first creature struck."))
+		to_chat(user, span_velvet("<b>Rightclick:</b> Click on an airlock to force it open for 15 Psi (or 30 if it's bolted.)"))
 		to_chat(user, span_velvet("The tendrils will break any lights hit in melee,"))
 		to_chat(user, span_velvet("The tendrils will shatter light fixtures instantly, as opposed to in several attacks."))
-		to_chat(user, span_velvet("Also functions to pry open depowered airlocks on any intent other than harm."))
+		to_chat(user, span_velvet("Also functions to pry open depowered airlocks if combat mode is off"))
+		to_chat(user, span_velvet("Use [src] inhand to toggle ranged attacks. Ranged attacks are currently [ranged_mode ? "on" : "off"]"))
+		to_chat(user, span_velvet("<b>Ranged, combat mode off:</b> Click on an open tile within seven tiles to jump to it for 10 Psi."))
+		to_chat(user, span_velvet("<b>Ranged, combat mode on:</b> Fire a projectile that travels up to five tiles, knocking down[twin ? " and pulling forwards" : ""] the first creature struck."))
+
+/obj/item/umbral_tendrils/attack_self(mob/user)
+	ranged_mode = !ranged_mode
+	user.balloon_alert(user, "ranged mode [ranged_mode ? "on" : "off"]")
 
 /obj/item/umbral_tendrils/attack(mob/living/target, mob/living/user, twinned_attack = TRUE)
 	set waitfor = FALSE
@@ -71,11 +78,12 @@
 		// Double hit structures if duality
 		else if(!QDELETED(target) && (isstructure(target) || ismachinery(target)) && twin && user.get_active_held_item() == src)
 			target.attackby(twin, user)
-	switch(user.a_intent) //Note that airlock interactions can be found in airlock.dm.
-		if(INTENT_HELP)
+
+	if(ranged_mode)
+		if(!user.combat_mode)
 			if(isopenturf(target))
 				tendril_jump(user, target)
-		if(INTENT_HARM)
+		if(user.combat_mode)
 			tendril_swing(user, target)
 
 /obj/item/umbral_tendrils/proc/disintegrate(obj/item/O)
