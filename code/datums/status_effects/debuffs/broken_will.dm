@@ -4,9 +4,11 @@
 	status_type = STATUS_EFFECT_UNIQUE
 	tick_interval = 5
 	duration = 300
-	examine_text = "<span class='deadsay'>SUBJECTPRONOUN is in a deep, deathlike sleep, with no signs of awareness to anything around them.</span>"
 	alert_type = /obj/screen/alert/status_effect/broken_will
 	var/old_health
+
+/datum/status_effect/broken_will/get_examine_text()
+	return 	"<span class='deadsay'>[owner.p_they(TRUE)] is in a deep, deathlike sleep, with no signs of awareness to anything around them.</span>"
 
 /datum/status_effect/broken_will/tick()
 	owner.Unconscious(15)

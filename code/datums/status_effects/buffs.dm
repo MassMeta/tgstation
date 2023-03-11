@@ -653,12 +653,12 @@
 	return span_warning("[owner.p_they(TRUE)] is moving jerkily and unpredictably!")
 
 /datum/status_effect/time_dilation/on_apply()
-	owner.add_movespeed_modifier(/datum/movespeed_modifier/time_dilation)
+	owner.add_movespeed_modifier(/datum/movespeed_modifier/status_effect/time_dilation)
 	owner.add_actionspeed_modifier(/datum/actionspeed_modifier/time_dilation)
 	return TRUE
 
 /datum/status_effect/time_dilation/on_remove()
-	owner.remove_movespeed_modifier(/datum/movespeed_modifier/time_dilation)
+	owner.remove_movespeed_modifier(/datum/movespeed_modifier/status_effect/time_dilation)
 	owner.remove_actionspeed_modifier(/datum/actionspeed_modifier/time_dilation)
 
 /obj/screen/alert/status_effect/time_dilation
