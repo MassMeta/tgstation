@@ -4,7 +4,7 @@
 	desc = "A glowing black orb. It's fading fast."
 	icon = 'massmeta/icons/obj/darkspawn_items.dmi'
 	icon_state = "dark_bead"
-	item_state = "disintegrate"
+	inhand_icon_state = "disintegrate"
 	resistance_flags = FIRE_PROOF | LAVA_PROOF | UNACIDABLE | INDESTRUCTIBLE
 	item_flags = DROPDEL
 	w_class = 5
@@ -63,9 +63,9 @@
 		user.visible_message(span_warning("[user] grabs [L] and leans in close..."), "<span class='velvet bold'>cera qo...</span><br>\
 		[span_danger("You begin siphoning [L]'s mental energy...")]")
 		to_chat(L, span_userdanger("<i>AAAAAAAAAAAAAA-</i>"))
-		L.silent += 4
+		L.adjust_silence(4 SECONDS)
 		playsound(L, 'massmeta/sounds/magic/devour_will.ogg', 65, FALSE) //T A S T Y   S O U L S
-		if(!do_mob(user, L, 3 SECONDS))
+		if(!do_after(user, 3 SECONDS, L))
 			REMOVE_TRAIT(L, TRAIT_PARALYSIS, "bead-trait")
 			user.Knockdown(3 SECONDS)
 			to_chat(L, span_boldwarning("All right. You're all right."))
@@ -77,7 +77,7 @@
 		"<span class='userdanger italics'>AAAAAAAAAAAAAAA-</span>")
 		to_chat(user, span_velvet("<b>cera qo...</b><br>You begin siphoning [L]'s will..."))
 		playsound(L, 'massmeta/sounds/magic/devour_will_long.ogg', 65, FALSE)
-		if(!do_mob(user, L, 5 SECONDS))
+		if(!do_after(user, 5 SECONDS, L))
 			REMOVE_TRAIT(L, TRAIT_PARALYSIS, "bead-trait")
 			user.Knockdown(5 SECONDS)
 			to_chat(L, span_boldwarning("All right. You're all right."))
@@ -107,7 +107,7 @@
 	to_chat(L, span_userdanger("You suddenly feel... empty. Thoughts try to form, but flit away. You slip into a deep, deep slumber..."))
 	L.playsound_local(L, 'massmeta/sounds/magic/devour_will_end.ogg', 75, FALSE)
 	L.Unconscious(15)
-	L.apply_effect(EFFECT_STUTTER, 20)
+	L.adjust_stutter(20 SECONDS)
 	L.apply_status_effect(STATUS_EFFECT_BROKEN_WILL)
 	addtimer(CALLBACK(linked_ability, /datum/action/innate/darkspawn/devour_will/.proc/make_eligible, L), 600)
 	qdel(src, force = TRUE)

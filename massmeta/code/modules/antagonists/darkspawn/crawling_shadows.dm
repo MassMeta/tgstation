@@ -34,8 +34,6 @@
 	gold_core_spawnable = FALSE
 
 	del_on_death = TRUE
-	deathmessage = "tremble, break form, and disperse!"
-	deathsound = 'massmeta/sounds/magic/devour_will_victim.ogg'
 
 	var/move_count = 0 //For spooky sound effects
 	var/knocking_out = FALSE

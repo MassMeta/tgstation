@@ -9,7 +9,8 @@
 	lefthand_file = 'massmeta/icons/mob/inhands/antag/darkspawn_lefthand.dmi'
 	righthand_file = 'massmeta/icons/mob/inhands/antag/darkspawn_righthand.dmi'
 	hitsound = 'massmeta/sounds/magic/pass_attack.ogg'
-	attack_verb = list("impaled", "tentacled", "torn")
+	attack_verb_continuous = list("impales", "tentacles", "torns")
+	attack_verb_simple = list("impale", "tentacle", "torn")
 	item_flags = ABSTRACT | DROPDEL
 	var/datum/antagonist/darkspawn/darkspawn
 	var/obj/item/umbral_tendrils/twin

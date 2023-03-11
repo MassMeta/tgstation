@@ -6,9 +6,11 @@
 	icon_living = "darkspawn_progenitor"
 	health = INFINITY
 	maxHealth = INFINITY
-	attacktext = "rips apart"
+	attack_verb_continuous = "rips apart"
+	attack_verb_simple = "rip apart"
 	attack_sound = 'massmeta/sounds/creatures/progenitor_attack.ogg'
-	friendly = "stares down"
+	friendly_verb_continuous = "stares down"
+	friendly_verb_simple = "stare down"
 	speak_emote = list("roars")
 	armour_penetration = 100
 	melee_damage_lower = 40
@@ -100,9 +102,6 @@
 	M.apply_status_effect(STATUS_EFFECT_PROGENITORCURSE)
 
 /mob/living/simple_animal/hostile/darkspawn_progenitor/narsie_act()
-	return
-
-/mob/living/simple_animal/hostile/darkspawn_progenitor/ratvar_act()
 	return
 
 /mob/living/simple_animal/hostile/darkspawn_progenitor/singularity_act()
