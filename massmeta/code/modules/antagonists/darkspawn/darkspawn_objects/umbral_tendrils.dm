@@ -5,7 +5,7 @@
 	force = 15
 	icon = 'massmeta/icons/obj/darkspawn_items.dmi'
 	icon_state = "umbral_tendrils"
-	item_state = "umbral_tendrils"
+	worn_icon_state= "umbral_tendrils"
 	lefthand_file = 'massmeta/icons/mob/inhands/antag/darkspawn_lefthand.dmi'
 	righthand_file = 'massmeta/icons/mob/inhands/antag/darkspawn_righthand.dmi'
 	hitsound = 'massmeta/sounds/magic/pass_attack.ogg'
@@ -19,6 +19,7 @@
 /obj/item/umbral_tendrils/Initialize(mapload, new_darkspawn)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+	AddComponent(/datum/component/light_eater)
 	darkspawn = new_darkspawn
 	for(var/obj/item/umbral_tendrils/U in loc)
 		if(U != src)
@@ -60,25 +61,10 @@
 	if(!darkspawn)
 		return
 	if(proximity)
-		if(istype(target, /obj/structure/glowshroom))
-			visible_message(span_warning("[src] tears [target] to shreds!"))
-			qdel(target)
-		if(isliving(target))
-			var/mob/living/L = target
-			if(isethereal(target))
-				target.emp_act(EMP_LIGHT)
-			for(var/obj/item/O in target.GetAllContents())
-				if(O.light_range && O.light_power)
-					disintegrate(O)
-				if(L.pulling && L.pulling.light_range && isitem(L.pulling))
-					disintegrate(L.pulling)
-		else if(isitem(target))
-			var/obj/item/I = target
-			if(I.light_range && I.light_power)
-				disintegrate(I)
 		// Double hit structures if duality
-		else if(!QDELETED(target) && (isstructure(target) || ismachinery(target)) && twin && user.get_active_held_item() == src)
+		if(!QDELETED(target) && (isstructure(target) || ismachinery(target)) && twin && user.get_active_held_item() == src)
 			target.attackby(twin, user)
+			return
 
 	if(ranged_mode)
 		if(!user.combat_mode)
@@ -86,17 +72,6 @@
 				tendril_jump(user, target)
 		if(user.combat_mode)
 			tendril_swing(user, target)
-
-/obj/item/umbral_tendrils/proc/disintegrate(obj/item/O)
-	if(istype(O, /obj/item/pda))
-		var/obj/item/pda/PDA = O
-		PDA.set_light_on(FALSE)
-		PDA.update_icon()
-		visible_message(span_danger("The light in [PDA] shorts out!"))
-	else
-		visible_message(span_danger("[O] is disintegrated by [src]!"))
-		O.burn()
-	playsound(src, 'sound/items/welder.ogg', 50, 1)
 
 /obj/item/umbral_tendrils/proc/tendril_jump(mob/living/user, turf/open/target) //throws the user towards the target turf
 	if(!darkspawn.has_psi(10))
@@ -111,7 +86,7 @@
 	darkspawn.use_psi(10)
 
 /obj/item/umbral_tendrils/proc/tendril_swing(mob/living/user, mob/living/target) //swing the tendrils to knock someone down
-	if(isliving(target) && target.lying)
+	if(isliving(target) && target.body_position == LYING_DOWN)
 		to_chat(user, span_warning("[target] is already knocked down!"))
 		return
 	user.visible_message(span_warning("[user] draws back [src] and swings them towards [target]!"), \
@@ -124,7 +99,7 @@
 	T.fire()
 	qdel(src)
 
-/obj/item/projectile/umbral_tendrils
+/obj/projectile/umbral_tendrils
 	name = "umbral tendrils"
 	icon_state = "cursehand0"
 	hitsound = 'massmeta/sounds/magic/pass_attack.ogg'
