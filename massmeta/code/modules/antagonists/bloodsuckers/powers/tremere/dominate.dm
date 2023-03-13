@@ -110,7 +110,7 @@
 	. = ..()
 	var/mob/living/target = target_atom
 	var/mob/living/user = owner
-	if(target.stat >= SOFT_CRIT && user.Adjacent(target) && level_current >= 4)
+	if(target.stat == DEAD && user.Adjacent(target) && level_current >= 4)
 		attempt_vassalize(target, user)
 		return
 	else if(IS_VASSAL(target))
