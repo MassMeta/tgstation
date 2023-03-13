@@ -455,7 +455,7 @@
 		report += "<span class='header'>Their Vassals were...</span>"
 		for(var/datum/antagonist/vassal/all_vassals in vassals)
 			if(all_vassals.owner)
-				var/jobname = all_vassals.owner.assigned_role ? "the [all_vassals.owner.assigned_role.name]" : ""
+				var/jobname = all_vassals.owner.assigned_role ? "the [all_vassals.owner.assigned_role.title]" : ""
 				report += "<b>[all_vassals.owner.name]</b> [jobname] was a [all_vassals.name]"
 
 	if(objectives.len == 0 || objectives_complete)
