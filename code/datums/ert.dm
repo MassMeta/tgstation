@@ -116,3 +116,13 @@
 	polldesc = "a Centcom-hired bounty hunting gang"
 	random_names = FALSE
 	ert_template = /datum/map_template/shuttle/ert/bounty
+
+/datum/ert/honk
+	roles = list(/datum/antagonist/ert/clown/honk)
+	leader_role = /datum/antagonist/ert/clown/honk
+	teamsize = 5
+	opendoors = TRUE
+	rename_team = "HONK Squad"
+	mission = "HONK them into submission"
+	polldesc = "an elite Nanotrasen tactical pranking squad"
+	code = "HOOOOOOOOOONK" 

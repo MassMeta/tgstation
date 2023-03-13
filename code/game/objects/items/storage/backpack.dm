@@ -58,6 +58,13 @@
 	item_flags = NO_MAT_REDEMPTION
 	armor_type = /datum/armor/backpack_holding
 
+
+/obj/item/storage/backpack/holding/clown
+	name = "bag of honking"
+	desc = "An advanced clowning backpack for holding large quantities of pranking gear."
+	icon_state = "clownpack"
+	inhand_icon_state = "clownpack"
+
 /datum/armor/backpack_holding
 	fire = 60
 	acid = 50
