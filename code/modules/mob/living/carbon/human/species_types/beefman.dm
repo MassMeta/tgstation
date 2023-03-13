@@ -280,7 +280,7 @@
 		user.visible_message(
 			span_notice("[user] grabs onto [p_their()] own tongue and pulls."),
 			span_notice("You grab hold of your tongue and yank hard."))
-		if(!do_after(user, 1 SECONDS, target))
+		if(!do_after(user, 1.5 SECONDS, target))
 			return FALSE
 		var/obj/item/food/meat/slab/meat = new()
 		tongue.Remove(user, special = TRUE)
@@ -290,7 +290,7 @@
 	user.visible_message(
 		span_notice("[user] grabs onto [p_their()] own [affecting.name] and pulls."),
 		span_notice("You grab hold of your [affecting.name] and yank hard."))
-	if(!do_after(user, 0, target))
+	if(!do_after(user, 1.5 SECONDS, target))
 		return FALSE
 	user.visible_message(
 		span_notice("[user]'s [affecting.name] comes right off in their hand."),
