@@ -2,11 +2,7 @@
 	icon = 'icons/mob/species/beefman/beefman_bodyparts.dmi'
 	icon_greyscale = 'icons/mob/species/beefman/beefman_bodyparts.dmi'
 	icon_static = 'icons/mob/species/beefman/beefman_bodyparts_robotic.dmi'
-	heavy_brute_msg = "mincemeat"
-	heavy_burn_msg = "burned to a crisp"
 	limb_id = SPECIES_BEEFMAN
-	brute_damage_desc = "tenderizing"
-	burn_damage_desc = "searing"
 	is_dimorphic = FALSE
 	icon_state = "beefman_head"
 
@@ -14,11 +10,7 @@
 	icon = 'icons/mob/species/beefman/beefman_bodyparts.dmi'
 	icon_greyscale = 'icons/mob/species/beefman/beefman_bodyparts.dmi'
 	icon_static = 'icons/mob/species/beefman/beefman_bodyparts_robotic.dmi'
-	heavy_brute_msg = "mincemeat"
-	heavy_burn_msg = "burned to a crisp"
 	limb_id = SPECIES_BEEFMAN
-	brute_damage_desc = "tenderizing"
-	burn_damage_desc = "searing"
 	is_dimorphic = FALSE
 	icon_state = "beefman_chest"
 
@@ -30,11 +22,7 @@
 	unarmed_attack_verb = "meat"
 	unarmed_damage_low = 1
 	unarmed_damage_high = 5
-	heavy_brute_msg = "mincemeat"
-	heavy_burn_msg = "burned to a crisp"
 	limb_id = SPECIES_BEEFMAN
-	brute_damage_desc = "tenderizing"
-	burn_damage_desc = "searing"
 	icon_state = "beefman_r_arm"
 
 /obj/item/bodypart/arm/right/beef/drop_limb(special)
@@ -54,10 +42,6 @@
 	unarmed_attack_verb = "meat"
 	unarmed_damage_low = 1
 	unarmed_damage_high = 5
-	heavy_brute_msg = "mincemeat"
-	heavy_burn_msg = "burned to a crisp"
-	brute_damage_desc = "tenderizing"
-	burn_damage_desc = "searing"
 	limb_id = SPECIES_BEEFMAN
 	icon_state = "beefman_l_arm"
 
@@ -74,10 +58,6 @@
 	icon = 'icons/mob/species/beefman/beefman_bodyparts.dmi'
 	icon_greyscale = 'icons/mob/species/beefman/beefman_bodyparts.dmi'
 	icon_static = 'icons/mob/species/beefman/beefman_bodyparts_robotic.dmi'
-	heavy_brute_msg = "mincemeat"
-	heavy_burn_msg = "burned to a crisp"
-	brute_damage_desc = "tenderizing"
-	burn_damage_desc = "searing"
 	limb_id = SPECIES_BEEFMAN
 	icon_state = "beefman_r_leg"
 
@@ -94,10 +74,6 @@
 	icon = 'icons/mob/species/beefman/beefman_bodyparts.dmi'
 	icon_greyscale = 'icons/mob/species/beefman/beefman_bodyparts.dmi'
 	icon_static = 'icons/mob/species/beefman/beefman_bodyparts_robotic.dmi'
-	heavy_brute_msg = "mincemeat"
-	heavy_burn_msg = "burned to a crisp"
-	brute_damage_desc = "tenderizing"
-	burn_damage_desc = "searing"
 	limb_id = SPECIES_BEEFMAN
 	icon_state = "beefman_l_leg"
 
