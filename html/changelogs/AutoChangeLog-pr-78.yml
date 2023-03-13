@@ -1,0 +1,8 @@
+author: "SuperSlayer0"
+delete-after: True
+changes:
+  - balance: "Вампиры больше не могут купить predatory lunge"
+  - bugfix: "Френзи теперь не должно станлочить вампиров"
+  - bugfix: "Вампиры теперь должны работать нормально с динамиком"
+  - balance: "Mesmerize теперь не требует смотреть цели в лицо"
+  - bugfix: "Dominate теперь должен уметь подымать мертвых"
