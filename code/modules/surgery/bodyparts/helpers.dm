@@ -189,3 +189,5 @@
 			. = "#fff4e6"
 		if("orange")
 			. = "#ffc905"
+		if("simpson")
+			. = "fed90f"

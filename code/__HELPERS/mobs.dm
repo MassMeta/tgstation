@@ -183,7 +183,8 @@ GLOBAL_LIST_INIT(skin_tones, sort_list(list(
 	"arab",
 	"indian",
 	"african1",
-	"african2"
+	"african2",
+	"simpson"
 	)))
 
 GLOBAL_LIST_INIT(skin_tone_names, list(
@@ -199,6 +200,7 @@ GLOBAL_LIST_INIT(skin_tone_names, list(
 	"indian" = "Brown",
 	"latino" = "Light beige",
 	"mediterranean" = "Olive",
+	"simpson" = "Simpson",
 ))
 
 /// An assoc list of species IDs to type paths
