@@ -19,7 +19,7 @@
 	if(!C)
 		to_chat(owner, span_warning("There are no communications consoles nearby"))
 		return
-	if(C.stat)
+	if(C.is_operational)
 		to_chat(owner, span_warning("[C] is depowered."))
 		return
 	owner.visible_message(span_warning("[owner] briefly touches [src]'s screen, and the keys begin to move by themselves!"), \
@@ -32,7 +32,7 @@
 	if(!C)
 		in_use = FALSE
 		return
-	if(C.stat)
+	if(C.is_operational)
 		to_chat(owner, span_warning("[C] has lost power."))
 		in_use = FALSE
 		return
@@ -45,7 +45,7 @@
 	set waitfor = FALSE
 	for(var/i in 1 to 4)
 		sleep(1 SECONDS)
-		if(!C || C.stat)
+		if(!C || C.is_operational)
 			return
 		playsound(C, "terminal_type", 50, TRUE)
 		if(prob(25))
@@ -53,6 +53,6 @@
 			do_sparks(5, TRUE, get_turf(C))
 	playsound(C, 'sound/machines/terminal_prompt.ogg', 50, FALSE)
 	sleep(0.5 SECONDS)
-	if(!C || C.stat)
+	if(!C || C.is_operational)
 		return
 	playsound(C, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)

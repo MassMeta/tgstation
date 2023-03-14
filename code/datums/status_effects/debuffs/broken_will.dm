@@ -4,7 +4,7 @@
 	status_type = STATUS_EFFECT_UNIQUE
 	tick_interval = 5
 	duration = 300
-	alert_type = /obj/screen/alert/status_effect/broken_will
+	alert_type = /atom/movable/screen/alert/status_effect/broken_will
 	var/old_health
 
 /datum/status_effect/broken_will/get_examine_text()
@@ -23,7 +23,7 @@
 	duration -= health_difference
 	old_health = owner.health
 
-/obj/screen/alert/status_effect/broken_will
+/atom/movable/screen/alert/status_effect/broken_will
 	name = "Broken Will"
 	desc = "..."
 	icon_state = "broken_will"

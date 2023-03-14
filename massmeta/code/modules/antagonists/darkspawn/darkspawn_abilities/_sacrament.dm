@@ -9,11 +9,11 @@
 	var/datum/looping_sound/sacrament/soundloop
 
 /datum/action/innate/darkspawn/sacrament/Activate()
-	if(SSticker.mode.sacrament_done)
+	if(GLOB.sacrament_done)
 		darkspawn.sacrament()
 		return
-	if(!darkspawn || darkspawn.lucidity_drained < SSticker.mode.required_succs)
-		to_chat(usr, span_warning("You do not have enough unique lucidity! ([darkspawn.lucidity_drained] / [SSticker.mode.required_succs])"))
+	if(!darkspawn || darkspawn.lucidity_drained < GLOB.required_succs)
+		to_chat(usr, span_warning("You do not have enough unique lucidity! ([darkspawn.lucidity_drained] / [GLOB.required_succs])"))
 		return
 	var/list/unpurchased_upgrades = list()
 	for(var/V in subtypesof(/datum/darkspawn_upgrade))
@@ -80,7 +80,7 @@
 	new/obj/effect/temp_visual/revenant/cracks(T)
 
 /datum/action/innate/darkspawn/sacrament/proc/shatter_lights()
-	if(SSticker.mode.sacrament_done)
+	if(GLOB.sacrament_done)
 		return
 	for(var/obj/machinery/light/light in SSmachines.processing)
 		light.break_light_tube()

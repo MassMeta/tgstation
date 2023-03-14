@@ -1003,7 +1003,7 @@
 					return
 				user.visible_message("<span class='boldwarning'>[user] starts slamming [T] into [src]!</span>", \
 				"<span class='velvet italics'>You loudly begin smashing down [src].</span>")
-				while(obj_integrity > max_integrity * 0.25)
+				while(atom_integrity > max_integrity * 0.25)
 					if(T.twin)
 						if(!do_after(user, rand(4, 6), target = src))
 							T.darkspawn.use_psi(30)

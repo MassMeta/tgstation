@@ -87,7 +87,7 @@
 	cooldown_time = 5 SECONDS
 	button_icon = 'massmeta/icons/mob/actions/actions_darkspawn.dmi'
 	button_icon_state = "veil_mind"
-	action_background_icon_state = "bg_alien"
+	background_icon_state = "bg_alien"
 
 /datum/action/cooldown/spell/pointed/progenitor_curse/is_valid_target(atom/cast_on)
 	return ..() && ishuman(cast_on)

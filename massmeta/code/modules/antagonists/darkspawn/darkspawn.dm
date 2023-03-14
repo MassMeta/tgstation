@@ -32,7 +32,6 @@
 // Antagonist datum things like assignment //
 
 /datum/antagonist/darkspawn/on_gain()
-	SSticker.mode.darkspawn += owner
 	owner.special_role = "darkspawn"
 	owner.current.hud_used.psi_counter.invisibility = 0
 	update_psi_hud()
@@ -46,7 +45,6 @@
 	return ..()
 
 /datum/antagonist/darkspawn/on_removal()
-	SSticker.mode.darkspawn -= owner
 	owner.special_role = null
 	adjust_darkspawn_hud(FALSE)
 	owner.current.hud_used.psi_counter.invisibility = initial(owner.current.hud_used.psi_counter.invisibility)
@@ -79,11 +77,11 @@
 	return "[owner ? printplayer(owner) : "Unnamed Darkspawn"]"
 
 /datum/antagonist/darkspawn/roundend_report_header()
-	if(SSticker.mode.sacrament_done)
+	if(GLOB.sacrament_done)
 		return "<span class='greentext big'>The darkspawn have completed the Sacrament!</span><br>"
-	else if(!SSticker.mode.sacrament_done && check_darkspawn_death())
+	else if(!GLOB.sacrament_done && check_darkspawn_death())
 		return "<span class='redtext big'>The darkspawn have been killed by the crew!</span><br>"
-	else if(!SSticker.mode.sacrament_done && SSshuttle.emergency.mode >= SHUTTLE_ESCAPE)
+	else if(!GLOB.sacrament_done && SSshuttle.emergency.mode >= SHUTTLE_ESCAPE)
 		return "<span class='redtext big'>The crew escaped the station before the darkspawn could complete the Sacrament!</span><br>"
 	else
 		return "<span class='redtext big'>The darkspawn have failed!</span><br>"
@@ -111,7 +109,7 @@
 		.["Give Upgrade"] = CALLBACK(src, .proc/admin_give_upgrade)
 		.["[psi]/[psi_cap] Psi"] = CALLBACK(src, .proc/admin_edit_psi)
 		.["[lucidity] Lucidity"] = CALLBACK(src, .proc/admin_edit_lucidity)
-		.["[lucidity_drained] / [SSticker.mode.required_succs] Unique Lucidity"] = CALLBACK(src, .proc/admin_edit_lucidity_drained)
+		.["[lucidity_drained] / [GLOB.required_succs] Unique Lucidity"] = CALLBACK(src, .proc/admin_edit_lucidity_drained)
 		.["Sacrament (ENDS THE ROUND)"] = CALLBACK(src, .proc/sacrament)
 
 /datum/antagonist/darkspawn/proc/admin_give_ability(mob/admin)
@@ -191,18 +189,15 @@
 	explanation_text = "Become lucid and perform the Sacrament."
 
 /datum/objective/darkspawn/update_explanation_text()
-	explanation_text = "Become lucid and perform the Sacrament. You will need to devour [SSticker.mode.required_succs] different people's wills and purchase all passive upgrades to do so."
+	explanation_text = "Become lucid and perform the Sacrament. You will need to devour [GLOB.required_succs] different people's wills and purchase all passive upgrades to do so."
 
 /datum/objective/darkspawn/check_completion()
 	if(..())
 		return TRUE
-	return (SSticker.mode.sacrament_done)
+	return (GLOB.sacrament_done)
 
 /datum/antagonist/darkspawn/proc/adjust_darkspawn_hud(add_hud)
-	if(add_hud)
-		SSticker.mode.update_darkspawn_icons_added(owner)
-	else
-		SSticker.mode.update_darkspawn_icons_removed(owner)
+	return
 
 // Darkspawn-related things like Psi //
 
@@ -372,7 +367,7 @@
 	psi_cap = 9999
 	psi_regen = 9999
 	psi_regen_delay = 1
-	SSticker.mode.sacrament_done = TRUE
+	GLOB.sacrament_done = TRUE
 	darkspawn_state = PROGENITOR
 	QDEL_IN(user, 5)
 

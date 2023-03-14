@@ -7,15 +7,11 @@
 
 /datum/antagonist/veil/on_gain()
 	. = ..()
-	SSticker.mode.update_darkspawn_icons_added(owner)
-	SSticker.mode.veils += owner
 	owner.special_role = "veil"
 	message_admins("[key_name_admin(owner.current)] was veiled by a darkspawn!")
 	log_game("[key_name(owner.current)] was veiled by a darkspawn!")
 
 /datum/antagonist/veil/on_removal()
-	SSticker.mode.update_darkspawn_icons_removed(owner)
-	SSticker.mode.veils -= owner
 	message_admins("[key_name_admin(owner.current)] was deveiled!")
 	log_game("[key_name(owner.current)] was deveiled!")
 	owner.special_role = null

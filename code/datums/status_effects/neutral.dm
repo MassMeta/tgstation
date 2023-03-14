@@ -535,7 +535,7 @@
 	id = "tagalong"
 	duration = 3000
 	tick_interval = 1 //as fast as possible
-	alert_type = /obj/screen/alert/status_effect/tagalong
+	alert_type = /atom/movable/screen/alert/status_effect/tagalong
 	var/mob/living/shadowing
 	var/turf/cached_location //we store this so if the mob is somehow gibbed we aren't put into nullspace
 
@@ -574,12 +574,12 @@
 			owner.Stun(5) //short delay so they can't click as soon as they're out
 		qdel(src)
 
-/obj/screen/alert/status_effect/tagalong
+/atom/movable/screen/alert/status_effect/agalong
 	name = "Tagalong"
 	desc = "You are accompanying TARGET_NAME. Use the Tagalong ability to break away at any time."
 	icon_state = "shadow_mend"
 
-/obj/screen/alert/status_effect/tagalong/MouseEntered()
+/atom/movable/screen/alert/status_effect/tagalong/MouseEntered()
 	var/datum/status_effect/tagalong/tagalong = attached_effect
 	desc = replacetext(desc, "TARGET_NAME", tagalong.shadowing.real_name)
 	..()

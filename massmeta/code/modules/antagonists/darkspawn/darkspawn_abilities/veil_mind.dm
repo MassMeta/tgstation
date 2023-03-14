@@ -10,7 +10,7 @@
 
 /datum/action/innate/darkspawn/veil_mind/Activate()
 	var/mob/living/carbon/human/H = owner
-	if(!H.can_speak_vocal())
+	if(!H.can_speak())
 		to_chat(H, span_warning("You can't speak!"))
 		return
 	owner.visible_message(span_warning("[owner]'s sigils flare as they inhale..."), "<span class='velvet bold'>dawn kqn okjc...</span><br>\
@@ -41,5 +41,5 @@
 				else
 					to_chat(L, span_boldwarning("...and it scrambles your thoughts!"))
 					L.dir = pick(GLOB.cardinals)
-					L.confused += 2
+					L.adjust_confusion(2 SECONDS)
 	return TRUE
