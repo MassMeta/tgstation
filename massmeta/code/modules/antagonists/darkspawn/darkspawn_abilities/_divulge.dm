@@ -19,7 +19,8 @@
 	if(spot.get_lumcount() > DARKSPAWN_DIM_LIGHT)
 		to_chat(user, span_warning("You are only able to divulge in darkness!"))
 		return
-	if(alert(user, "You are ready to divulge. Are you sure?", name, "Yes", "No") == "No")
+	var/answer = tgui_alert(user, "You are ready to divulge. Are you sure?", "Divulge", list("Yes", "No"))
+	if(answer == "No")
 		return
 	in_use = TRUE
 	if(istype(user.dna.species, /datum/species/pod))

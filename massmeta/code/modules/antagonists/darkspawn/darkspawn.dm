@@ -366,6 +366,7 @@
 	user.fully_heal()
 	user.set_species(/datum/species/darkspawn)
 	show_to_ghosts = TRUE
+	add_ability("psi_web", TRUE)
 	add_ability("sacrament", TRUE)
 	add_ability("devour_will", TRUE)
 	add_ability("pass", TRUE)
@@ -400,62 +401,6 @@
 /datum/antagonist/darkspawn/proc/sacrament_shuttle_call()
 	SSshuttle.emergency.request(null, 0, null, FALSE, 0.1)
 
-
-// Psi Web code //
-
-/datum/antagonist/darkspawn/ui_state(mob/user)
-	return GLOB.always_state
-
-/datum/antagonist/darkspawn/ui_interact(mob/user, datum/tgui/ui)
-	ui = SStgui.try_update_ui(user, src, ui)
-	if(!ui)
-		ui = new(user, src, "PsiWeb", "Psi Web")
-		ui.open()
-
-/datum/antagonist/darkspawn/ui_data(mob/user)
-	var/list/data = list()
-
-	data["lucidity"] = "[lucidity]  |  [lucidity_drained] / 20 unique drained total"
-
-	var/list/abilities = list()
-	var/list/upgrades = list()
-
-	for(var/path in subtypesof(/datum/action/innate/darkspawn))
-		var/datum/action/innate/darkspawn/ability = path
-
-		if(initial(ability.blacklisted))
-			continue
-
-		var/list/AL = list() //This is mostly copy-pasted from the cellular emporium, but it should be fine regardless
-		AL["name"] = initial(ability.name)
-		AL["id"] = initial(ability.id)
-		AL["desc"] = initial(ability.desc)
-		AL["psi_cost"] = "[initial(ability.psi_cost)][initial(ability.psi_addendum)]"
-		AL["lucidity_cost"] = initial(ability.lucidity_price)
-		AL["owned"] = has_ability(initial(ability.id))
-		AL["can_purchase"] = !AL["owned"] && lucidity >= initial(ability.lucidity_price)
-
-		abilities += list(AL)
-
-	data["abilities"] = abilities
-
-	for(var/path in subtypesof(/datum/darkspawn_upgrade))
-		var/datum/darkspawn_upgrade/upgrade = path
-
-		var/list/DE = list()
-		DE["name"] = initial(upgrade.name)
-		DE["id"] = initial(upgrade.id)
-		DE["desc"] = initial(upgrade.desc)
-		DE["lucidity_cost"] = initial(upgrade.lucidity_price)
-		DE["owned"] = has_upgrade(initial(upgrade.id))
-		DE["can_purchase"] = !DE["owned"] && lucidity >= initial(upgrade.lucidity_price)
-
-		upgrades += list(DE)
-
-	data["upgrades"] = upgrades
-
-	return data
-
 /datum/antagonist/darkspawn/get_preview_icon()
 	var/icon/darkspawn_icon = icon('massmeta/icons/mob/darkspawn_progenitor.dmi', "darkspawn_progenitor")
 
@@ -463,17 +408,6 @@
 
 	return darkspawn_icon
 
-/datum/antagonist/darkspawn/ui_act(action, params)
-	if(..())
-		return
-	if(darkspawn_state == MUNDANE)
-		to_chat(owner.current, span_warning("You need to divulge before interacting with the Psi Web!"))
-		return
-	switch(action)
-		if("unlock")
-			add_ability(params["id"])
-		if("upgrade")
-			add_upgrade(params["id"])
 
 #undef MUNDANE
 #undef DIVULGED
