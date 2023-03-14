@@ -15,7 +15,7 @@
 	weight = 3
 	cost = 20
 	scaling_cost = 20
-	antag_cap = 3
+	antag_cap = list(3,3,3,3,3,3,3,3,3,3)
 	requirements = list(80,75,70,65,50,30,30,30,25,20)
 	minimum_players = 30
 
