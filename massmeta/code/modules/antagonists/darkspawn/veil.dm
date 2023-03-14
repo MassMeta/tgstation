@@ -34,7 +34,7 @@
 	add_team_hud(current_mob)
 
 /datum/antagonist/veil/remove_innate_effects(mob/living/mob_override)
-	current_mob.maxHealth += 40
+	owner.current.maxHealth += 40
 
 /datum/antagonist/veil/add_team_hud(mob/target)
 	QDEL_NULL(team_hud_ref)
