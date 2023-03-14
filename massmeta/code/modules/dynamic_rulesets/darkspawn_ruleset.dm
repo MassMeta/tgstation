@@ -7,7 +7,7 @@
 /datum/dynamic_ruleset/roundstart/darkspawn
 	name = "Darkspawn"
 	antag_flag = ROLE_DARKSPAWN
-	antag_datum = /datum/antagonist/darkspawn/
+	antag_datum = /datum/antagonist/darkspawn
 	minimum_required_age = 20
 	protected_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_DETECTIVE, JOB_HEAD_OF_SECURITY, JOB_CAPTAIN)
 	restricted_roles = list(JOB_AI, JOB_CYBORG)

@@ -366,7 +366,6 @@
 	user.fully_heal()
 	user.set_species(/datum/species/darkspawn)
 	show_to_ghosts = TRUE
-	add_ability("psi_web", TRUE)
 	add_ability("sacrament", TRUE)
 	add_ability("devour_will", TRUE)
 	add_ability("pass", TRUE)
@@ -466,6 +465,9 @@
 
 /datum/antagonist/darkspawn/ui_act(action, params)
 	if(..())
+		return
+	if(darkspawn_state == MUNDANE)
+		to_chat(owner.current, span_warning("You need to divulge before interacting with the Psi Web!"))
 		return
 	switch(action)
 		if("unlock")
