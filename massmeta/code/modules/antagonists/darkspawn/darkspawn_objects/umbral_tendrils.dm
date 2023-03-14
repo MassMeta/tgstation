@@ -92,7 +92,7 @@
 	user.visible_message(span_warning("[user] draws back [src] and swings them towards [target]!"), \
 	span_velvet("<b>opehhjaoo</b><br>You swing your tendrils towards [target]!"))
 	playsound(user, 'sound/magic/tail_swing.ogg', 50, TRUE)
-	var/obj/item/projectile/umbral_tendrils/T = new(get_turf(user))
+	var/obj/projectile/umbral_tendrils/T = new(get_turf(user))
 	T.preparePixelProjectile(target, user)
 	T.twinned = twin
 	T.firer = user
@@ -112,15 +112,15 @@
 	var/twinned = FALSE
 	var/beam
 
-/obj/item/projectile/umbral_tendrils/fire(setAngle)
+/obj/projectile/umbral_tendrils/fire(setAngle)
 	beam = firer.Beam(src, icon_state = "curse0", time = INFINITY, maxdistance = INFINITY)
 	..()
 
-/obj/item/projectile/umbral_tendrils/Destroy()
+/obj/projectile/umbral_tendrils/Destroy()
 	qdel(beam)
 	. = ..()
 
-/obj/item/projectile/umbral_tendrils/on_hit(atom/movable/target, blocked = FALSE)
+/obj/projectile/umbral_tendrils/on_hit(atom/movable/target, blocked = FALSE)
 	if(blocked >= 100)
 		return
 	. = TRUE
@@ -138,7 +138,7 @@
 				target.visible_message(span_warning("[firer]'s [name] slam into [target] and drag them across the ground!"), \
 				span_userdanger("You're suddenly dragged across the floor!"))
 				L.Knockdown(8 SECONDS) //these can't hit people who are already on the ground but they can be spammed to all shit
-				addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, target, 'massmeta/sound/magic/pass_attack.ogg', 50, TRUE), 1)
+				addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, target, 'massmeta/sounds/magic/pass_attack.ogg', 50, TRUE), 1)
 		else
 			var/mob/living/silicon/robot/R = target
 			R.toggle_headlamp(TRUE) //disable headlamps
