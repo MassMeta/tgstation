@@ -28,7 +28,7 @@
 	M.update_sight()
 	return ..()
 
-/datum/antagonist/veil/apply_innate_effects(mob/living/mob_override)*
+/datum/antagonist/veil/apply_innate_effects(mob/living/mob_override)
 	var/mob/living/current_mob = mob_override || owner.current
 	current_mob.maxHealth -= 40
 	add_team_hud(current_mob)
