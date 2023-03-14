@@ -85,9 +85,8 @@
 	name = "Viscerate Mind"
 	desc = "Unleash a powerful psionic barrage into the mind of the target."
 	cooldown_time = 5 SECONDS
-	clothes_req = FALSE
-	action_icon = 'massmeta/icons/mob/actions/actions_darkspawn.dmi'
-	action_icon_state = "veil_mind"
+	button_icon = 'massmeta/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon_state = "veil_mind"
 	action_background_icon_state = "bg_alien"
 
 /datum/action/cooldown/spell/pointed/progenitor_curse/is_valid_target(atom/cast_on)

@@ -5221,4 +5221,5 @@
 #include "massmeta\code\modules\antagonists\darkspawn\darkspawn_upgrades\spacewalking.dm"
 #include "massmeta\code\modules\antagonists\darkspawn\darkspawn_upgrades\twin_tendrils.dm"
 #include "massmeta\code\modules\clothing\halal.dm"
+#include "massmeta\code\modules\languages\darkspeak.dm"
 // END_INCLUDE
