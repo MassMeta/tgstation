@@ -4,6 +4,8 @@
 	roundend_category = "veils"
 	antagpanel_category = "Darkspawn"
 	antag_moodlet = /datum/mood_event/thrall
+	hud_icon = 'massmeta/icons/mob/darkspawn_hud.dmi'
+	antag_hud_name = "veil"
 
 /datum/antagonist/veil/on_gain()
 	. = ..()
@@ -26,11 +28,37 @@
 	M.update_sight()
 	return ..()
 
-/datum/antagonist/veil/apply_innate_effects(mob/living/mob_override)
-	mob_override.maxHealth -= 40
+/datum/antagonist/veil/apply_innate_effects(mob/living/mob_override)*
+	var/mob/living/current_mob = mob_override || owner.current
+	current_mob.maxHealth -= 40
+	add_team_hud(current_mob)
 
 /datum/antagonist/veil/remove_innate_effects(mob/living/mob_override)
-	mob_override.maxHealth += 40
+	current_mob.maxHealth += 40
+
+/datum/antagonist/veil/add_team_hud(mob/target)
+	QDEL_NULL(team_hud_ref)
+
+	team_hud_ref = WEAKREF(target.add_alt_appearance(
+		/datum/atom_hud/alternate_appearance/basic/has_antagonist,
+		"antag_team_hud_[REF(src)]",
+		image(hud_icon, target, antag_hud_name),
+	))
+
+	var/datum/atom_hud/alternate_appearance/basic/has_antagonist/hud = team_hud_ref.resolve()
+
+	var/list/mob/living/mob_list = list()
+	for(var/datum/antagonist/darkspawn as anything in get_antag_minds(/datum/antagonist/darkspawn))
+		mob_list += darkspawn.owner.current
+
+	for(var/datum/antagonist/veil as anything in get_antag_minds(/datum/antagonist/veil))
+		mob_list += veil.owner.current
+
+	for (var/datum/atom_hud/alternate_appearance/basic/has_antagonist/antag_hud as anything in GLOB.has_antagonist_huds)
+		if(!(antag_hud.target in mob_list))
+			continue
+		antag_hud.show_to(target)
+		hud.show_to(antag_hud.target)
 
 /datum/antagonist/veil/greet()
 	to_chat(owner, "<span class='velvet big'><b>ukq wna ieja jks</b></span>" )

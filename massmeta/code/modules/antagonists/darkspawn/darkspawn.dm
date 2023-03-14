@@ -8,6 +8,8 @@
 	roundend_category = "darkspawn"
 	antagpanel_category = "Darkspawn"
 	job_rank = ROLE_DARKSPAWN
+	hud_icon = 'massmeta/icons/mob/darkspawn_hud.dmi'
+	antag_hud_name = "darkspawn"
 	var/darkspawn_state = MUNDANE //0 for normal crew, 1 for divulged, and 2 for progenitor
 	antag_moodlet = /datum/mood_event/sling
 
@@ -57,12 +59,37 @@
 	handle_clown_mutation(current_mob, mob_override ? null : "Our powers allow us to overcome our clownish nature, allowing us to wield weapons with impunity.")
 	adjust_darkspawn_hud(TRUE)
 	current_mob.grant_language(/datum/language/darkspawn)
+	add_team_hud(current_mob)
 
 /datum/antagonist/darkspawn/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/current_mob = mob_override || owner.current
 	handle_clown_mutation(current_mob, removing = FALSE)
 	adjust_darkspawn_hud(FALSE)
 	current_mob.remove_language(/datum/language/darkspawn)
+
+/datum/antagonist/darkspawn/add_team_hud(mob/target)
+	QDEL_NULL(team_hud_ref)
+
+	team_hud_ref = WEAKREF(target.add_alt_appearance(
+		/datum/atom_hud/alternate_appearance/basic/has_antagonist,
+		"antag_team_hud_[REF(src)]",
+		image(hud_icon, target, antag_hud_name),
+	))
+
+	var/datum/atom_hud/alternate_appearance/basic/has_antagonist/hud = team_hud_ref.resolve()
+
+	var/list/mob/living/mob_list = list()
+	for(var/datum/antagonist/darkspawn as anything in get_antag_minds(/datum/antagonist/darkspawn))
+		mob_list += darkspawn.owner.current
+
+	for(var/datum/antagonist/veil as anything in get_antag_minds(/datum/antagonist/veil))
+		mob_list += veil.owner.current
+
+	for (var/datum/atom_hud/alternate_appearance/basic/has_antagonist/antag_hud as anything in GLOB.has_antagonist_huds)
+		if(!(antag_hud.target in mob_list))
+			continue
+		antag_hud.show_to(target)
+		hud.show_to(antag_hud.target)
 
 //Round end stuff
 /datum/antagonist/darkspawn/proc/check_darkspawn_death()

@@ -23,7 +23,7 @@
 /obj/structure/psionic_barrier/Destroy()
 	if(!atom_integrity)
 		visible_message(span_warning("[src] vanishes in a burst of violet energy!"))
-		playsound(src, 'sounds/effects/hit_on_shattered_glass.ogg', 50, TRUE)
+		playsound(src, 'sound/effects/hit_on_shattered_glass.ogg', 50, TRUE)
 		new/obj/effect/temp_visual/revenant/cracks(get_turf(src))
 	STOP_PROCESSING(SSprocessing, src)
 	return ..()
