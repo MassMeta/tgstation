@@ -968,7 +968,8 @@
 		note = C
 		update_appearance()
 	else if(istype(C, /obj/item/umbral_tendrils))
-		if(!user.combat_mode && !hasPower() && !LAZYACCESS(params, RIGHT_CLICK))
+		var/mob/living/living_user
+		if((living_user && !living_user.combat_mode) && !hasPower() && !LAZYACCESS(params, RIGHT_CLICK))
 			if(!density)
 				return
 			if(locked || welded)
