@@ -21,9 +21,9 @@
 	STOP_PROCESSING(SSfastprocess, src)
 	return ..()
 
-/datum/action/innate/darkspawn/Trigger()
+/datum/action/innate/darkspawn/Trigger(trigger_flags)
 	var/activated = FALSE
-	if(!IsAvailable())
+	if(!IsAvailable(TRUE))
 		return
 	if(!active)
 		activated = Activate()
@@ -32,12 +32,18 @@
 	if(darkspawn)
 		darkspawn.use_psi(psi_cost * activated)
 
-/datum/action/innate/darkspawn/IsAvailable()
+/datum/action/innate/darkspawn/IsAvailable(feedback = FALSE)
 	if(!darkspawn)
+		if(feedback)
+			owner.balloon_alert(owner, "not a darkspawn!")
 		return
 	if(!darkspawn.has_psi(psi_cost))
+		if(feedback)
+			owner.balloon_alert(owner, "not enough psi!")
 		return
 	if(in_use)
+		if(feedback)
+			owner.balloon_alert(owner, "already using!")
 		return
 	. = ..()
 

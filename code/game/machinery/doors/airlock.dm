@@ -976,7 +976,6 @@
 				to_chat(user, "<span class='warning'>Your [C.name] can't force open locked doors without smashing them down [src].</span>")
 				return
 			open(2)
-			return
 		var/obj/item/umbral_tendrils/T = C
 		if(!T.darkspawn)
 			return ..()

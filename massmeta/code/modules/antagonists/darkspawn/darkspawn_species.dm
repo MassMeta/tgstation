@@ -1,6 +1,7 @@
 /datum/species/darkspawn
 	name = "Darkspawn"
 	id = "darkspawn"
+	examine_limb_id = SPECIES_SHADOW
 	sexes = FALSE
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE
 	siemens_coeff = 0
@@ -21,6 +22,15 @@
 		TRAIT_NODISMEMBER,
 		TRAIT_NOHUNGER,
 		TRAIT_NOBLOOD,
+		TRAIT_NOGUNS,
+	)
+	bodypart_overrides = list(
+		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/shadow,
+		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/shadow,
+		BODY_ZONE_HEAD = /obj/item/bodypart/head/shadow,
+		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/shadow,
+		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/shadow,
+		BODY_ZONE_CHEST = /obj/item/bodypart/chest/shadow,
 	)
 	mutanteyes = /obj/item/organ/internal/eyes/shadow
 	var/list/upgrades = list()
