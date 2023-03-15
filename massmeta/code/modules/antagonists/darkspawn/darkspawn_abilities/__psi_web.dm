@@ -15,16 +15,15 @@
 	if(!psi_datum)
 		psi_datum = new /datum/psi_web()
 
+/datum/action/innate/darkspawn/psi_web/Grant(mob/living/our_mob)
+	. = ..()
+	if(our_mob.mind.has_antag_datum(/datum/antagonist/darkspawn))
+		psi_datum.darkspawn = our_mob.mind.has_antag_datum(/datum/antagonist/darkspawn)
+
 /datum/action/innate/darkspawn/psi_web/Activate()
 	to_chat(usr, "<span class='velvet bold'>You retreat inwards and touch the Mindlink...</span>")
-	if(!psi_web.darkspawn)
-		var/mob/living/user = usr
-		if(darkspawn)
-			psi_web.darkspawn = darkspawn
-		else if(user.has_antag_datum(/datum/antagonist/darkspawn))
-			psi_web.darkspawn = user.has_antag_datum(/datum/antagonist/darkspawn)
-		else
-			return
+	if(!psi_datum.darkspawn && src.darkspawn)
+		psi_datum.darkspawn = src.darkspawn
 	psi_datum.ui_interact(owner)
 	return TRUE
 
