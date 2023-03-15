@@ -270,6 +270,39 @@
 /obj/item/bodypart/arm/right/shadow/nightmare
 	bodypart_traits = list(TRAIT_CHUNKYFINGERS)
 
+///DARKSPAWN
+/obj/item/bodypart/head/darkspawn
+	biological_state = BIO_INORGANIC
+	limb_id = "darkspawn"
+	is_dimorphic = FALSE
+	should_draw_greyscale = FALSE
+
+/obj/item/bodypart/chest/darkspawn
+	biological_state = BIO_INORGANIC
+	limb_id = "darkspawn"
+	is_dimorphic = FALSE
+	should_draw_greyscale = FALSE
+
+/obj/item/bodypart/arm/left/darkspawn
+	biological_state = BIO_INORGANIC
+	limb_id = "darkspawn"
+	should_draw_greyscale = FALSE
+
+/obj/item/bodypart/arm/right/darkspawn
+	biological_state = BIO_INORGANIC
+	limb_id = "darkspawn"
+	should_draw_greyscale = FALSE
+
+/obj/item/bodypart/leg/left/darkspawn
+	biological_state = BIO_INORGANIC
+	limb_id = "darkspawn"
+	should_draw_greyscale = FALSE
+
+/obj/item/bodypart/leg/right/darkspawn
+	biological_state = BIO_INORGANIC
+	limb_id = "darkspawn"
+	should_draw_greyscale = FALSE
+
 ///SKELETON
 /obj/item/bodypart/head/skeleton
 	biological_state = BIO_BONE

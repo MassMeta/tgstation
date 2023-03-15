@@ -48,11 +48,11 @@
 	var/datum/atom_hud/alternate_appearance/basic/has_antagonist/hud = team_hud_ref.resolve()
 
 	var/list/mob/living/mob_list = list()
-	for(var/datum/antagonist/darkspawn as anything in get_antag_minds(/datum/antagonist/darkspawn))
-		mob_list += darkspawn.owner.current
+	for(var/datum/mind/darkspawn as anything in get_antag_minds(/datum/antagonist/darkspawn))
+		mob_list += darkspawn.current
 
-	for(var/datum/antagonist/veil as anything in get_antag_minds(/datum/antagonist/veil))
-		mob_list += veil.owner.current
+	for(var/datum/mind/veil as anything in get_antag_minds(/datum/antagonist/veil))
+		mob_list += veil.current
 
 	for (var/datum/atom_hud/alternate_appearance/basic/has_antagonist/antag_hud as anything in GLOB.has_antagonist_huds)
 		if(!(antag_hud.target in mob_list))

@@ -37,14 +37,14 @@
 /obj/item/umbral_tendrils/examine(mob/user)
 	. = ..()
 	if(isobserver(user) || isdarkspawn(user))
-		to_chat(user, "<span class='velvet bold'>Functions:<span>")
-		to_chat(user, span_velvet("<b>Rightclick:</b> Click on an airlock to force it open for 15 Psi (or 30 if it's bolted.)"))
-		to_chat(user, span_velvet("The tendrils will break any lights hit in melee,"))
-		to_chat(user, span_velvet("The tendrils will shatter light fixtures instantly, as opposed to in several attacks."))
-		to_chat(user, span_velvet("Also functions to pry open depowered airlocks if combat mode is off"))
-		to_chat(user, span_velvet("Use [src] inhand to toggle ranged attacks. Ranged attacks are currently [ranged_mode ? "on" : "off"]"))
-		to_chat(user, span_velvet("<b>Ranged, combat mode off:</b> Click on an open tile within seven tiles to jump to it for 10 Psi."))
-		to_chat(user, span_velvet("<b>Ranged, combat mode on:</b> Fire a projectile that travels up to five tiles, knocking down[twin ? " and pulling forwards" : ""] the first creature struck."))
+		. += "<span class='velvet bold'>Functions:<span>"
+		. += span_velvet("<b>Rightclick:</b> Click on an airlock to force it open for 15 Psi (or 30 if it's bolted.)")
+		. += span_velvet("The tendrils will break any lights hit in melee,")
+		. += span_velvet("The tendrils will shatter light fixtures instantly, as opposed to in several attacks.")
+		. += span_velvet("Also functions to pry open depowered airlocks if combat mode is off")
+		. += span_velvet("Use [src] inhand to toggle ranged attacks. Ranged attacks are currently [ranged_mode ? "on" : "off"]")
+		. += span_velvet("<b>Ranged, combat mode off:</b> Click on an open tile within seven tiles to jump to it for 10 Psi.")
+		. += span_velvet("<b>Ranged, combat mode on:</b> Fire a projectile that travels up to five tiles, knocking down[twin ? " and pulling forwards" : ""] the first creature struck.")
 
 /obj/item/umbral_tendrils/attack_self(mob/user)
 	ranged_mode = !ranged_mode
@@ -59,12 +59,62 @@
 
 /obj/item/umbral_tendrils/afterattack(atom/target, mob/living/user, proximity)
 	if(!darkspawn)
-		return
+		return ..()
 	if(proximity)
+		if(istype(target, /obj/structure/table))
+			var/obj/structure/table/T = target
+			T.deconstruct(FALSE)
+			return
+		else if(istype(target, /obj/machinery/door/airlock))
+			var/obj/machinery/door/airlock/opening = target
+
+			if((!opening.requiresID() || opening.allowed(user)) && opening.hasPower()) //This is to prevent stupid shit like hitting a door with an arm blade, the door opening because you have acces and still getting a "the airlocks motors resist our efforts to force it" message, power requirement is so this doesn't stop unpowered doors from being pried open if you have access
+				return
+			if(opening.locked || opening.welded)
+				if(!user.combat_mode)
+					opening.balloon_alert(user, "bolted!")
+					return
+				while(opening.atom_integrity > opening.max_integrity * 0.25 && !QDELETED(src))
+					if(twin)
+						if(!do_after(user, rand(4, 6), target = opening))
+							darkspawn.use_psi(30)
+							qdel(src)
+							return
+					else
+						if(!do_after(user, rand(8, 10), target = opening))
+							darkspawn.use_psi(30)
+							qdel(src)
+							return
+					playsound(src, 'massmeta/sounds/magic/pass_smash_door.ogg', 50, TRUE)
+					opening.take_damage(max_integrity / rand(8, 15))
+					to_chat(user, "<span class='velvet bold'>klaj.</span>")
+				opening.ex_act(EXPLODE_DEVASTATE)
+				user.visible_message("<span class='boldwarning'>[user] slams down [opening]!</span>", "<span class='velvet bold'>KLAJ.</span>")
+				darkspawn.use_psi(30)
+				qdel(src)
+				return
+
+			if(opening.hasPower())
+				if(!user.combat_mode) //Don't pry forced without combat mode
+					return
+				user.visible_message(span_warning("[user] jams [src] into the airlock and starts prying it open!"), span_warning("We start forcing the [opening] open."), \
+				span_hear("You hear a metal screeching sound."))
+				playsound(opening, 'sound/machines/airlock_alien_prying.ogg', 100, TRUE)
+				if(!twin)
+					if(!do_after(user, 75, target = opening))
+						return
+				else
+					if(!do_after(user, 50, target = opening))
+						return
+				darkspawn.use_psi(15)
+			//user.say("Heeeeeeeeeerrre's Johnny!")
+			user.visible_message(span_warning("[user] forces the airlock to open with [user.p_their()] [src]!"), span_warning("We force the [opening] to open."), \
+			span_hear("You hear a metal screeching sound."))
+			opening.open(BYPASS_DOOR_CHECKS)
 		// Double hit structures if duality
 		if(!QDELETED(target) && (isstructure(target) || ismachinery(target)) && twin && user.get_active_held_item() == src)
 			target.attackby(twin, user)
-			return
+		return ..()
 
 	if(ranged_mode)
 		if(!user.combat_mode)

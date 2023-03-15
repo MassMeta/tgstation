@@ -35,7 +35,12 @@
 
 /mob/living/simple_animal/hostile/darkspawn_progenitor/Initialize()
 	. = ..()
+	var/datum/action/small_sprite/progenitor/smolgenitor_sprite = new /datum/action/small_sprite/progenitor
+	smolgenitor_sprite.Grant(src)
 	ADD_TRAIT(src, TRAIT_HOLY, "ohgodohfuck") //sorry no magic
+	ADD_TRAIT(src, TRAIT_SPACEWALK, INNATE_TRAIT)
+	ADD_TRAIT(src, TRAIT_FREE_HYPERSPACE_MOVEMENT, INNATE_TRAIT)
+	ADD_TRAIT(src, TRAIT_NO_FLOATING_ANIM, INNATE_TRAIT)
 	alpha = 0
 	animate(src, alpha = 255, time = 1 SECONDS)
 	var/obj/item/radio/headset/silicon/ai/radio = new(src) //so the progenitor can hear people's screams over radio
@@ -49,11 +54,6 @@
 
 /mob/living/simple_animal/hostile/darkspawn_progenitor/Login()
 	..()
-	var/image/I = image(icon = 'massmeta/icons/mob/mob.dmi' , icon_state = "smol_progenitor", loc = src)
-	I.override = 1
-	I.pixel_x -= pixel_x
-	I.pixel_y -= pixel_y
-	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic, "smolgenitor", I)
 	time_to_next_roar = world.time + 30 SECONDS
 
 /mob/living/simple_animal/hostile/darkspawn_progenitor/Life()
@@ -65,9 +65,6 @@
 	..()
 	if(time_to_next_roar <= world.time)
 		roar()
-
-/mob/living/simple_animal/hostile/darkspawn_progenitor/Process_Spacemove()
-	return TRUE
 
 /mob/living/simple_animal/hostile/darkspawn_progenitor/proc/roar()
 	playsound(src, 'massmeta/sounds/creatures/progenitor_roar.ogg', 50, TRUE)
@@ -88,6 +85,7 @@
 	button_icon = 'massmeta/icons/mob/actions/actions_darkspawn.dmi'
 	button_icon_state = "veil_mind"
 	background_icon_state = "bg_alien"
+	spell_requirements = NONE //Go fuck yourself
 
 /datum/action/cooldown/spell/pointed/progenitor_curse/is_valid_target(atom/cast_on)
 	return ..() && ishuman(cast_on)
@@ -106,3 +104,7 @@
 
 /mob/living/simple_animal/hostile/darkspawn_progenitor/ex_act() //sorry no bombs
 	return
+
+/datum/action/small_sprite/progenitor
+	small_icon = 'massmeta/icons/mob/mob.dmi'
+	small_icon_state = "smol_progenitor"

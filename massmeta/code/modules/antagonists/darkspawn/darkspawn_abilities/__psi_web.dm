@@ -13,13 +13,18 @@
 /datum/action/innate/darkspawn/psi_web/New()
 	. = ..()
 	if(!psi_datum)
-		psi_datum = new()
-		psi_datum.darkspawn = src.darkspawn
+		psi_datum = new /datum/psi_web()
 
 /datum/action/innate/darkspawn/psi_web/Activate()
 	to_chat(usr, "<span class='velvet bold'>You retreat inwards and touch the Mindlink...</span>")
-	if(!darkspawn)
-		return
+	if(!psi_web.darkspawn)
+		var/mob/living/user = usr
+		if(darkspawn)
+			psi_web.darkspawn = darkspawn
+		else if(user.has_antag_datum(/datum/antagonist/darkspawn))
+			psi_web.darkspawn = user.has_antag_datum(/datum/antagonist/darkspawn)
+		else
+			return
 	psi_datum.ui_interact(owner)
 	return TRUE
 
