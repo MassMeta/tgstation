@@ -88,3 +88,6 @@
 		darkspawn = H.mind.has_antag_datum(/datum/antagonist/darkspawn)
 		if(darkspawn)
 			upgrades = darkspawn.upgrades
+
+/mob/living/carbon/human/species/darkspawn
+	race = /datum/species/darkspawn //God knows why would you need it but ok
