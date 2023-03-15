@@ -378,6 +378,7 @@
 	var/mob/living/carbon/human/user = owner.current
 	if(SSsecurity_level != SEC_LEVEL_DELTA)
 		SSsecurity_level.set_level(SEC_LEVEL_DELTA)
+		sound_to_playing_players('sound/machines/alarm.ogg')
 		addtimer(CALLBACK(src, .proc/sacrament_shuttle_call), 50)
 	for(var/V in abilities)
 		remove_ability(abilities[V], TRUE)
