@@ -1,3 +1,4 @@
+#define MINIMUM_MONSTERS_REQUIRED 3
 
 //gives monsterhunters an icon in the antag selection panel
 /datum/dynamic_ruleset/midround/monsterhunter
@@ -28,7 +29,6 @@
 	)
 	required_candidates = 1
 	requirements = list(10,10,10,10,10,10,10,10,10,10)
-	var/minimum_monsters_required = 3
 
 
 /datum/dynamic_ruleset/midround/monsterhunter/trim_candidates()
@@ -41,33 +41,65 @@
 		if((player.mind?.special_role || player.mind?.antag_datums?.len))
 			living_players -= player
 
-/datum/dynamic_ruleset/midround/monsterhunter/proc/generate_monsters(amount)
-	var/list/possible_monsters = list(/datum/antagonist/bloodsucker,
-	/datum/antagonist/heretic,
-	/datum/antagonist/changeling)
-	for(var/i in 1 to amount)
-		var/mob/living/monster = pick(living_players)
-		assigned += monster
-		living_players -= monster
-		var/datum/antagonist/profession = pick(possible_monsters)
-		monster.mind.add_antag_datum(profession)
-		message_admins("[ADMIN_LOOKUPFLW(monster)] was selected by the [name] ruleset and has been made into a Monster.")
-		log_game("DYNAMIC: [key_name(monster)] was selected by the [name] ruleset and has been made into a Monster.")
+/datum/dynamic_ruleset/midround/monsterhunter/proc/generate_monster(list/attempted_list)
+	var/mob/living/monster = pick(attempted_list)
+	if(!monster)
+		return FALSE
+	attempted_list -= monster
+	var/datum/antagonist/antag_type = pick_weight(GLOB.monster_antagonist_types)
+	//gets the antag type without initializing it
+	var/list/profession = GLOB.antag_prototypes[initial(antag_type.antagpanel_category)]
+	var/datum/antagonist/specific = profession[1]
+	if(!specific.enabled_in_preferences(monster.mind))
+		return FALSE
+	if(!monster.mind.add_antag_datum(antag_type))
+		return FALSE
+	assigned += monster
+	living_players -= monster
+	message_admins("[ADMIN_LOOKUPFLW(monster)] was selected by the [name] ruleset and has been made into a Monster.")
+	log_game("DYNAMIC: [key_name(monster)] was selected by the [name] ruleset and has been made into a Monster.")
+	return TRUE
 
 /datum/dynamic_ruleset/midround/monsterhunter/ready(forced = FALSE)
-	var/count = 0
-	for(var/datum/antagonist/monster in GLOB.antagonists)
-		var/datum/mind/candidate = monster.owner
-		if(!candidate)
-			continue
-		if(IS_BLOODSUCKER(candidate.current) || candidate.has_antag_datum(/datum/antagonist/changeling))
-			count++
-	if(count < minimum_monsters_required)
-		var/needed_monsters = minimum_monsters_required - count
-		generate_monsters(needed_monsters)
-		message_admins("MONSTERHUNTER NOTICE: Monster Hunters did not find enough monsters, generating monsters...")
-	if (required_candidates > living_players.len)
+	if(required_candidates > living_players.len)
 		return FALSE
+	//check if the list is empty
+	if(!GLOB.antag_prototypes)
+		GLOB.antag_prototypes = list()
+		for(var/antag_type in subtypesof(/datum/antagonist))
+			var/datum/antagonist/A = new antag_type
+			var/cat_id = A.antagpanel_category
+			if(!GLOB.antag_prototypes[cat_id])
+				GLOB.antag_prototypes[cat_id] = list(A)
+			else
+				GLOB.antag_prototypes[cat_id] += A
+
+	var/count = 0
+	for(var/datum/antagonist/monster as anything in GLOB.antagonists)
+		if(!monster.owner)
+			continue
+		if(!monster.owner.current)
+			continue
+		if(monster.owner.current.stat == DEAD)
+			continue
+		if(GLOB.monster_antagonist_types.Find(monster.type))
+			count++
+
+	if((MINIMUM_MONSTERS_REQUIRED - count) + 1 > living_players.len)
+		return FALSE
+	//don't continue endlessly if you just can't do it, otherwise you'll freeze/crash the whole game.
+	var/attempts
+	var/list/attempted_list = living_players.Copy()
+	while(count < MINIMUM_MONSTERS_REQUIRED && (attempts < 10))
+		if(living_players.len == 1 ) //this is our monster hunter incase something went wrong
+			break
+		if(!attempted_list.len)
+			break
+		if(!generate_monster(attempted_list))
+			attempts++
+		else
+			count++
+
 	return ..()
 
 /datum/dynamic_ruleset/midround/monsterhunter/execute()
@@ -78,3 +110,5 @@
 	message_admins("[ADMIN_LOOKUPFLW(player)] was selected by the [name] ruleset and has been made into a Monsterhunter.")
 	log_game("DYNAMIC: [key_name(player)] was selected by the [name] ruleset and has been made into a Monsterhunter.")
 	return TRUE
+
+#undef MINIMUM_MONSTERS_REQUIRED

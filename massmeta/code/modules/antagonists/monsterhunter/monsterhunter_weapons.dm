@@ -116,9 +116,14 @@
 	name = "Moonlight"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "plasmasoul"
-	damage = 10
+	damage = 25
+	light_system = MOVABLE_LIGHT
+	light_range = 2
+	light_power = 1
+	light_color = "#ff42ec"
 	damage_type = BURN
-	range = 10
+	hitsound = 'sound/weapons/sear.ogg'
+	hitsound_wall = 'sound/weapons/effects/searwall.ogg'
 
 
 
@@ -227,7 +232,8 @@
 		return
 	SEND_SIGNAL(killer,WEAPON_UPGRADE)
 	killer.name = "[killer.base_name] +[killer.upgrade_level]"
-	to_chat(user, span_warning ("The [src] crumbles away..."))
+	balloon_alert(user, "[src] crumbles away...")
+	playsound(src, 'massmeta/sounds/monster_hunter/weaponsmithing.ogg', 50)
 	qdel(src)
 
 /obj/item/gun/ballistic/revolver/hunter_revolver
@@ -273,26 +279,23 @@
 		return
 	if(man.has_movespeed_modifier(/datum/movespeed_modifier/silver_bullet))
 		return
-	if(!(IS_BLOODSUCKER(man)) && !(man.mind.has_antag_datum(/datum/antagonist/changeling)))
+	if(!IS_HERETIC(man) && !(IS_BLOODSUCKER(man)) && !(man.mind.has_antag_datum(/datum/antagonist/changeling)))
 		return
 	man.add_movespeed_modifier(/datum/movespeed_modifier/silver_bullet)
-	addtimer(CALLBACK(man, /mob/living/carbon.proc/remove_bloodsilver), 20 SECONDS)
-
-/mob/living/carbon/proc/remove_bloodsilver()
-	if (has_movespeed_modifier(/datum/movespeed_modifier/silver_bullet))
-		remove_movespeed_modifier(/datum/movespeed_modifier/silver_bullet)
+	if(!(man.has_movespeed_modifier(/datum/movespeed_modifier/silver_bullet)))
+		return
+	addtimer(CALLBACK(man, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/silver_bullet), 20 SECONDS)
 
 
-/obj/structure/table/weaponsmith
+/obj/structure/rack/weaponsmith
 	name = "Weapon Forge"
-	desc = "Table used by blacksmiths to upgrade weapons."
-	icon = 'icons/obj/smooth_structures/fancy_table_black.dmi'
-	icon_state = "fancy_table_black-0"
-	base_icon_state = "fancy_table_black"
+	desc = "Fueled by the tears of rabbits."
+	icon = 'icons/obj/cult/structures.dmi'
+	icon_state = "altar"
 	resistance_flags = INDESTRUCTIBLE
 
 
-/obj/structure/table/weaponsmith/attackby(obj/item/organ, mob/living/user, params)
+/obj/structure/rack/weaponsmith/attackby(obj/item/organ, mob/living/user, params)
 	if(!istype(organ, /obj/item/rabbit_eye))
 		return ..()
 	var/obj/item/rabbit_eye/eye = organ
