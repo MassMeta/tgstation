@@ -44,6 +44,11 @@
 	block_chance = 20
 	on_force = 20
 	base_force = 17
+	light_system = MOVABLE_LIGHT
+	light_color = "#ff42ec"
+	light_range = 2
+	light_power = 2
+	light_on = FALSE
 	throwforce = 12
 	damtype = BURN
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -74,6 +79,7 @@
 		playsound(src, 'massmeta/sounds/monster_hunter/moonlightsword.ogg',50)
 	inhand_icon_state = active ? "darkmoon" : "darkmoon_hilt"
 	enabled = active
+	set_light_on(active)
 	force = active ? upgraded_val(on_force, upgrade_level) : upgraded_val(base_force, upgrade_level)
 	return COMPONENT_NO_DEFAULT_MESSAGE
 
@@ -102,6 +108,7 @@
 	var/obj/projectile/moonbeam/moon = new(proj_turf)
 	moon.preparePixelProjectile(target, user, modifiers)
 	moon.firer = user
+	playsound(src, 'massmeta/sounds/monster_hunter/moonlightbeam.ogg',50)
 	moon.fire()
 
 

@@ -83,6 +83,7 @@
 	desc = "A cute little rabbit, surely its harmless... right?"
 	icon = 'massmeta/icons/monster_hunter/rabbit.dmi'
 	icon_state = "killer_rabbit"
+	faction = list(FACTION_RABBIT)
 	maxHealth = 5
 	melee_damage_lower = 5
 	melee_damage_upper = 5
