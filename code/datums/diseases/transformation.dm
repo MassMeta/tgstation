@@ -154,7 +154,6 @@
 	spread_text = "Monkey Bites"
 	spread_flags = DISEASE_SPREAD_SPECIAL
 	viable_mobtypes = list(/mob/living/carbon/human)
-	permeability_mod = 1
 	cure_chance = 0.5
 	disease_flags = CAN_CARRY|CAN_RESIST
 	desc = "Monkeys with this disease will bite humans, causing humans to mutate into a monkey."

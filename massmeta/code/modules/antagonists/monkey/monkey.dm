@@ -18,7 +18,7 @@
 
 /datum/antagonist/monkey/get_preview_icon()
 	// Creating a *real* monkey is fairly involved before atoms init.
-	var/icon/icon = icon('icons/mob/human.dmi', "monkey")
+	var/icon/icon = icon('massmeta/icons/mob/monkey_preview.dmi', "monkey")
 
 	icon.Crop(4, 9, 28, 33)
 	icon.Scale(ANTAGONIST_PREVIEW_ICON_SIZE, ANTAGONIST_PREVIEW_ICON_SIZE)
@@ -123,12 +123,12 @@
 
 /datum/antagonist/monkey/leader/on_gain()
 	. = ..()
-	var/obj/item/organ/heart/freedom/super_heart = new
+	var/obj/item/organ/internal/heart/freedom/super_heart = new
 	super_heart.Insert(owner.current, drop_if_replaced = FALSE)
 	owner.special_role = "Monkey Leader"
 
 /datum/antagonist/monkey/leader/on_removal()
-	var/obj/item/organ/heart/H = new
+	var/obj/item/organ/internal/heart/H = new
 	H.Insert(owner.current, drop_if_replaced = FALSE) //replace freedom heart with normal heart
 
 	. = ..()
