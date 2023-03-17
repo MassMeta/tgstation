@@ -253,6 +253,21 @@ GLOBAL_LIST_INIT(human_invader_antagonists, list(
 
 // Progression traitor defines
 
+/// Chance that the traitor could roll hijack if the pop limit is met.
+#define HIJACK_PROB 10
+/// Hijack is unavailable as a random objective below this player count.
+#define HIJACK_MIN_PLAYERS 30
+
+/// Chance the traitor gets a martyr objective instead of having to escape alive, as long as all the objectives are martyr compatible.
+#define MARTYR_PROB 20
+
+/// Chance the traitor gets a kill objective. If this prob fails, they will get a steal objective instead.
+#define KILL_PROB 50
+/// If a kill objective is rolled, chance that it is to destroy the AI.
+#define DESTROY_AI_PROB(denominator) (100 / denominator)
+/// If the destroy AI objective doesn't roll, chance that we'll get a maroon instead. If this prob fails, they will get a generic assassinate objective instead.
+#define MAROON_PROB 30
+
 /// How many telecrystals a normal traitor starts with
 #define TELECRYSTALS_DEFAULT 20
 /// How many telecrystals mapper/admin only "precharged" uplink implant
@@ -281,11 +296,11 @@ GLOBAL_LIST_INIT(human_invader_antagonists, list(
 #define OBJECTIVE_STATE_INVALID 5
 
 /// Weights for traitor objective categories
-#define OBJECTIVE_WEIGHT_TINY 5
-#define OBJECTIVE_WEIGHT_SMALL 7
+#define OBJECTIVE_WEIGHT_VERY_UNLIKELY 2
+#define OBJECTIVE_WEIGHT_UNLIKELY 5
 #define OBJECTIVE_WEIGHT_DEFAULT 10
-#define OBJECTIVE_WEIGHT_BIG 15
-#define OBJECTIVE_WEIGHT_HUGE 20
+#define OBJECTIVE_WEIGHT_LIKELY 15
+#define OBJECTIVE_WEIGHT_VERY_LIKELY 20
 
 #define REVENANT_NAME_FILE "revenant_names.json"
 
@@ -305,3 +320,20 @@ GLOBAL_LIST_INIT(human_invader_antagonists, list(
 #define ANTAG_GROUP_SYNDICATE "Syndicate"
 #define ANTAG_GROUP_WIZARDS "Wizard Federation"
 #define ANTAG_GROUP_XENOS "Xenomorph Infestation"
+
+//Massmeta edit start
+#define isdarkspawn(A) (A.mind && A.mind.has_antag_datum(/datum/antagonist/darkspawn))
+#define isveil(A) (A.mind && A.mind.has_antag_datum(/datum/antagonist/veil))
+#define is_darkspawn_or_veil(A) (A.mind && isdarkspawn(A) || isveil(A))
+
+#define DARKSPAWN_DIM_LIGHT 0.2 //light of this intensity suppresses healing and causes very slow burn damage
+#define DARKSPAWN_BRIGHT_LIGHT 0.3 //light of this intensity causes rapid burn damage
+
+#define DARKSPAWN_DARK_HEAL 5 //how much damage of each type (with fire damage half rate) is healed in the dark
+#define DARKSPAWN_LIGHT_BURN 7 //how much damage the darkspawn receives per tick in lit areas
+
+#define STATUS_EFFECT_CREEP /datum/status_effect/creep //Provides immunity to lightburn for darkspawn, does nothing to anyone else //Massmeta edit
+#define STATUS_EFFECT_TIME_DILATION /datum/status_effect/time_dilation //Provides immunity to slowdown and halves click-delay/action times //Massmeta edit
+#define STATUS_EFFECT_BROKEN_WILL /datum/status_effect/broken_will //A 30-second sleep effect reduced by 1 second for every point
+#define STATUS_EFFECT_TAGALONG /datum/status_effect/tagalong //allows darkspawn to accompany people's shadows //Massmeta edit
+//Massmeta edit end

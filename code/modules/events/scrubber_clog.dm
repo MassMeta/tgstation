@@ -65,8 +65,9 @@
 
 /datum/round_event/scrubber_clog/proc/get_mob()
 	var/static/list/mob_list = list(
-				/mob/living/basic/mouse,
 				/mob/living/basic/cockroach,
+				/mob/living/basic/giant_spider/maintenance,
+				/mob/living/basic/mouse,
 				/mob/living/simple_animal/butterfly,
 	)
 	return pick(mob_list)
@@ -214,5 +215,6 @@
 		/mob/living/simple_animal/pet/gondola,
 		/mob/living/simple_animal/hostile/mushroom,
 		/mob/living/simple_animal/hostile/lightgeist,
+		/mob/living/basic/pig,
 	)
 	return pick(mob_list)

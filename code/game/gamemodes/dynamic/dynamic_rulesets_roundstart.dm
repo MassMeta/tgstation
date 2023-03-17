@@ -88,65 +88,6 @@
 		// We need an AI for the malf roundstart ruleset to execute. This means that players who get selected as malf AI get priority, because antag selection comes before role selection.
 		LAZYADDASSOC(SSjob.dynamic_forced_occupations, new_malf, "AI")
 	return TRUE
-//////////////////////////////////////////////
-//                                          //
-//            INTERNAL AFFAIRS              //
-//                                          //
-//////////////////////////////////////////////
-
-/datum/dynamic_ruleset/roundstart/internal_affairs
-	name = "Internal Affairs"
-	antag_flag = ROLE_INTERNAL_AFFAIRS
-	antag_datum = /datum/antagonist/traitor/internal_affairs
-	protected_roles = list(JOB_CAPTAIN, JOB_HEAD_OF_SECURITY, JOB_WARDEN, JOB_SECURITY_OFFICER, JOB_DETECTIVE, JOB_PRISONER)
-	restricted_roles = list(JOB_AI, JOB_CYBORG)
-	required_candidates = 6
-	weight = 2
-	cost = 8
-	scaling_cost = 2
-	requirements = list(8,8,8,8,8,8,8,8,8,8)
-	antag_cap = list("denominator" = 24, "offset" = 3)
-	///List of all IAAs, inserted in the correct order to assign eachother as objectives of one another.
-	var/list/target_list = list()
-
-/datum/dynamic_ruleset/roundstart/internal_affairs/pre_execute(population)
-	. = ..()
-	var/num_traitors = get_antag_cap(population)
-	for(var/affair_number = 1 to num_traitors)
-		if(candidates.len <= 0)
-			break
-		var/mob/M = pick_n_take(candidates)
-		assigned += M.mind
-		M.mind.restricted_roles = restricted_roles
-		GLOB.pre_setup_antags += M.mind
-
-	//We assign all IAAs their position in the list to later assign them as objectives of one another.
-	var/list_position = 0
-	for(var/datum/mind/iaa_minds in assigned)
-		list_position++
-		if(list_position + 1 > assigned.len)
-			list_position = 0
-		target_list[iaa_minds] = assigned[list_position+1]
-	return TRUE
-
-/datum/dynamic_ruleset/roundstart/internal_affairs/execute()
-	. = ..()
-	if(!.)
-		return FALSE
-
-	// We do get_antag_minds as they have already been removed from 'assigned'.
-	for(var/datum/mind/assigned_traitors as anything in get_antag_minds(/datum/antagonist/traitor/internal_affairs))
-		var/datum/antagonist/traitor/internal_affairs/iaa_datum = assigned_traitors.has_antag_datum(/datum/antagonist/traitor/internal_affairs)
-		if(target_list.len && target_list[assigned_traitors])
-			var/datum/mind/target_mind = target_list[assigned_traitors]
-
-			var/datum/objective/assassinate/internal/kill_objective = new
-			kill_objective.owner = assigned_traitors
-			kill_objective.target = target_mind
-			kill_objective.update_explanation_text()
-			iaa_datum.objectives += kill_objective
-
-	return TRUE
 
 //////////////////////////////////////////
 //                                      //
@@ -768,8 +709,12 @@
 	antag_flag = ROLE_BLOODSUCKER
 	antag_datum = /datum/antagonist/bloodsucker
 	protected_roles = list(
+		// Command
 		JOB_CAPTAIN, JOB_HEAD_OF_PERSONNEL, JOB_HEAD_OF_SECURITY,
-		JOB_WARDEN, JOB_SECURITY_OFFICER, JOB_DETECTIVE, JOB_CURATOR
+		// Security
+		JOB_WARDEN, JOB_SECURITY_OFFICER, JOB_DETECTIVE,
+		// Curator
+		JOB_CURATOR,
 	)
 	restricted_roles = list(JOB_AI, JOB_CYBORG)
 	required_candidates = 1
@@ -777,11 +722,11 @@
 	cost = 10
 	scaling_cost = 9
 	requirements = list(10,10,10,10,10,10,10,10,10,10)
-	antag_cap = list(1,1,1,2,2,2,2,2,3,3)
+	antag_cap = list("denominator" = 24)
 
 /datum/dynamic_ruleset/roundstart/bloodsucker/pre_execute(population)
 	. = ..()
-	var/num_bloodsuckers = antag_cap[indice_pop] * (scaled_times + 1)
+	var/num_bloodsuckers = get_antag_cap(population) * (scaled_times + 1)
 
 	for(var/i = 1 to num_bloodsuckers)
 		if(candidates.len <= 0)
@@ -789,12 +734,15 @@
 		var/mob/selected_mobs = pick_n_take(candidates)
 		assigned += selected_mobs.mind
 		selected_mobs.mind.restricted_roles = restricted_roles
-		selected_mobs.mind.special_role = ROLE_BLOODSUCKER
+		GLOB.pre_setup_antags += selected_mobs.mind
 	return TRUE
 
 /datum/dynamic_ruleset/roundstart/bloodsucker/execute()
-	for(var/assigned_bloodsuckers in assigned)
-		var/datum/mind/bloodsuckermind = assigned_bloodsuckers
-		if(!bloodsuckermind.make_bloodsucker(assigned_bloodsuckers))
-			assigned -= assigned_bloodsuckers
+	for(var/datum/mind/candidate_minds as anything in assigned)
+		if(!candidate_minds.make_bloodsucker())
+			message_admins("[ADMIN_LOOKUPFLW(candidate_minds)] was selected by the [name] ruleset, but couldn't be made into a Bloodsucker.")
+			assigned -= candidate_minds
+			continue
+		GLOB.pre_setup_antags -= candidate_minds
+		candidate_minds.special_role = ROLE_BLOODSUCKER
 	return TRUE
