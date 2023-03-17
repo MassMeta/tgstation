@@ -12,6 +12,10 @@
 	owner.special_role = "veil"
 	message_admins("[key_name_admin(owner.current)] was veiled by a darkspawn!")
 	log_game("[key_name(owner.current)] was veiled by a darkspawn!")
+	var/datum/objective/veil/O = new
+	objectives += O
+	O.update_explanation_text()
+	owner.announce_objectives()
 
 /datum/antagonist/veil/on_removal()
 	message_admins("[key_name_admin(owner.current)] was deveiled!")
@@ -69,7 +73,7 @@
 	Eyes filled with stars. \n\
 	You feel the vast consciousness slowly consume your own and the veil falls away. \n\
 	Serve the darkspawn above all else. Your former allegiances are now forfeit. Their goal is yours, and yours is theirs.</b>")
-	to_chat(owner, "<i>Use <b>:a or .a</b> before your messages to speak over the Mindlink. This only works across your current z-level.</i>")
+	to_chat(owner, "<i>Use <b>:w or .w</b> before your messages to speak over the Mindlink. This only works across your current z-level.</i>")
 	to_chat(owner, "<i>Ask for help from your masters or fellows if you're new to this role.</i>")
 	to_chat(owner, span_danger("Your drained will has left you feeble and weak! You will go down with many fewer hits!"))
 	SEND_SOUND(owner.current, sound ('massmeta/sounds/ambience/antag/become_veil.ogg', volume = 50))
@@ -101,3 +105,12 @@
 	owner.current.remove_veil()
 	owner.current.log_message("has been deconverted from being a Veil by [implanter]!", LOG_ATTACK, color="#960000")
 	return COMPONENT_MINDSHIELD_DECONVERTED
+
+/datum/objective/veil
+	explanation_text = "Help your masters, Darkspawns, to complete The Sacrament."
+
+/datum/objective/veil/check_completion()
+	if(..())
+		return TRUE
+	return (GLOB.sacrament_done)
+
