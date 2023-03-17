@@ -82,7 +82,7 @@
 		stack_trace("Wrong team type passed to [type] initialization.")
 	monkey_team = new_team
 
-/datum/antagonist/monkey/proc/forge_objectives()
+/datum/antagonist/monkey/forge_objectives()
 	objectives |= monkey_team.objectives
 
 /datum/antagonist/monkey/admin_remove(mob/admin)
