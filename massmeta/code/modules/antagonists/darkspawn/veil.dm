@@ -96,3 +96,8 @@
 	if(!istype(mind))
 		return FALSE
 	return mind.remove_antag_datum(/datum/antagonist/veil)
+
+/datum/antagonist/veil/on_mindshield(mob/implanter, mob/living/mob_override)
+	owner.current.remove_veil()
+	owner.current.log_message("has been deconverted from being a Veil by [implanter]!", LOG_ATTACK, color="#960000")
+	return COMPONENT_MINDSHIELD_DECONVERTED
