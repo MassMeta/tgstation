@@ -102,6 +102,10 @@ GLOBAL_LIST_INIT(runed_metal_recipes, list( \
 
 	return ..()
 
+/obj/item/stack/sheet/runed_metal/ratvar_act()
+	new /obj/item/stack/tile/brass(loc, amount)
+	qdel(src)
+
 /obj/item/stack/sheet/runed_metal/radial_check(mob/builder)
 	return ..() && IS_CULTIST(builder)
 

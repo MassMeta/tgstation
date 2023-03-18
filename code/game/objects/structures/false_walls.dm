@@ -377,6 +377,32 @@
 	canSmoothWith = SMOOTH_GROUP_MATERIAL_WALLS
 	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR | MATERIAL_AFFECT_STATISTICS
 
+/obj/structure/falsewall/brass
+	name = "clockwork wall"
+	desc = "A huge chunk of warm metal. The clanging of machinery emanates from within."
+	icon = 'icons/turf/walls/clockwork_wall.dmi'
+	icon_state = "clockwork_wall"
+	resistance_flags = FIRE_PROOF | ACID_PROOF
+	mineral_amount = 1
+	girder_type = /obj/structure/destructible/clockwork/wall_gear/displaced
+	walltype = /turf/closed/wall/clockwork
+	mineral = /obj/item/stack/tile/brass
+
+/obj/structure/falsewall/brass/New(loc)
+	..()
+	var/turf/T = get_turf(src)
+	new /obj/effect/temp_visual/ratvar/wall/false(T)
+	new /obj/effect/temp_visual/ratvar/beam/falsewall(T)
+	change_construction_value(4)
+
+/obj/structure/falsewall/brass/Destroy()
+	change_construction_value(-4)
+	return ..()
+
+/obj/structure/falsewall/brass/ratvar_act()
+	if(GLOB.ratvar_awakens)
+		obj_integrity = max_integrity
+
 /obj/structure/falsewall/material/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))
 		if(disassembled)
@@ -384,6 +410,10 @@
 		for(var/material in custom_materials)
 			var/datum/material/material_datum = material
 			new material_datum.sheet_type(loc, FLOOR(custom_materials[material_datum] / MINERAL_MATERIAL_AMOUNT, 1))
+	qdel(src)
+
+/obj/structure/falsewall/ratvar_act()
+	new /obj/structure/falsewall/brass(loc)
 	qdel(src)
 
 /obj/structure/falsewall/material/mat_update_desc(mat)

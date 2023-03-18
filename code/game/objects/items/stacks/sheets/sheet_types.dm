@@ -8,6 +8,7 @@
  * Cardboard
  * Paper Frames
  * Runed Metal (cult)
+ * Brass (clockwork cult)
  * Bronze (bake brass)
  */
 
@@ -169,6 +170,10 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 
 /obj/item/stack/sheet/iron/narsie_act()
 	new /obj/item/stack/sheet/runed_metal(loc, amount)
+	qdel(src)
+
+/obj/item/stack/sheet/iron/ratvar_act()
+	new /obj/item/stack/tile/brass(loc, amount)
 	qdel(src)
 
 /obj/item/stack/sheet/iron/fifty
@@ -892,3 +897,65 @@ new /datum/stack_recipe("paper frame door", /obj/structure/mineral_door/paperfra
 	amount = 20
 /obj/item/stack/sheet/hauntium/five
 	amount = 5
+
+/*
+ * Brass
+ */
+GLOBAL_LIST_INIT(brass_recipes, list ( \
+	new/datum/stack_recipe("wall gear", /obj/structure/destructible/clockwork/wall_gear, 3, time = 10, one_per_turf = TRUE, on_floor = TRUE), \
+	null,
+	new/datum/stack_recipe("pinion airlock", /obj/machinery/door/airlock/clockwork, 5, time = 50, one_per_turf = TRUE, on_floor = TRUE), \
+	new/datum/stack_recipe("brass pinion airlock", /obj/machinery/door/airlock/clockwork/brass, 5, time = 50, one_per_turf = TRUE, on_floor = TRUE), \
+	new/datum/stack_recipe("brass windoor", /obj/machinery/door/window/clockwork, 2, time = 30, on_floor = TRUE, window_checks = TRUE), \
+	null,
+	new/datum/stack_recipe("directional brass window", /obj/structure/window/reinforced/clockwork/unanchored, time = 0, on_floor = TRUE, window_checks = TRUE), \
+	new/datum/stack_recipe("fulltile brass window", /obj/structure/window/reinforced/clockwork/fulltile/unanchored, 2, time = 0, on_floor = TRUE, window_checks = TRUE), \
+	new/datum/stack_recipe("brass chair", /obj/structure/chair/brass, 1, time = 0, one_per_turf = TRUE, on_floor = TRUE), \
+	new/datum/stack_recipe("brass table frame", /obj/structure/table_frame/brass, 1, time = 5, one_per_turf = TRUE, on_floor = TRUE), \
+	null,
+	new/datum/stack_recipe("sender - pressure sensor", /obj/structure/destructible/clockwork/trap/trigger/pressure_sensor, 2, time = 20, one_per_turf = TRUE, on_floor = TRUE), \
+	new/datum/stack_recipe("sender - lever", /obj/structure/destructible/clockwork/trap/trigger/lever, 1, time = 10, one_per_turf = TRUE, on_floor = TRUE), \
+	new/datum/stack_recipe("sender - repeater", /obj/structure/destructible/clockwork/trap/trigger/repeater, 2, time = 20, one_per_turf = TRUE, on_floor = TRUE), \
+	null,
+	new/datum/stack_recipe("receiver - brass skewer", /obj/structure/destructible/clockwork/trap/brass_skewer, 2, time = 20, one_per_turf = TRUE, on_floor = TRUE, placement_checks = STACK_CHECK_ADJACENT), \
+	new/datum/stack_recipe("receiver - steam vent", /obj/structure/destructible/clockwork/trap/steam_vent, 3, time = 30, one_per_turf = TRUE, on_floor = TRUE, placement_checks = STACK_CHECK_CARDINALS), \
+))
+
+/obj/item/stack/tile/brass
+	name = "brass"
+	desc = "Sheets made out of brass."
+	singular_name = "brass sheet"
+	icon_state = "sheet-brass"
+	item_state = "sheet-brass"
+	icon = 'icons/obj/stack_objects.dmi'
+	resistance_flags = FIRE_PROOF | ACID_PROOF
+	throwforce = 10
+	max_amount = 50
+	throw_speed = 1
+	throw_range = 3
+	turf_type = /turf/open/floor/clockwork
+	novariants = FALSE
+	grind_results = list(/datum/reagent/iron = 5, /datum/reagent/teslium = 15)
+	merge_type = /obj/item/stack/tile/brass
+
+/obj/item/stack/tile/brass/narsie_act()
+	new /obj/item/stack/sheet/runed_metal(loc, amount)
+	qdel(src)
+
+/obj/item/stack/tile/brass/attack_self(mob/living/user)
+	if(!is_servant_of_ratvar(user))
+		to_chat(user, "<span class='danger'>[src] seems far too fragile and rigid to build with.</span>") //haha that's because it's actually replicant alloy you DUMMY
+		return
+	..()
+
+/obj/item/stack/tile/brass/get_main_recipes()
+	. = ..()
+	. += GLOB.brass_recipes
+
+/obj/item/stack/sheet/paperframes/Initialize()
+	. = ..()
+	pixel_x = 0
+	pixel_y = 0
+
+/obj/item/stack/tile/brass/fifty
+	amount = 50

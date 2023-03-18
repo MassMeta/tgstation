@@ -138,6 +138,48 @@
 	new /obj/item/multitool(src)
 	new /obj/item/clothing/gloves/color/yellow(src)
 
+/obj/item/storage/toolbox/brass
+	name = "brass box"
+	desc = "A huge brass box with several indentations in its surface."
+	icon_state = "brassbox"
+	item_state = null
+	has_latches = FALSE
+	resistance_flags = FIRE_PROOF | ACID_PROOF
+	w_class = WEIGHT_CLASS_HUGE
+	attack_verb = list("robusted", "crushed", "smashed")
+	material_flags = NONE
+	var/fabricator_type = /obj/item/clockwork/replica_fabricator/scarab
+
+/obj/item/storage/toolbox/brass/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_specific_storage = WEIGHT_CLASS_NORMAL
+	STR.max_total_storage = 28
+	STR.max_items = 28
+
+/obj/item/storage/toolbox/brass/prefilled/PopulateContents()
+	new fabricator_type(src)
+	new /obj/item/screwdriver/brass(src)
+	new /obj/item/wirecutters/brass(src)
+	new /obj/item/wrench/brass(src)
+	new /obj/item/crowbar/brass(src)
+	new /obj/item/weldingtool/experimental/brass(src)
+
+/obj/item/storage/toolbox/brass/prefilled/servant
+	slot_flags = ITEM_SLOT_BELT
+	fabricator_type = null
+
+/obj/item/storage/toolbox/brass/prefilled/ratvar
+	var/slab_type = /obj/item/clockwork/slab
+
+/obj/item/storage/toolbox/brass/prefilled/ratvar/PopulateContents()
+	..()
+	new slab_type(src)
+
+/obj/item/storage/toolbox/brass/prefilled/ratvar/admin
+	slab_type = /obj/item/clockwork/slab/debug
+	fabricator_type = /obj/item/clockwork/replica_fabricator/scarab/debug
+
 /obj/item/storage/toolbox/electrical
 	name = "electrical toolbox"
 	icon_state = "yellow"
