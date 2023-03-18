@@ -170,3 +170,6 @@
 /// Orders heretic knowledge by priority
 /proc/cmp_heretic_knowledge(datum/heretic_knowledge/knowledge_a, datum/heretic_knowledge/knowledge_b)
 	return initial(knowledge_b.priority) - initial(knowledge_a.priority)
+
+/proc/cmp_clockscripture_priority(datum/clockwork_scripture/A, datum/clockwork_scripture/B)
+	return initial(A.sort_priority) - initial(B.sort_priority)
