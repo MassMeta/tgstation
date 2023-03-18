@@ -302,3 +302,16 @@ The areas used here are STRICTLY on the CC Z level.
 
 /area/centcom/asteroid/nearstation/bomb_site
 	name = "\improper Bomb Testing Asteroid"
+
+/area/reebe
+	name = "Reebe"
+	icon_state = "yellow"
+	requires_power = FALSE
+	has_gravity = STANDARD_GRAVITY
+	area_flags = NOTELEPORT|HIDDEN_AREA
+	ambientsounds = REEBE
+
+/area/reebe/city_of_cogs
+	name = "City of Cogs"
+	icon_state = "purple"
+	area_flags = HIDDEN_AREA

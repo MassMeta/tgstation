@@ -179,7 +179,6 @@
 	id = "ichorial_stain"
 	status_type = STATUS_EFFECT_UNIQUE
 	duration = 600
-	examine_text = "<span class='warning'>SUBJECTPRONOUN is drenched in thick, blue ichor!</span>"
 	alert_type = /atom/movable/screen/alert/status_effect/ichorial_stain
 
 /datum/status_effect/ichorial_stain/get_examine_text()
