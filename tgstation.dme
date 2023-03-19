@@ -5207,6 +5207,8 @@
 #include "massmeta\code\modules\antagonists\clockcult\clock_scripture.dm"
 #include "massmeta\code\modules\antagonists\clockcult\clock_structure.dm"
 #include "massmeta\code\modules\antagonists\clockcult\clockcult.dm"
+#include "massmeta\code\modules\antagonists\clockcult\cult_camera.dm"
+#include "massmeta\code\modules\antagonists\clockcult\mode.dm"
 #include "massmeta\code\modules\antagonists\clockcult\clock_effects\city_of_cogs_rift.dm"
 #include "massmeta\code\modules\antagonists\clockcult\clock_effects\clock_overlay.dm"
 #include "massmeta\code\modules\antagonists\clockcult\clock_effects\clock_sigils.dm"
