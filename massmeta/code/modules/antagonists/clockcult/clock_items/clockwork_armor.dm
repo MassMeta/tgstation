@@ -8,7 +8,34 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	flags_inv = HIDEEARS|HIDEHAIR|HIDEFACE
-	armor = list("melee" = 60, "bullet" = 70, "laser" = -25, "energy" = 0, "bomb" = 60, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100)
+	armor = /datum/armor/ratvar_armor
+
+/datum/armor/ratvar_armor
+	melee = 60
+	bullet = 50
+	laser = 0
+	energy = 0
+	bomb = 60
+	rad = 0
+	fire = 100
+	acid = 100
+
+/datum/armor/ratvar_armor/ratvar_approaches
+	melee = 70
+	bullet = 70
+	laser = 10
+	energy = 25
+	bomb = 70
+
+/datum/armor/ratvar_armor/ascended //You can't hurt me, Jack.
+	melee = 100
+	bullet = 100
+	laser = 100
+	energy = 100
+	bomb = 100
+	rad = 100
+	fire = 100
+	acid = 100
 
 /obj/item/clothing/head/helmet/clockwork/Initialize()
 	. = ..()
@@ -21,25 +48,28 @@
 
 /obj/item/clothing/head/helmet/clockwork/ratvar_act()
 	if(GLOB.ratvar_awakens)
-		armor = getArmor(melee = 100, bullet = 100, laser = 100, energy = 100, bomb = 100, bio = 100, rad = 100, fire = 100, acid = 100)
+		qdel(armor)
+		armor = new /datum/armor/ratvar_armor/ascended
 		clothing_flags |= STOPSPRESSUREDAMAGE
 		max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 		min_cold_protection_temperature = SPACE_HELM_MIN_TEMP_PROTECT
 	else if(GLOB.ratvar_approaches)
-		armor = getArmor(melee = 70, bullet = 80, laser = -15, energy = 25, bomb = 70, bio = 0, rad = 0, fire = 100, acid = 100)
+		qdel(armor)
+		armor = new /datum/armor/ratvar_armor/ratvar_approaches
 		clothing_flags |= STOPSPRESSUREDAMAGE
 		max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 		min_cold_protection_temperature = SPACE_HELM_MIN_TEMP_PROTECT
 	else
-		armor = getArmor(melee = 60, bullet = 70, laser = -25, energy = 0, bomb = 60, bio = 0, rad = 0, fire = 100, acid = 100)
+		qdel(armor)
+		armor = new /datum/armor/ratvar_armor
 		clothing_flags &= ~STOPSPRESSUREDAMAGE
 		max_heat_protection_temperature = initial(max_heat_protection_temperature)
 		min_cold_protection_temperature = initial(min_cold_protection_temperature)
 
 /obj/item/clothing/head/helmet/clockwork/equipped(mob/living/user, slot)
 	..()
-	if(slot == SLOT_HEAD && !is_servant_of_ratvar(user))
-		if(!iscultist(user))
+	if(slot == ITEM_SLOT_HEAD && !is_servant_of_ratvar(user))
+		if(!IS_CULTIST(user))
 			to_chat(user, "<span class='heavy_brass'>\"Now now, this is for my servants, not you.\"</span>")
 			user.visible_message("<span class='warning'>As [user] puts [src] on, it flickers off [user.p_their()] head!</span>", "<span class='warning'>The helmet flickers off your head, leaving only nausea!</span>")
 			if(iscarbon(user))
@@ -69,7 +99,7 @@
 	cold_protection = CHEST|GROIN|LEGS
 	heat_protection = CHEST|GROIN|LEGS
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	armor = list("melee" = 60, "bullet" = 70, "laser" = -25, "energy" = 0, "bomb" = 60, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100)
+	armor = /datum/armor/ratvar_armor
 	allowed = list(/obj/item/clockwork, /obj/item/clothing/glasses/wraith_spectacles, /obj/item/clothing/glasses/judicial_visor, /obj/item/mmi/posibrain/soul_vessel)
 
 /obj/item/clothing/suit/armor/clockwork/Initialize()
@@ -83,17 +113,20 @@
 
 /obj/item/clothing/suit/armor/clockwork/ratvar_act()
 	if(GLOB.ratvar_awakens)
-		armor = getArmor(melee = 100, bullet = 100, laser = 100, energy = 100, bomb = 100, bio = 100, rad = 100, fire = 100, acid = 100)
+		qdel(armor)
+		armor = new /datum/armor/ratvar_armor/ascended
 		clothing_flags |= STOPSPRESSUREDAMAGE
 		max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 		min_cold_protection_temperature = SPACE_HELM_MIN_TEMP_PROTECT
 	else if(GLOB.ratvar_approaches)
-		armor = getArmor(melee = 70, bullet = 80, laser = -15, energy = 25, bomb = 70, bio = 0, rad = 0, fire = 100, acid = 100)
+		qdel(armor)
+		armor = new /datum/armor/ratvar_armor/ratvar_approaches
 		clothing_flags |= STOPSPRESSUREDAMAGE
 		max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 		min_cold_protection_temperature = SPACE_HELM_MIN_TEMP_PROTECT
 	else
-		armor = getArmor(melee = 60, bullet = 70, laser = -25, energy = 0, bomb = 60, bio = 0, rad = 0, fire = 100, acid = 100)
+		qdel(armor)
+		armor = new /datum/armor/ratvar_armor
 		clothing_flags &= ~STOPSPRESSUREDAMAGE
 		max_heat_protection_temperature = initial(max_heat_protection_temperature)
 		min_cold_protection_temperature = initial(min_cold_protection_temperature)
@@ -105,8 +138,8 @@
 
 /obj/item/clothing/suit/armor/clockwork/equipped(mob/living/user, slot)
 	..()
-	if(slot == SLOT_WEAR_SUIT && !is_servant_of_ratvar(user))
-		if(!iscultist(user))
+	if(slot == ITEM_SLOT_OCLOTHING && !is_servant_of_ratvar(user))
+		if(!IS_CULTIST(user))
 			to_chat(user, "<span class='heavy_brass'>\"Now now, this is for my servants, not you.\"</span>")
 			user.visible_message("<span class='warning'>As [user] puts [src] on, it flickers off [user.p_their()] body!</span>", "<span class='warning'>The cuirass flickers off your body, leaving only nausea!</span>")
 			if(iscarbon(user))
@@ -118,15 +151,15 @@
 			user.emote("scream")
 			user.apply_damage(15, BURN, BODY_ZONE_CHEST)
 			user.adjust_fire_stacks(2)
-			user.IgniteMob()
+			user.ignite_mob()
 		addtimer(CALLBACK(user, /mob/living.proc/dropItemToGround, src, TRUE), 1)
 
 /obj/item/clothing/gloves/clockwork
 	name = "clockwork gauntlets"
 	desc = "Heavy, shock-resistant gauntlets with brass reinforcement."
-	icon = 'icons/obj/clothing/clockwork_garb.dmi'
+	icon = 'massmeta/icons/obj/clothing/clockwork_garb.dmi'
 	icon_state = "clockwork_gauntlets"
-	item_state = "clockwork_gauntlets"
+	worn_icon_state = "clockwork_gauntlets"
 	strip_delay = 50
 	equip_delay_other = 30
 	body_parts_covered = ARMS
@@ -135,7 +168,7 @@
 	siemens_coefficient = 0
 	permeability_coefficient = 0.05
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	armor = list("melee" = 80, "bullet" = 70, "laser" = -25, "energy" = 0, "bomb" = 60, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100)
+	armor = /datum/armor/ratvar_armor
 
 /obj/item/clothing/gloves/clockwork/Initialize()
 	. = ..()
@@ -148,12 +181,14 @@
 
 /obj/item/clothing/gloves/clockwork/ratvar_act()
 	if(GLOB.ratvar_awakens)
-		armor = getArmor(melee = 100, bullet = 100, laser = 100, energy = 100, bomb = 100, bio = 100, rad = 100, fire = 100, acid = 100)
+		qdel(armor)
+		armor = new /datum/armor/ratvar_armor/ratvar_approaches
 		clothing_flags |= STOPSPRESSUREDAMAGE
 		max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 		min_cold_protection_temperature = SPACE_HELM_MIN_TEMP_PROTECT
 	else
-		armor = getArmor(melee = 80, bullet = 70, laser = -25, energy = 0, bomb = 60, bio = 0, rad = 0, fire = 100, acid = 100)
+		qdel(armor)
+		armor = new /datum/armor/ratvar_armor
 		clothing_flags &= ~STOPSPRESSUREDAMAGE
 		max_heat_protection_temperature = initial(max_heat_protection_temperature)
 		min_cold_protection_temperature = initial(min_cold_protection_temperature)
@@ -165,8 +200,8 @@
 
 /obj/item/clothing/gloves/clockwork/equipped(mob/living/user, slot)
 	..()
-	if(slot == SLOT_GLOVES && !is_servant_of_ratvar(user))
-		if(!iscultist(user))
+	if(slot == ITEM_SLOT_GLOVES && !is_servant_of_ratvar(user))
+		if(!IS_CULTIST(user))
 			to_chat(user, "<span class='heavy_brass'>\"Now now, this is for my servants, not you.\"</span>")
 			user.visible_message("<span class='warning'>As [user] puts [src] on, it flickers off [user.p_their()] arms!</span>", "<span class='warning'>The gauntlets flicker off your arms, leaving only nausea!</span>")
 			if(iscarbon(user))
@@ -183,7 +218,7 @@
 /obj/item/clothing/shoes/clockwork
 	name = "clockwork treads"
 	desc = "Industrial boots made of brass. They're very heavy."
-	icon = 'icons/obj/clothing/clockwork_garb.dmi'
+	icon = 'massmeta/icons/obj/clothing/clockwork_garb.dmi'
 	icon_state = "clockwork_treads"
 	w_class = WEIGHT_CLASS_NORMAL
 	strip_delay = 50
@@ -204,9 +239,9 @@
 
 /obj/item/clothing/shoes/clockwork/ratvar_act()
 	if(GLOB.ratvar_awakens)
-		clothing_flags |= NOSLIP
+		always_noslip = TRUE
 	else
-		clothing_flags &= ~NOSLIP
+		always_noslip = FALSE
 
 /obj/item/clothing/shoes/clockwork/mob_can_equip(mob/M, mob/equipper, slot, disable_warning = 0)
 	if(equipper && !is_servant_of_ratvar(equipper))
@@ -215,8 +250,8 @@
 
 /obj/item/clothing/shoes/clockwork/equipped(mob/living/user, slot)
 	..()
-	if(slot == SLOT_SHOES && !is_servant_of_ratvar(user))
-		if(!iscultist(user))
+	if(slot == ITEM_SLOT_FEET && !is_servant_of_ratvar(user))
+		if(!IS_CULTIST(user))
 			to_chat(user, "<span class='heavy_brass'>\"Now now, this is for my servants, not you.\"</span>")
 			user.visible_message("<span class='warning'>As [user] puts [src] on, it flickers off [user.p_their()] feet!</span>", "<span class='warning'>The treads flicker off your feet, leaving only nausea!</span>")
 			if(iscarbon(user))

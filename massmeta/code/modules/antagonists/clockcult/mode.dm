@@ -117,7 +117,7 @@ GLOBAL_VAR_INIT(servants_active, FALSE) //This var controls whether or not a lot
 /obj/item/paper/servant_primer
 	name = "The Ark And You: A Primer On Servitude"
 	color = "#DAAA18"
-	info = "<b>DON'T PANIC.</b><br><br>\
+	default_raw_text = "<b>DON'T PANIC.</b><br><br>\
 	Here's a quick primer on what you should know here.\
 	<ol>\
 	<li>You're in a place called Reebe right now. The crew can't get here normally.</li>\
@@ -154,7 +154,7 @@ GLOBAL_VAR_INIT(servants_active, FALSE) //This var controls whether or not a lot
 	var/changelog_contents = ""
 	for(var/entry in changelog)
 		changelog_contents += "<li>[entry]</li>"
-	info = replacetext(info, "CLOCKCULTCHANGELOG", changelog_contents)
+	default_raw_text = replacetext(info, "CLOCKCULTCHANGELOG", changelog_contents)
 
 /obj/item/paper/servant_primer/examine(mob/user)
 	. = ..()

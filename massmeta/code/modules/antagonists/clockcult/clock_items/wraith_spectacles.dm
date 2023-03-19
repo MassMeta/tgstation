@@ -4,7 +4,7 @@
 	desc = "Unnerving glasses with opaque yellow lenses."
 	icon = 'icons/obj/clothing/clockwork_garb.dmi'
 	icon_state = "wraith_specs"
-	item_state = "glasses"
+	worn_icon_state = "glasses"
 	actions_types = list(/datum/action/item_action/toggle)
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	flags_cover = GLASSESCOVERSEYES
@@ -47,26 +47,24 @@
 				to_chat(H, "<span class='heavy_brass'>You push the spectacles down, but you can't see through the glass.</span>")
 
 /obj/item/clothing/glasses/wraith_spectacles/proc/blind_cultist(mob/living/victim)
-	var/obj/item/organ/eyes/eyes = victim.getorganslot(ORGAN_SLOT_EYES)
+	var/obj/item/organ/internal/eyes/eyes = victim.getorganslot(ORGAN_SLOT_EYES)
 	if(IS_CULTIST(victim))
 		to_chat(victim, "<span class='heavy_brass'>\"It looks like Nar'Sie's dogs really don't value their eyes.\"</span>")
 		to_chat(victim, "<span class='userdanger'>Your eyes explode with horrific pain!</span>")
 		victim.emote("scream")
 		eyes.applyOrganDamage(eyes.maxHealth)
-		victim.adjust_blurriness(30)
-		victim.adjust_blindness(30)
+		victim.adjust_eye_blur(30)
+		victim.adjust_temp_blindness(30)
 		return TRUE
 
 /obj/item/clothing/glasses/wraith_spectacles/proc/set_vision_vars(update_vision)
-	lighting_alpha = null
 	tint = 0
 	vision_flags = NONE
-	darkness_view = 2
+	color_cutoffs = list(20, 10, 40)
 	if(!up)
 		if(is_servant_of_ratvar(loc))
-			lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 			vision_flags = SEE_MOBS | SEE_TURFS | SEE_OBJS
-			darkness_view = 3
+	color_cutoffs = list(20, 10, 40)
 		else
 			tint = 3
 	if(update_vision && iscarbon(loc))
@@ -75,9 +73,9 @@
 
 /obj/item/clothing/glasses/wraith_spectacles/equipped(mob/living/user, slot)
 	..()
-	if(slot != SLOT_GLASSES || up)
+	if(slot != ITEM_SLOT_EYES || up)
 		return
-	if(HAS_TRAIT(user, TRAIT_BLIND))
+	if(user.is_blind())
 		to_chat(user, "<span class='heavy_brass'>\"You're blind, idiot. Stop embarrassing yourself.\"</span>" )
 		return
 	if(blind_cultist(user)) //Cultists instantly go blind

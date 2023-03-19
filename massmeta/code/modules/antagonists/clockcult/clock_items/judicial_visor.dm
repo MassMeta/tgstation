@@ -2,9 +2,9 @@
 /obj/item/clothing/glasses/judicial_visor
 	name = "judicial visor"
 	desc = "A strange purple-lensed visor. Looking at it inspires an odd sense of guilt."
-	icon = 'icons/obj/clothing/clockwork_garb.dmi'
+	icon = 'massmeta/icons/obj/clothing/clockwork_garb.dmi'
 	icon_state = "judicial_visor_0"
-	item_state = "sunglasses"
+	worn_icon_state = "sunglasses"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	flash_protect = FLASH_PROTECTION_FLASH
 	var/active = FALSE //If the visor is online
@@ -28,13 +28,13 @@
 	return ..()
 
 /obj/item/clothing/glasses/judicial_visor/item_action_slot_check(slot, mob/user)
-	if(slot != SLOT_GLASSES)
+	if(slot != ITEM_SLOT_EYES)
 		return 0
 	return ..()
 
 /obj/item/clothing/glasses/judicial_visor/equipped(mob/living/user, slot)
 	..()
-	if(slot != SLOT_GLASSES)
+	if(slot != ITEM_SLOT_EYES)
 		update_status(FALSE)
 		if(blaster.ranged_ability_user)
 			blaster.remove_ranged_ability()
@@ -43,11 +43,11 @@
 		update_status(TRUE)
 	else
 		update_status(FALSE)
-	if(iscultist(user)) //Cultists spontaneously combust
+	if(IS_CULTIST(user)) //Cultists spontaneously combust
 		to_chat(user, "<span class='heavy_brass'>\"Consider yourself judged, whelp.\"</span>")
 		to_chat(user, "<span class='userdanger'>You suddenly catch fire!</span>")
 		user.adjust_fire_stacks(5)
-		user.IgniteMob()
+		user.ignite_mob()
 	return 1
 
 /obj/item/clothing/glasses/judicial_visor/dropped(mob/user)
@@ -55,13 +55,13 @@
 	addtimer(CALLBACK(src, .proc/check_on_mob, user), 1) //dropped is called before the item is out of the slot, so we need to check slightly later
 
 /obj/item/clothing/glasses/judicial_visor/proc/check_on_mob(mob/user)
-	if(user && src != user.get_item_by_slot(SLOT_GLASSES)) //if we happen to check and we AREN'T in the slot, we need to remove our shit from whoever we got dropped from
+	if(user && src != user.get_item_by_slot(ITEM_SLOT_EYES)) //if we happen to check and we AREN'T in the slot, we need to remove our shit from whoever we got dropped from
 		update_status(FALSE)
 		if(blaster.ranged_ability_user)
 			blaster.remove_ranged_ability()
 
 /obj/item/clothing/glasses/judicial_visor/attack_self(mob/user)
-	if(is_servant_of_ratvar(user) && src == user.get_item_by_slot(SLOT_GLASSES))
+	if(is_servant_of_ratvar(user) && src == user.get_item_by_slot(ITEM_SLOT_EYES))
 		blaster.toggle(user)
 
 /obj/item/clothing/glasses/judicial_visor/proc/update_status(change_to)
@@ -73,8 +73,6 @@
 	var/mob/living/L = loc
 	active = change_to
 	icon_state = "judicial_visor_[active]"
-	L.update_action_buttons_icon()
-	L.update_inv_glasses()
 	if(!is_servant_of_ratvar(L) || L.stat)
 		return 0
 	switch(active)
@@ -89,7 +87,7 @@
 	if(!src)
 		return 0
 	recharging = FALSE
-	if(user && src == user.get_item_by_slot(SLOT_GLASSES))
+	if(user && src == user.get_item_by_slot(ITEM_SLOT_EYES))
 		to_chat(user, "<span class='brass'>Your [name] hums. It is ready.</span>")
 	else
 		active = FALSE
@@ -115,7 +113,7 @@
 /obj/effect/proc_holder/judicial_visor/InterceptClickOn(mob/living/caller, params, atom/target)
 	if(..())
 		return
-	if(ranged_ability_user.incapacitated() || !visor || visor != ranged_ability_user.get_item_by_slot(SLOT_GLASSES))
+	if(ranged_ability_user.incapacitated() || !visor || visor != ranged_ability_user.get_item_by_slot(ITEM_SLOT_EYES))
 		remove_ranged_ability()
 		return
 
@@ -197,7 +195,7 @@
 				"<span class='userdanger'>Your [I.name] shields you from [src]!</span>")
 			continue
 		L.Paralyze(15) //knocks down briefly when exploding
-		if(!iscultist(L))
+		if(!IS_CULTIST(L))
 			L.visible_message("<span class='warning'>[L] is struck by a judicial explosion!</span>", \
 			"<span class='userdanger'>[!issilicon(L) ? "An unseen force slams you into the ground!" : "ERROR: Motor servos disabled by external source!"]</span>")
 		else
