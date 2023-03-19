@@ -64,7 +64,7 @@
 	desc = "A screwdriver made of brass. The handle feels freezing cold."
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	icon_state = "screwdriver_brass"
-	item_state = "screwdriver_brass"
+	worn_icon_state = "screwdriver_brass"
 	toolspeed = 0.5
 	random_color = FALSE
 	

@@ -142,20 +142,20 @@
 	name = "brass box"
 	desc = "A huge brass box with several indentations in its surface."
 	icon_state = "brassbox"
-	item_state = null
+	worn_icon_state = null
 	has_latches = FALSE
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	w_class = WEIGHT_CLASS_HUGE
-	attack_verb = list("robusted", "crushed", "smashed")
+	attack_verb_continuous = list("robusts", "crushes", "smashes")
+	attack_verb_simple = list("robust", "crush", "smash")
 	material_flags = NONE
 	var/fabricator_type = /obj/item/clockwork/replica_fabricator/scarab
 
-/obj/item/storage/toolbox/brass/ComponentInitialize()
+/obj/item/storage/toolbox/brass/Initialize()
 	. = ..()
-	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_specific_storage = WEIGHT_CLASS_NORMAL
-	STR.max_total_storage = 28
-	STR.max_items = 28
+	atom_storage.max_specific_storage = WEIGHT_CLASS_NORMAL
+	atom_storage.max_total_storage= 28
+	atom_storage.max_slots = 28
 
 /obj/item/storage/toolbox/brass/prefilled/PopulateContents()
 	new fabricator_type(src)

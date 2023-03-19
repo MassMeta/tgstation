@@ -2,7 +2,7 @@
 /obj/item/clothing/glasses/wraith_spectacles
 	name = "antique spectacles"
 	desc = "Unnerving glasses with opaque yellow lenses."
-	icon = 'icons/obj/clothing/clockwork_garb.dmi'
+	icon = 'massmeta/icons/obj/clothing/clockwork_garb.dmi'
 	icon_state = "wraith_specs"
 	worn_icon_state = "glasses"
 	actions_types = list(/datum/action/item_action/toggle)
@@ -64,7 +64,6 @@
 	if(!up)
 		if(is_servant_of_ratvar(loc))
 			vision_flags = SEE_MOBS | SEE_TURFS | SEE_OBJS
-	color_cutoffs = list(20, 10, 40)
 		else
 			tint = 3
 	if(update_vision && iscarbon(loc))

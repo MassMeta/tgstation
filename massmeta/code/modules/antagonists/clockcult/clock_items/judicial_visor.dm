@@ -92,9 +92,6 @@
 	else
 		active = FALSE
 	icon_state = "judicial_visor_[active]"
-	if(user)
-		user.update_action_buttons_icon()
-		user.update_inv_glasses()
 
 /obj/effect/proc_holder/judicial_visor
 	active = FALSE

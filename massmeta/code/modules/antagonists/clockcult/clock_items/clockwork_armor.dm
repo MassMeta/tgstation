@@ -16,7 +16,7 @@
 	laser = 0
 	energy = 0
 	bomb = 60
-	rad = 0
+	bio = 0
 	fire = 100
 	acid = 100
 
@@ -33,7 +33,7 @@
 	laser = 100
 	energy = 100
 	bomb = 100
-	rad = 100
+	bio = 100
 	fire = 100
 	acid = 100
 
@@ -166,7 +166,6 @@
 	cold_protection = ARMS
 	heat_protection = ARMS
 	siemens_coefficient = 0
-	permeability_coefficient = 0.05
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	armor = /datum/armor/ratvar_armor
 
@@ -234,14 +233,11 @@
 	GLOB.all_clockwork_objects -= src
 	return ..()
 
-/obj/item/clothing/shoes/clockwork/negates_gravity()
-	return TRUE
-
 /obj/item/clothing/shoes/clockwork/ratvar_act()
 	if(GLOB.ratvar_awakens)
-		always_noslip = TRUE
+		clothing_traits = list(TRAIT_NO_SLIP_WATER)
 	else
-		always_noslip = FALSE
+		clothing_traits = list()
 
 /obj/item/clothing/shoes/clockwork/mob_can_equip(mob/M, mob/equipper, slot, disable_warning = 0)
 	if(equipper && !is_servant_of_ratvar(equipper))
