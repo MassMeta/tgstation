@@ -1,5 +1,5 @@
 /datum/action/item_action/clock
-	button_icon = 'icons/mob/actions/actions_clockcult.dmi'
+	button_icon = 'massmeta/icons/mob/actions/actions_clockcult.dmi'
 	background_icon_state = "bg_clock"
 	buttontooltipstyle = "clockcult"
 

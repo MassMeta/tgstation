@@ -16,14 +16,14 @@
 	buildmode_name = "Block: Cult Floor"
 
 /datum/map_generator/clock //walls and floor only
-	modules = list(/datum/bmap_generator_module/bottom_layer/clockFloor, \
+	modules = list(/datum/map_generator_module/bottom_layer/clockFloor, \
 		/datum/map_generator_module/border/clockWalls, \
 		/datum/map_generator_module/bottom_layer/repressurize)
 	buildmode_name = "Pattern: Clockwork Room"
 
 /datum/map_generator/clock/floor //floor only
-	modules = list(/datum/bmap_generator_module/bottom_layer/clockFloor, \
-		/datum/bmap_generator_module/bottom_layer/repressurize)
+	modules = list(/datum/map_generator_module/bottom_layer/clockFloor, \
+		/datum/map_generator_module/bottom_layer/repressurize)
 	buildmode_name = "Block: Clockwork Floor"
 
 /datum/map_generator_module/bottom_layer/clockFloor

@@ -3,7 +3,7 @@
 /datum/action/innate/call_weapon
 	name = "Call Weapon"
 	desc = "This definitely shouldn't exist."
-	button_icon = 'icons/mob/actions/actions_clockcult.dmi'
+	button_icon = 'massmeta/icons/mob/actions/actions_clockcult.dmi'
 	button_icon_state = "ratvarian_spear"
 	background_icon_state = "bg_clock"
 	check_flags = AB_CHECK_HANDS_BLOCKED|AB_CHECK_INCAPACITATED|AB_CHECK_CONSCIOUS

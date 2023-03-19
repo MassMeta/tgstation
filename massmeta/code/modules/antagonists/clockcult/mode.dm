@@ -82,9 +82,9 @@ GLOBAL_VAR_INIT(servants_active, FALSE) //This var controls whether or not a lot
 	ears = /obj/item/radio/headset
 	gloves = /obj/item/clothing/gloves/color/yellow
 	belt = /obj/item/storage/belt/utility/servant
-	backpack_contents = list(/obj/item/storage/box/engineer = 1, \
+	backpack_contents = list(/obj/item/storage/box/survival/engineer = 1, \
 	/obj/item/clockwork/replica_fabricator = 1, /obj/item/stack/tile/brass/fifty = 1, /obj/item/paper/servant_primer = 1)
-	id = /obj/item/pda
+	id = /obj/item/modular_computer/pda
 	var/plasmaman //We use this to determine if we should activate internals in post_equip()
 
 /datum/outfit/servant_of_ratvar/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -97,7 +97,7 @@ GLOBAL_VAR_INIT(servants_active, FALSE) //This var controls whether or not a lot
 
 /datum/outfit/servant_of_ratvar/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	var/obj/item/card/id/W = new(H)
-	var/obj/item/pda/PDA = H.wear_id
+	var/obj/item/modular_computer/pda/PDA = H.wear_id
 	W.assignment = "Assistant"
 	W.access += ACCESS_MAINT_TUNNELS
 	W.registered_name = H.real_name

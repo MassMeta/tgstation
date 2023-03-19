@@ -134,7 +134,7 @@
 /datum/action/innate/clockwork_armaments
 	name = "Clockwork Armaments"
 	desc = "Outfits you in a full set of Ratvarian armor."
-	button_icon = 'icons/mob/actions/actions_clockcult.dmi'
+	button_icon = 'massmeta/icons/mob/actions/actions_clockcult.dmi'
 	button_icon_state = "clockwork_armor"
 	background_icon_state = "bg_clock"
 	check_flags = AB_CHECK_HANDS_BLOCKED|AB_CHECK_INCAPACITATED|AB_CHECK_CONSCIOUS

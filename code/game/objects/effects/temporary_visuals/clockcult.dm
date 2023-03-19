@@ -257,7 +257,7 @@
 /obj/effect/temp_visual/ratvar/command_point
 	name = "command marker"
 	desc = "An area of importance marked by the Eminence."
-	icon = 'icons/mob/actions/actions_clockcult.dmi'
+	icon = 'massmeta/icons/mob/actions/actions_clockcult.dmi'
 	icon_state = "eminence"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	resistance_flags = INDESTRUCTIBLE

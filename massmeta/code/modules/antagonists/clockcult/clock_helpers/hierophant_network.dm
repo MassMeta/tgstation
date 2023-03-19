@@ -26,7 +26,7 @@
 /datum/action/innate/hierophant
 	name = "Hierophant Network"
 	desc = "Allows you to communicate with other Servants."
-	button_icon = 'icons/mob/actions/actions_clockcult.dmi'
+	button_icon = 'massmeta/icons/mob/actions/actions_clockcult.dmi'
 	button_icon_state = "hierophant"
 	background_icon_state = "bg_clock"
 	check_flags = AB_CHECK_HANDS_BLOCKED|AB_CHECK_INCAPACITATED|AB_CHECK_CONSCIOUS

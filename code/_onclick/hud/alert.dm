@@ -935,15 +935,15 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 	screen_loc = ""
 
 // CLOCKCULT
-/atom/movable/screen/clockwork
+/atom/movable/screen/alert/clockwork
 	alerttooltipstyle = "clockcult"
 
-/atom/movable/screen/clockwork/infodump
+/atom/movable/screen/alert/clockwork/infodump
 	name = "Global Records"
 	desc = "You shouldn't be seeing this description, because it should be dynamically generated."
 	icon_state = "clockinfo"
 
-/atom/movable/screen/clockwork/infodump/MouseEntered(location,control,params)
+/atom/movable/screen/alert/clockwork/infodump/MouseEntered(location,control,params)
 	if(GLOB.ratvar_awakens)
 		desc = "<font size=3><b>CHETR<br>NYY<br>HAGEHUGF-NAQ-UBABE<br>RATVAR.</b></font>"
 	else
@@ -971,6 +971,6 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 				time_name = "until the Ark finishes summoning"
 			if(time_info)
 				textlist += "<b>[time_info / 60] minutes</b> [time_name].<br>"
-		textlist += "<b>[DisplayPower(get_clockwork_power())] / [DisplayPower(MAX_CLOCKWORK_POWER)]</b> power available for use."
+		textlist += "<b>[display_energy(get_clockwork_power())] / [display_energy(MAX_CLOCKWORK_POWER)]</b> power available for use."
 		desc = textlist.Join()
 	..()

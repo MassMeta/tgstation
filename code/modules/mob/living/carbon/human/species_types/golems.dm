@@ -1379,15 +1379,11 @@
 /datum/species/golem/clockwork
 	name = "Clockwork Golem"
 	id = "clockwork golem"
-	say_mod = "clicks"
-	limbs_id = "clockgolem"
 	info_text = "<span class='bold alloy'>As a </span><span class='bold brass'>Clockwork Golem</span><span class='bold alloy'>, you are faster than other types of golems. On death, you will break down into scrap.</span>"
-	species_traits = list(NOBLOOD,NO_UNDERWEAR,NOEYESPRITES)
-	inherent_traits = list(TRAIT_RESISTHEAT,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOFIRE,TRAIT_CHUNKYFINGERS,TRAIT_RADIMMUNE,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER)
+	species_traits = list(NO_UNDERWEAR,NOEYESPRITES)
+	inherent_traits = list(TRAIT_NOBLOOD,TRAIT_RESISTHEAT,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOFIRE,TRAIT_CHUNKYFINGERS,TRAIT_RADIMMUNE,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER)
 	inherent_biotypes = MOB_ROBOTIC|MOB_HUMANOID
 	armor = 20 //Reinforced, but much less so to allow for fast movement
-	attack_verb = "smash"
-	attack_sound = 'sound/magic/clockwork/anima_fragment_attack.ogg'
 	sexes = FALSE
 	speedmod = 0
 	changesource_flags = MIRROR_BADMIN | WABBAJACK
@@ -1395,6 +1391,14 @@
 	prefix = "Clockwork"
 	special_names = list("Remnant", "Relic", "Scrap", "Vestige") //RIP Ratvar
 	inherent_factions = list("ratvar")
+	bodypart_overrides = list(
+		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/golem/clockwork,
+		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/golem/clockwork,
+		BODY_ZONE_HEAD = /obj/item/bodypart/head/golem/clockwork,
+		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/golem/clockwork,
+		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/golem/clockwork,
+		BODY_ZONE_CHEST = /obj/item/bodypart/chest/golem/clockwork,
+	)
 	var/has_corpse
 
 /datum/species/golem/clockwork/on_species_gain(mob/living/carbon/human/H)
@@ -1423,8 +1427,15 @@
 /datum/species/golem/clockwork/no_scrap //These golems are created through the herald's beacon and leave normal corpses on death.
 	id = "clockwork golem servant"
 	armor = 15 //Balance reasons make this armor weak
-	no_equip = list()
-	nojumpsuit = FALSE
+	no_equip_flags = null
 	has_corpse = TRUE
 	random_eligible = FALSE
 	info_text = "<span class='bold alloy'>As a </span><span class='bold brass'>Clockwork Golem Servant</span><span class='bold alloy'>, you are faster than other types of golems.</span>" //warcult golems leave a corpse
+	bodypart_overrides = list(
+		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/golem/clockwork,
+		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/golem/clockwork,
+		BODY_ZONE_HEAD = /obj/item/bodypart/head/golem/clockwork,
+		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/golem/clockwork,
+		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/golem/clockwork,
+		BODY_ZONE_CHEST = /obj/item/bodypart/chest/golem/clockwork/no_scrap,
+	)

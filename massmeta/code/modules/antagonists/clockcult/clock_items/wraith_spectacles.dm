@@ -32,7 +32,7 @@
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		if(src == H.glasses && !up)
-			if(HAS_TRAIT(H, TRAIT_BLIND))
+			if(H.is_blind())
 				to_chat(H, "<span class='heavy_brass'>\"You're blind, idiot. Stop embarrassing yourself.\"</span>")
 				return
 			if(blind_cultist(H))
@@ -48,7 +48,7 @@
 
 /obj/item/clothing/glasses/wraith_spectacles/proc/blind_cultist(mob/living/victim)
 	var/obj/item/organ/eyes/eyes = victim.getorganslot(ORGAN_SLOT_EYES)
-	if(iscultist(victim))
+	if(IS_CULTIST(victim))
 		to_chat(victim, "<span class='heavy_brass'>\"It looks like Nar'Sie's dogs really don't value their eyes.\"</span>")
 		to_chat(victim, "<span class='userdanger'>Your eyes explode with horrific pain!</span>")
 		victim.emote("scream")
@@ -162,12 +162,8 @@
 	eye_damage_done += 0.5
 	if(eye_damage_done >= 20)
 		H.adjust_blurriness(2)
-	if(eye_damage_done >= nearsight_breakpoint)
-		if(!HAS_TRAIT(H, TRAIT_NEARSIGHT))
-			to_chat(H, "<span class='nzcrentr'>Your vision doubles, then trembles. Darkness begins to close in. You can't keep this up!</span>")
-		H.become_nearsighted(EYE_DAMAGE)
 	if(eye_damage_done >= blind_breakpoint)
-		if(!HAS_TRAIT(H, TRAIT_BLIND))
+		if(!H.is_blind())
 			to_chat(H, "<span class='nzcrentr_large'>A piercing white light floods your vision. Suddenly, all goes dark!</span>")
 		eyes.applyOrganDamage(eyes.maxHealth)
 
