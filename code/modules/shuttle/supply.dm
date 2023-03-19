@@ -1,4 +1,6 @@
 GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
+		/obj/effect/clockwork/spatial_gateway,
+		/obj/structure/destructible/clockwork/powered/clockwork_obelisk,
 		/mob/living,
 		/obj/structure/blob,
 		/obj/effect/rune,

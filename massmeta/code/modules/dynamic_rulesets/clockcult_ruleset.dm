@@ -14,7 +14,7 @@
 	cost = 0
 	requirements = list(101,101,101,101,101,101,101,101,101,101)
 	high_population_requirement = 101
-	flags = HIGHLANDER_RULESET
+	flags = HIGH_IMPACT_RULESET
 	var/ark_time
 
 /datum/dynamic_ruleset/roundstart/clockcult/pre_execute()
