@@ -5299,4 +5299,5 @@
 #include "massmeta\code\modules\dynamic_rulesets\monkey_ruleset.dm"
 #include "massmeta\code\modules\languages\darkspeak.dm"
 #include "massmeta\code\modules\languages\ratvarian.dm"
+#include "massmeta\code\game\sledgehammer.dm"
 // END_INCLUDE

@@ -16,6 +16,7 @@
 	preview_outfit = /datum/outfit/traitor
 	var/give_objectives = TRUE
 	var/should_give_codewords = TRUE
+	var/progressive = FALSE
 	///give this traitor an uplink?
 	var/give_uplink = TRUE
 	///if TRUE, this traitor will always get hijacking as their final objective
@@ -56,15 +57,16 @@
 		else
 			uplink_handler = uplink.uplink_handler
 		uplink_handler.primary_objectives = objectives
-		uplink_handler.has_progression = TRUE
+		uplink_handler.has_progression = progressive
 		SStraitor.register_uplink_handler(uplink_handler)
 
-		uplink_handler.has_objectives = TRUE
-		uplink_handler.generate_objectives()
+		if(progressive)
+			uplink_handler.has_objectives = TRUE
+			uplink_handler.generate_objectives()
 
-		if(uplink_handler.progression_points < SStraitor.current_global_progression)
-			uplink_handler.progression_points = SStraitor.current_global_progression * SStraitor.newjoin_progression_coeff
-
+			if(uplink_handler.progression_points < SStraitor.current_global_progression)
+				uplink_handler.progression_points = SStraitor.current_global_progression * SStraitor.newjoin_progression_coeff
+				
 		var/list/uplink_items = list()
 		for(var/datum/uplink_item/item as anything in SStraitor.uplink_items)
 			if(item.item && !item.cant_discount && (item.purchasable_from & uplink_handler.uplink_flag) && item.cost > 1)
@@ -163,7 +165,7 @@
 	traitor_flavor = strings(TRAITOR_FLAVOR_FILE, employer)
 
 /// Generates a complete set of traitor objectives up to the traitor objective limit, including non-generic objectives such as martyr and hijack.
-/datum/antagonist/traitor/proc/forge_traitor_objectives()
+/datum/antagonist/traitor/proc/forge_traitor_objectives(var/amount_override = 0, give_escape_obj = TRUE)
 	objectives.Cut()
 	var/objective_count = 0
 
@@ -172,7 +174,8 @@
 		objective_count++
 
 	var/objective_limit = CONFIG_GET(number/traitor_objectives_amount)
-
+	if(amount_override)
+		objective_limit = amount_override
 	// for(in...to) loops iterate inclusively, so to reach objective_limit we need to loop to objective_limit - 1
 	// This does not give them 1 fewer objectives than intended.
 	for(var/i in objective_count to objective_limit - 1)
