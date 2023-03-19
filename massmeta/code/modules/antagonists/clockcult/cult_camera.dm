@@ -41,7 +41,7 @@
 /datum/action/innate/servant_warp
 	name = "Warp"
 	desc = "Warps to the tile you're viewing. You can use the Abscond scripture to return. Clicking this button again cancels the warp."
-	icon_icon = 'icons/mob/actions/actions_clockcult.dmi'
+	button_icon = 'massmeta/icons/mob/actions/actions_clockcult.dmi'
 	button_icon_state = "warp_down"
 	background_icon_state = "bg_clock"
 	buttontooltipstyle = "clockcult"
@@ -68,7 +68,7 @@
 	else if(isspaceturf(T))
 		to_chat(user, "<span class='sevtug_small'>[prob(1) ? "Servant cannot into space." : "You can't teleport into space."]</span>")
 		return
-	else if(T.flags_1 & NOJAUNT_1)
+	else if(T.flags_1 & NOTELEPORT)
 		to_chat(user, "<span class='sevtug_small'>This tile is blessed by holy water and deflects the warp.</span>")
 		return
 	var/area/AR = get_area(T)

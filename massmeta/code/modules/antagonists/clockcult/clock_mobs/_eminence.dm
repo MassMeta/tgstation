@@ -228,11 +228,11 @@
 /datum/action/innate/eminence
 	name = "Eminence Action"
 	desc = "You shouldn't see this. File a bug report!"
-	icon_icon = 'icons/mob/actions/actions_clockcult.dmi'
+	button_icon = 'icons/mob/actions/actions_clockcult.dmi'
 	background_icon_state = "bg_clock"
 	buttontooltipstyle = "clockcult"
 
-/datum/action/innate/eminence/IsAvailable()
+/datum/action/innate/eminence/IsAvailable(feedback)
 	if(!iseminence(owner))
 		qdel(src)
 		return
@@ -244,7 +244,7 @@
 	desc = "Forgot what you can do? This refreshes you on your powers as Eminence."
 	button_icon_state = "eminence_rally"
 
-/datum/action/innate/eminence/power_list/Activate()
+/datum/action/innate/eminence/power_list/Activate(trigger_flags)
 	var/mob/camera/eminence/E = owner
 	E.eminence_help()
 
@@ -254,7 +254,7 @@
 	desc = "Warps you to the Ark."
 	button_icon_state = "Abscond"
 
-/datum/action/innate/eminence/ark_jump/Activate()
+/datum/action/innate/eminence/ark_jump/Activate(trigger_flags)
 	var/obj/structure/destructible/clockwork/massive/celestial_gateway/G = GLOB.ark_of_the_clockwork_justiciar
 	if(G)
 		owner.forceMove(get_turf(G))
@@ -269,7 +269,7 @@
 	desc = "Warps to Space Station 13. You cannot hear anything while there!</span>"
 	button_icon_state = "warp_down"
 
-/datum/action/innate/eminence/station_jump/Activate()
+/datum/action/innate/eminence/station_jump/Activate(trigger_flags)
 	if(is_reebe(owner.z))
 		owner.forceMove(get_turf(pick(GLOB.generic_event_spawns)))
 		owner.playsound_local(owner, 'sound/magic/magic_missile.ogg', 50, TRUE)
@@ -291,7 +291,7 @@
 			return G.recalls_remaining && !G.recalling
 		return FALSE
 
-/datum/action/innate/eminence/mass_recall/Activate()
+/datum/action/innate/eminence/mass_recall/Activate(trigger_flags)
 	var/obj/structure/destructible/clockwork/massive/celestial_gateway/G = GLOB.ark_of_the_clockwork_justiciar
 	if(G && !G.recalling && G.recalls_remaining)
 		if(alert(owner, "Initiate mass recall?", "Mass Recall", "Yes", "No") != "Yes" || QDELETED(owner) || QDELETED(G) || !G.obj_integrity)
