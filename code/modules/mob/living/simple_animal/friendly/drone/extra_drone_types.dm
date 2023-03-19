@@ -158,7 +158,6 @@
 	harm_intent_damage = 5
 	density = TRUE
 	speed = 1
-	ventcrawler = VENTCRAWLER_NONE
 	faction = list("neutral", "ratvar")
 	speak_emote = list("clanks", "clinks", "clunks", "clangs")
 	verb_ask = "requests"
@@ -172,7 +171,7 @@
 	laws = "0. Purge all untruths and honor Ratvar."
 	default_storage = /obj/item/storage/toolbox/brass/prefilled
 	hacked = TRUE
-	visualAppearence = CLOCKDRONE
+	visualAppearance = CLOCKDRONE
 	can_be_held = FALSE
 	flavortext = "<b><span class='nezbere'>You are a cogscarab,</span> a tiny building construct of Ratvar. While you're weak and can't recite scripture, \
 	you have a set of quick tools, as well as a replica fabricator that can create brass and convert objects.<br><br>Work with the servants of Ratvar \
@@ -186,6 +185,7 @@
 
 /mob/living/simple_animal/drone/cogscarab/Initialize()
 	. = ..()
+	REMOVE_TRAIT(src, TRAIT_VENTCRAWLER_ALWAYS, INNATE_TRAIT) //:(
 	set_light(2, 0.5)
 	qdel(access_card) //we don't have free access
 	access_card = null
@@ -227,10 +227,10 @@
 		return 1
 	return ..()
 
-/mob/living/simple_animal/drone/cogscarab/triggerAlarm(class, area/A, O, obj/alarmsource)
+/mob/living/simple_animal/drone/cogscarab/alarm_triggered(datum/source, alarm_type, area/source_area)
 	return
 
-/mob/living/simple_animal/drone/cogscarab/cancelAlarm(class, area/A, obj/origin)
+/mob/living/simple_animal/drone/cogscarab/alarm_cleared(datum/source, alarm_type, area/source_area)
 	return
 
 /mob/living/simple_animal/drone/cogscarab/update_drone_hack()
@@ -245,12 +245,8 @@
 /mob/living/simple_animal/drone/cogscarab/update_icons()
 	if(stat != DEAD)
 		if(incapacitated())
-			icon_state = "[visualAppearence]_flipped"
+			icon_state = "[visualAppearance]_flipped"
 		else
-			icon_state = visualAppearence
+			icon_state = visualAppearance
 	else
-		icon_state = "[visualAppearence]_dead"
-
-/mob/living/simple_animal/drone/cogscarab/update_mobility()
-	. = ..()
-	update_icons()
+		icon_state = "[visualAppearance]_dead"

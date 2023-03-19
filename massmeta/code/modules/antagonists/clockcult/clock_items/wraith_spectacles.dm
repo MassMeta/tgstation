@@ -156,7 +156,7 @@
 
 /datum/status_effect/wraith_spectacles/proc/apply_eye_damage(mob/living/carbon/human/H)
 	var/obj/item/organ/eyes/eyes = H.getorganslot(ORGAN_SLOT_EYES)
-	if(HAS_TRAIT(H, TRAIT_BLIND))
+	if(H.is_blind())
 		return
 	eyes.applyOrganDamage(0.5)
 	eye_damage_done += 0.5

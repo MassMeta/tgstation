@@ -138,5 +138,9 @@ GLOBAL_LIST_EMPTY(all_scripture)
 /proc/servants_and_ghosts()
 	. = list()
 	for(var/V in GLOB.player_list)
-		if(is_servant_of_ratvar(V) || isobserver(V))
+		if(is_servant_of_ratvar(V) || istype(V, /mob/dead/observer))
 			. += V
+
+#define STATUS_EFFECT_MANIAMOTOR /datum/status_effect/maniamotor //disrupts, damages, and confuses the affected as long as they're in range of the motor
+#define MAX_MANIA_SEVERITY 100 //how high the mania severity can go
+#define MANIA_DAMAGE_TO_CONVERT 90 //how much damage is required before it'll convert affected targets

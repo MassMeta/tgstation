@@ -465,7 +465,7 @@
 	if(stat != DEAD && !is_servant_of_ratvar(src))
 		to_chat(src, "<span class='userdanger'>A blinding light boils you alive! <i>Run!</i></span>")
 		adjust_fire_stacks(20)
-		IgniteMob()
+		ignite_mob()
 		return FALSE
 
 //called when the mob receives a bright flash

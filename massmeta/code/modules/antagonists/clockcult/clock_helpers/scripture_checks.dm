@@ -39,7 +39,7 @@
 
 /proc/generate_all_scripture()
 	if(!GLOB.all_scripture.len)
-		for(var/V in sortList(subtypesof(/datum/clockwork_scripture), /proc/cmp_clockscripture_priority))
+		for(var/V in sort_list(list(subtypesof(/datum/clockwork_scripture), /proc/cmp_clockscripture_priority)))
 			var/datum/clockwork_scripture/S = new V
 			GLOB.all_scripture[S.type] = S
 

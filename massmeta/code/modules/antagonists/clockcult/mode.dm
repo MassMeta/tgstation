@@ -15,7 +15,7 @@ GLOBAL_VAR_INIT(servants_active, FALSE) //This var controls whether or not a lot
 			return FALSE
 	else
 		return FALSE
-	if(iscultist(M) || isconstruct(M) || ispAI(M))
+	if(IS_CULTIST(M) || isconstruct(M) || ispAI(M))
 		return FALSE
 	if(isliving(M))
 		var/mob/living/L = M

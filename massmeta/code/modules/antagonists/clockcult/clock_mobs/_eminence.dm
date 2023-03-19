@@ -7,7 +7,7 @@
 	name = "\the Emininence"
 	real_name = "\the Eminence"
 	desc = "The leader-elect of the servants of Ratvar."
-	icon = 'icons/effects/clockwork_effects.dmi'
+	icon = 'massmeta/icons/effects/clockwork_effects.dmi'
 	icon_state = "eminence"
 	mouse_opacity = MOUSE_OPACITY_OPAQUE
 	move_on_shuttle = TRUE
@@ -15,7 +15,6 @@
 	invisibility = INVISIBILITY_OBSERVER
 	layer = FLY_LAYER
 	faction = list("ratvar")
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	var/turf/last_failed_turf
 	var/static/superheated_walls = 0
 	var/lastWarning = 0
@@ -37,7 +36,7 @@
 					lastWarning = world.time
 					to_chat(src, "<span class='warning'>This turf is consecrated and can't be crossed!</span>")
 				return
-			if(istype(get_area(T), /area/chapel))
+			if(istype(get_area(T), /area/station/service/chapel))
 				if((world.time - lastWarning) >= 30)
 					lastWarning = world.time
 					to_chat(src, "<span class='warning'>The Chapel is hallowed ground under a heretical deity, and can't be accessed!</span>")

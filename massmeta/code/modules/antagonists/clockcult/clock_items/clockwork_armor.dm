@@ -2,7 +2,8 @@
 /obj/item/clothing/head/helmet/clockwork
 	name = "clockwork helmet"
 	desc = "A heavy helmet made of brass."
-	icon = 'icons/obj/clothing/clockwork_garb.dmi'
+	icon = 'massmeta/icons/obj/clothing/clockwork_garb.dmi'
+	worn_icon = 'icons/mob/clothing/head/chaplain.dmi'
 	icon_state = "clockwork_helmet"
 	w_class = WEIGHT_CLASS_NORMAL
 	resistance_flags = FIRE_PROOF | ACID_PROOF
@@ -60,7 +61,8 @@
 /obj/item/clothing/suit/armor/clockwork
 	name = "clockwork cuirass"
 	desc = "A bulky cuirass made of brass."
-	icon = 'icons/obj/clothing/clockwork_garb.dmi'
+	icon = 'massmeta/icons/obj/clothing/clockwork_garb.dmi'
+	worn_icon = 'icons/mob/clothing/suits/chaplain.dmi'
 	icon_state = "clockwork_cuirass"
 	w_class = WEIGHT_CLASS_BULKY
 	body_parts_covered = CHEST|GROIN|LEGS
