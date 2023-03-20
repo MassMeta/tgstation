@@ -38,10 +38,12 @@
 	veil_sigils = mutable_appearance('massmeta/icons/mob/actions/actions_darkspawn.dmi', "veil_sigils", -UNDER_SUIT_LAYER) //show them sigils
 	current_mob.add_overlay(veil_sigils)
 	current_mob.maxHealth -= 40
+	RegisterSignal(current_mob, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
 	add_team_hud(current_mob)
 
 /datum/antagonist/veil/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/current_mob = mob_override || owner.current
+	UnregisterSignal(current_mob, COMSIG_PARENT_EXAMINE)
 	current_mob.maxHealth += 40
 	current_mob.cut_overlay(veil_sigils)
 
@@ -68,6 +70,13 @@
 			continue
 		antag_hud.show_to(target)
 		hud.show_to(antag_hud.target)
+
+/datum/antagonist/veil/on_examine(datum/source, mob/examiner, examine_text)
+	SIGNAL_HANDLER
+	if(!veil_sigils)
+		return
+	if(!glasses || !wear_suit)
+		examine_text += "[owner.current.p_they(TRUE)] have their whole body covered in sigils!\n"
 
 /datum/antagonist/veil/greet()
 	to_chat(owner, "<span class='velvet big'><b>ukq wna ieja jks</b></span>" )
