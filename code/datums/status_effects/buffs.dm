@@ -768,8 +768,6 @@
 	owner.status_flags &= ~GODMODE
 	playsound(owner, 'sound/magic/ethereal_exit.ogg', 50, TRUE)
 
-/Largely beneficial effects go here, even if they have drawbacks. An example is provided in Shadow Mend.
-
 /datum/status_effect/shadow_mend
 	id = "shadow_mend"
 	duration = 30
