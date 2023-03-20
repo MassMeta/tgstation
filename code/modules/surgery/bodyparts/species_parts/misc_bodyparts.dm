@@ -747,12 +747,12 @@
 	limb_id = "clockgolem"
 
 /obj/item/bodypart/chest/golem/clockwork
-	nojumpsuit = TRUE
+	bodypart_traits = list(TRAIT_NO_JUMPSUIT)
 	limb_id = "clockgolem"
 	is_dimorphic = FALSE
 
 /obj/item/bodypart/chest/golem/clockwork/no_scrap
-	nojumpsuit = FALSE
+	bodypart_traits = list()
 
 /obj/item/bodypart/head/golem/clockwork
 	limb_id = "clockgolem"

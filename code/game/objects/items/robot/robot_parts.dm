@@ -289,7 +289,7 @@
 
 			brainmob.mind?.remove_antags_for_borging()
 			if(!istype(M.laws, /datum/ai_laws/ratvar))
-				remove_servant_of_ratvar(BM, TRUE)
+				remove_servant_of_ratvar(brainmob, TRUE)
 			O.job = JOB_CYBORG
 
 			O.cell = chest.cell

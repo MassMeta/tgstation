@@ -1,5 +1,5 @@
 //Soul vessel: An ancient positronic brain that serves only Ratvar.
-/obj/item/mmi/posibrain/soul_vessel
+/*/obj/item/mmi/posibrain/soul_vessel
 	name = "soul vessel"
 	desc = "A heavy brass cube, three inches to a side, with a single protruding cogwheel."
 	var/clockwork_desc = "A soul vessel, an ancient relic that can attract the souls of the damned or simply rip a mind from an unconscious or dead human.\n\
@@ -11,7 +11,6 @@
 	begin_activation_message = "<span class='brass'>You activate the cogwheel. It hitches and stalls as it begins spinning.</span>"
 	success_message = "<span class='brass'>The cogwheel's rotation smooths out as the soul vessel activates.</span>"
 	fail_message = "<span class='warning'>The cogwheel creaks and grinds to a halt. Maybe you could try again?</span>"
-	new_role = "Soul Vessel"
 	welcome_message = "<span class='warning'>ALL PAST LIVES ARE FORGOTTEN.</span>\n\
 	<b>You are a soul vessel - a clockwork mind created by Ratvar, the Clockwork Justiciar.\n\
 	You answer to Ratvar and his servants. It is your discretion as to whether or not to answer to anyone else.\n\
@@ -115,3 +114,4 @@
 	B.Remove(H)
 	qdel(B)
 	H.update_hair()
+*/

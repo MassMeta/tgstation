@@ -119,7 +119,7 @@
 	basic_modules -= removed_module
 	modules -= removed_module
 	emag_modules -= removed_module
-	ratvar_modules -= I
+	ratvar_modules -= removed_module
 	added_modules -= removed_module
 	rebuild_modules()
 	if(delete_after)
