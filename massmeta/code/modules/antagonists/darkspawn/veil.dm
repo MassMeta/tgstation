@@ -71,11 +71,11 @@
 		antag_hud.show_to(target)
 		hud.show_to(antag_hud.target)
 
-/datum/antagonist/veil/on_examine(datum/source, mob/examiner, examine_text)
+/datum/antagonist/veil/proc/on_examine(datum/source, mob/examiner, examine_text)
 	SIGNAL_HANDLER
 	if(!veil_sigils)
 		return
-	if(!glasses || !wear_suit)
+	if(!owner.current.glasses || !owner.current.wear_suit)
 		examine_text += "[owner.current.p_they(TRUE)] have their whole body covered in sigils!\n"
 
 /datum/antagonist/veil/greet()
