@@ -104,7 +104,7 @@
 
 /obj/item/clockwork/slab/worn_overlays(isinhands = FALSE, icon_file)
 	. = list()
-	if(isinhands && item_state && inhand_overlay)
+	if(isinhands && worn_icon_state && inhand_overlay)
 		var/mutable_appearance/M = mutable_appearance(icon_file, "slab_[inhand_overlay]")
 		. += M
 
@@ -128,7 +128,7 @@
 					continue
 				var/datum/clockwork_scripture/quickbind_slot = quickbound[i]
 				. += "<b>Quickbind</b> button: <span class='[get_component_span(initial(quickbind_slot.primary_component))]'>[initial(quickbind_slot.name)]</span>."
-		. += "<b>Available power:</b> <span class='bold brass'>[DisplayEnergy(get_clockwork_power())].</span>"
+		. += "<b>Available power:</b> <span class='bold brass'>[display_energy(get_clockwork_power())].</span>"
 
 //Slab actions; Hierophant, Quickbind
 /obj/item/clockwork/slab/ui_action_click(mob/user, action)
@@ -138,8 +138,8 @@
 
 //Scripture Recital
 /obj/item/clockwork/slab/attack_self(mob/living/user)
-	if(iscultist(user))
-		to_chat(user, "[span_heavy_brass("\"You reek of blood. You've got a lot of nerve to even look at that slab.\"")]")
+	if(IS_CULTIST(user))
+		to_chat(user, (span_warning("You reek of blood. You've got a lot of nerve to even look at that slab.")))
 		user.visible_message(span_warning("A sizzling sound comes from [user]'s hands!"), span_userdanger("[src] suddenly grows extremely hot in your hands!"))
 		playsound(get_turf(user), 'sound/weapons/sear.ogg', 50, 1)
 		user.dropItemToGround(src)
@@ -149,19 +149,19 @@
 		return 0
 	if(!is_servant_of_ratvar(user))
 		to_chat(user, span_warning("The information on [src]'s display shifts rapidly. After a moment, your head begins to pound, and you tear your eyes away."))
-		user.confused += 5
-		user.dizziness += 5
+		user.adjust_dizzy(5 SECONDS)
+		user.adjust_confusion(5 SECONDS)
 		return 0
 	if(busy)
 		to_chat(user, span_warning("[src] refuses to work, displaying the message: \"[busy]!\""))
 		return 0
 	if(!no_cost && !can_recite_scripture(user))
-		to_chat(user, span_nezbere("[src] hums fitfully in your hands, but doesn't seem to do anything..."))
+		to_chat(user, span_warning("[src] hums fitfully in your hands, but doesn't seem to do anything..."))
 		return 0
 	access_display(user)
 
 /obj/item/clockwork/slab/AltClick(mob/living/user)
-	if(is_servant_of_ratvar(user) && linking && user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
+	if(is_servant_of_ratvar(user) && linking && user.can_use_topic(src,user))
 		linking = null
 		to_chat(user, span_notice("Object link canceled."))
 
@@ -179,7 +179,7 @@
 		ui.open()
 
 /obj/item/clockwork/slab/proc/recite_scripture(datum/clockwork_scripture/scripture, mob/living/user)
-	if(!scripture || !user || !user.canUseTopic(src) || (!no_cost && !can_recite_scripture(user)))
+	if(!scripture || !user || !can_use_topic(src,user) || (!no_cost && !can_recite_scripture(user)))
 		return FALSE
 	if(user.get_active_held_item() != src)
 		to_chat(user, span_warning("You need to hold the slab in your active hand to recite scripture!"))
@@ -336,7 +336,7 @@
 			anything but a last resort. Instead, it is recommended that a <b>Sigil of Transmission</b> is created. This sigil serves as both battery  and power generator for nearby clockwork \
 			structures, and those structures will happily draw power from the sigil before they resort to APCs.<br><br>"
 			dat += "Generating power is less easy. The most reliable and efficient way is using brass sheets; attacking a sigil of transmission with brass sheets will convert them \
-			to power, at a rate of <b>[DisplayEnergy(POWER_FLOOR)]</b> per sheet. (Brass sheets are created from replica fabricators, which are explained more in detail in the <b>Conversion</b> section.) \
+			to power, at a rate of <b>[display_energy(POWER_FLOOR)]</b> per sheet. (Brass sheets are created from replica fabricators, which are explained more in detail in the <b>Conversion</b> section.) \
 			Activating a sigil of transmission will also cause it to drain power from the nearby area, which, while effective, serves as an obvious tell that there is something wrong.<br><br>"
 			dat += "Without power, many structures will not function, making a base vulnerable to attack. For this reason, it is critical that you keep an eye on your power reserves and \
 			ensure that they remain comfortably high.<br><br>"
@@ -404,7 +404,7 @@
 
 /obj/item/clockwork/slab/ui_data(mob/user) //we display a lot of data via TGUI
 	var/list/data = list()
-	data["power"] = "<b><font color=#B18B25>[DisplayEnergy(get_clockwork_power())]</b> power is available for scripture and other consumers.</font>"
+	data["power"] = "<b><font color=#B18B25>[display_energy(get_clockwork_power())]</b> power is available for scripture and other consumers.</font>"
 
 	switch(selected_scripture) //display info based on selected scripture tier
 		if(SCRIPTURE_DRIVER)
@@ -413,12 +413,12 @@
 			if(GLOB.scripture_states[SCRIPTURE_SCRIPT])
 				data["tier_info"] = "<font color=#B18B25><b>These scriptures are permanently unlocked.</b></font>"
 			else
-				data["tier_info"] = "<font color=#B18B25><i>These scriptures will automatically unlock when the Ark is halfway ready or if [DisplayEnergy(SCRIPT_UNLOCK_THRESHOLD)] of power is reached.</i></font>"
+				data["tier_info"] = "<font color=#B18B25><i>These scriptures will automatically unlock when the Ark is halfway ready or if [display_energy(SCRIPT_UNLOCK_THRESHOLD)] of power is reached.</i></font>"
 		if(SCRIPTURE_APPLICATION)
 			if(GLOB.scripture_states[SCRIPTURE_APPLICATION])
 				data["tier_info"] = "<font color=#B18B25><b>These scriptures are permanently unlocked.</b></font>"
 			else
-				data["tier_info"] = "<font color=#B18B25><i>Unlock these optional scriptures by converting another servant or if [DisplayEnergy(APPLICATION_UNLOCK_THRESHOLD)] of power is reached..</i></font>"
+				data["tier_info"] = "<font color=#B18B25><i>Unlock these optional scriptures by converting another servant or if [display_energy(APPLICATION_UNLOCK_THRESHOLD)] of power is reached..</i></font>"
 
 	data["selected"] = selected_scripture
 	data["scripturecolors"] = "<font color=#DAAA18>Scriptures in <b>yellow</b> are related to construction and building.</font><br>\
@@ -436,7 +436,7 @@
 			var/list/temp_info = list("name" = "<font color=[scripture_color]><b>[S.name]</b></font>",
 			"descname" = "<font color=[scripture_color]>([S.descname])</font>",
 			"tip" = "[S.desc]\n[S.usage_tip]",
-			"required" = "([DisplayEnergy(S.power_cost)][S.special_power_text ? "+ [replacetext(S.special_power_text, "POWERCOST", "[DisplayEnergy(S.special_power_cost)]")]" : ""])",
+			"required" = "([display_energy(S.power_cost)][S.special_power_text ? "+ [replacetext(S.special_power_text, "POWERCOST", "[display_energy(S.special_power_cost)]")]" : ""])",
 			"type" = "[S.type]",
 			"quickbind" = S.quickbind)
 			if(S.important)

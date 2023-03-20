@@ -102,11 +102,10 @@
 
 /obj/item/clockwork/construct_chassis/cogscarab/post_spawn(mob/living/construct)
 	if(infinite_resources) //Allow them to build stuff and recite scripture
-		var/list/cached_stuff = construct.GetAllContents()
-		for(var/obj/item/clockwork/replica_fabricator/F in cached_stuff)
+		for(var/obj/item/clockwork/replica_fabricator/F in construct)
 			F.uses_power = FALSE
 		for(var/obj/item/clockwork/slab/S in cached_stuff)
 			S.no_cost = TRUE
 		if(seasonal_hat && seasonal_hat != "none")
 			var/obj/item/hat = new seasonal_hat(construct)
-			construct.equip_to_slot_or_del(hat, SLOT_HEAD)
+			construct.equip_to_slot_or_del(hat, ITEM_SLOT_HEAD)

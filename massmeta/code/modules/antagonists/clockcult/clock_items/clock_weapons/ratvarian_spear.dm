@@ -4,12 +4,13 @@
 	desc = "A razor-sharp spear made of brass. It thrums with barely-contained energy."
 	clockwork_desc = "A powerful spear of Ratvarian making. It's more effective against enemy cultists and silicons."
 	icon_state = "ratvarian_spear"
-	item_state = "ratvarian_spear"
+	worn_icon_state = "ratvarian_spear"
 	force = 15 //Extra damage is dealt to targets in attack()
 	throwforce = 25
 	armour_penetration = 10
-	sharpness = IS_SHARP_ACCURATE
-	attack_verb = list("stabbed", "poked", "slashed")
+	sharpness = SHARP_POINTY
+	attack_verb_continuous = list("stabs", "pokes", "slashes")
+	attack_verb_simple = list("stab", "poke", "slashs")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	w_class = WEIGHT_CLASS_BULKY
 	var/bonus_burn = 5
@@ -35,12 +36,12 @@
 
 /obj/item/clockwork/weapon/ratvarian_spear/attack(mob/living/target, mob/living/carbon/human/user)
 	. = ..()
-	if(!QDELETED(target) && target.stat != DEAD && !target.anti_magic_check(chargecost = 0) && !is_servant_of_ratvar(target)) //we do bonus damage on attacks unless they're a servant, have a null rod, or are dead
+	if(!QDELETED(target) && target.stat != DEAD && !target.can_block_magic(MAGIC_RESISTANCE) && !is_servant_of_ratvar(target)) //we do bonus damage on attacks unless they're a servant, have a null rod, or are dead
 		var/bonus_damage = bonus_burn //normally a total of 20 damage, 30 with ratvar
 		if(issilicon(target))
 			target.visible_message("<span class='warning'>[target] shudders violently at [src]'s touch!</span>", "<span class='userdanger'>ERROR: Temperature rising!</span>")
 			bonus_damage *= 5 //total 40 damage on borgs, 70 with ratvar
-		else if(iscultist(target) || isconstruct(target))
+		else if(IS_CULTIST(target) || isconstruct(target))
 			to_chat(target, "<span class='userdanger'>Your body flares with agony at [src]'s presence!</span>")
 			bonus_damage *= 3 //total 30 damage on cultists, 50 with ratvar
 		GLOB.clockwork_vitality += target.adjustFireLoss(bonus_damage) //adds the damage done to existing vitality
@@ -55,8 +56,8 @@
 			else
 				L.visible_message("<span class='warning'>[src] bounces off of [L], as if repelled by an unseen force!</span>")
 		else if(!..())
-			if(!L.anti_magic_check())
-				if(issilicon(L) || iscultist(L))
+			if(!L.can_block_magic(MAGIC_RESISTANCE))
+				if(issilicon(L) || IS_CULTIST(L))
 					L.Paralyze(100)
 				else
 					L.Paralyze(40)
