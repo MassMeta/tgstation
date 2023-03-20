@@ -29,7 +29,8 @@
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/effect/clockwork/sigil/attack_hand(mob/user)
 	if(iscarbon(user) && !user.stat)
-		if(is_servant_of_ratvar(user) && !user.combat_mode)
+		var/mob/living/carbon/carbon_user = user
+		if(is_servant_of_ratvar(user) && !carbon_user.combat_mode)
 			return ..()
 		user.visible_message("<span class='warning'>[user] stamps out [src]!</span>", "<span class='danger'>You stomp on [src], scattering it into thousands of particles.</span>")
 		qdel(src)
@@ -46,7 +47,7 @@
 		var/mob/living/L = AM
 		if(L.stat <= stat_affected)
 			if((!is_servant_of_ratvar(L) || (affects_servants && is_servant_of_ratvar(L))) && (L.mind || L.has_status_effect(STATUS_EFFECT_SIGILMARK)) && !isdrone(L))
-				if(L.check_antimagic(MAGIC_RESISTANCE))
+				if(L.can_block_magic(MAGIC_RESISTANCE))
 					return
 				sigil_effects(L)
 
@@ -192,7 +193,7 @@
 		var/structure_number = 0
 		for(var/obj/structure/destructible/clockwork/powered/P in range(SIGIL_ACCESS_RANGE, src))
 			structure_number++
-		. += {"<span class='[get_clockwork_p1ower() ? "brass":"alloy"]'>It is storing <b>[display_energy(get_clockwork_power())]</b> of shared power, 
+		. += {"<span class='[get_clockwork_power() ? "brass":"alloy"]'>It is storing <b>[display_energy(get_clockwork_power())]</b> of shared power, 
 		and <b>[structure_number]</b> clockwork structure[structure_number == 1 ? " is":"s are"] in range.</span>"}
 		if(iscyborg(user))
 			. += "<span class='brass'>You can recharge from the [sigil_name] by crossing it.</span>"

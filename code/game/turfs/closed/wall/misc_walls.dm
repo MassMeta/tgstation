@@ -155,13 +155,13 @@
 	girder_type = /obj/structure/destructible/clockwork/wall_gear
 	baseturfs = /turf/open/floor/clockwork/reebe
 	var/heated
-	var/obj/effect/clockwork/overlay/wall/realappearance
+	var/obj/effect/cult_turf/clock_wall/realappearance
 
 /turf/closed/wall/clockwork/Initialize()
 	. = ..()
 	new /obj/effect/temp_visual/ratvar/wall(src)
 	new /obj/effect/temp_visual/ratvar/beam(src)
-	realappearance = new /obj/effect/clockwork/overlay/wall(src)
+	realappearance = new /obj/effect/cult_turf/clock_wall(src)
 	realappearance.linked = src
 
 /turf/closed/wall/clockwork/Destroy()

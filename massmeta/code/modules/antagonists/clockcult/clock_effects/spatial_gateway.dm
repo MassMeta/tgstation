@@ -67,15 +67,7 @@
 /obj/effect/clockwork/spatial_gateway/attack_hand(mob/living/user)
 	if(!uses)
 		return FALSE
-	if(user.pulling && user.a_intent == INTENT_GRAB && isliving(user.pulling))
-		var/mob/living/L = user.pulling
-		if(L.buckled || L.anchored || L.has_buckled_mobs())
-			return FALSE
-		user.visible_message("<span class='warning'>[user] shoves [L] into [src]!</span>", "<span class='danger'>You shove [L] into [src]!</span>")
-		user.stop_pulling()
-		pass_through_gateway(L)
-		return TRUE
-	if(!user.canUseTopic(src))
+	if(HAS_TRAIT(user, TRAIT_INCAPACITATED) || HAS_TRAIT(user, TRAIT_HANDS_BLOCKED))
 		return FALSE
 	user.visible_message("<span class='warning'>[user] climbs through [src]!</span>", "<span class='danger'>You brace yourself and step through [src]...</span>")
 	pass_through_gateway(user)

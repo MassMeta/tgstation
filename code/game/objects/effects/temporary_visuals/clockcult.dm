@@ -129,7 +129,7 @@
 	icon_state = "geisbinding_top"
 
 /obj/effect/temp_visual/ratvar/component
-	icon = 'icons/obj/clockwork_objects.dmi'
+	icon = 'massmeta/icons/obj/clockwork_objects.dmi'
 	icon_state = "belligerent_eye"
 	layer = ABOVE_MOB_LAYER
 	duration = 10

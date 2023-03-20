@@ -6,7 +6,7 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	anchored = TRUE
 	density = TRUE
-	CanAtmosPass = ATMOS_PASS_NO
+	can_atmos_pass = ATMOS_PASS_NO
 
 /obj/effect/clockwork/servant_blocker/Initialize()
 	. = ..()
@@ -18,7 +18,7 @@
 	return ..()
 
 /obj/effect/clockwork/servant_blocker/CanPass(atom/movable/M, turf/target)
-	var/list/target_contents = M.GetAllContents() + M
+	var/list/target_contents = M.get_all_contents() + M
 	for(var/mob/living/L in target_contents)
 		if(is_servant_of_ratvar(L) && get_dir(M, src) != dir && L.stat != DEAD) //Unless we're on the side the arrow is pointing directly away from, no-go
 			to_chat(L, "<span class='warning'>The space beyond here can't be accessed by you or other servants!</span>")
@@ -29,7 +29,7 @@
 			return
 	return TRUE
 
-/obj/effect/clockwork/servant_blocker/BlockSuperconductivity()
+/obj/effect/clockwork/servant_blocker/block_superconductivity()
 	return TRUE
 
 /obj/effect/clockwork/servant_blocker/singularity_act()

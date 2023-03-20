@@ -426,7 +426,7 @@
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	var/dropped_brass
 	var/uses_overlay = TRUE
-	var/obj/effect/clockwork/overlay/floor/realappearence
+	var/obj/effect/cult_turf/clock_floor/realappearence
 
 /turf/open/floor/clockwork/Bless() //Who needs holy blessings when you have DADDY RATVAR?
 	return
@@ -436,7 +436,7 @@
 	if(uses_overlay)
 		new /obj/effect/temp_visual/ratvar/floor(src)
 		new /obj/effect/temp_visual/ratvar/beam(src)
-		realappearence = new /obj/effect/clockwork/overlay/floor(src)
+		realappearence = new /obj/effect/cult_turf/clock_floor(src)
 		realappearence.linked = src
 
 /turf/open/floor/clockwork/Destroy()
