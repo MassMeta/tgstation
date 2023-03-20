@@ -637,7 +637,7 @@
 		return
 	darkspawn.use_psi(5)
 
-/atom/movable/screen/alert/creep
+/atom/movable/screen/alert/status_effect/creep
 	name = "Creep"
 	desc = "You are immune to lightburn. Drains 1 Psi per second."
 	icon = 'massmeta/icons/mob/actions/actions_darkspawn.dmi'
@@ -668,8 +668,8 @@
 /atom/movable/screen/alert/status_effect/shadow_dance
 	name = "Shadow Dance"
 	desc = "You are able to avoid projectiles while in darkness."
-	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
-	button_icon_state = "ninja_cloak"
+	icon = 'icons/mob/actions/actions_minor_antag.dmi'
+	icon_state = "ninja_cloak"
 
 #define TIME_DILATION_TRAIT "time_dilation_trait"
 /datum/status_effect/time_dilation //used by darkspawn; greatly increases action times etc
