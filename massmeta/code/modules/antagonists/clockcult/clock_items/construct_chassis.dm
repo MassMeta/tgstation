@@ -102,7 +102,8 @@
 
 /obj/item/clockwork/construct_chassis/cogscarab/post_spawn(mob/living/construct)
 	if(infinite_resources) //Allow them to build stuff and recite scripture
-		for(var/obj/item/clockwork/replica_fabricator/F in construct)
+		var/list/cached_stuff = construct.get_all_contents()
+		for(var/obj/item/clockwork/replica_fabricator/F in cached_stuff)
 			F.uses_power = FALSE
 		for(var/obj/item/clockwork/slab/S in cached_stuff)
 			S.no_cost = TRUE

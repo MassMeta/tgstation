@@ -663,7 +663,7 @@
 /obj/machinery/door/airlock/clockwork/hasPower()
 	return TRUE //yes we do have power
 
-/obj/machinery/door/airlock/clockwork/obj_break(damage_flag)
+/obj/machinery/door/airlock/clockwork/on_break()
 	SHOULD_CALL_PARENT(FALSE)
 	return
 
@@ -679,7 +679,7 @@
 	qdel(src)
 
 /obj/machinery/door/airlock/clockwork/proc/attempt_construction(obj/item/I, mob/living/user)
-	if(!I || !user || !user.canUseTopic(src))
+	if(!I || !user || HAS_TRAIT(user, TRAIT_INCAPACITATED) || HAS_TRAIT(user, TRAIT_HANDS_BLOCKED))
 		return 0
 	else if(I.tool_behaviour == TOOL_WRENCH)
 		if(construction_state == GEAR_SECURE)

@@ -16,7 +16,7 @@
 
 /obj/effect/clockwork/sigil/attackby(obj/item/I, mob/living/user, params)
 	if(I.force)
-		if(is_servant_of_ratvar(user) && user.a_intent != INTENT_HARM)
+		if(is_servant_of_ratvar(user) && !user.combat_mode)
 			return ..()
 		user.visible_message("<span class='warning'>[user] scatters [src] with [I]!</span>", "<span class='danger'>You scatter [src] with [I]!</span>")
 		qdel(src)
@@ -29,7 +29,7 @@
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/effect/clockwork/sigil/attack_hand(mob/user)
 	if(iscarbon(user) && !user.stat)
-		if(is_servant_of_ratvar(user) && user.a_intent != INTENT_HARM)
+		if(is_servant_of_ratvar(user) && !user.combat_mode)
 			return ..()
 		user.visible_message("<span class='warning'>[user] stamps out [src]!</span>", "<span class='danger'>You stomp on [src], scattering it into thousands of particles.</span>")
 		qdel(src)
@@ -46,11 +46,7 @@
 		var/mob/living/L = AM
 		if(L.stat <= stat_affected)
 			if((!is_servant_of_ratvar(L) || (affects_servants && is_servant_of_ratvar(L))) && (L.mind || L.has_status_effect(STATUS_EFFECT_SIGILMARK)) && !isdrone(L))
-				var/atom/I = L.anti_magic_check(check_antimagic, check_holy)
-				if(I)
-					if(isitem(I))
-						L.visible_message("<span class='warning'>[L]'s [I.name] [resist_string], protecting [L.p_them()] from [src]'s effects!</span>", \
-						"<span class='userdanger'>Your [I.name] [resist_string], protecting you!</span>")
+				if(L.check_antimagic(MAGIC_RESISTANCE))
 					return
 				sigil_effects(L)
 
@@ -61,10 +57,10 @@
 /obj/effect/clockwork/sigil/transgression
 	name = "dull sigil"
 	desc = "A dull, barely-visible golden sigil. It's as though light was carved into the ground."
-	icon = 'icons/effects/clockwork_effects.dmi'
+	icon = 'massmeta/icons/effects/clockwork_effects.dmi'
 	clockwork_desc = "A sigil that will stun the next non-Servant to cross it."
 	icon_state = "sigildull"
-	layer = HIGH_SIGIL_LAYER
+	layer = SIGIL_LAYER
 	alpha = 75
 	color = "#FAE48C"
 	light_range = 1.4
@@ -77,7 +73,7 @@
 	for(var/mob/living/M in viewers(5, src))
 		if(!is_servant_of_ratvar(M) && M != L)
 			M.flash_act()
-	if(iscultist(L))
+	if(IS_CULTIST(L))
 		to_chat(L, "<span class='heavy_brass'>\"Watch your step, wretch.\"</span>")
 		L.adjustBruteLoss(10)
 		L.Paralyze(80, FALSE)
@@ -150,7 +146,7 @@
 	L.Paralyze(50) //Completely defenseless for five seconds - mainly to give them time to read over the information they've just been presented with
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
-		C.silent += 5
+		C.adjust_silence(5 SECONDS)
 	var/message = "[sigil_name] in [get_area(src)] <span class='sevtug'>[is_servant_of_ratvar(L) ? "successfully converted" : "failed to convert"]</span>"
 	for(var/M in GLOB.mob_list)
 		if(isobserver(M))
@@ -196,7 +192,7 @@
 		var/structure_number = 0
 		for(var/obj/structure/destructible/clockwork/powered/P in range(SIGIL_ACCESS_RANGE, src))
 			structure_number++
-		. += {"<span class='[get_clockwork_power() ? "brass":"alloy"]'>It is storing <b>[DisplayPower(get_clockwork_power())]</b> of shared power, 
+		. += {"<span class='[get_clockwork_p1ower() ? "brass":"alloy"]'>It is storing <b>[display_energy(get_clockwork_power())]</b> of shared power, 
 		and <b>[structure_number]</b> clockwork structure[structure_number == 1 ? " is":"s are"] in range.</span>"}
 		if(iscyborg(user))
 			. += "<span class='brass'>You can recharge from the [sigil_name] by crossing it.</span>"
@@ -343,7 +339,7 @@
 				break
 			if(!L.client || L.client.is_afk())
 				set waitfor = FALSE
-				var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as a [L.name], an inactive clock cultist?", ROLE_SERVANT_OF_RATVAR, null, ROLE_SERVANT_OF_RATVAR, 50, L)
+				var/list/mob/dead/observer/candidates = poll_candidates_for_mob("Do you want to play as a [L.name], an inactive clock cultist?", ROLE_SERVANT_OF_RATVAR, null, ROLE_SERVANT_OF_RATVAR, 50, L)
 				if(LAZYLEN(candidates))
 					var/mob/dead/observer/C = pick(candidates)
 					to_chat(L, "<span class='userdanger'>Your physical form has been taken over by another soul due to your inactivity! Ahelp if you wish to regain your form!</span>")

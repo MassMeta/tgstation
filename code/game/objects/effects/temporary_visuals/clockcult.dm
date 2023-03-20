@@ -1,7 +1,7 @@
 //temporary visual effects(/obj/effect/temp_visual) used by clockcult stuff
 /obj/effect/temp_visual/ratvar
 	name = "ratvar's light"
-	icon = 'icons/effects/clockwork_effects.dmi'
+	icon = 'massmeta/icons/effects/clockwork_effects.dmi'
 	duration = 8
 	randomdir = 0
 	layer = ABOVE_NORMAL_TURF_LAYER
@@ -64,7 +64,7 @@
 
 /obj/effect/temp_visual/ratvar/belligerent
 	layer = ABOVE_MOB_LAYER
-	icon = 'icons/obj/clockwork_objects.dmi'
+	icon = 'massmeta/icons/obj/clockwork_objects.dmi'
 	icon_state = "belligerent_eye"
 	pixel_y = 20
 	duration = 20
@@ -261,7 +261,7 @@
 	icon_state = "eminence"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	resistance_flags = INDESTRUCTIBLE
-	layer = MASSIVE_OBJ_LAYER
+	layer = LARGE_MOB_LAYER
 	duration = 300
 
 /obj/effect/temp_visual/ratvar/command_point/Initialize(mapload, appearance)

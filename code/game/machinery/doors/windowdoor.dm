@@ -516,7 +516,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/door/window/brigdoor/security/holding
 
 /obj/machinery/door/window/clockwork/ratvar_act()
 	if(GLOB.ratvar_awakens)
-		obj_integrity = max_integrity
+		atom_integrity = max_integrity
 
 /obj/machinery/door/window/clockwork/hasPower()
 	return TRUE //yup that's power all right

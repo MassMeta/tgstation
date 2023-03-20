@@ -163,28 +163,28 @@
 			update_appearance()
 		return
 
-	else if(istype(W, /obj/item/clockwork/integration_cog) && is_servant_of_ratvar(user))
+	else if(istype(attacking_object, /obj/item/clockwork/integration_cog) && is_servant_of_ratvar(user))
 		if(integration_cog)
 			to_chat(user, "<span class='warning'>This APC already has a cog.</span>")
 			return
 		if(!opened)
 			user.visible_message("<span class='warning'>[user] slices [src]'s cover lock, and it swings wide open!</span>", \
-			"<span class='alloy'>You slice [src]'s cover lock apart with [W], and the cover swings open.</span>")
+			"<span class='alloy'>You slice [src]'s cover lock apart with [attacking_object], and the cover swings open.</span>")
 			opened = APC_COVER_OPENED
 			update_icon()
 		else
-			user.visible_message("<span class='warning'>[user] presses [W] into [src]!</span>", \
-			"<span class='alloy'>You hold [W] in place within [src], and it slowly begins to warm up...</span>")
+			user.visible_message("<span class='warning'>[user] presses [attacking_object] into [src]!</span>", \
+			"<span class='alloy'>You hold [attacking_object] in place within [src], and it slowly begins to warm up...</span>")
 			playsound(src, 'sound/machines/click.ogg', 50, TRUE)
 			if(!do_after(user, 70, target = src))
 				return
-			user.visible_message("<span class='warning'>[user] installs [W] in [src]!</span>", \
+			user.visible_message("<span class='warning'>[user] installs [attacking_object] in [src]!</span>", \
 			"<span class='alloy'>Replicant alloy rapidly covers the APC's innards, replacing the machinery.</span><br>\
 			<span class='brass'>This APC will now passively provide power for the cult!</span>")
 			playsound(user, 'sound/machines/clockcult/integration_cog_install.ogg', 50, TRUE)
-			user.transferItemToLoc(W, src)
-			integration_cog = W
-			START_PROCESSING(SSfastprocess, W)
+			user.transferItemToLoc(attacking_object, src)
+			integration_cog = attacking_object
+			START_PROCESSING(SSfastprocess, attacking_object)
 			playsound(src, 'sound/machines/clockcult/steam_whoosh.ogg', 50, FALSE)
 			opened = APC_COVER_CLOSED
 			locked = FALSE

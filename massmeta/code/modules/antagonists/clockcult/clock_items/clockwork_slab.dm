@@ -161,7 +161,7 @@
 	access_display(user)
 
 /obj/item/clockwork/slab/AltClick(mob/living/user)
-	if(is_servant_of_ratvar(user) && linking && user.can_use_topic(src,user))
+	if(is_servant_of_ratvar(user) && linking && HAS_TRAIT(user, TRAIT_INCAPACITATED) && HAS_TRAIT(user, TRAIT_HANDS_BLOCKED))
 		linking = null
 		to_chat(user, span_notice("Object link canceled."))
 
@@ -179,7 +179,7 @@
 		ui.open()
 
 /obj/item/clockwork/slab/proc/recite_scripture(datum/clockwork_scripture/scripture, mob/living/user)
-	if(!scripture || !user || !can_use_topic(src,user) || (!no_cost && !can_recite_scripture(user)))
+	if(!scripture || !user || HAS_TRAIT(user, TRAIT_INCAPACITATED) || HAS_TRAIT(user, TRAIT_HANDS_BLOCKED) || (!no_cost && !can_recite_scripture(user)))
 		return FALSE
 	if(user.get_active_held_item() != src)
 		to_chat(user, span_warning("You need to hold the slab in your active hand to recite scripture!"))
