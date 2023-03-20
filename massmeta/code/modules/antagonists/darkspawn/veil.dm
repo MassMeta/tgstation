@@ -6,6 +6,7 @@
 	antag_moodlet = /datum/mood_event/thrall
 	hud_icon = 'massmeta/icons/mob/darkspawn_hud.dmi'
 	antag_hud_name = "veil"
+	var/mutable_appearance/veil_sigils
 
 /datum/antagonist/veil/on_gain()
 	. = ..()
@@ -34,11 +35,15 @@
 
 /datum/antagonist/veil/apply_innate_effects(mob/living/mob_override)
 	var/mob/living/current_mob = mob_override || owner.current
+	veil_sigils = mutable_appearance('massmeta/icons/mob/actions/actions_darkspawn.dmi', "veil_sigils", -UNDER_SUIT_LAYER) //show them sigils
+	current_mob.add_overlay(veil_sigils)
 	current_mob.maxHealth -= 40
 	add_team_hud(current_mob)
 
 /datum/antagonist/veil/remove_innate_effects(mob/living/mob_override)
-	owner.current.maxHealth += 40
+	var/mob/living/current_mob = mob_override || owner.current
+	current_mob.maxHealth += 40
+	current_mob.cut_overlay(veil_sigils)
 
 /datum/antagonist/veil/add_team_hud(mob/target)
 	QDEL_NULL(team_hud_ref)
