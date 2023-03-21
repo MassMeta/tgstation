@@ -109,7 +109,7 @@
 		set_click_ability(user)
 
 /datum/action/cooldown/judicial_visor/Activate(atom/target)
-	if(owner.HAS_TRAIT(owner, TRAIT_INCAPACITATED) || !visor || visor != owner.get_item_by_slot(ITEM_SLOT_EYES))
+	if(owner.incapacitated() || !visor || visor != owner.get_item_by_slot(ITEM_SLOT_EYES))
 		unset_click_ability(owner)
 		return
 
