@@ -94,7 +94,7 @@
 	icon_state = "judicial_visor_[active]"
 
 /datum/action/cooldown/judicial_visor
-	active = FALSE
+	var/active = FALSE
 	click_to_activate = TRUE
 	ranged_mousepointer = 'massmeta/icons/effects/visor_reticule.dmi'
 	var/obj/item/clothing/glasses/judicial_visor/visor
@@ -108,8 +108,8 @@
 		message = "<span class='brass'><i>You harness [visor]'s power.</i> <b>Left-click to place a judicial marker!</b></span>"
 		set_click_ability(user)
 
-/obj/effect/proc_holder/judicial_visor/Activate(atom/target)
-	if(owner.incapacitated() || !visor || visor != owner.get_item_by_slot(ITEM_SLOT_EYES))
+/datum/action/cooldown/judicial_visor/Activate(atom/target)
+	if(owner.HAS_TRAIT(owner, TRAIT_INCAPACITATED) || !visor || visor != owner.get_item_by_slot(ITEM_SLOT_EYES))
 		unset_click_ability(owner)
 		return
 
