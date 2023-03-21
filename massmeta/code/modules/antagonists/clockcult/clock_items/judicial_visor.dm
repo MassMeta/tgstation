@@ -9,7 +9,7 @@
 	flash_protect = FLASH_PROTECTION_FLASH
 	var/active = FALSE //If the visor is online
 	var/recharging = FALSE //If the visor is currently recharging
-	var/obj/effect/proc_holder/judicial_visor/blaster
+	var/datum/action/cooldown/judicial_visor/blaster
 	var/recharge_cooldown = 300 //divided by 10 if ratvar is alive
 	actions_types = list(/datum/action/item_action/clock/toggle_visor)
 
@@ -21,9 +21,9 @@
 
 /obj/item/clothing/glasses/judicial_visor/Destroy()
 	GLOB.all_clockwork_objects -= src
-	if(blaster.owner)
-		blaster.remove_ranged_ability()
 	blaster.visor = null
+	if(blaster.owner)
+		blaster.Remove(owner)
 	qdel(blaster)
 	return ..()
 
@@ -37,7 +37,7 @@
 	if(slot != ITEM_SLOT_EYES)
 		update_status(FALSE)
 		if(blaster.owner)
-			blaster.remove_ranged_ability()
+			blaster.unset_click_ability(blaster.owner)
 		return 0
 	if(is_servant_of_ratvar(user))
 		update_status(TRUE)
@@ -58,7 +58,8 @@
 	if(user && src != user.get_item_by_slot(ITEM_SLOT_EYES)) //if we happen to check and we AREN'T in the slot, we need to remove our shit from whoever we got dropped from
 		update_status(FALSE)
 		if(blaster.owner)
-			blaster.remove_ranged_ability()
+			var/to_unset = blaster.owner || user
+			blaster.unset_click_ability(to_unset)
 
 /obj/item/clothing/glasses/judicial_visor/attack_self(mob/user)
 	if(is_servant_of_ratvar(user) && src == user.get_item_by_slot(ITEM_SLOT_EYES))
