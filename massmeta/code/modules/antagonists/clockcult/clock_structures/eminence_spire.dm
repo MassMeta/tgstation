@@ -7,7 +7,7 @@
 	icon_state = "tinkerers_daemon"
 	break_message = "<span class='warning'>The spire screeches with crackling power and collapses into scrap!</span>"
 	max_integrity = 400
-	var/mob/eminence_nominee
+	var/mob/living/eminence_nominee
 	var/selection_timer //Timer ID; this is canceled if the vote is canceled
 	var/kingmaking
 
@@ -46,7 +46,7 @@
 		return
 
 //ATTACK GHOST IGNORING PARENT RETURN VALUE
-/obj/structure/destructible/clockwork/eminence_spire/attack_ghost(mob/user)
+/*/obj/structure/destructible/clockwork/eminence_spire/attack_ghost(mob/user)
 	if(!IsAdminGhost(user))
 		return
 
@@ -68,10 +68,11 @@
 	hierophant_message("<span class='bold large_brass'>Ratvar has directly assigned the Eminence!</span>")
 	for(var/mob/M in servants_and_ghosts())
 		M.playsound_local(M, 'sound/machines/clockcult/eminence_selected.ogg', 50, FALSE)
+*/
 
 /obj/structure/destructible/clockwork/eminence_spire/proc/nomination(mob/living/nominee) //A user is nominating themselves or ghosts to become Eminence
 	var/nomination_choice = alert(nominee, "Who would you like to nominate?", "Eminence Nomination", "Nominate Yourself", "Nominate Ghosts", "Cancel")
-	if(!is_servant_of_ratvar(nominee) || !nominee.canUseTopic(src) || eminence_nominee)
+	if(!is_servant_of_ratvar(nominee) || !nominee.can_perform_action(src) || eminence_nominee)
 		return
 	switch(nomination_choice)
 		if("Cancel")
@@ -87,7 +88,7 @@
 	selection_timer = addtimer(CALLBACK(src, .proc/kingmaker), 300, TIMER_STOPPABLE)
 
 /obj/structure/destructible/clockwork/eminence_spire/proc/objection(mob/living/wright)
-	if(alert(wright, "Object to the selection of [eminence_nominee] as Eminence?", "Objection!", "Object", "Cancel") == "Cancel" || !is_servant_of_ratvar(wright) || !wright.canUseTopic(src) || !eminence_nominee)
+	if(alert(wright, "Object to the selection of [eminence_nominee] as Eminence?", "Objection!", "Object", "Cancel") == "Cancel" || !is_servant_of_ratvar(wright) || !wright.nominee.can_perform_action(src)  || !eminence_nominee)
 		return
 	hierophant_message("<span class='brass'><b>[wright] objects to the nomination of [eminence_nominee]!</b> The eminence spire has been reset.</span>")
 	for(var/mob/M in servants_and_ghosts())
@@ -96,7 +97,7 @@
 	deltimer(selection_timer)
 
 /obj/structure/destructible/clockwork/eminence_spire/proc/cancelation(mob/living/cold_feet)
-	if(alert(cold_feet, "Cancel your nomination?", "Cancel Nomination", "Withdraw Nomination", "Cancel") == "Cancel" || !is_servant_of_ratvar(cold_feet) || !cold_feet.canUseTopic(src) || !eminence_nominee)
+	if(alert(cold_feet, "Cancel your nomination?", "Cancel Nomination", "Withdraw Nomination", "Cancel") == "Cancel" || !is_servant_of_ratvar(cold_feet) || !cold_feet.nominee.can_perform_action(src)  || !eminence_nominee)
 		return
 	hierophant_message("<span class='brass'><b>[eminence_nominee] has withdrawn their nomination!</b> The eminence spire has been reset.</span>")
 	for(var/mob/M in servants_and_ghosts())
@@ -126,7 +127,7 @@
 	else if(eminence_nominee == "ghosts")
 		kingmaking = TRUE
 		hierophant_message("<span class='brass'><b>The eminence spire is now selecting a ghost to be the Eminence...</b></span>")
-		var/list/candidates = pollGhostCandidates("Would you like to play as the servants' Eminence?", ROLE_SERVANT_OF_RATVAR, null, ROLE_SERVANT_OF_RATVAR, poll_time = 100)
+		var/list/candidates = poll_ghost_candidates("Would you like to play as the servants' Eminence?", ROLE_SERVANT_OF_RATVAR, null, ROLE_SERVANT_OF_RATVAR, poll_time = 100)
 		kingmaking = FALSE
 		if(!LAZYLEN(candidates))
 			for(var/mob/M in servants_and_ghosts())

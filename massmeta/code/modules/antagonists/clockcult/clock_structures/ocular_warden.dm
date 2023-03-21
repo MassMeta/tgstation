@@ -60,7 +60,7 @@
 		else
 			if(isliving(target))
 				var/mob/living/L = target
-				if(!L.anti_magic_check(chargecost = 0))
+				if(!L.can_block_magic(MAGIC_RESISTANCE))
 					if(isrevenant(L))
 						var/mob/living/simple_animal/revenant/R = L
 						if(R.revealed)
@@ -71,10 +71,10 @@
 						L.playsound_local(null,'sound/machines/clockcult/ocularwarden-dot1.ogg',75 * get_efficiency_mod(),1)
 					else
 						L.playsound_local(null,'sound/machines/clockcult/ocularwarden-dot2.ogg',75 * get_efficiency_mod(),1)
-					L.adjustFireLoss((!iscultist(L) ? damage_per_tick : damage_per_tick * 2) * get_efficiency_mod()) //Nar'Sian cultists take additional damage
+					L.adjustFireLoss((!IS_CULTIST(L) ? damage_per_tick : damage_per_tick * 2) * get_efficiency_mod()) //Nar'Sian cultists take additional damage
 					if(GLOB.ratvar_awakens && L)
 						L.adjust_fire_stacks(damage_per_tick)
-						L.IgniteMob()
+						L.ignite_mob()
 			else if(ismecha(target))
 				var/obj/mecha/M = target
 				M.take_damage(damage_per_tick * get_efficiency_mod(), BURN, "melee", 1, get_dir(src, M))
@@ -102,15 +102,7 @@
 /obj/structure/destructible/clockwork/ocular_warden/proc/acquire_nearby_targets()
 	. = list()
 	for(var/mob/living/L in viewers(sight_range, src)) //Doesn't attack the blind
-		var/obj/item/storage/book/bible/B = L.bible_check()
-		if(B)
-			if(!(B.resistance_flags & ON_FIRE))
-				to_chat(L, "<span class='warning'>Your [B.name] bursts into flames!</span>")
-			for(var/obj/item/storage/book/bible/BI in L.GetAllContents())
-				if(!(BI.resistance_flags & ON_FIRE))
-					BI.fire_act()
-			continue
-		if(is_servant_of_ratvar(L) || (HAS_TRAIT(L, TRAIT_BLIND)) || L.anti_magic_check(TRUE, TRUE))
+		if(is_servant_of_ratvar(L) || L.is_blind() || L.can_block_magic(MAGIC_RESISTANCE))
 			continue
 		if(L.stat || !(L.mobility_flags & MOBILITY_STAND))
 			continue
@@ -153,7 +145,7 @@
 		return 2
 	. = 1
 	if(target)
-		for(var/turf/T in getline(src, target))
+		for(var/turf/T in get_line(src, target))
 			if(T.density)
 				. -= 0.1
 				continue
