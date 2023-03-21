@@ -54,6 +54,6 @@
 /obj/structure/destructible/clockwork/taunting_trail/proc/affect_mob(mob/living/L)
 	if(istype(L) && !is_servant_of_ratvar(L))
 		if(!L.can_block_magic(MAGIC_RESISTANCE))
-			L.adjust_confusion_up_to(15 SECONDS, 50 SECOBDS)
-			L.adjust_dizzy_up_to(15 SECONDS, 50 SECOBDS)
+			L.adjust_confusion_up_to(15 SECONDS, 50 SECONDS)
+			L.adjust_dizzy_up_to(15 SECONDS, 50 SECONDS)
 		take_damage(max_integrity)
