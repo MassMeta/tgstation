@@ -45,7 +45,7 @@
 			to_chat(owner, "<span class='neovgre'>\"[L.p_theyre(TRUE)] already helpless, no?\"</span>")
 			return TRUE
 
-		playsound(loc, 'sound/weapons/handcuffs.ogg', 30, TRUE)
+		playsound(owner.loc, 'sound/weapons/handcuffs.ogg', 30, TRUE)
 		owner.visible_message("<span class='danger'>[owner] begins forming manacles around [L]'s wrists!</span>", \
 		"<span class='neovgre_small'>You begin shaping replicant alloy into manacles around [L]'s wrists...</span>")
 		to_chat(L, "<span class='userdanger'>[owner] begins forming manacles around your wrists!</span>")

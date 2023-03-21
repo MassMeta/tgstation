@@ -94,7 +94,7 @@
 /obj/item/clockwork/slab/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	if(slab_ability && slab_ability.owner)
-		slab_ability.unset_click_ability(owner, FALSE)
+		slab_ability.unset_click_ability(slab_ability.owner, FALSE)
 	slab_ability = null
 	return ..()
 
