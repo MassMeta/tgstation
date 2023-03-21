@@ -75,8 +75,11 @@
 	SIGNAL_HANDLER
 	if(!veil_sigils)
 		return
-	if(!owner.current.glasses || !owner.current.wear_suit)
-		examine_text += "[owner.current.p_they(TRUE)] have their whole body covered in sigils!\n"
+	var/mob/living/carbon/human/human_owner = owner.current
+	if(!istype(human_owner) || QDELETED(human_owner))
+		return
+	if(!human_owner.glasses || !human_owner.wear_suit)
+		examine_text += "[human_owner.p_they(TRUE)] have their whole body covered in sigils!\n"
 
 /datum/antagonist/veil/greet()
 	to_chat(owner, "<span class='velvet big'><b>ukq wna ieja jks</b></span>" )
