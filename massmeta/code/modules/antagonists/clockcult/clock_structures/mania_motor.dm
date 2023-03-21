@@ -19,7 +19,7 @@
 /obj/structure/destructible/clockwork/powered/mania_motor/examine(mob/user)
 	. = ..()
 	if(is_servant_of_ratvar(user) || isobserver(user))
-		. += "<span class='sevtug_small'>It requires <b>[DisplayPower(mania_cost)]</b> to run.</span>"
+		. += "<span class='sevtug_small'>It requires <b>[display_energy(mania_cost)]</b> to run.</span>"
 
 /obj/structure/destructible/clockwork/powered/mania_motor/forced_disable(bad_effects)
 	if(active)
@@ -34,7 +34,7 @@
 	. = ..()
 	if(.)
 		return
-	if(user.canUseTopic(src, !issilicon(user), NO_DEXTERY) && is_servant_of_ratvar(user))
+	if(user.can_perform_action(src) && is_servant_of_ratvar(user))
 		if(!can_access_clockwork_power(src, mania_cost))
 			to_chat(user, "<span class='warning'>[src] needs more power to function!</span>")
 			return 0

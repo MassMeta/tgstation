@@ -339,7 +339,7 @@
 					var/turf/T2 = I
 					if(!T2)
 						continue
-					var/dist = cheap_hypotenuse(T2.x, T2.y, x0, y0)
+					var/dist = CHEAP_HYPOTENUSE(T2.x, T2.y, x0, y0)
 					if(dist < 100)
 						dist = TRUE
 					else
@@ -348,7 +348,7 @@
 					CHECK_TICK
 
 //ATTACK GHOST IGNORING PARENT RETURN VALUE
-/obj/structure/destructible/clockwork/massive/celestial_gateway/attack_ghost(mob/user)
+/*/obj/structure/destructible/clockwork/massive/celestial_gateway/attack_ghost(mob/user)
 	if(!IsAdminGhost(user))
 		return ..()
 	if(GLOB.servants_active)
@@ -362,7 +362,7 @@
 				to_chat(user, "<span class='userdanger'>The gamemode is now being treated as clockwork cult, and the Ark is counting down from 30 \
 				minutes. You will need to create servant players yourself.</span>")
 				final_countdown(35)
-
+*/
 
 
 //the actual appearance of the Ark of the Clockwork Justicar; an object so the edges of the gate can be clicked through.

@@ -186,7 +186,6 @@
 	name = "gateway countdown"
 	text_size = 1
 	color = "#BE8700"
-	layer = POINT_LAYER
 
 /obj/effect/countdown/clockworkgate/get_value()
 	var/obj/structure/destructible/clockwork/massive/celestial_gateway/G = attached_to

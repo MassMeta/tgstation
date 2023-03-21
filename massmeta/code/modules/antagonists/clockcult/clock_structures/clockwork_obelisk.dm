@@ -23,7 +23,7 @@
 /obj/structure/destructible/clockwork/powered/clockwork_obelisk/examine(mob/user)
 	. = ..()
 	if(is_servant_of_ratvar(user) || isobserver(user))
-		. += "<span class='nzcrentr_small'>It requires <b>[DisplayPower(hierophant_cost)]</b> to broadcast over the Hierophant Network, and <b>[DisplayPower(gateway_cost)]</b> to open a Spatial Gateway.</span>"
+		. += "<span class='nzcrentr_small'>It requires <b>[display_energy(hierophant_cost)]</b> to broadcast over the Hierophant Network, and <b>[display_energy(gateway_cost)]</b> to open a Spatial Gateway.</span>"
 
 /obj/structure/destructible/clockwork/powered/clockwork_obelisk/can_be_unfasten_wrench(mob/user, silent)
 	if(active)
@@ -54,11 +54,11 @@
 			if(active)
 				to_chat(user, "<span class='warning'>[src] is sustaining a gateway and cannot broadcast!</span>")
 				return
-			if(!user.can_speak_vocal())
+			if(!user.can_speak())
 				to_chat(user, "<span class='warning'>You cannot speak through [src]!</span>")
 				return
 			var/input = stripped_input(usr, "Please choose a message to send over the Hierophant Network.", "Hierophant Broadcast", "")
-			if(!is_servant_of_ratvar(user) || !input || !user.canUseTopic(src, !issilicon(user)))
+			if(!is_servant_of_ratvar(user) || !input || !user.can_perform_action(src))
 				return
 			if(!anchored)
 				to_chat(user, "<span class='warning'>[src] is no longer secured!</span>")
@@ -66,7 +66,7 @@
 			if(active)
 				to_chat(user, "<span class='warning'>[src] is sustaining a gateway and cannot broadcast!</span>")
 				return
-			if(!user.can_speak_vocal())
+			if(!user.can_speak())
 				to_chat(user, "<span class='warning'>You cannot speak through [src]!</span>")
 				return
 			if(!try_use_power(hierophant_cost))
@@ -78,7 +78,7 @@
 			if(active)
 				to_chat(user, "<span class='warning'>[src] is already sustaining a gateway!</span>")
 				return
-			if(!user.can_speak_vocal())
+			if(!user.can_speak())
 				to_chat(user, "<span class='warning'>You need to be able to speak to open a gateway!</span>")
 				return
 			if(!try_use_power(gateway_cost))
