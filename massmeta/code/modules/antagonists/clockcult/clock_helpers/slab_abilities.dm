@@ -49,7 +49,7 @@
 		owner.visible_message("<span class='danger'>[owner] begins forming manacles around [L]'s wrists!</span>", \
 		"<span class='neovgre_small'>You begin shaping replicant alloy into manacles around [L]'s wrists...</span>")
 		to_chat(L, "<span class='userdanger'>[owner] begins forming manacles around your wrists!</span>")
-		if(do_after(owner, 30 L))
+		if(do_after(owner, 30, L))
 			if(!(istype(L.handcuffed,/obj/item/restraints/handcuffs/clockwork)))
 				L.handcuffed = new/obj/item/restraints/handcuffs/clockwork(L)
 				L.update_handcuffed()
