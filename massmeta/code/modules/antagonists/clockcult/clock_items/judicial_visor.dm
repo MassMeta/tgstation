@@ -185,11 +185,7 @@
 	for(var/mob/living/L in range(1, src))
 		if(is_servant_of_ratvar(L))
 			continue
-		var/atom/I = L.anti_magic_check()
-		if(I)
-			if(isitem(I))
-				L.visible_message("<span class='warning'>Strange energy flows into [L]'s [I.name]!</span>", \
-				"<span class='userdanger'>Your [I.name] shields you from [src]!</span>")
+		if(L.can_block_magic(MAGIC_RESISTANCE))
 			continue
 		L.Paralyze(15) //knocks down briefly when exploding
 		if(!IS_CULTIST(L))
@@ -199,7 +195,7 @@
 			L.visible_message("<span class='warning'>[L] is struck by a judicial explosion!</span>", \
 			"<span class='heavy_brass'>\"Keep an eye out, filth.\"</span>\n<span class='userdanger'>A burst of heat crushes you against the ground!</span>")
 			L.adjust_fire_stacks(2) //sets cultist targets on fire
-			L.IgniteMob()
+			L.ignite_mob()
 			L.adjustFireLoss(5)
 		targetsjudged++
 		if(!QDELETED(L))
