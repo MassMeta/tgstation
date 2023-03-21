@@ -19,7 +19,7 @@
 	if(in_progress)
 		return TRUE
 	if(owner.incapacitated() || !slab || !(slab in owner.held_items) || target == slab)
-		unset_click_ability(caller, refund_cooldown = FALSE)
+		unset_click_ability(owner, refund_cooldown = FALSE)
 		return TRUE
 
 //For the Hateful Manacles scripture; applies replicant handcuffs to the target.
@@ -49,7 +49,7 @@
 		owner.visible_message("<span class='danger'>[owner] begins forming manacles around [L]'s wrists!</span>", \
 		"<span class='neovgre_small'>You begin shaping replicant alloy into manacles around [L]'s wrists...</span>")
 		to_chat(L, "<span class='userdanger'>[owner] begins forming manacles around your wrists!</span>")
-		if(do_mob(owner, L, 30))
+		if(do_after(owner, 30 L))
 			if(!(istype(L.handcuffed,/obj/item/restraints/handcuffs/clockwork)))
 				L.handcuffed = new/obj/item/restraints/handcuffs/clockwork(L)
 				L.update_handcuffed()
@@ -60,7 +60,7 @@
 
 		successful = TRUE
 
-		remove_ranged_ability()
+		unset_click_ability(owner)
 
 	return TRUE
 
@@ -131,7 +131,7 @@
 		if(has_holy_water)
 			L.reagents.remove_reagent(/datum/reagent/water/holywater, 1000)
 
-		remove_ranged_ability()
+		unset_click_ability(owner)
 
 	return TRUE
 
@@ -157,10 +157,10 @@
 		log_combat(owner, U, "fired at with Kindle")
 		playsound(owner, 'sound/magic/blink.ogg', 50, TRUE, frequency = 0.5)
 		var/obj/projectile/kindle/A = new(T)
-		A.preparePixelProjectile(target, caller, params)
+		A.preparePixelProjectile(target, owner)
 		A.fire()
 
-		remove_ranged_ability()
+		unset_click_ability(owner)
 
 	return TRUE
 
@@ -242,7 +242,7 @@
 
 		clockwork_say(owner, text2ratvar("Shield us from darkness!"))
 
-		remove_ranged_ability()
+		unset_click_ability(owner)
 
 	return TRUE
 
@@ -267,6 +267,6 @@
 		var/turf/targetturf = get_turf(target)
 		new/obj/effect/clockwork/judicial_marker(targetturf, owner)
 		log_combat(owner, targetturf, "created a judicial marker")
-		remove_ranged_ability()
+		unset_click_ability(owner)
 
 	return TRUE
