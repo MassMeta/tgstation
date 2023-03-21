@@ -23,7 +23,7 @@
 	GLOB.all_clockwork_objects -= src
 	blaster.visor = null
 	if(blaster.owner)
-		blaster.Remove(owner)
+		blaster.Remove(blaster.owner)
 	qdel(blaster)
 	return ..()
 

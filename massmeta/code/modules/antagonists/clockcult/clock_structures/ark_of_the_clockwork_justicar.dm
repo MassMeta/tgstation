@@ -14,7 +14,7 @@
 	its instability will cause one-way bluespace rifts to open across the station to the City of Cogs, so be prepared to defend it at all costs."
 	max_integrity = 500
 	mouse_opacity = MOUSE_OPACITY_OPAQUE
-	icon = 'icons/effects/clockwork_effects.dmi'
+	icon = 'massmeta/icons/effects/clockwork_effects.dmi'
 	icon_state = "nothing"
 	density = TRUE
 	resistance_flags = FIRE_PROOF | ACID_PROOF | FREEZE_PROOF
@@ -85,7 +85,8 @@
 	@!$, [text2ratvar("PURGE ALL UNTRUTHS")] <&. the anomalies and destroy their source to prevent further damage to corporate property. This is \
 	not a drill.[grace_period ? " Estimated time of appearance: [grace_period] seconds. Use this time to prepare for an attack on [station_name()]." : ""]", \
 	"Central Command Higher Dimensional Affairs", 'sound/magic/clockwork/ark_activation.ogg')
-	set_security_level("delta")
+	SSsecurity_level.set_level(SEC_LEVEL_DELTA)
+	sound_to_playing_players('sound/machines/alarm.ogg')
 	for(var/V in SSticker.mode.servants_of_ratvar)
 		var/datum/mind/M = V
 		if(!M || !M.current)
@@ -103,9 +104,6 @@
 
 	var/turf/T = get_turf(src)
 	var/list/open_turfs = list()
-	for(var/turf/open/OT in orange(1, T))
-		if(!is_blocked_turf(OT, TRUE))
-			open_turfs |= OT
 	if(open_turfs.len)
 		for(var/mob/living/L in T)
 			L.forceMove(pick(open_turfs))
@@ -135,7 +133,7 @@
 				M.current.forceMove(get_step(get_step(src, NORTH),NORTH)) // AI too fat, must make sure it always ends up a 2 tiles north instead of on the ark.
 			else
 				M.current.forceMove(get_turf(src))
-		M.current.overlay_fullscreen("flash", /obj/screen/fullscreen/flash)
+		M.current.overlay_fullscreen("flash", /atom/movable/screen/fullscreen/flash)
 		M.current.clear_fullscreen("flash", 5)
 	playsound(src, 'sound/magic/clockwork/invoke_general.ogg', 50, FALSE)
 	recalls_remaining--
@@ -146,10 +144,9 @@
 /obj/structure/destructible/clockwork/massive/celestial_gateway/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
 	SSshuttle.clearHostileEnvironment(src)
-	if(!purpose_fulfilled && istype(SSticker.mode, /datum/game_mode/clockwork_cult))
+	if(!purpose_fulfilled)
 		hierophant_message("<span class='bold large_brass'>The Ark has fallen!</span>")
 		sound_to_playing_players(null, channel = CHANNEL_JUSTICAR_ARK)
-		SSticker.force_ending = TRUE //rip
 	if(glow)
 		qdel(glow)
 		glow = null
@@ -163,7 +160,7 @@
 			if(isobj(L.loc))
 				target = L.loc
 			target.forceMove(get_turf(pick(GLOB.generic_event_spawns)))
-			L.overlay_fullscreen("flash", /obj/screen/fullscreen/flash/static)
+			L.overlay_fullscreen("flash", /atom/movable/screen/fullscreen/flash/static)
 			L.clear_fullscreen("flash", 30)
 			if(isliving(L))
 				var/mob/living/LI = L
@@ -196,10 +193,9 @@
 /obj/structure/destructible/clockwork/massive/celestial_gateway/proc/make_glow()
 	if(!glow)
 		glow = new /obj/effect/clockwork/overlay/gateway_glow(get_turf(src))
-		glow.linked = src
 
 /obj/structure/destructible/clockwork/massive/celestial_gateway/ex_act(severity)
-	var/damage = max((obj_integrity * 0.7) / severity, 100) //requires multiple bombs to take down
+	var/damage = max((atom_integrity * 0.7) / severity, 100) //requires multiple bombs to take down
 	take_damage(damage, BRUTE, "bomb", 0)
 
 /obj/structure/destructible/clockwork/massive/celestial_gateway/proc/get_arrival_time(var/deciseconds = TRUE)
@@ -218,7 +214,7 @@
 	if(grace_period)
 		return "[get_arrival_time()][s_on_time ? "S" : ""]"
 	. = "IMMINENT"
-	if(!obj_integrity)
+	if(!atom_integrity)
 		. = "DETONATING"
 	else if(GATEWAY_RATVAR_ARRIVAL - progress_in_seconds > 0)
 		. = "[round(max((GATEWAY_RATVAR_ARRIVAL - progress_in_seconds) / (GATEWAY_SUMMON_RATE), 0), 1)][s_on_time ? "S":""]"
@@ -278,7 +274,7 @@
 					to_chat(M, "<span class='warning'><b>You hear otherworldly sounds from the [dir2text(get_dir(get_turf(M), get_turf(src)))]...</span>")
 				else
 					to_chat(M, "<span class='boldwarning'>You hear otherworldly sounds from all around you...</span>")
-	if(!obj_integrity)
+	if(!atom_integrity)
 		return
 	for(var/turf/closed/wall/W in RANGE_TURFS(2, src))
 		W.dismantle_wall()
@@ -292,7 +288,7 @@
 		var/turf/T = get_turf(M)
 		if(is_servant_of_ratvar(M) && (!T || T.z != z))
 			M.forceMove(get_step(src, SOUTH))
-			M.overlay_fullscreen("flash", /obj/screen/fullscreen/flash)
+			M.overlay_fullscreen("flash", /atom/movable/screen/fullscreen/flash)
 			M.clear_fullscreen("flash", 5)
 	if(grace_period)
 		grace_period--

@@ -480,7 +480,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 
 /obj/structure/chair/brass/AltClick(mob/living/user)
 	turns = 0
-	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
+	if(!user.can_perform_action(src, NEED_DEXTERITY))
 		return
 	if(!(datum_flags & DF_ISPROCESSING))
 		user.visible_message("<span class='notice'>[user] spins [src] around, and Ratvarian technology keeps it spinning FOREVER.</span>", \

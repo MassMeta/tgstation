@@ -3,7 +3,7 @@
 	name = "meme structure"
 	desc = "Some frog or something, the fuck?"
 	var/clockwork_desc //Shown to servants when they examine
-	icon = 'icons/obj/clockwork_objects.dmi'
+	icon = 'massmeta/icons/obj/clockwork_objects.dmi'
 	icon_state = "rare_pepe"
 	var/unanchored_icon //icon for when this structure is unanchored, doubles as the var for if it can be unanchored
 	anchored = TRUE
@@ -30,7 +30,7 @@
 
 /obj/structure/destructible/clockwork/ratvar_act()
 	if(GLOB.ratvar_awakens || GLOB.clockwork_gateway_activated)
-		obj_integrity = max_integrity
+		atom_integrity = max_integrity
 
 /obj/structure/destructible/clockwork/narsie_act()
 	if(take_damage(rand(25, 50), BRUTE) && src) //if we still exist
@@ -53,10 +53,10 @@
 		var/t_It = p_they(TRUE)
 		var/t_is = p_are()
 		var/heavily_damaged = FALSE
-		var/healthpercent = (obj_integrity/max_integrity) * 100
+		var/healthpercent = (atom_integrity/max_integrity) * 100
 		if(healthpercent < 50)
 			heavily_damaged = TRUE
-		return "<span class='[heavily_damaged ? "alloy":"brass"]'>[t_It] [t_is] at <b>[obj_integrity]/[max_integrity]</b> integrity[heavily_damaged ? "!":"."]</span>"
+		return "<span class='[heavily_damaged ? "alloy":"brass"]'>[t_It] [t_is] at <b>[atom_integrity]/[max_integrity]</b> integrity[heavily_damaged ? "!":"."]</span>"
 	return ..()
 
 /obj/structure/destructible/clockwork/attack_hulk(mob/living/carbon/human/user)
@@ -80,7 +80,7 @@
 /obj/structure/destructible/clockwork/proc/get_efficiency_mod()
 	if(GLOB.ratvar_awakens)
 		return 2
-	. = max(sqrt(obj_integrity/max(max_integrity, 1)), 0.5)
+	. = max(sqrt(atom_integrity/max(max_integrity, 1)), 0.5)
 	. = round(., 0.01)
 
 /obj/structure/destructible/clockwork/attack_ai(mob/user)
@@ -122,7 +122,7 @@
 		return
 	if(anchored && unanchored_icon)
 		anchored = FALSE
-		update_anchored(null, obj_integrity > max_integrity * 0.25)
+		update_anchored(null, atom_integrity > max_integrity * 0.25)
 		new /obj/effect/temp_visual/emp(loc)
 
 
@@ -130,7 +130,7 @@
 /obj/structure/destructible/clockwork/massive
 	name = "massive construct"
 	desc = "A very large construction."
-	layer = MASSIVE_OBJ_LAYER
+	layer = MASSIVE_OBJ_PLANE
 	density = FALSE
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF | FREEZE_PROOF
 
