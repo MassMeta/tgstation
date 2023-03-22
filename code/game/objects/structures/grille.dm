@@ -359,10 +359,7 @@
 	take_damage(max_integrity * 0.6)
 
 /obj/structure/grille/ratvar_act()
-	if(broken)
-		new /obj/structure/grille/ratvar/broken(src.loc)
-	else
-		new /obj/structure/grille/ratvar(src.loc)
+	new /obj/structure/grille/ratvar(src.loc)
 	qdel(src)
 
 /obj/structure/grille/ratvar

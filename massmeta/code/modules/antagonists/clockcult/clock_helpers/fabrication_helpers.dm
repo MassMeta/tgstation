@@ -197,9 +197,6 @@
 /obj/structure/grille/fabrication_vals(mob/living/user, obj/item/clockwork/replica_fabricator/fabricator, silent)
 	var/grilletype = /obj/structure/grille/ratvar
 	var/fabrication_time = 15
-	if(broken)
-		grilletype = /obj/structure/grille/ratvar/broken
-		fabrication_time = 5
 	return list("operation_time" = fabrication_time, "new_obj_type" = grilletype, "power_cost" = 0, "spawn_dir" = dir)
 
 /obj/structure/grille/ratvar/fabrication_vals(mob/living/user, obj/item/clockwork/replica_fabricator/fabricator, silent)

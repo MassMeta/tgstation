@@ -167,10 +167,8 @@
 /obj/projectile/kindle
 	name = "kindled flame"
 	icon_state = "pulse0"
-	nodamage = TRUE
 	damage = 0 //We're just here for the stunning!
 	damage_type = BURN
-	flag = "bomb"
 	range = 3
 	log_override = TRUE
 
@@ -183,7 +181,7 @@
 		var/mob/living/L = target
 		if(is_servant_of_ratvar(L) || L.stat || L.has_status_effect(STATUS_EFFECT_KINDLE))
 			return BULLET_ACT_HIT
-		var/atom/O = L.anti_magic_check()
+		var/atom/O = L.can_block_magic(MAGIC_RESISTANCE)
 		playsound(L, 'sound/magic/fireball.ogg', 50, TRUE, frequency = 1.25)
 		if(O)
 			if(isitem(O))
@@ -198,7 +196,7 @@
 			L.Paralyze(15)
 			L.apply_status_effect(STATUS_EFFECT_KINDLE)
 			L.flash_act(1, 1)
-			if(iscultist(L))
+			if(IS_CULTIST(L))
 				L.adjustFireLoss(15)
 	..()
 

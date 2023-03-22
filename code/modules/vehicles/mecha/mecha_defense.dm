@@ -372,7 +372,7 @@
 /obj/vehicle/sealed/mecha/narsie_act()
 	emp_act(EMP_HEAVY)
 
-/obj/mecha/ratvar_act()
+/obj/vehicle/sealed/mecha/ratvar_act()
 	if((GLOB.ratvar_awakens || GLOB.clockwork_gateway_activated) && occupant)
 		if(is_servant_of_ratvar(occupant)) //reward the minion that got a mech by repairing it
 			full_repair(TRUE)

@@ -94,18 +94,18 @@
 	id = "wraith_spectacles"
 	duration = -1 //remains until eye damage done reaches 0 while the glasses are not worn
 	tick_interval = 20
-	alert_type = /obj/screen/alert/status_effect/wraith_spectacles
+	alert_type = /atom/movable/screen/alert/status_effect/wraith_spectacles
 	var/eye_damage_done = 0
 	var/nearsight_breakpoint = 30
 	var/blind_breakpoint = 45
 
-/obj/screen/alert/status_effect/wraith_spectacles
+/atom/movable/screen/alert/status_effect/wraith_spectacles
 	name = "Wraith Spectacles"
 	desc = "You shouldn't actually see this, as it should be procedurally generated."
 	icon_state = "wraithspecs"
 	alerttooltipstyle = "clockcult"
 
-/obj/screen/alert/status_effect/wraith_spectacles/MouseEntered(location,control,params)
+/atom/movable/screen/alert/status_effect/wraith_spectacles/MouseEntered(location,control,params)
 	var/mob/living/carbon/human/L = usr
 	if(istype(L)) //this is probably more safety than actually needed
 		var/datum/status_effect/wraith_spectacles/W = attached_effect
@@ -113,11 +113,7 @@
 		var/obj/item/clothing/glasses/wraith_spectacles/WS = L.glasses
 		desc = "[glasses_right && !WS.up ? "<font color=#DAAA18><b>":""]You are [glasses_right ? "":"not "]wearing wraith spectacles[glasses_right && !WS.up ? "!</b></font>":"."]<br>\
 		You have taken <font color=#DAAA18><b>[W.eye_damage_done]</b></font> eye damage from them.<br>"
-		if(HAS_TRAIT(L, TRAIT_NEARSIGHT))
-			desc += "<font color=#DAAA18><b>You are nearsighted!</b></font><br>"
-		else if(glasses_right && !WS.up)
-			desc += "You will become nearsighted at <font color=#DAAA18><b>[W.nearsight_breakpoint]</b></font> eye damage.<br>"
-		if(HAS_TRAIT(L, TRAIT_BLIND))
+		if(L.is_blind())
 			desc += "<font color=#DAAA18><b>You are blind!</b></font>"
 		else if(glasses_right && !WS.up)
 			desc += "You will become blind at <font color=#DAAA18><b>[W.blind_breakpoint]</b></font> eye damage."

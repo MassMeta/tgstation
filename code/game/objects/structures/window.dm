@@ -959,7 +959,7 @@
 	bullet = 25
 	laser = 0
 	bomb = 25
-	rad = 100
+	bio = 100
 	fire = 80
 	acid = 100
 
@@ -1006,7 +1006,6 @@
 	fulltile = TRUE
 	flags_1 = PREVENT_CLICK_UNDER_1
 	max_integrity = 120
-	level = 3
 	glass_amount = 2
 
 /obj/structure/window/reinforced/clockwork/spawn_debris(location)
