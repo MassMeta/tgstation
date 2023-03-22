@@ -10,6 +10,7 @@
 /obj/machinery/computer/camera_advanced/ratvar/Initialize()
 	. = ..()
 	ratvar_act()
+	warp_action.console = src
 
 /obj/machinery/computer/camera_advanced/ratvar/process()
 	if(prob(1))
@@ -26,7 +27,7 @@
 	..()
 	if(warp_action)
 		warp_action.Grant(user)
-		warp_action.target = src
+		warp_action.console = src
 		actions += warp_action
 
 /obj/machinery/computer/camera_advanced/ratvar/can_use(mob/living/user)
@@ -47,9 +48,10 @@
 	buttontooltipstyle = "clockcult"
 	var/cancel = FALSE //if TRUE, an active warp will be canceled
 	var/obj/effect/temp_visual/ratvar/warp_marker/warping
+	var/obj/machinery/computer/camera_advanced/ratvar/console
 
 /datum/action/innate/servant_warp/Activate()
-	if(QDELETED(target) || !(ishuman(owner) || iscyborg(owner)) || !owner.canUseTopic(target))
+	if(QDELETED(console) || !(ishuman(owner) || iscyborg(owner)) || !owner.can_perform_action(console))
 		return
 	if(!GLOB.servants_active) //No leaving unless there's servants from the get-go
 		return
@@ -57,8 +59,7 @@
 		cancel = TRUE
 		return
 	var/mob/living/carbon/human/user = owner
-	var/mob/camera/aiEye/remote/remote_eye = user.remote_control
-	var/obj/machinery/computer/camera_advanced/ratvar/R  = target
+	var/mob/camera/ai_eye/remote/remote_eye = user.remote_control
 	var/turf/T = get_turf(remote_eye)
 	if(!is_reebe(user.z) || !is_station_level(T.z))
 		return
@@ -75,15 +76,15 @@
 	if(!AR.clockwork_warp_allowed)
 		to_chat(user, "<span class='sevtug_small'>[AR.clockwork_warp_fail]</span>")
 		return
-	if(alert(user, "Are you sure you want to warp to [AR]?", target.name, "Warp", "Cancel") == "Cancel" || QDELETED(R) || !user.canUseTopic(R))
+	if(alert(user, "Are you sure you want to warp to [AR]?", console.name, "Warp", "Cancel") == "Cancel" || QDELETED(R) || !user.can_perform_action(R))
 		return
 	do_sparks(5, TRUE, user)
 	do_sparks(5, TRUE, T)
 	warping = new(T)
-	user.visible_message("<span class='warning'>[user]'s [target.name] flares!</span>", "<span class='bold sevtug_small'>You begin warping to [AR]...</span>")
+	user.visible_message("<span class='warning'>[user]'s [console.name] flares!</span>", "<span class='bold sevtug_small'>You begin warping to [AR]...</span>")
 	button_icon_state = "warp_cancel"
 	owner.update_action_buttons()
-	if(!do_after(user, 50, target = warping, extra_checks = CALLBACK(src, .proc/is_canceled)))
+	if(!do_after(user, 50, console = warping, extra_checks = CALLBACK(src, .proc/is_canceled)))
 		to_chat(user, "<span class='bold sevtug_small'>Warp interrupted.</span>")
 		QDEL_NULL(warping)
 		button_icon_state = "warp_down"

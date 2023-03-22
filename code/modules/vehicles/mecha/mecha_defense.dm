@@ -377,9 +377,8 @@
 		if(is_servant_of_ratvar(occupant)) //reward the minion that got a mech by repairing it
 			full_repair(TRUE)
 		else
-			var/mob/living/L = occupant
-			go_out(TRUE)
-			if(L)
+			for(var/mob/living/L in occupants)
+				mob_exit(L, silent = TRUE)
 				L.ratvar_act()
 
 /obj/vehicle/sealed/mecha/do_attack_animation(atom/A, visual_effect_icon, obj/item/used_item, no_effect)

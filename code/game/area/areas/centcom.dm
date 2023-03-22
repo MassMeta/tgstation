@@ -309,7 +309,7 @@ The areas used here are STRICTLY on the CC Z level.
 	requires_power = FALSE
 	has_gravity = STANDARD_GRAVITY
 	area_flags = NOTELEPORT|HIDDEN_AREA
-	ambientsounds = REEBE
+	ambientsounds = AMBIENCE_REEBE
 
 /area/reebe/city_of_cogs
 	name = "City of Cogs"

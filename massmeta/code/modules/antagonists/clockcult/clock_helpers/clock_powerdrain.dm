@@ -47,6 +47,7 @@
 		spark_system.start()
 
 /obj/vehicle/sealed/mecha/power_drain(clockcult_user)
+	var/mob/living/occupant = pick(occupants)
 	if((!clockcult_user || (occupant && !is_servant_of_ratvar(occupant))) && cell && cell.charge)
 		. = min(cell.charge, MIN_CLOCKCULT_POWER*4)
 		cell.use(.)
