@@ -16,11 +16,9 @@
 	var/area/A = get_area(src)
 	if(A && construct_type)
 		notify_ghosts("A [construct_name] chassis has been created in [A.name]!", 'sound/magic/clockwork/fellowship_armory.ogg', notify_volume = 75, source = src, action = NOTIFY_ATTACK, flashwindow = FALSE, ignore_key = POLL_IGNORE_CONSTRUCT)
-	GLOB.poi_list += src
 	LAZYADD(GLOB.mob_spawners[name], src)
 
 /obj/item/clockwork/construct_chassis/Destroy()
-	GLOB.poi_list -= src
 	var/list/spawners = GLOB.mob_spawners[name]
 	LAZYREMOVE(spawners, src)
 	. = ..()

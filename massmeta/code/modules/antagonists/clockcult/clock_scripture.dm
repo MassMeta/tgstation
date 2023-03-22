@@ -342,6 +342,4 @@ GLOBAL_LIST_INIT(scripture_states,scripture_states_init_value()) //list of clock
 		slab.lefthand_file = initial(slab.lefthand_file)
 		slab.righthand_file = initial(slab.righthand_file)
 		slab.inhand_overlay = null
-		if(invoker)
-			invoker.update_inv_hands()
 	return successful //slab doesn't look like a word now.

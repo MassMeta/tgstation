@@ -87,7 +87,7 @@
 	"Central Command Higher Dimensional Affairs", 'sound/magic/clockwork/ark_activation.ogg')
 	SSsecurity_level.set_level(SEC_LEVEL_DELTA)
 	sound_to_playing_players('sound/machines/alarm.ogg')
-	for(var/V in SSticker.mode.servants_of_ratvar)
+	for(var/V in GLOB.servants_of_ratvar)
 		var/datum/mind/M = V
 		if(!M || !M.current)
 			continue
@@ -124,7 +124,7 @@
 	addtimer(CALLBACK(src, .proc/mass_recall), 100)
 
 /obj/structure/destructible/clockwork/massive/celestial_gateway/proc/mass_recall()
-	for(var/V in SSticker.mode.servants_of_ratvar)
+	for(var/V in GLOB.servants_of_ratvar)
 		var/datum/mind/M = V
 		if(!M || !M.current)
 			continue

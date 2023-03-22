@@ -175,7 +175,7 @@
 
 	return ..()
 
-/turf/closed/wall/clockwork/ReplaceWithLattice()
+/turf/closed/wall/clockwork/attempt_lattice_replacement()
 	..()
 	for(var/obj/structure/lattice/L in src)
 		L.ratvar_act()
@@ -225,7 +225,7 @@
 /turf/closed/wall/clockwork/mech_melee_attack(obj/vehicle/sealed/mecha/M)
 	..()
 	if(heated)
-		to_chat(M.occupant, "<span class='userdanger'>The wall's intense heat completely reflects your [M.name]'s attack!</span>")
+		to_chat(M.occupants, "<span class='userdanger'>The wall's intense heat completely reflects your [M.name]'s attack!</span>")
 		M.take_damage(20, BURN)
 
 /turf/closed/wall/clockwork/proc/turn_up_the_heat()

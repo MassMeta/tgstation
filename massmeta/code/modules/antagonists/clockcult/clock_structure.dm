@@ -73,7 +73,8 @@
 	return ..()
 
 /obj/structure/destructible/clockwork/mech_melee_attack(obj/vehicle/sealed/mecha/M)
-	if(M.occupant && is_servant_of_ratvar(M.occupant) && immune_to_servant_attacks)
+	var/mob/living/occupant = pick(M.occupants)
+	if(occupant && is_servant_of_ratvar(occupant) && immune_to_servant_attacks)
 		return FALSE
 	return ..()
 
@@ -136,10 +137,8 @@
 
 /obj/structure/destructible/clockwork/massive/Initialize()
 	. = ..()
-	GLOB.poi_list += src
 
 /obj/structure/destructible/clockwork/massive/Destroy()
-	GLOB.poi_list -= src
 	return ..()
 
 /obj/structure/destructible/clockwork/massive/singularity_pull(S, current_size)

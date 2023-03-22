@@ -517,6 +517,5 @@
 			Q.name = "[quickbind_slot.name] ([Q.scripture_index])"
 			Q.desc = quickbind_slot.quickbind_desc
 			Q.button_icon_state = quickbind_slot.name
-			Q.UpdateButtonIcon()
 			if(isliving(loc))
 				Q.Grant(loc)

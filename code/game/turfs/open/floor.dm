@@ -445,7 +445,7 @@
 		QDEL_NULL(realappearence)
 	return ..()
 
-/turf/open/floor/clockwork/ReplaceWithLattice()
+/turf/open/floor/clockwork/attempt_lattice_replacement()
 	. = ..()
 	for(var/obj/structure/lattice/L in src)
 		L.ratvar_act()

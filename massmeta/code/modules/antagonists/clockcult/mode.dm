@@ -83,8 +83,8 @@ GLOBAL_VAR_INIT(servants_active, FALSE) //This var controls whether or not a lot
 	gloves = /obj/item/clothing/gloves/color/yellow
 	belt = /obj/item/storage/belt/utility/servant
 	backpack_contents = list(/obj/item/storage/box/survival/engineer = 1, \
-	/obj/item/clockwork/replica_fabricator = 1, /obj/item/stack/tile/brass/fifty = 1, /obj/item/paper/servant_primer = 1)
-	id = /obj/item/modular_computer/pda
+	/obj/item/clockwork/replica_fabricator = 1, /obj/item/stack/tile/brass/fifty = 1, /obj/item/paper/servant_primer = 1, /obj/item/modular_computer/pda/assistant)
+	id_trim = /datum/id_trim/job/assistant
 	var/plasmaman //We use this to determine if we should activate internals in post_equip()
 
 /datum/outfit/servant_of_ratvar/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -94,22 +94,6 @@ GLOBAL_VAR_INIT(servants_active, FALSE) //This var controls whether or not a lot
 		r_hand = /obj/item/tank/internals/plasmaman/belt/full
 		mask = /obj/item/clothing/mask/breath
 		plasmaman = TRUE
-
-/datum/outfit/servant_of_ratvar/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	var/obj/item/card/id/W = new(H)
-	var/obj/item/modular_computer/pda/PDA = H.wear_id
-	W.assignment = "Assistant"
-	W.access += ACCESS_MAINT_TUNNELS
-	W.registered_name = H.real_name
-	W.update_label()
-	if(plasmaman && !visualsOnly) //If we need to breathe from the plasma tank, we should probably start doing that
-		H.internal = H.get_item_for_held_index(2)
-	PDA.owner = H.real_name
-	PDA.ownjob = "Assistant"
-	PDA.update_label()
-	PDA.id_check(H, W)
-	H.sec_hud_set_ID()
-
 
 //This paper serves as a quick run-down to the cult as well as a changelog to refer to.
 //Check strings/clockwork_cult_changelog.txt for the changelog, and update it when you can!
