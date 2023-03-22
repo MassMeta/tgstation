@@ -97,7 +97,7 @@
 			user.visible_message("<span class='warning'>[user] slides back down [src]!</span>")
 			user.emote("scream")
 			user.apply_damage(10, BRUTE, BODY_ZONE_CHEST)
-			playsound(user, 'massmeta/sound/misc/desceration-03.ogg', 50, TRUE)
+			playsound(user, 'massmeta/sounds/misc/sound_misc_desceration-03.ogg', 50, TRUE)
 			wiggle_wiggle = FALSE
 			return
 		wiggle_wiggle = FALSE

@@ -27,43 +27,32 @@
 	qdel(blaster)
 	return ..()
 
-/obj/item/clothing/glasses/judicial_visor/item_action_slot_check(slot, mob/user)
-	if(slot != ITEM_SLOT_EYES)
-		return 0
-	return ..()
-
 /obj/item/clothing/glasses/judicial_visor/equipped(mob/living/user, slot)
 	..()
+	if(!blast)
+		return
 	if(slot != ITEM_SLOT_EYES)
 		update_status(FALSE)
-		if(blaster.owner)
-			blaster.unset_click_ability(blaster.owner)
-		return 0
+		return
 	if(is_servant_of_ratvar(user))
 		update_status(TRUE)
-	else
-		update_status(FALSE)
+		blast.Grant(user)
+		return
 	if(IS_CULTIST(user)) //Cultists spontaneously combust
 		to_chat(user, "<span class='heavy_brass'>\"Consider yourself judged, whelp.\"</span>")
 		to_chat(user, "<span class='userdanger'>You suddenly catch fire!</span>")
 		user.adjust_fire_stacks(5)
 		user.ignite_mob()
-	return 1
+	update_status(FALSE)
+	return
 
 /obj/item/clothing/glasses/judicial_visor/dropped(mob/user)
 	. = ..()
-	addtimer(CALLBACK(src, .proc/check_on_mob, user), 1) //dropped is called before the item is out of the slot, so we need to check slightly later
-
-/obj/item/clothing/glasses/judicial_visor/proc/check_on_mob(mob/user)
-	if(user && src != user.get_item_by_slot(ITEM_SLOT_EYES)) //if we happen to check and we AREN'T in the slot, we need to remove our shit from whoever we got dropped from
-		update_status(FALSE)
-		if(blaster.owner)
-			var/to_unset = blaster.owner || user
-			blaster.unset_click_ability(to_unset)
-
-/obj/item/clothing/glasses/judicial_visor/attack_self(mob/user)
-	if(is_servant_of_ratvar(user) && src == user.get_item_by_slot(ITEM_SLOT_EYES))
-		blaster.toggle(user)
+	if(!blaster)
+		return
+	if(blaster.owner != user)
+		return
+	blaster.Remove(user)
 
 /obj/item/clothing/glasses/judicial_visor/proc/update_status(change_to)
 	if(recharging || !isliving(loc))
@@ -100,24 +89,23 @@
 	ranged_mousepointer = 'massmeta/icons/effects/visor_reticule.dmi'
 	var/obj/item/clothing/glasses/judicial_visor/visor
 
-/datum/action/cooldown/judicial_visor/proc/toggle(mob/user)
-	var/message
-	if(active)
-		message = "<span class='brass'>You dispel the power of [visor].</span>"
-		unset_click_ability(user)
-	else
-		message = "<span class='brass'><i>You harness [visor]'s power.</i> <b>Left-click to place a judicial marker!</b></span>"
-		set_click_ability(user)
+/datum/action/cooldown/judicial_visor/IsAvailable(feedback = FALSE)
+	if(!visor)
+		return FALSE
+	if(visor != owner.get_item_by_slot(ITEM_SLOT_EYES))
+		if(feedback)
+			owner.balloon_alert(owner, "need to wear on your eyes!")
+		return FALSE
+	if(visor.recharging)
+		if(feedback)
+			owner.balloon_alert(owner, "still recharging!")
+		return FALSE
+	if(!isturf(owner.loc))
+			owner.balloon_alert(owner, "not while in an object!")
+		return FALSE
+	. = ..()
 
 /datum/action/cooldown/judicial_visor/Activate(atom/target)
-	if(owner.incapacitated() || !visor || visor != owner.get_item_by_slot(ITEM_SLOT_EYES))
-		unset_click_ability(owner)
-		return
-
-	var/turf/T = owner.loc
-	if(!isturf(T))
-		return FALSE
-
 	if(target in view(7, get_turf(owner)))
 		visor.recharging = TRUE
 		visor.update_status()
@@ -135,9 +123,9 @@
 		owner.update_action_buttons_icon()
 		owner.update_inv_glasses()
 		addtimer(CALLBACK(visor, /obj/item/clothing/glasses/judicial_visor.proc/recharge_visor, owner), GLOB.ratvar_awakens ? visor.recharge_cooldown*0.1 : visor.recharge_cooldown)//Cooldown is reduced by 10x if Ratvar is up
-		unset_click_ability(owner)
 
 		return TRUE
+	owner.balloon_alert(owner, "out of range!")
 	return FALSE
 
 //Judicial marker: Created by the judicial visor. Immediately applies Belligerent and briefly knocks down, then after 3 seconds does large damage and briefly knocks down again
