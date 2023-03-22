@@ -152,7 +152,6 @@
 
 /datum/antagonist/clockcult/on_removal()
 	GLOB.servants_of_ratvar -= owner
-	update_servant_icons_removed(owner)
 	if(!silent)
 		owner.current.visible_message("<span class='deconversion_message'>[owner.current] seems to have remembered [owner.current.p_their()] true allegiance!</span>", null, null, null, owner.current)
 		to_chat(owner, "<span class='userdanger'>A cold, cold darkness flows through your mind, extinguishing the Justiciar's light and all of your memories as his servant.</span>")

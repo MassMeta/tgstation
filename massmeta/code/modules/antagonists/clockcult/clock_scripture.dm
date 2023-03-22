@@ -82,7 +82,7 @@ GLOBAL_LIST_INIT(scripture_states,scripture_states_init_value()) //list of clock
 /datum/clockwork_scripture/proc/can_recite() //If the words can be spoken
 	if(!invoker || !slab || invoker.get_active_held_item() != slab)
 		return FALSE
-	if(!invoker.can_speak_vocal())
+	if(!invoker.can_speak())
 		to_chat(invoker, "<span class='warning'>You are unable to speak the words of the scripture!</span>")
 		return FALSE
 	return TRUE
@@ -271,7 +271,7 @@ GLOBAL_LIST_INIT(scripture_states,scripture_states_init_value()) //list of clock
 	if(G && !G.active && combat_construct && is_reebe(invoker.z) && !confirmed) //Putting marauders on the base during the prep phase is a bad idea mmkay
 		if(alert(invoker, "This is a combat construct, and you cannot easily get it to the station. Are you sure you want to make one here?", "Construct Alert", "Yes", "Cancel") == "Cancel")
 			return
-		if(!is_servant_of_ratvar(invoker) || !invoker.canUseTopic(slab))
+		if(!is_servant_of_ratvar(invoker) || !invoker.can_interact_with(slab))
 			return
 		confirmed = TRUE
 	return TRUE
@@ -309,14 +309,16 @@ GLOBAL_LIST_INIT(scripture_states,scripture_states_init_value()) //list of clock
 /datum/clockwork_scripture/ranged_ability/scripture_effects()
 	if(slab_overlay)
 		slab.add_overlay(slab_overlay)
-		slab.item_state = "clockwork_slab"
+		slab.inhand_icon_state = "clockwork_slab"
 		slab.lefthand_file = 'icons/mob/inhands/antag/clockwork_lefthand.dmi'
 		slab.righthand_file = 'icons/mob/inhands/antag/clockwork_righthand.dmi'
 		slab.inhand_overlay = slab_overlay
 	slab.slab_ability = new ranged_type(slab)
 	slab.slab_ability.slab = slab
-	slab.slab_ability.add_ranged_ability(invoker, ranged_message)
-	invoker.update_inv_hands()
+	var/datum/action/cooldown/already_set = invoker.click_intercept
+	if(already_set != slab.slab_ability && istype(already_set))
+		already_set.unset_click_ability(invoker, refund_cooldown = TRUE)
+	slab.slab_ability.set_click_ability(invoker)
 	var/end_time = world.time + timeout_time
 	var/successful = FALSE
 	if(timeout_time)
@@ -334,11 +336,11 @@ GLOBAL_LIST_INIT(scripture_states,scripture_states_init_value()) //list of clock
 		if(slab.slab_ability)
 			successful = slab.slab_ability.successful
 			if(!slab.slab_ability.finished)
-				slab.slab_ability.remove_ranged_ability()
+				slab.slab_ability.unset_click_ability(invoker)
 		slab.cut_overlays()
-		slab.item_state = initial(slab.item_state)
-		slab.item_state = initial(slab.lefthand_file)
-		slab.item_state = initial(slab.righthand_file)
+		slab.inhand_icon_state = initial(slab.inhand_icon_state)
+		slab.lefthand_file = initial(slab.lefthand_file)
+		slab.righthand_file = initial(slab.righthand_file)
 		slab.inhand_overlay = null
 		if(invoker)
 			invoker.update_inv_hands()
