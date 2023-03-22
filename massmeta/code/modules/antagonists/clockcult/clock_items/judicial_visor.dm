@@ -101,6 +101,7 @@
 			owner.balloon_alert(owner, "still recharging!")
 		return FALSE
 	if(!isturf(owner.loc))
+		if(feedback)
 			owner.balloon_alert(owner, "not while in an object!")
 		return FALSE
 	. = ..()
