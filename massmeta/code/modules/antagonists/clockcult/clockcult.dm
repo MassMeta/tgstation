@@ -50,8 +50,7 @@
 
 /datum/antagonist/clockcult/on_gain()
 	var/mob/living/current = owner.current
-	SSticker.mode.servants_of_ratvar += owner
-	SSticker.mode.update_servant_icons_added(owner)
+	GLOB.servants_of_ratvar += owner
 	owner.special_role = ROLE_SERVANT_OF_RATVAR
 	owner.current.log_message("has been converted to the cult of Ratvar!", LOG_ATTACK, color="#BE8700")
 	if(issilicon(current))
@@ -79,14 +78,13 @@
 	GLOB.all_clockwork_mobs += current
 	current.faction |= "ratvar"
 	current.grant_language(/datum/language/ratvar)
-	current.update_action_buttons_icon() //because a few clockcult things are action buttons and we may be wearing/holding them for whatever reason, we need to update buttons
 	if(issilicon(current))
 		var/mob/living/silicon/S = current
 		if(iscyborg(S))
 			var/mob/living/silicon/robot/R = S
 			if(!R.shell)
 				R.UnlinkSelf()
-			R.module.rebuild_modules()
+			R.model.rebuild_modules()
 		else if(isAI(S))
 			var/mob/living/silicon/ai/A = S
 			A.can_be_carded = FALSE
@@ -148,15 +146,13 @@
 	..()
 	if(iscyborg(temp_owner))
 		var/mob/living/silicon/robot/R = temp_owner
-		R.module.rebuild_modules()
-	if(temp_owner)
-		temp_owner.update_action_buttons_icon() //because a few clockcult things are action buttons and we may be wearing/holding them, we need to update buttons
+		R.model.rebuild_modules()
 	temp_owner.cut_overlays()
 	temp_owner.regenerate_icons()
 
 /datum/antagonist/clockcult/on_removal()
-	SSticker.mode.servants_of_ratvar -= owner
-	SSticker.mode.update_servant_icons_removed(owner)
+	GLOB.servants_of_ratvar -= owner
+	update_servant_icons_removed(owner)
 	if(!silent)
 		owner.current.visible_message("<span class='deconversion_message'>[owner.current] seems to have remembered [owner.current.p_their()] true allegiance!</span>", null, null, null, owner.current)
 		to_chat(owner, "<span class='userdanger'>A cold, cold darkness flows through your mind, extinguishing the Justiciar's light and all of your memories as his servant.</span>")
@@ -176,16 +172,6 @@
 	remove_servant_of_ratvar(owner.current, TRUE)
 	message_admins("[key_name_admin(user)] has removed clockwork servant status from [key_name_admin(owner)].")
 	log_admin("[key_name(user)] has removed clockwork servant status from [key_name(owner)].")
-
-/datum/antagonist/clockcult/get_admin_commands()
-	. = ..()
-	.["Give slab"] = CALLBACK(src,.proc/admin_give_slab)
-
-/datum/antagonist/clockcult/proc/admin_give_slab(mob/admin)
-	if(!SSticker.mode.equip_servant(owner.current))
-		to_chat(admin, "<span class='warning'>Failed to outfit [owner.current]!</span>")
-	else
-		to_chat(admin, "<span class='notice'>Successfully gave [owner.current] servant equipment!</span>")
 
 /datum/team/clockcult
 	name = "Clockcult"
