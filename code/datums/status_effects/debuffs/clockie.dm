@@ -150,8 +150,8 @@
 	owner.Paralyze(15)
 	if(iscarbon(owner))
 		var/mob/living/carbon/C = owner
-		C.adjust_silence_up_to(2 SECONDS)
-		C.adjust_stutter_up_to(4 SECONDS)
+		C.adjust_silence_up_to(2 SECONDS, 5 SECONDS)
+		C.adjust_stutter_up_to(4 SECONDS, 10 SECONDS)
 	if(!old_health)
 		old_health = owner.health
 	var/health_difference = old_health - owner.health
