@@ -946,7 +946,7 @@
 	icon_state = "clockwork_window_single"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	max_integrity = 80
-	armor = list("melee" = 60, "bullet" = 25, "laser" = 0, "energy" = 0, "bomb" = 25, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 100)
+	armor = /datum/armor/brass_window
 	explosion_block = 2 //fancy AND hard to destroy. the most useful combination.
 	decon_speed = 40
 	glass_type = /obj/item/stack/tile/brass
@@ -954,11 +954,20 @@
 	reinf = FALSE
 	var/made_glow = FALSE
 
+/datum/armor/brass_window
+	melee = 60
+	bullet = 25
+	laser = 0
+	bomb = 25
+	rad = 100
+	fire = 80
+	acid = 100
+
 /obj/structure/window/reinforced/clockwork/Initialize(mapload, direct)
 	. = ..()
 	change_construction_value(fulltile ? 2 : 1)
 
-/obj/structure/window/reinforced/clockwork/spawnDebris(location)
+/obj/structure/window/reinforced/clockwork/spawn_debris(location)
 	. = list()
 	var/gearcount = fulltile ? 4 : 2
 	for(var/i in 1 to gearcount)
@@ -977,7 +986,7 @@
 
 /obj/structure/window/reinforced/clockwork/ratvar_act()
 	if(GLOB.ratvar_awakens)
-		obj_integrity = max_integrity
+		atom_integrity = max_integrity
 		update_icon()
 
 /obj/structure/window/reinforced/clockwork/narsie_act()
@@ -993,16 +1002,14 @@
 
 /obj/structure/window/reinforced/clockwork/fulltile
 	icon_state = "clockwork_window"
-	smooth = SMOOTH_TRUE
 	canSmoothWith = null
 	fulltile = TRUE
 	flags_1 = PREVENT_CLICK_UNDER_1
-	dir = FULLTILE_WINDOW_DIR
 	max_integrity = 120
 	level = 3
 	glass_amount = 2
 
-/obj/structure/window/reinforced/clockwork/spawnDebris(location)
+/obj/structure/window/reinforced/clockwork/spawn_debris(location)
 	. = list()
 	for(var/i in 1 to 4)
 		. += new /obj/item/clockwork/alloy_shards/medium/gear_bit(location)

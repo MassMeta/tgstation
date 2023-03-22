@@ -29,14 +29,14 @@
 
 /obj/item/clothing/glasses/judicial_visor/equipped(mob/living/user, slot)
 	..()
-	if(!blast)
+	if(!blaster)
 		return
 	if(slot != ITEM_SLOT_EYES)
 		update_status(FALSE)
 		return
 	if(is_servant_of_ratvar(user))
 		update_status(TRUE)
-		blast.Grant(user)
+		blaster.Grant(user)
 		return
 	if(IS_CULTIST(user)) //Cultists spontaneously combust
 		to_chat(user, "<span class='heavy_brass'>\"Consider yourself judged, whelp.\"</span>")

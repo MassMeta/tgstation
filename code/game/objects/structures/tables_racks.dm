@@ -923,4 +923,4 @@
 		addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 8)
 
 /obj/structure/table/reinforced/brass/ratvar_act()
-	obj_integrity = max_integrity
+	atom_integrity = max_integrity

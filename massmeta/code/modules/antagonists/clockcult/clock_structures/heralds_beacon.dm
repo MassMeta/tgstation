@@ -68,7 +68,7 @@
 	var/voting = !(user.key in voters)
 	if(alert(user, "[voting ? "Cast a" : "Undo your"] vote to activate the beacon?", "Herald's Beacon", "Change Vote", "Cancel") == "Cancel")
 		return
-	if(!user.canUseTopic(src) || !is_servant_of_ratvar(user) || !available)
+	if(!user.can_perform_action(src) || !is_servant_of_ratvar(user) || !available)
 		return
 	if(voting)
 		if(user.key in voters)

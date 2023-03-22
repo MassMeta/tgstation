@@ -111,5 +111,5 @@
 	skewee.visible_message("<span class='danger'>[skewee] comes free of [src] with a squelching pop!</span>", \
 	"<span class='boldannounce'>You come free of [src]!</span>")
 	skewee.Paralyze(30)
-	playsound(skewee, 'sound/misc/desceration-03.ogg', 50, TRUE)
+	playsound(skewee, 'massmeta/sounds/misc/sound_misc_desceration-03.ogg', 50, TRUE)
 	unbuckle_mob(skewee)
