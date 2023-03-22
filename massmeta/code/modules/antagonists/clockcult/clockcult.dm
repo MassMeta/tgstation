@@ -213,3 +213,10 @@
 		parts += printplayerlist(members - eminence)
 
 	return "<div class='panel clockborder'>[parts.Join("<br>")]</div>"
+
+/datum/antagonist/clockcult/get_preview_icon()
+	var/icon/clockie_icon = icon('massmeta/icons/effects/512x512.dmi', "ratvar")
+
+	clockie_icon.Scale(ANTAGONIST_PREVIEW_ICON_SIZE, ANTAGONIST_PREVIEW_ICON_SIZE)
+
+	return clockie_icon
