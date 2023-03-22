@@ -76,7 +76,7 @@
 	if(!AR.clockwork_warp_allowed)
 		to_chat(user, "<span class='sevtug_small'>[AR.clockwork_warp_fail]</span>")
 		return
-	if(alert(user, "Are you sure you want to warp to [AR]?", console.name, "Warp", "Cancel") == "Cancel" || QDELETED(R) || !user.can_perform_action(R))
+	if(alert(user, "Are you sure you want to warp to [AR]?", console.name, "Warp", "Cancel") == "Cancel" || QDELETED(console) || !user.can_perform_action(console))
 		return
 	do_sparks(5, TRUE, user)
 	do_sparks(5, TRUE, T)
@@ -99,7 +99,7 @@
 	user.forceMove(get_turf(T))
 	user.setDir(SOUTH)
 	flash_color(user, flash_color = "#AF0AAF", flash_time = 5)
-	R.remove_eye_control(user)
+	console.remove_eye_control(user)
 	QDEL_NULL(warping)
 
 /datum/action/innate/servant_warp/proc/is_canceled()

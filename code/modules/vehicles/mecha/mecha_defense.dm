@@ -373,13 +373,13 @@
 	emp_act(EMP_HEAVY)
 
 /obj/vehicle/sealed/mecha/ratvar_act()
-	if((GLOB.ratvar_awakens || GLOB.clockwork_gateway_activated) && occupant)
-		if(is_servant_of_ratvar(occupant)) //reward the minion that got a mech by repairing it
-			full_repair(TRUE)
-		else
-			for(var/mob/living/L in occupants)
-				mob_exit(L, silent = TRUE)
-				L.ratvar_act()
+	for(var/mob/living/occupant in occupants)
+		if((GLOB.ratvar_awakens || GLOB.clockwork_gateway_activated) && occupant)
+			if(is_servant_of_ratvar(occupant)) //reward the minion that got a mech by repairing it
+				full_repair(TRUE)
+			else
+				mob_exit(occupant, silent = TRUE)
+				occupant.ratvar_act()
 
 /obj/vehicle/sealed/mecha/do_attack_animation(atom/A, visual_effect_icon, obj/item/used_item, no_effect)
 	if(!no_effect && !visual_effect_icon)

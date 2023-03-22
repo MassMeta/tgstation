@@ -236,7 +236,9 @@
 				break
 
 		L.apply_status_effect(STATUS_EFFECT_VANGUARD)
-		owner.apply_status_effect(STATUS_EFFECT_VANGUARD)
+		var/mob/living/living_owner = owner
+		if(istype(living_owner))
+			living_owner.apply_status_effect(STATUS_EFFECT_VANGUARD)
 
 		clockwork_say(owner, text2ratvar("Shield us from darkness!"))
 

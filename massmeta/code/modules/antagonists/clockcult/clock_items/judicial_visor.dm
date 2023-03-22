@@ -121,8 +121,6 @@
 		var/turf/targetturf = get_turf(target)
 		new/obj/effect/clockwork/judicial_marker(targetturf, owner)
 		log_combat(owner, targetturf, "created a judicial marker")
-		owner.update_action_buttons_icon()
-		owner.update_inv_glasses()
 		addtimer(CALLBACK(visor, /obj/item/clothing/glasses/judicial_visor.proc/recharge_visor, owner), GLOB.ratvar_awakens ? visor.recharge_cooldown*0.1 : visor.recharge_cooldown)//Cooldown is reduced by 10x if Ratvar is up
 
 		return TRUE

@@ -41,10 +41,8 @@
 		owner.visible_message("<span class='warning'>A [weapon.name] materializes in [owner]'s hands!</span>", "<span class='brass'>You call forth your [weapon.name]!</span>")
 	weapon.forceMove(get_turf(owner))
 	owner.put_in_hands(weapon)
-	owner.update_action_buttons_icon()
 	return TRUE
 
 /datum/action/innate/call_weapon/proc/weapon_reset(cooldown_time)
 	cooldown = world.time + cooldown_time
-	owner.update_action_buttons_icon()
 	QDEL_NULL(weapon)

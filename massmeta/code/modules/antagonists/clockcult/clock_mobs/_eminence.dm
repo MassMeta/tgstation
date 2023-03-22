@@ -122,7 +122,7 @@
 		if(!G.recalls_remaining)
 			to_chat(src, "<span class='warning'>The Ark can no longer recall!</span>")
 			return
-		if(alert(src, "Initiate mass recall?", "Mass Recall", "Yes", "No") != "Yes" || QDELETED(src) || QDELETED(G) || !G.obj_integrity)
+		if(alert(src, "Initiate mass recall?", "Mass Recall", "Yes", "No") != "Yes" || QDELETED(src) || QDELETED(G) || !G.atom_integrity)
 			return
 		G.initiate_mass_recall() //wHOOPS LOOKS LIKE A HULK GOT THROUGH
 	else if(istype(A, /obj/structure/destructible/clockwork/trap/trigger))
@@ -150,7 +150,7 @@
 			var/obj/structure/destructible/clockwork/powered/P = A
 			if(!can_access_clockwork_power(P))
 				commands += "Power This Structure"
-			if(P.obj_integrity < P.max_integrity)
+			if(P.atom_integrity < P.max_integrity)
 				commands += "Repair This Structure"
 	var/roma_invicta = input(src, "Choose a command to issue to your cult!", "Issue Commands") as null|anything in commands
 	if(!roma_invicta)
@@ -293,6 +293,6 @@
 /datum/action/innate/eminence/mass_recall/Activate(trigger_flags)
 	var/obj/structure/destructible/clockwork/massive/celestial_gateway/G = GLOB.ark_of_the_clockwork_justiciar
 	if(G && !G.recalling && G.recalls_remaining)
-		if(alert(owner, "Initiate mass recall?", "Mass Recall", "Yes", "No") != "Yes" || QDELETED(owner) || QDELETED(G) || !G.obj_integrity)
+		if(alert(owner, "Initiate mass recall?", "Mass Recall", "Yes", "No") != "Yes" || QDELETED(owner) || QDELETED(G) || !G.atom_integrity)
 			return
 		G.initiate_mass_recall()

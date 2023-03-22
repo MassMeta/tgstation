@@ -21,8 +21,11 @@
 		qdel(src)
 
 /datum/status_effect/belligerent/proc/do_movement_toggle(force_damage)
-	var/number_legs = owner.get_num_legs(FALSE)
-	if(iscarbon(owner) && !is_servant_of_ratvar(owner) && !owner.anti_magic_check(chargecost = 0) && number_legs)
+	if(!iscarbon(owner))
+		return FALSE
+	var/mob/living/carbon/carbon_owner
+	var/number_legs = carbon_owner.usable_legs
+	if(!is_servant_of_ratvar(owner) && !owner.can_block_magic(MAGIC_RESISTANCE) && number_legs)
 		if(force_damage || owner.m_intent != MOVE_INTENT_WALK)
 			if(GLOB.ratvar_awakens)
 				owner.Paralyze(20)
@@ -106,16 +109,16 @@
 		else if(prob(severity * 2))
 			warned_outofsight = FALSE
 	if(is_servant) //heals servants of braindamage, hallucination, druggy, dizziness, and confusion
-		if(owner.hallucination)
-			owner.hallucination = 0
-		if(owner.druggy)
-			owner.adjust_drugginess(-owner.druggy)
-		if(owner.dizziness)
-			owner.dizziness = 0
-		if(owner.confused)
-			owner.confused = 0
+		if(owner.has_status_effect(/datum/status_effect/hallucination))
+			owner.remove_status_effect(/datum/status_effect/hallucination)
+		if(owner.has_status_effect(/datum/status_effect/drugginess))
+			owner.remove_status_effect(/datum/status_effect/drugginess)
+		if(owner.has_status_effect(/datum/status_effect/dizziness))
+			owner.remove_status_effect(/datum/status_effect/dizziness)
+		if(owner.has_status_effect(/datum/status_effect/confusion))
+			owner.remove_status_effect(/datum/status_effect/confusion)
 		severity = 0
-	else if(!owner.anti_magic_check(chargecost = 0) && owner.stat != DEAD && severity)
+	else if(!owner.can_block_magic(MAGIC_RESISTANCE) && owner.stat != DEAD && severity)
 		var/static/hum = get_sfx('sound/effects/screech.ogg') //same sound for every proc call
 		if(owner.getToxLoss() > MANIA_DAMAGE_TO_CONVERT)
 			if(is_eligible_servant(owner))
@@ -128,12 +131,9 @@
 				to_chat(owner, "<span class='sevtug[span_part]'>\"[text2ratvar(pick(mania_messages))]\"</span>")
 			owner.playsound_local(get_turf(motor), hum, severity, 1)
 			owner.adjust_drugginess(clamp(max(severity * 0.075, 1), 0, max(0, 50 - owner.druggy))) //7.5% of severity per second, minimum 1
-			if(owner.hallucination < 50)
-				owner.hallucination = min(owner.hallucination + max(severity * 0.075, 1), 50) //7.5% of severity per second, minimum 1
-			if(owner.dizziness < 50)
-				owner.dizziness = min(owner.dizziness + round(severity * 0.05, 1), 50) //5% of severity per second above 10 severity
-			if(owner.confused < 25)
-				owner.confused = min(owner.confused + round(severity * 0.025, 1), 25) //2.5% of severity per second above 20 severity
+			owner.set_dizzy_if_lower(5 SECONDS)
+			owner.set_hallucinations_if_lower(5 SECONDS)
+			owner.set_confusion_if_lower(2.5 SECONDS)
 			owner.adjustToxLoss(severity * 0.02, TRUE, TRUE) //2% of severity per second
 		severity--
 
@@ -150,8 +150,8 @@
 	owner.Paralyze(15)
 	if(iscarbon(owner))
 		var/mob/living/carbon/C = owner
-		C.silent = max(2, C.silent)
-		C.stuttering = max(5, C.stuttering)
+		C.adjust_silence_up_to(2 SECONDS)
+		C.adjust_stutter_up_to(4 SECONDS)
 	if(!old_health)
 		old_health = owner.health
 	var/health_difference = old_health - owner.health
