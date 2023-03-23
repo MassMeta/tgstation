@@ -57,7 +57,6 @@
 #define VANGUARD_TRAIT "vanguard"
 #define STARGAZER_TRAIT "stargazer"
 
-GLOBAL_LIST_EMPTY(servants_of_ratvar)	//List of minds in the cult
 GLOBAL_LIST_EMPTY(all_servants_of_ratvar)	//List of minds in the cult
 GLOBAL_LIST_EMPTY(human_servants_of_ratvar)	//Humans in the cult
 GLOBAL_LIST_EMPTY(cyborg_servants_of_ratvar)

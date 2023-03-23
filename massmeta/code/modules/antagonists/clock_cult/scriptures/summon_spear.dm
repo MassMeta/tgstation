@@ -1,7 +1,7 @@
 /datum/action/cooldown/spell/summonspear
 	name = "Призвать Оружие"
 	desc = "Призывает оружие через время и пространство."
-	icon_icon = 'icons/mob/actions/actions_clockcult.dmi'
+	button_icon = 'icons/mob/actions/actions_clockcult.dmi'
 	button_icon_state = "ratvarian_spear"
 	background_icon_state = "bg_clock"
 	school = SCHOOL_TRANSMUTATION
@@ -47,9 +47,6 @@
 						if(item_to_retrieve in part.embedded_objects)
 							part.embedded_objects -= item_to_retrieve
 							to_chat(C, span_warning("Ого, [item_to_retrieve], который застрял в [user], внезапно исчезает. Чудо!"))
-							if(!C.has_embedded_objects())
-								C.clear_alert("embeddedobject")
-								SEND_SIGNAL(C, COMSIG_CLEAR_MOOD_EVENT, "embedded")
 							break
 
 			else

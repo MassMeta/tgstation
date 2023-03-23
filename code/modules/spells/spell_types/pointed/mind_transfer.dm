@@ -100,7 +100,6 @@
 		|| mind_to_swap.has_antag_datum(/datum/antagonist/cult) \
 		|| mind_to_swap.has_antag_datum(/datum/antagonist/changeling) \
 		|| mind_to_swap.has_antag_datum(/datum/antagonist/rev) \
-		|| mind_to_swap.has_antag_datum(/datum/antagonist/clockcult) \
 		|| mind_to_swap.key?[1] == "@" \
 	)
 		to_chat(caster, span_warning("[to_swap.p_their(TRUE)] mind is resisting your spell!"))

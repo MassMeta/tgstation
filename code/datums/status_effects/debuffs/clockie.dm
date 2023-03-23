@@ -48,7 +48,7 @@
 	if(owner.m_intent == MOVE_INTENT_WALK)
 		owner.toggle_move_intent()
 
-/datum/status_effect/maniamotor
+/*/datum/status_effect/maniamotor
 	id = "maniamotor"
 	duration = -1
 	tick_interval = 10
@@ -136,6 +136,7 @@
 			owner.set_confusion_if_lower(2.5 SECONDS)
 			owner.adjustToxLoss(severity * 0.02, TRUE, TRUE) //2% of severity per second
 		severity--
+*/
 
 //Kindle: Used by servants of Ratvar. 10-second knockdown, reduced by 1 second per 5 damage taken while the effect is active.
 /datum/status_effect/kindle

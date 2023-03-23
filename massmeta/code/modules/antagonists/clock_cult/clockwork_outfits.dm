@@ -18,8 +18,8 @@
 
 /datum/outfit/clockcult_plasmaman
 	name = "Servant of Ratvar Plasmaman"
-	head = /obj/item/clothing/head/chameleon/envirohelm/ratvar
-	uniform = /obj/item/clothing/under/chameleon/envirosuit/ratvar
+	head = /obj/item/clothing/head/helmet/space/plasmaman
+	uniform = /obj/item/clothing/under/plasmaman
 
 /datum/outfit/clockcult/armaments
 	name = "Servant of Ratvar - Armaments"

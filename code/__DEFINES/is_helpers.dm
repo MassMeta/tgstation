@@ -185,8 +185,6 @@ GLOBAL_LIST_INIT(turfs_openspace, typecacheof(list(
 
 #define isaicamera(A) (istype(A, /mob/camera/ai_eye))
 
-#define iseminence(A) (istype(A, /mob/camera/eminence))
-
 //Objects
 #define isobj(A) istype(A, /obj) //override the byond proc because it returns true on children of /atom/movable that aren't objs
 
