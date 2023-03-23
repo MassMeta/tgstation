@@ -36,6 +36,7 @@
 	var/souls = 0
 	var/resolved = FALSE
 	var/clashing = FALSE
+	var/next_attack_tick
 
 /obj/narsie/Initialize(mapload)
 	. = ..()
@@ -116,7 +117,7 @@
 /obj/narsie/process()
 	var/datum/component/singularity/singularity_component = singularity.resolve()
 
-	if(clashing)
+	/*if(clashing)
 		//Oh god what is it doing...
 		singularity_component?.target = clashing
 		if(get_dist(src, clashing) < 5)
@@ -128,15 +129,14 @@
 				for(var/mob/living/M in GLOB.player_list)
 					shake_camera(M, 25, 6)
 					M.Knockdown(10)
-				if(DT_PROB(max(SSticker.mode?.cult.len/2, 15), delta_time))
+				if(prob(max(SSticker.mode?.cult.len/2, 15)))
 					SEND_SOUND(world, 'sound/magic/clockwork/anima_fragment_death.ogg')
-					SEND_SOUND(world, pick(FAR_EXPLOSION_SOUNDS))
 					to_chat(world, span_narsie("You really thought you could best me twice?"))
 					QDEL_NULL(clashing)
 					for(var/datum/mind/M as() in GLOB.servants_of_ratvar)
 						to_chat(M, span_userdanger("You feel a stabbing pain in your chest... This can't be happening!"))
 						M.current?.dust()
-
+*/
 	if (!isnull(singularity_component) && (!singularity_component?.target || prob(NARSIE_CHANCE_TO_PICK_NEW_TARGET)))
 		pickcultist()
 
