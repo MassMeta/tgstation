@@ -8,13 +8,24 @@
 	name = "Clockcult"
 	antag_flag = ROLE_SERVANT_OF_RATVAR
 	antag_datum = /datum/antagonist/clockcult
-	restricted_roles = list("AI", "Cyborg", "Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Chaplain", "Head of Personnel")
+	restricted_roles = list(
+		JOB_AI,
+		JOB_CAPTAIN,
+		JOB_CHAPLAIN,
+		JOB_CYBORG,
+		JOB_DETECTIVE,
+		JOB_HEAD_OF_PERSONNEL,
+		JOB_HEAD_OF_SECURITY,
+		JOB_PRISONER,
+		JOB_SECURITY_OFFICER,
+		JOB_WARDEN,
+	)
 	required_candidates = 4
 	weight = 3
-	cost = 0
-	requirements = list(101,101,101,101,101,101,101,101,101,101)
-	high_population_requirement = 101
+	cost = 20
+	requirements = list(100,90,80,60,40,30,10,10,10,10)
 	flags = HIGH_IMPACT_RULESET
+	antag_cap = list("denominator" = 20, "offset" = 1)
 	var/ark_time
 
 /datum/dynamic_ruleset/roundstart/clockcult/pre_execute()
@@ -24,8 +35,8 @@
 		message_admins("Reebe failed to load!")
 		log_game("Reebe failed to load!")
 		return FALSE
-	for(var/datum/parsed_map/PM in reebes)
-		PM.initTemplateBounds()
+	//for(var/datum/parsed_map/PM in reebes)
+	//	PM.initTemplateBounds()
 
 	var/starter_servants = 4
 	var/number_players = mode.roundstart_pop_ready
@@ -77,7 +88,7 @@
 	L.equipOutfit(/datum/outfit/servant_of_ratvar)
 	var/obj/item/clockwork/slab/S = new
 	var/slot = "At your feet"
-	var/list/slots = list("In your left pocket" = SLOT_L_STORE, "In your right pocket" = SLOT_R_STORE, "In your backpack" = SLOT_IN_BACKPACK, "On your belt" = SLOT_BELT)
+	var/list/slots = list("In your left pocket" = ITEM_SLOT_LPOCKET, "In your right pocket" = ITEM_SLOT_RPOCKET, "In your backpack" = ITEM_SLOT_BACKPACK, "On your belt" = ITEM_SLOT_BELT)
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		slot = H.equip_in_one_of_slots(S, slots)
@@ -96,8 +107,8 @@
 
 /datum/dynamic_ruleset/roundstart/clockcult/round_result()
 	if(GLOB.clockwork_gateway_activated)
-		SSticker.news_report = CLOCK_SUMMON
+		//SSticker.news_report = CLOCK_SUMMON
 		SSticker.mode_result = "win - servants completed their objective (summon ratvar)"
 	else
-		SSticker.news_report = CULT_FAILURE
+		//SSticker.news_report = CULT_FAILURE
 		SSticker.mode_result = "loss - servants failed their objective (summon ratvar)"
