@@ -40,8 +40,6 @@
 	M.set_blindness(0)
 	M.set_blurriness(0)
 	M.set_dizziness(0)
-	M.cure_nearsighted()
-	M.cure_blind()
 	M.cure_husk()
 	M.hallucination = 0
 	new /obj/effect/temp_visual/heal(get_turf(M), "#f8d984")
