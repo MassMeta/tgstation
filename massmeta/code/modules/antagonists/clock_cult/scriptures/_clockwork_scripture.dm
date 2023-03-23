@@ -157,7 +157,7 @@
 	var/after_use_text = ""
 	end_on_invokation = FALSE
 
-	var/datum/action/innate/clockwork_slab/slab_action
+	var/datum/action/cooldown/clockwork_slab/slab_action
 
 	var/uses_left
 	var/time_left = 0
@@ -224,38 +224,39 @@
 /datum/clockcult/scripture/slab/proc/apply_effects(atom/A)
 	return TRUE
 
-/datum/action/innate/clockwork_slab
+/datum/action/cooldown/clockwork_slab
 	var/datum/clockcult/scripture/slab/parent_scripture
+	click_to_activate = TRUE
 
-/datum/action/innate/clockwork_slab/Destroy()
+/datum/action/cooldown/clockwork_slab/Destroy()
 	parent_scripture = null
 	return ..()
 
-/datum/action/innate/clockwork_slab/Activate()
+/datum/action/cooldown/clockwork_slab/Activate(atom/target)
 	parent_scripture?.click_on(usr)
 
 //==================================//
 // !       Quick bind spell       ! //
 //==================================//
 
-/datum/action/innate/clockcult
+/datum/action/cooldown/clockcult
 	button_icon = 'massmeta/icons/mob/actions/actions_clockcult.dmi'
 	background_icon_state = "bg_clock"
 	buttontooltipstyle = "brass"
 	check_flags = AB_CHECK_HANDS_BLOCKED|AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS
 
-/datum/action/innate/clockcult/quick_bind
+/datum/action/cooldown/clockcult/quick_bind
 	name = "Быстрый выбор"
 	button_icon_state = "telerune"
 	desc = "Ну быстрый выбор заклинания, м?"
 	var/obj/item/clockwork/clockwork_slab/activation_slab
 	var/datum/clockcult/scripture/scripture
 
-/datum/action/innate/clockcult/quick_bind/Destroy()
+/datum/action/cooldown/clockcult/quick_bind/Destroy()
 	Remove(owner)
 	. = ..()
 
-/datum/action/innate/clockcult/quick_bind/Grant(mob/living/M)
+/datum/action/cooldown/clockcult/quick_bind/Grant(mob/living/M)
 	name = scripture.name
 	desc = scripture.tip
 	button_icon_state = scripture.button_icon_state
@@ -263,20 +264,26 @@
 		desc += "<br>Забирает <b>[scripture.power_cost]W</b> за каждое использование."
 	..(M)
 
-/datum/action/innate/clockcult/quick_bind/Remove(mob/M)
+/datum/action/cooldown/clockcult/quick_bind/Remove(mob/M)
 	if(activation_slab.invoking_scripture == scripture)
 		activation_slab.invoking_scripture = null
 	..(M)
 
-/datum/action/innate/clockcult/quick_bind/IsAvailable()
-	if(!is_servant_of_ratvar(owner) || owner.incapacitated())
+/datum/action/cooldown/clockcult/quick_bind/IsAvailable(feedback = FALSE)
+	if(!is_servant_of_ratvar(owner))
+		if(feedback)
+			owner.balloon_alert(owner, "not a servant!")
 		return FALSE
+	if(owner.incapacitated())
+		if(feedback)
+			owner.balloon_alert(owner, "incapacitated!")
 	return ..()
 
-/datum/action/innate/clockcult/quick_bind/Trigger()
+/datum/action/cooldown/clockcult/quick_bind/Activate(atom/target)
 	if(!(.=..()))
 		return FALSE
 	if(!activation_slab)
+		to_chat(owner, span_warning("No slab!"))
 		return
 	if(!activation_slab.invoking_scripture)
 		scripture.begin_invoke(owner, activation_slab)
@@ -286,12 +293,12 @@
 //==================================//
 // !     Hierophant Transmit      ! //
 //==================================//
-/datum/action/innate/clockcult/transmit
+/datum/action/cooldown/clockcult/transmit
 	name = "Иерофантовый канал"
 	button_icon_state = "hierophant"
 	desc = "Передать сообщение союзникам через сети Иерофанта."
 
-/datum/action/innate/clockcult/transmit/IsAvailable()
+/datum/action/cooldown/clockcult/transmit/IsAvailable(feedback = FALSE)
 	if(!is_servant_of_ratvar(owner))
 		Remove(owner)
 		return FALSE
@@ -299,7 +306,7 @@
 		return FALSE
 	return ..()
 
-/datum/action/innate/clockcult/transmit/Trigger()
+/datum/action/cooldown/clockcult/transmit/Trigger()
 	if(!(.=..()))
 		return FALSE
 	hierophant_message(stripped_input(owner, "Что же мы скажем нашим союзничкам?", "Иерофантовый канал", ""), owner, "<span class='brass'>")

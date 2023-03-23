@@ -60,7 +60,7 @@ GLOBAL_LIST_INIT(clockwork_slabs, list())
 
 /obj/item/clockwork/clockwork_slab/dropped(mob/user)
 	//Clear quickbinds
-	for(var/datum/action/innate/clockcult/quick_bind/script in quick_bound_scriptures)
+	for(var/datum/action/cooldown/clockcult/quick_bind/script in quick_bound_scriptures)
 		script.Remove(user)
 	if(active_scripture)
 		active_scripture.end_invokation()
@@ -73,7 +73,7 @@ GLOBAL_LIST_INIT(clockwork_slabs, list())
 	if(!is_servant_of_ratvar(user))
 		return
 	//Grant quickbound spells
-	for(var/datum/action/innate/clockcult/quick_bind/script in quick_bound_scriptures)
+	for(var//datum/action/cooldown/clockcult/quick_bind/script in quick_bound_scriptures)
 		script.Grant(user)
 	user.update_action_buttons()
 
@@ -101,7 +101,7 @@ GLOBAL_LIST_INIT(clockwork_slabs, list())
 		//Unbind the scripture that is quickbound
 		qdel(quick_bound_scriptures[position])
 	//Put the quickbound action onto the slab, the slab should grant when picked up
-	var/datum/action/innate/clockcult/quick_bind/quickbound = new
+	var/datum/action/cooldown/clockcult/quick_bind/quickbound = new
 	quickbound.scripture = spell
 	quickbound.activation_slab = src
 	quick_bound_scriptures[position] = quickbound
