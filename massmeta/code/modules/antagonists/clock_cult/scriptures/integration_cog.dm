@@ -13,10 +13,9 @@
 	category = SPELLTYPE_SERVITUDE
 
 /datum/clockcult/scripture/integration_cog/invoke_success()
-	var/obj/item/clockwork/integration_cog/IC = new()
-	if(invoker.put_in_hands(IC, TRUE))
-		to_chat(invoker, span_brass("Вызываю интеграционную шестерню!"))
-		playsound(src, 'sound/machines/click.ogg', 50)
-	else
-		to_chat(invoker, span_brass("У меня должна быть свободна неактивная рука, чтобы вызвать интеграционную шестерню!"))
-		return FALSE
+	var/location = get_turf(invoker) || invoker.loc
+	var/obj/item/clockwork/integration_cog/IC = new(get_turf(invoker))
+	to_chat(invoker, span_brass("Вызываю интеграционную шестерню!"))
+	playsound(src, 'sound/machines/click.ogg', 50)
+	invoker.put_in_hands(IC)
+
