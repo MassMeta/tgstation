@@ -21,7 +21,7 @@
 		JOB_WARDEN,
 	)
 	required_candidates = 4
-	weight = 3
+	weight = 0 //W.I.P.
 	cost = 20
 	requirements = list(100,90,80,60,40,30,10,10,10,10)
 	flags = HIGH_IMPACT_RULESET
