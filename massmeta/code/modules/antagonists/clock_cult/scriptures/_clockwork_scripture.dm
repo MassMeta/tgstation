@@ -273,7 +273,9 @@
 		return FALSE
 	return ..()
 
-/datum/action/innate/clockcult/quick_bind/Activate()
+/datum/action/innate/clockcult/quick_bind/Trigger()
+	if(!(.=..()))
+		return FALSE
 	if(!activation_slab)
 		return
 	if(!activation_slab.invoking_scripture)
@@ -297,5 +299,7 @@
 		return FALSE
 	return ..()
 
-/datum/action/innate/clockcult/transmit/Activate()
+/datum/action/innate/clockcult/transmit/Trigger()
+	if(!(.=..()))
+		return FALSE
 	hierophant_message(stripped_input(owner, "Что же мы скажем нашим союзничкам?", "Иерофантовый канал", ""), owner, "<span class='brass'>")

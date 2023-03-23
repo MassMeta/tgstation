@@ -14,7 +14,7 @@
 
 /datum/clockcult/scripture/integration_cog/invoke_success()
 	var/location = get_turf(invoker) || invoker.loc
-	var/obj/item/clockwork/integration_cog/IC = new(get_turf(invoker))
+	var/obj/item/clockwork/integration_cog/IC = new(location)
 	to_chat(invoker, span_brass("Вызываю интеграционную шестерню!"))
 	playsound(src, 'sound/machines/click.ogg', 50)
 	invoker.put_in_hands(IC)
