@@ -78,8 +78,8 @@
 	if(!M || !ishuman(M))
 		return FALSE
 	var/mob/living/carbon/human/L = M
-	L.equipOutfit(/datum/outfit/servant_of_ratvar)
-	var/obj/item/clockwork/clockwork_slab/slab = new
+	L.equipOutfit(/datum/outfit/clockcult)
+	var/obj/item/clockwork/clockwork_slab/S = new
 	var/slot = "At your feet"
 	var/list/slots = list("In your left pocket" = ITEM_SLOT_LPOCKET, "In your right pocket" = ITEM_SLOT_RPOCKET, "In your backpack" = ITEM_SLOT_BACKPACK, "On your belt" = ITEM_SLOT_BELT)
 	if(ishuman(L))

@@ -267,3 +267,8 @@
 /obj/effect/temp_visual/ratvar/command_point/Initialize(mapload, appearance)
 	. = ..()
 	icon_state = appearance
+
+/obj/effect/temp_visual/ratvar/warp
+	name = "spatial distortion"
+	icon_state = "teleport"
+	layer = ABOVE_MOB_LAYER

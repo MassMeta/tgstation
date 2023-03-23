@@ -4,10 +4,10 @@
 /mob/living/simple_animal/clockwork_marauder
 	name = "механический мародёр"
 	desc = "Латунная машина разрушения."
-	icon = 'icons/mob/clockwork_mobs.dmi'
+	icon = 'massmeta/icons/mob/clockwork_mobs.dmi'
 	icon_state = "clockwork_marauder"
 	icon_dead = "anime_fragment"
-	possible_a_intents = list(INTENT_HARM)
+	combat_mode = TRUE
 	health = 140
 	maxHealth = 140
 
@@ -21,7 +21,7 @@
 	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
 
 	attack_verb_simple = "рубит"
-	attack_sound = 'sound/weapons/sword_kill_slash_02.ogg'
+	attack_sound = 'sound/weapons/slash.ogg'
 	chat_color = "#CAA25B"
 	speech_span = SPAN_ROBOT
 	obj_damage = 80
@@ -37,7 +37,6 @@
 	var/debris = list(/obj/item/clockwork/alloy_shards/large = 1, \
 	/obj/item/clockwork/alloy_shards/medium = 2, \
 	/obj/item/clockwork/alloy_shards/small = 3) //Parts left behind when a structure breaks
-	discovery_points = 1000
 
 /mob/living/simple_animal/clockwork_marauder/Login()
 	. = ..()

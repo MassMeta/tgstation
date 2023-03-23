@@ -8,6 +8,7 @@ GLOBAL_LIST_INIT(cogscarabs, list())
 	icon_state = "drone_clock"
 	icon_living = "drone_clock"
 	icon_dead = "drone_clock_dead"
+	shy = FALSE
 	health = 30
 	maxHealth = 30
 	faction = list("neutral", "silicon", "turret", "ratvar")
@@ -23,7 +24,6 @@ GLOBAL_LIST_INIT(cogscarabs, list())
 	chat_color = LIGHT_COLOR_CLOCKWORK
 	speech_span = "brassmobsay"
 	initial_language_holder = /datum/language_holder/clockmob
-	discovery_points = 2000
 
 //No you can't go weilding guns like that.
 /mob/living/simple_animal/drone/cogscarab/Initialize(mapload)
