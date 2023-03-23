@@ -2,7 +2,7 @@
 /obj/item/clockwork/trap_placer
 	name = "ловушка"
 	desc = "джокера"
-	icon = 'icons/obj/clockwork_objects.dmi'
+	icon = 'massmeta/icons/obj/clockwork_objects.dmi'
 	w_class = WEIGHT_CLASS_HUGE
 	var/result_path = /obj/structure/destructible/clockwork/trap
 
@@ -23,7 +23,7 @@
 /obj/item/wallframe/clocktrap
 	name = "эээ"
 	desc = "че?"
-	icon = 'icons/obj/clockwork_objects.dmi'
+	icon = 'massmeta/icons/obj/clockwork_objects.dmi'
 	pixel_shift = -24
 	w_class = WEIGHT_CLASS_HUGE
 	result_path = /obj/structure/destructible/clockwork/trap
@@ -37,7 +37,7 @@
 /obj/structure/destructible/clockwork/trap
 	name = "ыыы"
 	desc = "пук"
-	icon = 'icons/obj/clockwork_objects.dmi'
+	icon = 'massmeta/icons/obj/clockwork_objects.dmi'
 	density = FALSE
 	layer = LOW_OBJ_LAYER
 	break_message = span_warning("Замысловатое устройство разваливается.")

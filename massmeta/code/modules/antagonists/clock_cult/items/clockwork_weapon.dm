@@ -1,7 +1,7 @@
 /obj/item/clockwork/weapon
 	name = "Clockwork Weapon"
 	desc = "Something"
-	icon = 'icons/obj/clockwork_objects.dmi'
+	icon = 'massmeta/icons/obj/clockwork_objects.dmi'
 	lefthand_file = 'icons/mob/inhands/antag/clockwork_lefthand.dmi';
 	righthand_file = 'icons/mob/inhands/antag/clockwork_righthand.dmi'
 	force = 15
@@ -11,7 +11,7 @@
 	throw_speed = 4
 	armour_penetration = 10
 	custom_materials = list(/datum/material/iron=1150, /datum/material/gold=2750)
-	hitsound = 'sound/weapons/sword_kill_slash_01.ogg'
+	hitsound = 'sound/weapons/slash.ogg'
 	attack_verb_simple = list("атакует", "тычет", "накалывает", "рвёт", "насаживает")
 	sharpness = SHARP_EDGED
 	max_integrity = 200
@@ -64,7 +64,7 @@
 	if(isliving(hit_atom))
 		var/mob/living/target = hit_atom
 		if(!.)
-			if(!target.anti_magic_check() && !is_servant_of_ratvar(target))
+			if(!target.can_block_magic(MAGIC_RESISTANCE) && !is_servant_of_ratvar(target))
 				hit_effect(target, throwingdatum.thrower, TRUE)
 
 /obj/item/clockwork/weapon/proc/hit_effect(mob/living/target, mob/living/user, thrown=FALSE)
@@ -79,7 +79,6 @@
 	force = 25
 	throwforce = 36
 	armour_penetration = 24
-	pickup_sound = 'white/valtos/sounds/brasssneath1.ogg'
 	clockwork_hint = "Бросок копья нанесет дополнительный урон, пока находится на Риби."
 
 /obj/item/clockwork/weapon/brass_battlehammer
@@ -91,11 +90,10 @@
 	throwforce = 25
 	armour_penetration = 6
 	sharpness = NONE
-	pickup_sound = 'white/valtos/sounds/brasssneath1.ogg'
 	attack_verb_simple = list("лупит", "дубасит", "бьёт", "хуячит")
 	clockwork_hint = "Враги, пораженные этим, будут отброшены, пока молот находится на Риби."
 
-/obj/item/clockwork/weapon/brass_battlehammer/ComponentInitialize()
+/obj/item/clockwork/weapon/brass_battlehammer/Initialize()
 	. = ..()
 	AddComponent(/datum/component/two_handed, force_unwielded=15, force_wielded=28, block_power_wielded=25)
 
@@ -111,7 +109,6 @@
 	force = 26
 	throwforce = 20
 	armour_penetration = 12
-	pickup_sound = 'white/valtos/sounds/brasssneath2.ogg'
 	attack_verb_simple = list("атакует", "рубит", "режет", "рвёт", "протыкает")
 	clockwork_hint = "Находясь на Риби, цели будут поражены мощным электромагнитным импульсом."
 	COOLDOWN_DECLARE(emp_cooldown)
@@ -148,7 +145,7 @@
 /obj/item/gun/energy/kinetic_accelerator/crossbow/clockwork
 	name = "латунный лук"
 	desc = "Лук из латуни и других деталей, которые вы не совсем понимаете. Он светится глубокой энергией и сам по себе дробит стрелы."
-	icon = 'icons/obj/guns/projectile.dmi'
+	icon = 'icons/obj/weapons/guns/projectiles.dmi'
 	icon_state = "bow_clockwork"
 	ammo_type = list(/obj/item/ammo_casing/energy/bolt/clockbolt)
 

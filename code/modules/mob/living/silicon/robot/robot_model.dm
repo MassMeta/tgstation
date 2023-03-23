@@ -138,9 +138,9 @@
 	if(cyborg.emagged)
 		for(var/obj/item/module in emag_modules)
 			add_module(module, FALSE, FALSE)
-	if(is_servant_of_ratvar(R) && !R.ratvar)	//It just works :^)
-		R.SetRatvar(TRUE, FALSE)
-	if(R.ratvar)
+	if(is_servant_of_ratvar(R) && !cyborg.ratvar)	//It just works :^)
+		cyborg.SetRatvar(TRUE, FALSE)
+	if(cyborg.ratvar)
 		for(var/obj/item/I in ratvar_modules)
 			add_module(I, FALSE, FALSE)
 	for(var/obj/item/module in added_modules)
@@ -313,7 +313,7 @@
 	ratvar_modules = list(
 		/obj/item/clock_module/abscond,
 		/obj/item/clock_module/vanguard,
-		/obj/item/clockwork/brass_battlehammer)	//honk
+		/obj/item/clockwork/weapon/brass_battlehammer)	//honk
 	model_select_icon = "service"
 	cyborg_base_icon = "clown"
 	hat_offset = -2
@@ -360,7 +360,7 @@
 		/obj/item/clock_module/stargazer,
 		/obj/item/clock_module/abstraction_crystal,
 		/obj/item/clockwork/replica_fabricator,
-		/obj/item/stack/tile/bronze/cyborg)
+		/obj/item/stack/tile/bronze)
 	cyborg_base_icon = "engineer"
 	model_select_icon = "engineer"
 	model_traits = list(TRAIT_NEGATES_GRAVITY)
@@ -749,7 +749,7 @@
 	emag_modules = list(/obj/item/gun/energy/laser/cyborg)
 	ratvar_modules = list(
 		/obj/item/clock_module/abscond,
-		/obj/item/clockwork/brass_spear,
+		/obj/item/clockwork/weapon/brass_spear,
 		/obj/item/clock_module/ocular_warden,
 		/obj/item/clock_module/vanguard)
 	cyborg_base_icon = "sec"
@@ -835,8 +835,10 @@
 		/obj/item/extinguisher/mini,
 		/obj/item/pinpointer/syndicate_cyborg)
 	ratvar_modules = list(
-		/obj/item/clockwork/slab/cyborg/security,
-		/obj/item/clockwork/weapon/ratvarian_spear)
+		/obj/item/clock_module/abscond,
+		/obj/item/clockwork/weapon/brass_spear,
+		/obj/item/clock_module/ocular_warden,
+		/obj/item/clock_module/vanguard)
 
 	cyborg_base_icon = "synd_sec"
 	model_select_icon = "malf"
@@ -875,8 +877,10 @@
 		/obj/item/gun/medbeam,
 		/obj/item/borg/apparatus/organ_storage)
 	ratvar_modules = list(
-		/obj/item/clockwork/slab/cyborg/medical,
-		/obj/item/clockwork/weapon/ratvarian_spear)
+		/obj/item/clock_module/abscond,
+		/obj/item/clock_module/sentinels_compromise,
+		/obj/item/clock_module/prosperity_prism,
+		/obj/item/clock_module/vanguard)
 
 	cyborg_base_icon = "synd_medical"
 	model_select_icon = "malf"
@@ -911,8 +915,13 @@
 		/obj/item/card/emag,
 		)
 	ratvar_modules = list(
-		/obj/item/clockwork/slab/cyborg/engineer,
-		/obj/item/clockwork/replica_fabricator/cyborg)
+		/obj/item/clock_module/abscond,
+		/obj/item/clock_module/ocular_warden,
+		/obj/item/clock_module/tinkerers_cache,
+		/obj/item/clock_module/stargazer,
+		/obj/item/clock_module/abstraction_crystal,
+		/obj/item/clockwork/replica_fabricator,
+		/obj/item/stack/tile/bronze)
 
 	cyborg_base_icon = "synd_engi"
 	model_select_icon = "malf"

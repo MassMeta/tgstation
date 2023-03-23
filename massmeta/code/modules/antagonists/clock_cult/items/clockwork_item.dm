@@ -2,7 +2,7 @@
 	name = "механическая штука"
 	desc = "Что-то зачасовалось не так."
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	icon = 'icons/obj/clockwork_objects.dmi'
+	icon = 'massmeta/icons/obj/clockwork_objects.dmi'
 	icon_state = "rare_pepe"
 	w_class = WEIGHT_CLASS_SMALL
 	var/clockwork_desc = "A fabled artifact from beyond the stars. Contains concentrated meme essence." //Shown to clockwork cultists instead of the normal description

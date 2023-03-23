@@ -1,7 +1,7 @@
 /obj/item/clock_module
 	name = "ратварский модуль киборга"
 	desc = "норм."
-	icon = 'icons/mob/actions/actions_clockcult.dmi'
+	icon = 'massmeta/icons/mob/actions/actions_clockcult.dmi'
 	icon_state = "Replicant"
 	w_class = WEIGHT_CLASS_NORMAL
 	item_flags = NOBLUDGEON

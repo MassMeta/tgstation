@@ -1,7 +1,7 @@
 /obj/item/clothing/suit/clockwork
 	name = "латунная броня"
 	desc = "Прочный латунный доспех, который носили солдаты армий Ратвара."
-	icon = 'icons/obj/clothing/clockwork_garb.dmi'
+	icon = 'massmeta/icons/obj/clothing/clockwork_garb.dmi'
 	icon_state = "clockwork_cuirass"
 	armor = list("melee" = 50, "bullet" = 60, "laser" = 30, "energy" = 80, "bomb" = 80, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
 	slowdown = 0.6
@@ -20,16 +20,13 @@
 			if(ishuman(C))
 				var/mob/living/carbon/human/H = C
 				H.electrocution_animation(20)
-			C.jitteriness += 1000
-			C.do_jitter_animation(C.jitteriness)
-			C.stuttering += 1
-			if(C)
-				C.jitteriness = max(C.jitteriness - 990, 10)
+			C.adjust_jitter(100 SECONDS)
+			C.adjust_stutter(10 SECONDS)
 
 /obj/item/clothing/suit/clockwork/speed
 	name = "роба божества"
 	desc = "Блестящий костюм, светящийся яркой энергией. Владелец сможет быстро перемещаться по полям битвы, но сможет выдержать меньший урон перед падением.."
-	icon = 'icons/obj/clothing/clockwork_garb.dmi'
+	icon = 'massmeta/icons/obj/clothing/clockwork_garb.dmi'
 	icon_state = "clockwork_cuirass_speed"
 	slowdown = -0.3
 	resistance_flags = FIRE_PROOF | ACID_PROOF
@@ -38,7 +35,7 @@
 /obj/item/clothing/suit/clockwork/cloak
 	name = "плащ-покров"
 	desc = "Шатающийся плащ, который рассеивает свет вокруг себя, искажая внешний вид пользователя, из-за чего его трудно увидеть невооруженным глазом. Однако он обеспечивает очень слабую защиту.."
-	icon = 'icons/obj/clothing/clockwork_garb.dmi'
+	icon = 'massmeta/icons/obj/clothing/clockwork_garb.dmi'
 	icon_state = "clockwork_cloak"
 	armor = list("melee" = 10, "bullet" = 60, "laser" = 40, "energy" = 20, "bomb" = 40, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
 	slowdown = 0.4
@@ -82,7 +79,7 @@
 
 /obj/item/clothing/glasses/clockwork
 	name = "базовые механические очки"
-	icon = 'icons/obj/clothing/clockwork_garb.dmi'
+	icon = 'massmeta/icons/obj/clothing/clockwork_garb.dmi'
 	icon_state = "clockwork_cuirass"
 
 /obj/item/clothing/glasses/clockwork/equipped(mob/user, slot)
@@ -90,16 +87,11 @@
 	if(!is_servant_of_ratvar(user))
 		to_chat(user, span_userdanger("Чувствую прилив энергии по всему телу!"))
 		user.dropItemToGround(src, TRUE)
-		var/mob/living/carbon/C = user
 		if(ishuman(C))
 			var/mob/living/carbon/human/H = C
 			H.electrocution_animation(20)
-		C.jitteriness += 1000
-		C.do_jitter_animation(C.jitteriness)
-		C.stuttering += 1
-		spawn(20)
-		if(C)
-			C.jitteriness = max(C.jitteriness - 990, 10)
+		C.adjust_jitter(100 SECONDS)
+		C.adjust_stutter(10 SECONDS)
 
 /obj/item/clothing/glasses/clockwork/wraith_spectacles
 	name = "призрачные очки"
@@ -149,7 +141,7 @@
 /obj/item/clothing/head/helmet/clockcult
 	name = "латунный шлем"
 	desc = "Прочный латунный шлем, который носили солдаты армий Ратвара. Включает в себя встроенный диммер для защиты от вспышки, а также заглушку скрытого уровня для заводских сред."
-	icon = 'icons/obj/clothing/clockwork_garb.dmi'
+	icon = 'massmeta/icons/obj/clothing/clockwork_garb.dmi'
 	icon_state = "clockwork_helmet"
 	armor = list("melee" = 50, "bullet" = 60, "laser" = 30, "energy" = 80, "bomb" = 80, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
 	resistance_flags = FIRE_PROOF | ACID_PROOF
@@ -159,13 +151,13 @@
 /obj/item/clothing/shoes/clockcult
 	name = "латунные протекторы"
 	desc = "Пара крепких латунных сапог, которые носили солдаты армий Ратвара."
-	icon = 'icons/obj/clothing/clockwork_garb.dmi'
+	icon = 'massmeta/icons/obj/clothing/clockwork_garb.dmi'
 	icon_state = "clockwork_treads"
 
 /obj/item/clothing/gloves/clockcult
 	name = "латунные рукавицы"
 	desc = "Пара крепких латунных перчаток, которые носили солдаты армий Ратвара."
-	icon = 'icons/obj/clothing/clockwork_garb.dmi'
+	icon = 'massmeta/icons/obj/clothing/clockwork_garb.dmi'
 	icon_state = "clockwork_gauntlets"
 	siemens_coefficient = 0
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, FIRE = 80, ACID = 50)

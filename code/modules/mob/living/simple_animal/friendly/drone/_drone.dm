@@ -376,19 +376,3 @@
 
 /mob/living/simple_animal/drone/electrocute_act(shock_damage, source, siemens_coeff, flags = NONE)
 	return FALSE //So they don't die trying to fix wiring
-
-/mob/living/simple_animal/drone/ratvar_act()
-	if(status_flags & GODMODE)
-		return
-
-	if(internal_storage)
-		dropItemToGround(internal_storage)
-	if(head)
-		dropItemToGround(head)
-	var/mob/living/simple_animal/drone/cogscarab/ratvar/R = new /mob/living/simple_animal/drone/cogscarab/ratvar(loc)
-	R.setDir(dir)
-	if(mind)
-		mind.transfer_to(R, 1)
-	else
-		R.key = key
-	qdel(src)

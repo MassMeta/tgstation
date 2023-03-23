@@ -1,6 +1,6 @@
 /mob/camera/ai_eye/remote/ratvar
 	visible_icon = TRUE
-	icon = 'icons/mob/cameramob.dmi'
+	icon = 'icons/mob/silicon/cameramob.dmi'
 	icon_state = "generic_camera"
 	use_static = FALSE
 

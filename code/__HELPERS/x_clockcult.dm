@@ -95,7 +95,7 @@ GLOBAL_VAR(clockcult_eminence)
 		return FALSE
 	if(M.mind.unconvertable)
 		return FALSE
-	if(iscultist(M) || isconstruct(M) || ispAI(M))
+	if(IS_CULTIST(M) || isconstruct(M) || ispAI(M))
 		return FALSE
 	if(HAS_TRAIT(M, TRAIT_MINDSHIELD))
 		return FALSE
@@ -117,10 +117,6 @@ GLOBAL_VAR(clockcult_eminence)
 			M.SetSleeping(50)
 
 /proc/hierophant_message(msg, mob/living/sender, span = "<span class='brass'>", use_sanitisation=TRUE, say=TRUE)
-	if(CHAT_FILTER_CHECK(msg))
-		if(sender)
-			to_chat(sender, "<span class='warning'>You message contains forbidden words, please review the server rules and do not attempt to bypass this filter.</span>")
-		return
 	var/hierophant_message = "[span]"
 	if(sender?.reagents)
 		if(sender.reagents.has_reagent(/datum/reagent/water/holywater, 1))

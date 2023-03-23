@@ -212,7 +212,7 @@
 /obj/item/storage/belt/utility/servant/ComponentInitialize()
 	. = ..()
 	atom_storage.max_total_storage = 25
-	atom_storage.max_items = 7
+	atom_storage.max_slots = 7
 	var/static/list/can_hold = typecacheof(list(
 		/obj/item/crowbar,
 		/obj/item/screwdriver,
@@ -240,7 +240,7 @@
 		/obj/item/clockwork/clockwork_slab,
 		/obj/item/clockwork/replica_fabricator
 		))
-	atom_storage.set_holdable = can_hold
+	atom_storage.set_holdable(can_hold)
 
 /obj/item/storage/belt/utility/servant/PopulateContents()
 	if(slab)
