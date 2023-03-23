@@ -12,7 +12,7 @@
 	component_datum = /datum/component/clockwork_trap/pressure_sensor
 	alpha = 60
 	max_integrity = 5
-	obj_integrity = 5
+	atom_integrity = 5
 
 /datum/component/clockwork_trap/pressure_sensor
 	sends_input = TRUE

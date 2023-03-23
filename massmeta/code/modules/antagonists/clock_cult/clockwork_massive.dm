@@ -78,7 +78,7 @@ GLOBAL_LIST_INIT(clockwork_portals, list())
 				for(var/obj/effect/portal/wormhole/clockcult/CC in GLOB.all_wormholes)
 					qdel(CC)
 				SSshuttle.clearHostileEnvironment(src)
-				set_security_level(SEC_LEVEL_RED)
+				SSsecurity_level.set_level(SEC_LEVEL_RED)
 				spawn(300)
 					SSticker.force_ending = TRUE
 					qdel(src)
@@ -125,10 +125,10 @@ GLOBAL_LIST_INIT(clockwork_portals, list())
 		if(!motherlov)
 			continue
 		if(!is_servant_of_ratvar(motherlov))
-			SEND_SOUND(motherlov, 'white/valtos/sounds/ratalarm.ogg')
+			SEND_SOUND(motherlov, 'massmeta/sounds/misc/ratalarm.ogg')
 		else
 			SEND_SOUND(motherlov, 'sound/magic/clockwork/invoke_general.ogg')
-	set_security_level(SEC_LEVEL_DELTA)
+	SSsecurity_level.set_level(SEC_LEVEL_DELTA)
 	mass_recall(TRUE)
 	var/grace_time = GLOB.narsie_breaching ? 0 : 1800
 	addtimer(CALLBACK(src, PROC_REF(begin_assault)), grace_time)

@@ -404,10 +404,6 @@
 			new material_datum.sheet_type(loc, FLOOR(custom_materials[material_datum] / MINERAL_MATERIAL_AMOUNT, 1))
 	qdel(src)
 
-/obj/structure/falsewall/ratvar_act()
-	new /obj/structure/falsewall/brass(loc)
-	qdel(src)
-
 /obj/structure/falsewall/material/mat_update_desc(mat)
 	desc = "A huge chunk of [mat] used to separate rooms."
 

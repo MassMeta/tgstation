@@ -87,6 +87,7 @@
 	if(!is_servant_of_ratvar(user))
 		to_chat(user, span_userdanger("Чувствую прилив энергии по всему телу!"))
 		user.dropItemToGround(src, TRUE)
+		var/mob/living/carbon/C = user
 		if(ishuman(C))
 			var/mob/living/carbon/human/H = C
 			H.electrocution_animation(20)

@@ -2,9 +2,9 @@
 
 /obj/item/clockwork/replica_fabricator
 	name = "производитель реплик"
-	icon = 'icons/obj/clockwork_objects.dmi'
-	righthand_file = 'white/valtos/icons/righthand.dmi'
-	lefthand_file = 'white/valtos/icons/lefthand.dmi'
+	icon = 'massmeta/icons/obj/clockwork_objects.dmi'
+	righthand_file = 'icons/mob/inhands/antag/clockwork_lefthand.dmi'
+	lefthand_file = 'icons/mob/inhands/antag/clockwork_righthand.dmi'
 	icon_state = "replica_fabricator"
 	desc = "Странное латунное устройство с множеством вращающихся зубцов и вентиляционных отверстий."
 	clockwork_desc = "Устройство, используемое для быстрого изготовления чего-то из латуни."
@@ -21,8 +21,6 @@
 /obj/item/clockwork/replica_fabricator/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
 	if(!proximity_flag || !is_servant_of_ratvar(user))
-		return
-	if(istype(target, /obj/item/stack/tile/bronze/cyborg))	//nooooO!!!! you can't just suck up your cyborg brass!!! nooooo!!!!!!
 		return
 	if(istype(target, /obj/item/stack/tile/bronze))
 		var/obj/item/stack/tile/bronze/B = target

@@ -32,7 +32,7 @@
 		return TRUE
 	if(M.stat == DEAD)
 		return FALSE
-	var/amc = M.anti_magic_check()
+	var/amc = M.can_block_magic(MAGIC_RESISTANCE)
 	if(amc)
 		return FALSE
 	if(HAS_TRAIT(M, TRAIT_NODEATH))
@@ -71,7 +71,7 @@
 		else
 			visible_message(span_neovgre("[src] не может воскресить [M]!") , span_neovgre("Недостаточно жизненных сил, чтобы залечить раны!"))
 	else
-		if(M.anti_magic_check())
+		if(M.can_block_magic(MAGIC_RESISTANCE))
 			return
 		M.Paralyze(10)
 		M.adjustCloneLoss(20)

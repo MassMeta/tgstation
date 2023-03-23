@@ -403,7 +403,7 @@
 	qdel(src)
 
 /obj/machinery/door/airlock/clockwork/proc/attempt_construction(obj/item/I, mob/living/user)
-	if(!I || !user || !user.canUseTopic(src))
+	if(!I || !user || !user.can_interact_with(src))
 		return 0
 	else if(I.tool_behaviour == TOOL_WRENCH)
 		if(construction_state == GEAR_SECURE)
@@ -449,7 +449,7 @@
 /obj/effect/clockwork/servant_blocker
 	name = "Servant Blocker"
 	desc = "You shall not pass."
-	icon = 'icons/effects/clockwork_effects.dmi'
+	icon = 'massmeta/icons/effects/clockwork_effects.dmi'
 	icon_state = "servant_blocker"
 	anchored = TRUE
 
@@ -493,11 +493,10 @@
 /obj/structure/grille/ratvar/broken
 	icon_state = "brokenratvargrille"
 	density = FALSE
-	obj_integrity = 20
+	atom_integrity = 20
 	broken = TRUE
-	rods_type = /obj/item/stack/tile/bronze
+	rods_type = /obj/item/stack/sheet/bronze
 	rods_broken = FALSE
-	grille_type = /obj/structure/grille/ratvar
 
 //=================================================
 //Ratvar Window: A transparent window

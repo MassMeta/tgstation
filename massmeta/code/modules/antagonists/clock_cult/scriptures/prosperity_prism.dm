@@ -22,7 +22,7 @@
 	anchored = TRUE
 	break_message = span_warning("Призма разваливается, токсичная жидкость утекает в воздух.")
 	max_integrity = 150
-	obj_integrity = 150
+	atom_integrity = 150
 	minimum_power = 4
 	var/powered = FALSE
 	var/toggled_on = TRUE

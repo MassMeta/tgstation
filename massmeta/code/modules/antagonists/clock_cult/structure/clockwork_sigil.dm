@@ -6,7 +6,7 @@
 	name = "сигил"
 	desc = "Сигил, который что-то делает."
 	max_integrity = 10
-	icon = 'icons/effects/clockwork_effects.dmi'
+	icon = 'massmeta/icons/effects/clockwork_effects.dmi'
 	icon_state = "sigilvitality"
 	density = FALSE
 	alpha = 60
@@ -63,7 +63,7 @@
 	var/mob/living/M = AM
 	if(!istype(M))
 		return FALSE
-	var/amc = M.anti_magic_check()
+	var/amc = M.can_block_magic(MAGIC_RESISTANCE)
 	if(amc)
 		return FALSE
 	return TRUE
@@ -122,5 +122,5 @@
 	M.blind_eyes(120)
 	var/mob/living/carbon/C = M
 	if(istype(C))
-		C.silent += 15
+		C.adjust_silence(15 SECONDS)
 	qdel(src)

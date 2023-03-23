@@ -12,7 +12,7 @@
 	unwrench_path = /obj/item/clockwork/trap_placer/skewer
 	buckle_lying = FALSE
 	max_integrity = 40
-	obj_integrity = 40
+	atom_integrity = 40
 	var/cooldown = 0
 	var/extended = FALSE
 	var/mutable_appearance/stab_overlay
@@ -40,7 +40,7 @@
 				H.bleed(30)
 	if(target_stabbed)
 		if(!stab_overlay)
-			stab_overlay = mutable_appearance('icons/obj/clockwork_objects.dmi', "brass_skewer_pokeybit", layer=ABOVE_MOB_LAYER)
+			stab_overlay = mutable_appearance('massmeta/icons/obj/clockwork_objects.dmi', "brass_skewer_pokeybit", layer=ABOVE_MOB_LAYER)
 		add_overlay(stab_overlay)
 
 /obj/structure/destructible/clockwork/trap/skewer/unbuckle_mob(mob/living/buckled_mob, force, can_fall = TRUE)

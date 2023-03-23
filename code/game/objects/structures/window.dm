@@ -949,7 +949,7 @@
 	armor = /datum/armor/brass_window
 	explosion_block = 2 //fancy AND hard to destroy. the most useful combination.
 	decon_speed = 40
-	glass_type = /obj/item/stack/tile/brass
+	glass_type = /obj/item/stack/sheet/bronze
 	glass_amount = 1
 	reinf = FALSE
 	var/made_glow = FALSE
@@ -965,7 +965,6 @@
 
 /obj/structure/window/reinforced/clockwork/Initialize(mapload, direct)
 	. = ..()
-	change_construction_value(fulltile ? 2 : 1)
 
 /obj/structure/window/reinforced/clockwork/spawn_debris(location)
 	. = list()
@@ -981,7 +980,6 @@
 	..()
 
 /obj/structure/window/reinforced/clockwork/Destroy()
-	change_construction_value(fulltile ? -2 : -1)
 	return ..()
 
 /obj/structure/window/reinforced/clockwork/ratvar_act()
