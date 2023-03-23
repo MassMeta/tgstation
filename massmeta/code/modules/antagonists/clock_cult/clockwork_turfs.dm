@@ -66,7 +66,7 @@
 		realappearence = null
 	return ..()
 
-/turf/closed/wall/clockwork/ReplaceWithLattice()
+/turf/closed/wall/clockwork/attempt_lattice_replacement()
 	..()
 	for(var/obj/structure/lattice/L in src)
 		L.ratvar_act()
@@ -188,7 +188,7 @@
 		QDEL_NULL(realappearence)
 	return ..()
 
-/turf/open/floor/clockwork/ReplaceWithLattice()
+/turf/open/floor/clockwork/attempt_lattice_replacement()
 	. = ..()
 	for(var/obj/structure/lattice/L in src)
 		L.ratvar_act()
@@ -496,7 +496,6 @@
 	atom_integrity = 20
 	broken = TRUE
 	rods_type = /obj/item/stack/sheet/bronze
-	rods_broken = FALSE
 
 //=================================================
 //Ratvar Window: A transparent window
@@ -509,7 +508,7 @@
 	icon_state = "clockwork_window_single"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	max_integrity = 80
-	armor = list("melee" = 40, "bullet" = -20, "laser" = 0, "energy" = 0, "bomb" = 25, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 100)
+	armor = /datum/armor/brass_window
 	explosion_block = 2 //fancy AND hard to destroy. the most useful combination.
 	decon_speed = 40
 	glass_type = /obj/item/stack/tile/bronze
@@ -517,7 +516,16 @@
 	reinf = FALSE
 	var/made_glow = FALSE
 
-/obj/structure/window/reinforced/clockwork/spawnDebris(location)
+/datum/armor/brass_window
+	melee = 60
+	bullet = 25
+	laser = 0
+	bomb = 25
+	bio = 100
+	fire = 80
+	acid = 100
+
+/obj/structure/window/reinforced/clockwork/spawn_debris(location)
 	. = list()
 	var/gearcount = fulltile ? 4 : 2
 	for(var/i in 1 to gearcount)
@@ -549,17 +557,15 @@
 	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE)
 	fulltile = TRUE
 	flags_1 = PREVENT_CLICK_UNDER_1
-	dir = FULLTILE_WINDOW_DIR
 	max_integrity = 120
 	glass_amount = 2
 
-/obj/structure/window/reinforced/clockwork/spawnDebris(location)
+/obj/structure/window/reinforced/clockwork/spawn_debris(location)
 	. = list()
 	for(var/i in 1 to 4)
 		. += new /obj/item/clockwork/alloy_shards/medium/gear_bit(location)
 
 /obj/structure/window/reinforced/clockwork/Initialize(mapload, direct)
-	made_glow = TRUE
 	new /obj/effect/temp_visual/ratvar/window(get_turf(src))
 	return ..()
 

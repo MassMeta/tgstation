@@ -25,8 +25,7 @@
 	if(is_servant_of_ratvar(M))
 		return FALSE
 	//Anti magic abilities
-	var/anti_magic_source = M.anti_magic_check()
-	if(anti_magic_source)
+	if(M.can_block_magic(MAGIC_RESISTANCE))
 		M.mob_light(_color = LIGHT_COLOR_HOLY_MAGIC, _range = 2, _duration = 100)
 		var/mutable_appearance/forbearance = mutable_appearance('icons/effects/genetics.dmi', "servitude", -MUTATIONS_LAYER)
 		M.add_overlay(forbearance)
@@ -38,8 +37,8 @@
 	//Blood Cultist Effect
 	if(IS_CULTIST(M))
 		M.mob_light(_color = LIGHT_COLOR_BLOOD_MAGIC, _range = 2, _duration = 300)
-		M.stuttering += 15
-		M.Jitter(15)
+		M.adjust_stutter(15 SECONDS)
+		M.adjust_jitter(15 SECONDS)
 		var/mob_color = M.color
 		M.color = LIGHT_COLOR_BLOOD_MAGIC
 		animate(M, color = mob_color, time = 300)
@@ -54,15 +53,15 @@
 			M.Paralyze(150)
 		else
 			to_chat(invoker, span_brass("[M] кажется несколько устойчивым к моим силам!"))
-			M.set_confusion(clamp(M.get_confusion(), 50, INFINITY))
+			M.adjust_confusion(5 SECONDS)
 	if(issilicon(M))
 		var/mob/living/silicon/S = M
 		S.emp_act(EMP_HEAVY)
 	else if(iscarbon(M))
 		var/mob/living/carbon/C = M
-		C.silent += 6
-		C.stuttering += 15
-		C.Jitter(15)
+		C.adjust_silence(6 SECONDS)
+		C.adjust_stutter(15 SECONDS)
+		C.adjust_jitter(15 SECONDS)
 	if(M.client)
 		var/client_color = M.client.color
 		M.client.color = "#BE8700"

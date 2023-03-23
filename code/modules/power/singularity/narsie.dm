@@ -35,6 +35,7 @@
 	var/soul_goal = 0
 	var/souls = 0
 	var/resolved = FALSE
+	var/clashing = FALSE
 
 /obj/narsie/Initialize(mapload)
 	. = ..()

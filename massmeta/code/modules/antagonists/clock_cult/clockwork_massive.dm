@@ -223,9 +223,9 @@ GLOBAL_LIST_INIT(clockwork_portals, list())
 GLOBAL_VAR(cult_ratvar)
 
 /obj/ratvar
-	name = "Ратвар, Механический Юстициар"
-	desc = "Ну да, это точно Ратвар!!!"
-	icon = 'icons/effects/512x512.dmi'
+	name = "Ratvar, the Clockwork Justicar"
+	desc = "..."
+	icon = 'massmeta/icons/effects/512x512.dmi'
 	icon_state = "ratvar"
 	anchored = TRUE
 	appearance_flags = LONG_GLIDE

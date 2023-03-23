@@ -26,7 +26,6 @@
 	requirements = list(100,90,80,60,40,30,10,10,10,10)
 	flags = HIGH_IMPACT_RULESET
 	antag_cap = list("denominator" = 20, "offset" = 1)
-	var/ark_time
 
 /datum/dynamic_ruleset/roundstart/clockcult/pre_execute()
 	LoadReebe()
@@ -43,8 +42,6 @@
 		servant.mind.assigned_role = ROLE_SERVANT_OF_RATVAR
 		servant.mind.special_role = ROLE_SERVANT_OF_RATVAR
 		GLOB.pre_setup_antags += servant.mind
-	ark_time = 30 + round((number_players / 5))
-	ark_time = min(ark_time, 35)
 	return TRUE
 
 /datum/dynamic_ruleset/roundstart/clockcult/execute()
@@ -56,23 +53,10 @@
 		log_game("[key_name(servant)] was made an initial servant of Ratvar")
 		var/turf/T = pick_n_take(spread_out_spawns)
 		S.forceMove(T)
-		greet_servant(S)
 		equip_servant(S)
 		add_servant_of_ratvar(S, TRUE)
 		GLOB.pre_setup_antags -= S.mind
-	var/obj/structure/destructible/clockwork/massive/celestial_gateway/G = GLOB.ark_of_the_clockwork_justiciar //that's a mouthful
-	G.final_countdown(ark_time)
 	return TRUE
-
-/datum/dynamic_ruleset/roundstart/clockcult/proc/greet_servant(mob/M) //Description of their role
-	if(!M)
-		return 0
-	to_chat(M, "<span class='bold large_brass'>You are a servant of Ratvar, the Clockwork Justiciar!</span>")
-	to_chat(M, "<span class='brass'>You have approximately <b>[ark_time]</b> minutes until the Ark activates.</span>")
-	to_chat(M, "<span class='brass'>Unlock <b>Script</b> scripture by converting a new servant.</span>")
-	to_chat(M, "<span class='brass'><b>Application</b> scripture will be unlocked halfway until the Ark's activation.</span>")
-	M.playsound_local(get_turf(M), 'sound/ambience/antag/clockcultalr.ogg', 100, FALSE, pressure_affected = FALSE)
-	return 1
 
 /datum/dynamic_ruleset/roundstart/clockcult/proc/equip_servant(mob/living/M) //Grants a clockwork slab to the mob, with one of each component
 	if(!M || !ishuman(M))

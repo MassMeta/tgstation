@@ -102,7 +102,6 @@
 	invis_override = null
 	flash_protect = -1
 	vision_flags = SEE_MOBS
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 	glass_colour_type = /datum/client_colour/glass_colour/yellow
 	var/mob/living/wearer
 	var/applied_eye_damage

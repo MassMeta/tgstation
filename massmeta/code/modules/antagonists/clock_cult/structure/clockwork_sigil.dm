@@ -119,7 +119,7 @@
 	if(!..())
 		return FALSE
 	M.Paralyze(60)
-	M.blind_eyes(120)
+	M.adjust_temp_blindness(120)
 	var/mob/living/carbon/C = M
 	if(istype(C))
 		C.adjust_silence(15 SECONDS)

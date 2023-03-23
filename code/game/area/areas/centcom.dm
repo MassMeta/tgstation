@@ -311,7 +311,7 @@ The areas used here are STRICTLY on the CC Z level.
 	requires_power = FALSE
 	has_gravity = STANDARD_GRAVITY
 	area_flags = HIDDEN_AREA | NOTELEPORT
-	ambientsounds = REEBE
+	ambientsounds = AMBIENCE_REEBE
 	static_lighting = FALSE
 	base_lighting_color = COLOR_WHITE
 	base_lighting_alpha = 255
@@ -321,7 +321,7 @@ The areas used here are STRICTLY on the CC Z level.
 	icon_state = "purple"
 	area_flags = NOTELEPORT
 	var/playing_ambience = FALSE
-	ambientsounds = REEBE
+	ambientsounds = AMBIENCE_REEBE
 
 /area/reebe/Initialize(mapload)
 	. = ..()

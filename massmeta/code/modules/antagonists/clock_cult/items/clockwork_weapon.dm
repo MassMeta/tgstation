@@ -167,4 +167,3 @@
 	icon_state = "arrow_energy"
 	damage = 4
 	damage_type = BURN
-	nodamage = FALSE

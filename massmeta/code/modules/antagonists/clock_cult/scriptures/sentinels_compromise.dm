@@ -37,11 +37,11 @@
 	M.reagents.remove_reagent(/datum/reagent/water/holywater, INFINITY)
 	M.set_nutrition(NUTRITION_LEVEL_FULL)
 	M.bodytemperature = BODYTEMP_NORMAL
-	M.set_blindness(0)
+	M.set_temp_blindness(0)
 	M.set_blurriness(0)
-	M.set_dizziness(0)
+	M.set_dizzy(0)
 	M.cure_husk()
-	M.hallucination = 0
+	M.set_hallucinations(0)
 	new /obj/effect/temp_visual/heal(get_turf(M), "#f8d984")
 	playsound(M, 'sound/magic/magic_missile.ogg', 50, TRUE)
 	playsound(invoker, 'sound/magic/magic_missile.ogg', 50, TRUE)
