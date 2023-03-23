@@ -28,7 +28,8 @@
 	antag_cap = list("denominator" = 20, "offset" = 1)
 
 /datum/dynamic_ruleset/roundstart/clockcult/pre_execute()
-
+	LoadReebe()
+	
 	var/starter_servants = 4
 	var/number_players = mode.roundstart_pop_ready
 	if(number_players > 30)
@@ -44,7 +45,6 @@
 	return TRUE
 
 /datum/dynamic_ruleset/roundstart/clockcult/execute()
-	LoadReebe()
 	var/list/spread_out_spawns = GLOB.servant_spawns.Copy()
 	for(var/datum/mind/servant in assigned)
 		var/mob/S = servant.current
