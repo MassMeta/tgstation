@@ -11,7 +11,7 @@
 	antag_hud_name = "clockwork"
 
 	//The class of the servant
-	var/datum/action/innate/clockcult/transmit/transmit_spell
+	var/datum/action/cooldown/clockcult/transmit/transmit_spell
 	var/datum/team/clock_cult/team
 
 	var/prefix = CLOCKCULT_PREFIX_RECRUIT
