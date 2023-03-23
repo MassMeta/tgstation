@@ -29,14 +29,7 @@
 	var/ark_time
 
 /datum/dynamic_ruleset/roundstart/clockcult/pre_execute()
-	var/list/errorList = list()
-	SSmapping.LoadGroup(errorList, "Reebe", "map_files/generic", "City_of_Cogs.dmm", default_traits = ZTRAITS_REEBE, silent = TRUE)
-	if(errorList.len)
-		message_admins("Reebe failed to load!")
-		log_game("Reebe failed to load!")
-		return FALSE
-	//for(var/datum/parsed_map/PM in reebes)
-	//	PM.initTemplateBounds()
+	LoadReebe()
 
 	var/starter_servants = 4
 	var/number_players = mode.roundstart_pop_ready

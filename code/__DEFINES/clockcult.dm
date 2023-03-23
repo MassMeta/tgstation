@@ -45,6 +45,8 @@
 //from base of atom/eminence_act(): ()
 #define COMSIG_ATOM_EMINENCE_ACT "atom_eminence_act"
 
+#define COMSIG_CLOCKWORK_SIGNAL_RECEIVED "clockwork_signal_received"
+
 #define iseminence(A) (istype(A, /mob/living/simple_animal/eminence))
 
 #define iscogscarab(A) (istype(A, /mob/living/simple_animal/drone/cogscarab))
@@ -196,3 +198,17 @@ GLOBAL_VAR(clockcult_eminence)
 				to_chat(M, "<span class='nezbere'>You hear the cogs whispering to you, but cannot understand their words.</span>")
 			return
 	to_chat(M, hierophant_message)
+
+//I hate niggers
+#define span_brass(str) ("<span class='brass'>" + str + "</span>")
+#define span_heavy_brass(str) ("<span class='heavy_brass'>" + str + "</span>")
+#define span_large_brass(str) ("<span class='large_brass'>" + str + "</span>")
+#define span_big_brass(str) ("<span class='big_brass'>" + str + "</span>")
+#define span_ratvar(str) ("<span class='ratvar'>" + str + "</span>")
+#define span_nezbere(str) ("<span class='nezbere'>" + str + "</span>")
+#define span_nzcrentr(str) ("<span class='nzcrentr'>" + str + "</span>")
+#define span_neovgre(str) ("<span class='neovgre'>" + str + "</span>")
+#define span_inathneq(str) ("<span class='inathneq'>" + str + "</span>")
+#define span_sevtug(str) ("<span class='sevtug'>" + str + "</span>")
+#define span_alloy(str) ("<span class='alloy'>" + str + "</span>")
+#define span_caution(str) ("<span class='сaution'>" + str + "</span>")
