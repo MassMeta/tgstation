@@ -302,10 +302,7 @@
 /datum/reagent/water/holywater/on_mob_metabolize(mob/living/affected_mob)
 	..()
 	ADD_TRAIT(affected_mob, TRAIT_HOLY, type)
-	if(HAS_TRAIT_FROM(L, TRAIT_DEPRESSION, HOLYWATER_TRAIT))
-		REMOVE_TRAIT(L, TRAIT_DEPRESSION, HOLYWATER_TRAIT)
-		to_chat(L, "<span class='notice'>You cheer up, knowing that everything is going to be ok.</span>")
-
+	
 /datum/reagent/water/holywater/on_mob_add(mob/living/affected_mob, amount)
 	. = ..()
 	if(data)
@@ -313,6 +310,10 @@
 
 /datum/reagent/water/holywater/on_mob_end_metabolize(mob/living/affected_mob)
 	REMOVE_TRAIT(affected_mob, TRAIT_HOLY, type)
+	if(HAS_TRAIT_FROM(affected_mob, TRAIT_DEPRESSION, HOLYWATER_TRAIT))
+		REMOVE_TRAIT(affected_mob, TRAIT_DEPRESSION, HOLYWATER_TRAIT)
+		to_chat(affected_mob, "<span class='notice'>You cheer up, knowing that everything is going to be ok.</span>")
+
 	..()
 
 /datum/reagent/water/holywater/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume)

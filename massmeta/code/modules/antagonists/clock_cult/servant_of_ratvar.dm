@@ -9,7 +9,6 @@
 	antag_moodlet = /datum/mood_event/cult
 	job_rank = ROLE_SERVANT_OF_RATVAR
 	antag_hud_name = "clockwork"
-	greentext_reward = 60
 
 	//The class of the servant
 	var/datum/action/innate/clockcult/transmit/transmit_spell
@@ -117,7 +116,7 @@
 		AI.disconnect_shell()
 		for(var/mob/living/silicon/robot/R in AI.connected_robots)
 			R.connected_ai = null
-		var/mutable_appearance/ai_clock = mutable_appearance('icons/mob/clockwork_mobs.dmi', "aiframe")
+		var/mutable_appearance/ai_clock = mutable_appearance('massmeta/icons/mob/clockwork_mobs.dmi', "aiframe")
 		AI.add_overlay(ai_clock)
 	else if(iscyborg(S))
 		var/mob/living/silicon/robot/R = S
