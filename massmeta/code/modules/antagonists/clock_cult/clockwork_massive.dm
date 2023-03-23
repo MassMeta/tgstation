@@ -289,9 +289,6 @@ GLOBAL_VAR(cult_ratvar)
 					SEND_SOUND(world, 'sound/magic/demon_dies.ogg')
 					to_chat(world, span_ratvar("Ты был дураком из-за того, что недооценил меня..."))
 					qdel(ratvar_target)
-					for(var/datum/mind/M as() in SSticker.mode?.cult)
-						to_chat(M, span_userdanger("Чувствую колющую боль в груди... НЕТ!"))
-						M.current?.dust()
 				return
 
 /obj/ratvar/proc/eat()

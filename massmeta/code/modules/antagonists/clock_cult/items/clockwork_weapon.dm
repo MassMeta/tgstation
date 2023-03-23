@@ -124,21 +124,6 @@
 	to_chat(user, span_brass("Попадаю по [target] мощным электромагнитным импульсом!"))
 	playsound(user, 'sound/magic/lightningshock.ogg', 40)
 
-/obj/item/clockwork/weapon/brass_sword/attack_obj(obj/O, mob/living/user)
-	..()
-	if(!ismecha(O) && is_reebe(user.z))
-		return
-	if(!COOLDOWN_FINISHED(src, emp_cooldown))
-		return
-	COOLDOWN_START(src, emp_cooldown, 20 SECONDS)
-
-	var/obj/vehicle/sealed/mecha/target = O
-	target.emp_act(EMP_HEAVY)
-	new /obj/effect/temp_visual/emp/pulse(target.loc)
-	addtimer(CALLBACK(src, PROC_REF(send_message), user), 20 SECONDS)
-	to_chat(user, span_brass("Попадаю по [target] мощным электромагнитным импульсом!"))
-	playsound(user, 'sound/magic/lightningshock.ogg', 40)
-
 /obj/item/clockwork/weapon/brass_sword/proc/send_message(mob/living/target)
 	to_chat(target, span_brass("[capitalize(src.name)] светится, сообщая о готовности следующего электромагнитного удара."))
 

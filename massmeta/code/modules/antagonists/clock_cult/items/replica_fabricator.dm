@@ -45,12 +45,12 @@
 		if(GLOB.clockcult_power < 200)
 			to_chat(user, span_nzcrentr("Требуется [200 - GLOB.clockcult_power]W для починки [C]..."))
 			return
-		if(C.max_integrity == C.obj_integrity)
+		if(C.max_integrity == C.atom_integrity)
 			to_chat(user, span_nzcrentr("[C] уже в порядке!"))
 			return
 		to_chat(user, span_nzcrentr("Начинаю ремонтировать [C]..."))
 		if(do_after(user, 60, target=target))
-			if(C.max_integrity == C.obj_integrity)
+			if(C.max_integrity == C.atom_integrity)
 				to_chat(user, span_nzcrentr("[C] уже в порядке!"))
 				return
 			if(GLOB.clockcult_power < 200)
@@ -58,7 +58,7 @@
 				return
 			GLOB.clockcult_power -= 200
 			to_chat(user, span_nzcrentr("Чиню некоторый урон на [C]."))
-			C.obj_integrity = clamp(C.obj_integrity + 15, 0, C.max_integrity)
+			C.atom_integrity = clamp(C.atom_integrity + 15, 0, C.max_integrity)
 		else
 			to_chat(user, span_nzcrentr("Не вышло починить [C]..."))
 

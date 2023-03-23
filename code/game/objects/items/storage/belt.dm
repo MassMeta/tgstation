@@ -209,7 +209,7 @@
 	slab = /obj/item/clockwork/clockwork_slab
 	replicator = /obj/item/clockwork/replica_fabricator
 
-/obj/item/storage/belt/utility/servant/ComponentInitialize()
+/obj/item/storage/belt/utility/servant/Initialize()
 	. = ..()
 	atom_storage.max_total_storage = 25
 	atom_storage.max_slots = 7

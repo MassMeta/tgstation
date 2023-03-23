@@ -38,7 +38,7 @@
 	M.set_nutrition(NUTRITION_LEVEL_FULL)
 	M.bodytemperature = BODYTEMP_NORMAL
 	M.set_temp_blindness(0)
-	M.set_blurriness(0)
+	M.set_eye_blur(0)
 	M.set_dizzy(0)
 	M.cure_husk()
 	M.set_hallucinations(0)

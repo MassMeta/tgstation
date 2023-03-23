@@ -81,11 +81,3 @@
 		to_chat(L, "<span class='alloy italics'>If you want more information, you can read <a href=\"https://tgstation13.org/wiki/Clockwork_Cult\">the wiki page</a> to learn more.</span>")
 		return TRUE
 	return FALSE
-
-/datum/dynamic_ruleset/roundstart/clockcult/round_result()
-	if(GLOB.clockwork_gateway_activated)
-		//SSticker.news_report = CLOCK_SUMMON
-		SSticker.mode_result = "win - servants completed their objective (summon ratvar)"
-	else
-		//SSticker.news_report = CULT_FAILURE
-		SSticker.mode_result = "loss - servants failed their objective (summon ratvar)"

@@ -59,6 +59,8 @@
 
 	var/obj/item/clockwork/integration_cog/integration_cog //Is there a cog siphoning power?
 
+	var/clock_cog_rewarded = FALSE	//Clockcult - Has the reward for converting an APC been given?
+
 	///Amount of power used by the lighting channel
 	var/lastused_light = 0
 	///Amount of power used by the equipment channel

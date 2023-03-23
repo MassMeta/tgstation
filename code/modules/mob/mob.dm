@@ -5,7 +5,6 @@
  * * GLOB.mob_list
  * * GLOB.dead_mob_list
  * * GLOB.alive_mob_list
- * * GLOB.all_clockwork_mobs
  * * GLOB.mob_directory
  *
  * Unsets the focus var
@@ -45,7 +44,6 @@
 			observe.reset_perspective(null)
 
 	qdel(hud_used)
-	GLOB.all_clockwork_mobs -= src
 	QDEL_LIST(client_colours)
 	ghostize() //False, since we're deleting it currently
 	if(mind?.current == src) //Let's just be safe yeah? This will occasionally be cleared, but not always. Can't do it with ghostize without changing behavior

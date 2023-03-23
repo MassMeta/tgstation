@@ -4,11 +4,13 @@
 	icon_state = "integration_cog"
 	clockwork_desc = "Острая шестерня, которой можно прорезать электрощиток и вставить в него её для извлечения питания из него."
 
-/obj/item/clockwork/integration_cog/attack_obj(obj/O, mob/living/user)
+/obj/item/clockwork/integration_cog/afterattack(atom/O, mob/living/user, proximity)
 	if(!is_servant_of_ratvar(user))
-		return ..()
+		return
+	if(!proximity)
+		return
 	if(!istype(O, /obj/machinery/power/apc))
-		return ..()
+		return
 	var/obj/machinery/power/apc/A = O
 	if(A.integration_cog)
 		to_chat(user, span_brass("Здесь уже есть [src] в [A]."))
