@@ -138,7 +138,9 @@
 	if(cyborg.emagged)
 		for(var/obj/item/module in emag_modules)
 			add_module(module, FALSE, FALSE)
-	if(is_servant_of_ratvar(cyborg))
+	if(is_servant_of_ratvar(R) && !R.ratvar)	//It just works :^)
+		R.SetRatvar(TRUE, FALSE)
+	if(R.ratvar)
 		for(var/obj/item/I in ratvar_modules)
 			add_module(I, FALSE, FALSE)
 	for(var/obj/item/module in added_modules)
@@ -309,9 +311,9 @@
 		/obj/item/reagent_containers/borghypo/clown/hacked,
 		/obj/item/reagent_containers/spray/waterflower/cyborg/hacked)
 	ratvar_modules = list(
-		/obj/item/clockwork/slab/cyborg,
-		/obj/item/clockwork/weapon/ratvarian_spear,
-		/obj/item/clockwork/replica_fabricator/cyborg)
+		/obj/item/clock_module/abscond,
+		/obj/item/clock_module/vanguard,
+		/obj/item/clockwork/brass_battlehammer)	//honk
 	model_select_icon = "service"
 	cyborg_base_icon = "clown"
 	hat_offset = -2
@@ -352,8 +354,13 @@
 	radio_channels = list(RADIO_CHANNEL_ENGINEERING)
 	emag_modules = list(/obj/item/borg/stun)
 	ratvar_modules = list(
-		/obj/item/clockwork/slab/cyborg/engineer,
-		/obj/item/clockwork/replica_fabricator/cyborg)
+		/obj/item/clock_module/abscond,
+		/obj/item/clock_module/ocular_warden,
+		/obj/item/clock_module/tinkerers_cache,
+		/obj/item/clock_module/stargazer,
+		/obj/item/clock_module/abstraction_crystal,
+		/obj/item/clockwork/replica_fabricator,
+		/obj/item/stack/tile/bronze/cyborg)
 	cyborg_base_icon = "engineer"
 	model_select_icon = "engineer"
 	model_traits = list(TRAIT_NEGATES_GRAVITY)
@@ -379,8 +386,10 @@
 	radio_channels = list(RADIO_CHANNEL_SERVICE)
 	emag_modules = list(/obj/item/reagent_containers/spray/cyborg_lube)
 	ratvar_modules = list(
-		/obj/item/clockwork/slab/cyborg/janitor,
-		/obj/item/clockwork/replica_fabricator/cyborg)
+		/obj/item/clock_module/abscond,
+		/obj/item/clock_module/sigil_submission,
+		/obj/item/clock_module/kindle,
+		/obj/item/clock_module/vanguard)
 	cyborg_base_icon = "janitor"
 	model_select_icon = "janitor"
 	hat_offset = -5
@@ -646,8 +655,10 @@
 	radio_channels = list(RADIO_CHANNEL_MEDICAL)
 	emag_modules = list(/obj/item/reagent_containers/borghypo/medical/hacked)
 	ratvar_modules = list(
-		/obj/item/clockwork/slab/cyborg/medical,
-		/obj/item/clockwork/weapon/ratvarian_spear)
+		/obj/item/clock_module/abscond,
+		/obj/item/clock_module/sentinels_compromise,
+		/obj/item/clock_module/prosperity_prism,
+		/obj/item/clock_module/vanguard)
 	cyborg_base_icon = "medical"
 	model_select_icon = "medical"
 	model_traits = list(TRAIT_PUSHIMMUNE)
@@ -675,9 +686,10 @@
 	radio_channels = list(RADIO_CHANNEL_SCIENCE, RADIO_CHANNEL_SUPPLY)
 	emag_modules = list(/obj/item/borg/stun)
 	ratvar_modules = list(
-		/obj/item/clockwork/slab/cyborg/miner,
-		/obj/item/clockwork/weapon/ratvarian_spear,
-		/obj/item/borg/sight/xray/truesight_lens)
+		/obj/item/clock_module/abscond,
+		/obj/item/clock_module/vanguard,
+		/obj/item/clock_module/ocular_warden,
+		/obj/item/clock_module/sentinels_compromise)
 	cyborg_base_icon = "miner"
 	model_select_icon = "miner"
 	hat_offset = 0
@@ -710,8 +722,10 @@
 		/obj/item/borg/projectile_dampen)
 	emag_modules = list(/obj/item/reagent_containers/borghypo/peace/hacked)
 	ratvar_modules = list(
-		/obj/item/clockwork/slab/cyborg/peacekeeper,
-		/obj/item/clockwork/weapon/ratvarian_spear)
+		/obj/item/clock_module/abscond,
+		/obj/item/clock_module/vanguard,
+		/obj/item/clock_module/kindle,
+		/obj/item/clock_module/sigil_submission)
 	cyborg_base_icon = "peace"
 	model_select_icon = "standard"
 	model_traits = list(TRAIT_PUSHIMMUNE)
@@ -733,8 +747,11 @@
 		/obj/item/extinguisher/mini)
 	radio_channels = list(RADIO_CHANNEL_SECURITY)
 	emag_modules = list(/obj/item/gun/energy/laser/cyborg)
-	ratvar_modules = list(/obj/item/clockwork/slab/cyborg/security,
-		/obj/item/clockwork/weapon/ratvarian_spear)
+	ratvar_modules = list(
+		/obj/item/clock_module/abscond,
+		/obj/item/clockwork/brass_spear,
+		/obj/item/clock_module/ocular_warden,
+		/obj/item/clock_module/vanguard)
 	cyborg_base_icon = "sec"
 	model_select_icon = "security"
 	model_traits = list(TRAIT_PUSHIMMUNE)
@@ -781,8 +798,13 @@
 	)
 	radio_channels = list(RADIO_CHANNEL_SERVICE)
 	emag_modules = list(/obj/item/reagent_containers/borghypo/borgshaker/hacked)
-	ratvar_modules = list(/obj/item/clockwork/slab/cyborg/service,
-		/obj/item/borg/sight/xray/truesight_lens)
+	ratvar_modules = list(
+		/obj/item/clock_module/abscond,
+		/obj/item/clock_module/vanguard,
+		/obj/item/clock_module/sigil_submission,
+		/obj/item/clock_module/kindle,
+		/obj/item/clock_module/sentinels_compromise,
+		/obj/item/clockwork/replica_fabricator)
 	cyborg_base_icon = "service_m" // display as butlerborg for radial model selection
 	model_select_icon = "service"
 	special_light_key = "service"
@@ -968,6 +990,9 @@
 
 /datum/robot_energy_storage/glass
 	name = "Glass Synthesizer"
+
+/datum/robot_energy_storage/bronze
+	name = "Brass Synthesizer"
 
 /datum/robot_energy_storage/wire
 	max_energy = 50

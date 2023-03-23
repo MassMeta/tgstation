@@ -1,159 +1,198 @@
+#define CLOCKCULT_SERVANTS 4
+
 //component id defines; sometimes these may not make sense in regards to their use in scripture but important ones are bright
-/// Use this for offensive and damaging scripture!
-#define BELLIGERENT_EYE "belligerent_eye"
-/// Use this for defensive and healing scripture!
-#define VANGUARD_COGWHEEL "vanguard_cogwheel"
-/// Use this for niche scripture!
-#define GEIS_CAPACITOR "geis_capacitor"
+#define BELLIGERENT_EYE "belligerent_eye" //! Use this for offensive and damaging scripture!
+#define VANGUARD_COGWHEEL "vanguard_cogwheel" //! Use this for defensive and healing scripture!
+#define GEIS_CAPACITOR "geis_capacitor" //! Use this for niche scripture!
 #define REPLICANT_ALLOY "replicant_alloy"
-/// Use this for construction-related scripture!
-#define HIEROPHANT_ANSIBLE "hierophant_ansible"
+#define HIEROPHANT_ANSIBLE "hierophant_ansible" //! Use this for construction-related scripture!
 
-/// The total value of all structures built by the clockwork cult
-GLOBAL_VAR_INIT(clockwork_construction_value, 0)
-/// How much Vitality is stored, total
-GLOBAL_VAR_INIT(clockwork_vitality, 0)
-/// How many watts of power are globally available to the clockwork cult
-GLOBAL_VAR_INIT(clockwork_power, 0)
+//Invokation speech types
+#define INVOKATION_WHISPER 1
+#define INVOKATION_SPOKEN 2
+#define INVOKATION_SHOUT 3
 
-/// All clockwork items, structures, and effects in existence
-GLOBAL_LIST_EMPTY(all_clockwork_objects)
-/// All clockwork SERVANTS (not creatures) in existence
-GLOBAL_LIST_EMPTY(all_clockwork_mobs)
+#define DEFAULT_CLOCKSCRIPTS "6:-29,4:-2"
 
-/// The servants can choose to "herald" Ratvar, permanently buffing them but announcing their presence to the crew.
-GLOBAL_VAR_INIT(ratvar_approaches, 0)
-/// If Ratvar has been summoned; not a boolean, for proper handling of multiple Ratvars
-GLOBAL_VAR_INIT(ratvar_awakens, 0)
-/// The Ark on the Reebe z-level
-GLOBAL_VAR_INIT(ark_of_the_clockwork_justiciar, FALSE)
+//scripture types
+#define SPELLTYPE_ABSTRACT "Abstract"
+#define SPELLTYPE_SERVITUDE "Servitude"
+#define SPELLTYPE_PRESERVATION "Preservation"
+#define SPELLTYPE_STRUCTURES "Structures"
 
-/// if a gateway to the celestial derelict has ever been successfully activated
-GLOBAL_VAR_INIT(clockwork_gateway_activated, FALSE)
-/// If script scripture is available, through converting at least one crewmember
-GLOBAL_VAR_INIT(script_scripture_unlocked, FALSE)
-/// If script scripture is available
-GLOBAL_VAR_INIT(application_scripture_unlocked, FALSE)
-/// a list containing scripture instances; not used to track existing scripture
-GLOBAL_LIST_EMPTY(all_scripture)
+//Trap type
+#define TRAPMOUNT_WALL 1
+#define TRAPMOUNT_FLOOR 2
 
-//Scripture tiers and requirements; peripherals should never be used
-#define SCRIPTURE_PERIPHERAL "Peripheral"
-#define SCRIPTURE_DRIVER "Driver"
-#define SCRIPTURE_SCRIPT "Script"
-#define SCRIPTURE_APPLICATION "Application"
+//Conversion warnings
+#define CONVERSION_WARNING_NONE 0
+#define CONVERSION_WARNING_HALFWAY 1
+#define CONVERSION_WARNING_THREEQUARTERS 2
+#define CONVERSION_WARNING_CRITIAL 3
 
-//Various costs related to power.
-/// The max power in W that the cult can stockpile
-#define MAX_CLOCKWORK_POWER 50000
-/// Scripts will unlock if the total power reaches this amount
-#define SCRIPT_UNLOCK_THRESHOLD 25000
-/// Applications will unlock if the total powre reaches this amount
-#define APPLICATION_UNLOCK_THRESHOLD 40000
+//Name types
+#define CLOCKCULT_PREFIX_EMINENCE 2
+#define CLOCKCULT_PREFIX_MASTER 1
+#define CLOCKCULT_PREFIX_RECRUIT 0
 
-#define ABSCOND_ABDUCTION_COST 95
-
-//clockcult power defines
-/// the minimum amount of power clockcult machines will handle gracefully
-#define MIN_CLOCKCULT_POWER 25
-
-/// standard power amount for replica fabricator costs
-#define CLOCKCULT_POWER_UNIT (MIN_CLOCKCULT_POWER*100)
-
-/// how much power is in anything else; doesn't matter as much as the following
-#define POWER_STANDARD (CLOCKCULT_POWER_UNIT*0.2)
-
-/// how much power is in a clockwork floor, determines the cost of clockwork floor production
-#define POWER_FLOOR (CLOCKCULT_POWER_UNIT*0.1)
-
-/// how much power is in a clockwork wall, determines the cost of clockwork wall production
-#define POWER_WALL_MINUS_FLOOR (CLOCKCULT_POWER_UNIT*0.4)
-
-/// how much power is in a wall gear, minus the brass from the wall
-#define POWER_GEAR (CLOCKCULT_POWER_UNIT*0.3)
-
-/// how much power is in a clockwork wall and the floor under it
-#define POWER_WALL_TOTAL (POWER_WALL_MINUS_FLOOR+POWER_FLOOR)
-
-/// how much power is in one rod
-#define POWER_ROD (CLOCKCULT_POWER_UNIT*0.01)
-
-/// how much power is in one sheet of metal
-#define POWER_METAL (CLOCKCULT_POWER_UNIT*0.02)
-
-/// how much power is in one sheet of plasteel
-#define POWER_PLASTEEL (CLOCKCULT_POWER_UNIT*0.05)
-
-//Ark defines
-/// the time amount the Gateway to the Celestial Derelict gets each process tick; defaults to 1 per tick
-#define GATEWAY_SUMMON_RATE 1
-
-/// when progress is at or above this, the gateway finds reebe and begins drawing power
-#define GATEWAY_REEBE_FOUND 240
-
-/// when progress is at or above this, ratvar has entered and is coming through the gateway
-#define GATEWAY_RATVAR_COMING 480
-
-/// when progress is at or above this, game over ratvar's here everybody go home
-#define GATEWAY_RATVAR_ARRIVAL 600
-
-///Objective text define
-#define CLOCKCULT_OBJECTIVE "Construct the Ark of the Clockwork Justicar and free Ratvar."
-
-//Eminence defines
-/// How many walls can be superheated at once
-#define SUPERHEATED_CLOCKWORK_WALL_LIMIT 20
-
-//misc clockcult stuff
-
-/// range at which transmission sigils can access power
-#define SIGIL_ACCESS_RANGE 2
-
-/// how much a fabricator repairs each tick, and also how many deciseconds each tick is
-#define FABRICATOR_REPAIR_PER_TICK 4
-
-/// the range at which ocular wardens cannot be placed near other ocular wardens
-#define OCULAR_WARDEN_EXCLUSION_RANGE 3
-
-/// The cooldown period between summoning suits of clockwork armor
-#define CLOCKWORK_ARMOR_COOLDOWN 1800
-
-/// The cooldown period between summoning another Ratvarian spear
-#define RATVARIAN_SPEAR_COOLDOWN 300
-
-/// The amount of deciseconds that must pass before marauder scripture will not gain a recital penalty
-#define MARAUDER_SCRIPTURE_SCALING_THRESHOLD 600
-
-/// The amount of extra deciseconds tacked on to the marauder scripture recital time per recent marauder
-#define MARAUDER_SCRIPTURE_SCALING_TIME 20
-
-/// The maximum extra time applied to the marauder scripture
-#define MARAUDER_SCRIPTURE_SCALING_MAX 300
-
-/// This much time has to pass between instances of the Ark taking damage before it will "scream" again
-#define ARK_SCREAM_COOLDOWN 600
-
+//from base of atom/ratvar_act(): ()
 #define COMSIG_ATOM_RATVAR_ACT "atom_ratvar_act"
+//from base of atom/eminence_act(): ()
+#define COMSIG_ATOM_EMINENCE_ACT "atom_eminence_act"
 
-/proc/servants_and_ghosts()
-	. = list()
-	for(var/V in GLOB.player_list)
-		if(is_servant_of_ratvar(V) || istype(V, /mob/dead/observer))
-			. += V
+//from base of atom/ratvar_act(): ()
+#define COMSIG_ATOM_RATVAR_ACT "atom_ratvar_act"
+//from base of atom/eminence_act(): ()
+#define COMSIG_ATOM_EMINENCE_ACT "atom_eminence_act"
 
-#define STATUS_EFFECT_MANIAMOTOR /datum/status_effect/maniamotor //disrupts, damages, and confuses the affected as long as they're in range of the motor
-#define MAX_MANIA_SEVERITY 100 //how high the mania severity can go
-#define MANIA_DAMAGE_TO_CONVERT 90 //how much damage is required before it'll convert affected targets
+#define iseminence(A) (istype(A, /mob/living/simple_animal/eminence))
 
-#define STATUS_EFFECT_SHADOW_MEND /datum/status_effect/shadow_mend //Quick, powerful heal that deals damage afterwards. Heals 15 brute/burn every second for 3 seconds.
-#define STATUS_EFFECT_VOID_PRICE /datum/status_effect/void_price //The price of healing yourself with void energy. Deals 3 brute damage every 3 seconds for 30 seconds.
+#define iscogscarab(A) (istype(A, /mob/living/simple_animal/drone/cogscarab))
 
-#define STATUS_EFFECT_POWERREGEN /datum/status_effect/cyborg_power_regen //Regenerates power on a given cyborg over time
+#define TRAIT_STARGAZED "stargazed"	//Affected by a stargazer
 
-#define STATUS_EFFECT_KINDLE /datum/status_effect/kindle //A knockdown reduced by 1 second for every 3 points of damage the target takes.
+#define HOLYWATER_TRAIT "holywater"
+#define VANGUARD_TRAIT "vanguard"
+#define STARGAZER_TRAIT "stargazer"
 
-#define STATUS_EFFECT_ICHORIAL_STAIN /datum/status_effect/ichorial_stain //Prevents a servant from being revived by vitality matrices for one minute.
+GLOBAL_LIST_EMPTY(servants_of_ratvar)	//List of minds in the cult
+GLOBAL_LIST_EMPTY(all_servants_of_ratvar)	//List of minds in the cult
+GLOBAL_LIST_EMPTY(human_servants_of_ratvar)	//Humans in the cult
+GLOBAL_LIST_EMPTY(cyborg_servants_of_ratvar)
 
-#define STATUS_EFFECT_SIGILMARK /datum/status_effect/sigil_mark
+GLOBAL_VAR(ratvar_arrival_tick)	//The world.time that Ratvar will arrive if the gateway is not disrupted
 
-#define STATUS_EFFECT_BELLIGERENT /datum/status_effect/belligerent //forces the affected to walk, doing damage if they try to run
+GLOBAL_VAR_INIT(installed_integration_cogs, 0)
+
+GLOBAL_VAR(celestial_gateway)	//The celestial gateway
+GLOBAL_VAR_INIT(ratvar_risen, FALSE)	//Has ratvar risen?
+GLOBAL_VAR_INIT(gateway_opening, FALSE)	//Is the gateway currently active?
+
+//A useful list containing all scriptures with the index of the name.
+//This should only be used for looking up scriptures
+GLOBAL_LIST_EMPTY(clockcult_all_scriptures)
+
+GLOBAL_VAR_INIT(clockcult_power, 2500)
+GLOBAL_VAR_INIT(clockcult_vitality, 200)
+
+GLOBAL_VAR(clockcult_eminence)
+
+/proc/is_servant_of_ratvar(mob/living/M)
+	return M?.mind?.has_antag_datum(/datum/antagonist/servant_of_ratvar)
+
+//Similar to cultist one, except silicons are allowed
+/proc/is_convertable_to_clockcult(mob/living/M)
+	if(!istype(M))
+		return FALSE
+	if(!M.mind)
+		return FALSE
+	if(ishuman(M) && (M.mind.assigned_role in list(JOB_CAPTAIN, JOB_CHAPLAIN)))
+		return FALSE
+	if(istype(M.get_item_by_slot(ITEM_SLOT_HEAD), /obj/item/clothing/head/foilhat))
+		return FALSE
+	if(is_servant_of_ratvar(M))
+		return FALSE
+	if(M.mind.enslaved_to && !is_servant_of_ratvar(M.mind.enslaved_to))
+		return FALSE
+	if(M.mind.unconvertable)
+		return FALSE
+	if(iscultist(M) || isconstruct(M) || ispAI(M))
+		return FALSE
+	if(HAS_TRAIT(M, TRAIT_MINDSHIELD))
+		return FALSE
+	return TRUE
+
+/proc/generate_clockcult_scriptures()
+	//Generate scriptures
+	for(var/categorypath in subtypesof(/datum/clockcult/scripture))
+		var/datum/clockcult/scripture/S = new categorypath
+		GLOB.clockcult_all_scriptures[S.name] = S
+
+/proc/flee_reebe()
+	for(var/mob/living/M in GLOB.mob_list)
+		if(!is_reebe(M.z))
+			continue
+		var/safe_place = find_safe_turf()
+		M.forceMove(safe_place)
+		if(!is_servant_of_ratvar(M))
+			M.SetSleeping(50)
+
+/proc/hierophant_message(msg, mob/living/sender, span = "<span class='brass'>", use_sanitisation=TRUE, say=TRUE)
+	if(CHAT_FILTER_CHECK(msg))
+		if(sender)
+			to_chat(sender, "<span class='warning'>You message contains forbidden words, please review the server rules and do not attempt to bypass this filter.</span>")
+		return
+	var/hierophant_message = "[span]"
+	if(sender?.reagents)
+		if(sender.reagents.has_reagent(/datum/reagent/water/holywater, 1))
+			to_chat(sender, "<span class='nezbere'>[pick("You fail to transmit your cries for help.", "Your calls into the void go unanswered.", "You try to transmit your message, but the hierophant network is silent.")]</span>")
+			return FALSE
+	if(!msg)
+		if(sender)
+			to_chat(sender, "<span class='brass'>You cannot transmit nothing!</span>")
+		return FALSE
+	if(use_sanitisation)
+		msg = sanitize(msg)
+	if(sender)
+		if(say)
+			sender.say("#[text2ratvar(msg)]")
+		msg = sender.treat_message(msg)
+		var/datum/antagonist/servant_of_ratvar/SoR = is_servant_of_ratvar(sender)
+		var/prefix = "Clockbrother"
+		switch(SoR.prefix)
+			if(CLOCKCULT_PREFIX_EMINENCE)
+				prefix = "Master"
+			if(CLOCKCULT_PREFIX_MASTER)
+				prefix = sender.gender == MALE\
+					? "Clockfather"\
+					: sender.gender == FEMALE\
+						? "Clockmother"\
+						: "Clockmaster"
+				hierophant_message = "<span class='leader_brass'>"
+			if(CLOCKCULT_PREFIX_RECRUIT)
+				var/role = sender.mind?.assigned_role
+				//Ew, this could be done better with a dictionary list, but this isn't much slower
+				if(role in GLOB.command_positions)
+					prefix = "High Priest"
+				else if(role in GLOB.engineering_positions)
+					prefix = "Cogturner"
+				else if(role in GLOB.medical_positions)
+					prefix = "Rejuvinator"
+				else if(role in GLOB.science_positions)
+					prefix = "Calculator"
+				else if(role in GLOB.supply_positions)
+					prefix = "Pathfinder"
+				else if(role in "Assistant")
+					prefix = "Helper"
+				else if(role in "Mime")
+					prefix = "Cogwatcher"
+				else if(role in "Clown")
+					prefix = "Clonker"
+				else if(role in GLOB.security_positions)
+					prefix = "Warrior"
+				else if(role in GLOB.nonhuman_positions)
+					prefix = "CPU"
+			//Fallthrough is default of "Clockbrother"
+		hierophant_message += "<b>[prefix] [sender.name]</b> transmits, \"[msg]\""
+	else
+		hierophant_message += msg
+	if(span)
+		hierophant_message += "</span>"
+	for(var/datum/mind/mind in GLOB.all_servants_of_ratvar)
+		send_hierophant_message_to(mind, hierophant_message)
+	for(var/mob/dead/observer/O in GLOB.dead_mob_list)
+		if(istype(sender))
+			to_chat(O, "[FOLLOW_LINK(O, sender)] [hierophant_message]")
+		else
+			to_chat(O, hierophant_message)
+
+/proc/send_hierophant_message_to(datum/mind/mind, hierophant_message)
+	var/mob/M = mind.current
+	if(!isliving(M) || QDELETED(M))
+		return
+	if(M.reagents)
+		if(M.reagents.has_reagent(/datum/reagent/water/holywater, 1))
+			if(pick(20))
+				to_chat(M, "<span class='nezbere'>You hear the cogs whispering to you, but cannot understand their words.</span>")
+			return
+	to_chat(M, hierophant_message)

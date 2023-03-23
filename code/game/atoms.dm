@@ -1043,6 +1043,9 @@
 /atom/proc/ratvar_act()
 	SEND_SIGNAL(src, COMSIG_ATOM_RATVAR_ACT)
 
+/atom/proc/eminence_act(mob/living/simple_animal/eminence/eminence)
+	SEND_SIGNAL(src, COMSIG_ATOM_EMINENCE_ACT, eminence)
+
 ///Return the values you get when an RCD eats you?
 /atom/proc/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
 	return FALSE
