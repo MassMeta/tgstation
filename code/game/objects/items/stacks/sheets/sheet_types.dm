@@ -926,7 +926,7 @@ GLOBAL_LIST_INIT(brass_recipes, list ( \
 	desc = "Sheets made out of brass."
 	singular_name = "brass sheet"
 	icon_state = "sheet-brass"
-	worn_icon_state = "sheet-brass"
+	inhand_icon_state = "sheet-brass"
 	icon = 'icons/obj/stack_objects.dmi'
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	throwforce = 10
