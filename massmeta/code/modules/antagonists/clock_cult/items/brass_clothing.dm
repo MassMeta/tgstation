@@ -3,6 +3,7 @@
 	desc = "Прочный латунный доспех, который носили солдаты армий Ратвара."
 	icon = 'massmeta/icons/obj/clothing/clockwork_garb.dmi'
 	icon_state = "clockwork_cuirass"
+	worn_icon = 'icons/mob/clothing/suits/chaplain.dmi'
 	armor = list("melee" = 50, "bullet" = 60, "laser" = 30, "energy" = 80, "bomb" = 80, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
 	slowdown = 0.6
 	resistance_flags = FIRE_PROOF | ACID_PROOF
@@ -143,6 +144,7 @@
 	desc = "Прочный латунный шлем, который носили солдаты армий Ратвара. Включает в себя встроенный диммер для защиты от вспышки, а также заглушку скрытого уровня для заводских сред."
 	icon = 'massmeta/icons/obj/clothing/clockwork_garb.dmi'
 	icon_state = "clockwork_helmet"
+	worn_icon = 'icons/mob/clothing/head/chaplain.dmi'
 	armor = list("melee" = 50, "bullet" = 60, "laser" = 30, "energy" = 80, "bomb" = 80, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	w_class = WEIGHT_CLASS_BULKY
