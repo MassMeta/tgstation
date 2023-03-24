@@ -46,7 +46,7 @@
 	icon_keyboard = "ratvar_key1"
 	icon_state = "ratvarcomputer1"
 	lock_override = CAMERA_LOCK_STATION
-	var/datum/action/innate/clockcult/warp/warp_action
+	var/datum/action/cooldown/clockcult/warp/warp_action
 
 /obj/machinery/computer/camera_advanced/ratvar/Initialize(mapload)
 	. = ..()
