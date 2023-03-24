@@ -117,8 +117,6 @@
 /obj/effect/clockwork/servant_blocker,
 /turf/open/indestructible/reebe_void,
 /area/reebe/city_of_cogs)
-/turf/open/floor/clockwork/reebe,
-/area/reebe/city_of_cogs)
 "H" = (
 /turf/open/indestructible/reebe_void/spawning/lattices,
 /area/reebe)
