@@ -20,6 +20,8 @@
 
 /datum/clockcult/scripture/abscond/invoke_success()
 	var/turf/T = get_turf(pick(GLOB.servant_spawns))
+	if(!T)
+		to_chat(invoker, span_warning("Error, no valid teleport locations found!"))
 	try_warp_servant(invoker, T, TRUE)
 	var/prev_alpha = invoker.alpha
 	invoker.alpha = 0

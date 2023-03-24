@@ -22,15 +22,15 @@
 	. = ..()
 	if(!proximity_flag || !is_servant_of_ratvar(user))
 		return
-	if(istype(target, /obj/item/stack/tile/bronze))
-		var/obj/item/stack/tile/bronze/B = target
+	if(istype(target, /obj/item/stack/sheet/bronze))
+		var/obj/item/stack/sheet/bronze/B = target
 		qdel(B)
 		GLOB.clockcult_power += B.amount * BRASS_POWER_COST
 		playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
 		to_chat(user, span_nzcrentr("Превращаю [B.amount] латуни в [B.amount * BRASS_POWER_COST] ватт энергии."))
 	else if(istype(target, /obj/item/stack/sheet))
 		var/obj/item/stack/S = target
-		var/obj/item/stack/tile/bronze/B = new(get_turf(S))
+		var/obj/item/stack/sheet/bronze/B = new(get_turf(S))
 		B.amount = FLOOR(S.amount * 0.5, 1)
 		playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
 		to_chat(user, span_nzcrentr("Превращаю [S.amount] [S] в [S.amount] латуни."))
@@ -67,6 +67,6 @@
 	if(sheets == 0)
 		return
 	GLOB.clockcult_power -= sheets * BRASS_POWER_COST
-	new /obj/item/stack/tile/bronze(target, sheets)
+	new /obj/item/stack/sheet/bronze(target, sheets)
 	playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
 	to_chat(user, span_brass("Создаю [sheets] листов латуни."))
