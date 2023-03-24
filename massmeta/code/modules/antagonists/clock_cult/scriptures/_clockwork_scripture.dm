@@ -182,7 +182,7 @@
 	invoking_slab.charge_overlay = slab_overlay
 	invoking_slab.update_icon()
 	invoking_slab.active_scripture = src
-	invoker.click_intercept = slab_action
+	invoker.click_intercept = src
 	to_chat(invoker, span_brass("Готовлю [name]. <b>Клик на цели для использования.</b>"))
 	count_down()
 	invoke_success()
@@ -198,10 +198,10 @@
 	else
 		end_invokation()
 
-/datum/clockcult/scripture/slab/proc/click_on(atom/A)
-	if(!invoker.can_interact_with(A))
+/datum/clockcult/scripture/slab/proc/InterceptClickOn(mob/living/caller, params, atom/target)
+	if(!invoker.can_interact_with(target))
 		return
-	if(apply_effects(A))
+	if(apply_effects(target))
 		uses_left --
 		if(uses_left <= 0)
 			if(after_use_text)
@@ -233,7 +233,7 @@
 	return ..()
 
 /datum/action/cooldown/clockwork_slab/Activate(atom/target)
-	parent_scripture?.click_on(usr)
+	parent_scripture?.InterceptClickOn(target = usr)
 
 //==================================//
 // !       Quick bind spell       ! //
