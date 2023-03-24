@@ -47,7 +47,7 @@ GLOBAL_LIST_INIT(cogscarabs, list())
 	name = "оболочка мехскарабея"
 	desc = "Оболочка древнего строительного дрона, верного Ратвару."
 	icon_state = "drone_clock_hat"
-	icon_icon = 'icons/mob/silicon/drone.dmi'
+	icon = 'icons/mob/silicon/drone.dmi'
 	mob_type = /mob/living/simple_animal/drone/cogscarab
 
 /obj/effect/mob_spawn/drone/cogscarab/attack_ghost(mob/user)
