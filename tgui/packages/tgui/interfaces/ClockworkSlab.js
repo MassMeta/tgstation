@@ -1,58 +1,73 @@
+import { createSearch, decodeHtmlEntities } from 'common/string';
 import { Fragment } from 'inferno';
 import { useBackend, useLocalState } from '../backend';
-import { Icon, Box, Button, Section, Table, Divider, Grid, ProgressBar, Collapsible } from '../components';
+import { Icon, Box, Button, Flex, Input, Section, Table, Tabs, NoticeBox, Divider, Grid, ProgressBar, Collapsible } from '../components';
+import { formatMoney } from '../format';
 import { Window } from '../layouts';
 import { TableRow } from '../components/Table';
+import { GridColumn } from '../components/Grid';
 
-export const convertPower = (power_in) => {
-  const units = ['W', 'kW', 'MW', 'GW'];
+export const convertPower = power_in => {
+  const units = ["W", "kW", "MW", "GW"];
   let power = 0;
   let value = power_in;
-  while (value >= 1000 && power < units.length) {
-    power++;
+  while (value >= 1000 && power < units.length)
+  {
+    power ++;
     value /= 1000;
   }
-  return Math.round((value + Number.EPSILON) * 100) / 100 + units[power];
+  return ((Math.round((value + Number.EPSILON) * 100)/100) + units[power]);
 };
 
 export const ClockworkSlab = (props, context) => {
   const { data } = useBackend(context);
   const { power } = data;
   const { recollection } = data;
-  const [selectedTab, setSelectedTab] = useLocalState(
-    context,
-    'selectedTab',
-    'Порабощение'
-  );
+  const [
+    selectedTab,
+    setSelectedTab,
+  ] = useLocalState(context, 'selectedTab', "Servitude");
   return (
-    <Window theme="clockwork" resizable width={860} height={700}>
+    <Window
+      theme="clockwork"
+      resizable
+      width={860}
+      height={700}>
       <Window.Content>
         <Section
-          title={
-            <Box inline color={'good'}>
-              <Icon name={'cog'} rotation={0} spin={1} />
-              {' Механизм '}
-              <Icon name={'cog'} rotation={35} spin={1} />
+          title={(
+            <Box
+              inline
+              color={'good'}>
+              <Icon name={"cog"} rotation={0} spin={1} />
+              {" Clockwork Slab "}
+              <Icon name={"cog"} rotation={35} spin={1} />
             </Box>
-          }>
+          )}>
           <ClockworkButtonSelection />
         </Section>
         <div className="ClockSlab__left">
-          <Section height="100%" overflowY="scroll">
+          <Section
+            height="100%"
+            overflowY="scroll">
             <ClockworkSpellList selectedTab={selectedTab} />
           </Section>
         </div>
         <div className="ClockSlab__right">
           <div className="ClockSlab__stats">
-            <Section height="100%" overflowY="scroll">
+            <Section
+              height="100%"
+              scrollable
+              overflowY="scroll">
               <ClockworkOverview />
             </Section>
           </div>
           <div className="ClockSlab__current">
             <Section
               height="100%"
+              scrollable
               overflowY="scroll"
-              title="Слуги шестерни том.1">
+              title="Servants of the Cog vol.1">
               <ClockworkHelp />
             </Section>
           </div>
@@ -65,150 +80,209 @@ export const ClockworkSlab = (props, context) => {
 export const ClockworkHelp = (props, context) => {
   return (
     <Fragment>
-      <Collapsible title="Что делать" color="average" open={1}>
+      <Collapsible title="Where To Start" color="average" open={1}>
         <Section>
-          После долгой и разрушительной войны, Рат&#39;вар был заключен в тюрьму
-          внутри измерения страдания.
+          After a long and destructive
+          war, Rat&#39;Var has been imprisoned
+          inside a dimension of suffering.
           <br />
-          Вы - группа из его последних оставшихся, самых лояльных служителей.{' '}
-          <br />
-          Вы очень слабы и у вас мало сил, с большинством ваших Священных
-          Писаний, неспособных работать.
+          You are a group of his last remaining,
+          most loyal servants. <br />
+          You are very weak and have little power,
+          with most of your scriptures unable to
+          function.
           <br />
           <b>
-            Используйте&nbsp;
-            <font color="#BD78C4">консоли наблюдения Ратвара&nbsp;</font>
-            для перемещения на станцию!
+            Use the&nbsp;
+            <font color="#BD78C4">
+              Ratvarian Observation Consoles&nbsp;
+            </font>
+            to warp to the station!
           </b>
           <br />
           <b>
-            Устанавливайте&nbsp;
-            <font color="#DFC69C">Интеграционные шестерни&nbsp;</font>
-            чтобы разблокировать больше священных писаний!
+            Install&nbsp;
+            <font color="#DFC69C">
+              Integration Cogs&nbsp;
+            </font>
+            to unlock more scriptures and siphon power!
           </b>
           <br />
           <b>
-            Разблокируйте&nbsp;
-            <font color="#D8D98D">Разжечь&nbsp;</font>
+            Unlock&nbsp;
+            <font color="#D8D98D">
+              Kindle&nbsp;
+            </font>
             ,&nbsp;
-            <font color="#F19096">Оковы ненависти&nbsp;</font>и вызов&nbsp;
-            <font color="#9EA7E5">Сигила подчинения&nbsp;</font>
-            для конвертирования неверных!
+            <font color="#F19096">
+              Hateful Manacles&nbsp;
+            </font>
+            and summon a&nbsp;
+            <font color="#9EA7E5">
+              Sigil of Submission&nbsp;
+            </font>
+            to convert any non-believers!
           </b>
           <br />
         </Section>
       </Collapsible>
-      <Collapsible title="Открытие Священных Писаний" color="average">
+      <Collapsible title="Unlocking Scriptures" color="average">
         <Section>
-          Большинство Священных Писаний требует <b>шестерни</b> для открытия.
+          Most scriptures require <b>cogs</b> to unlock.
           <br />
-          Создавай&nbsp;
+          Invoke&nbsp;
           <font color="#DFC69C">
-            <b>интеграционные шестерни&nbsp;</b>
+            <b>
+              Integration Cog&nbsp;
+            </b>
           </font>
-          для призыва этих самых шестерней, которые могут быть установлены в
-          любой&nbsp;
-          <b>электрощиток&nbsp;</b>
-          на станции.
+          to summon an Integration Cog,
+          which can be placed into any&nbsp;
+          <b>
+            APC&nbsp;
+          </b>
+          on the station.
           <br />
-          Вскрывай&nbsp;
-          <b>электрощитки&nbsp;</b>
-          используя&nbsp;
-          <b>интеграционные шестерни&nbsp;</b>
-          , затем вставляй их для выкачивания энергии.
+          Slice open the&nbsp;
+          <b>
+            APC&nbsp;
+          </b>
+          with the&nbsp;
+          <b>
+            Integration Cog&nbsp;
+          </b>
+          , then insert it in to
+          begin siphoning power.
           <br />
         </Section>
       </Collapsible>
-      <Collapsible title="Конвертирование" color="average">
+      <Collapsible title="Conversion" color="average">
         <Section>
-          Вызывай&nbsp;
+          Invoke
           <b>
-            <font color="#D8D98D">Разжечь&nbsp;</font>
+            <font color="#D8D98D">
+              Kindle&nbsp;
+            </font>
           </b>
-          (после разблокировки), для&nbsp;
-          <b>оглушения&nbsp;</b>
-          и&nbsp;
-          <b>немоты&nbsp;</b>
-          любой цели, по времени достаточные, чтобы связать их.
-          <br />
-          Используя&nbsp;
-          <b>стяжки&nbsp;</b> найденные на станции, или же вызовом&nbsp;
+          (After you unlock it), to&nbsp;
           <b>
-            <font color="#F19096">Оков ненависти&nbsp;</font>
+            stun&nbsp;
           </b>
-          , можно связывать неверных для предотвращения их побега от СВЕТА.
-          <br />
-          Вызывай&nbsp;
+          and&nbsp;
           <b>
-            <font color="#D5B8DC">Бегство&nbsp;</font>
+            mute&nbsp;
           </b>
-          для возврата обратно на Риби, пока держишь неверного с собой.
+          any target long enough for you to restrain
           <br />
-          Теперь, вызывай&nbsp;
+          Using&nbsp;
           <b>
-            <font color="#9EA7E5">Сигил подчинения&nbsp;</font>
+            zipties&nbsp;
+          </b> obtained from the station, or
+          by invoking&nbsp;
+          <b>
+            <font color="#F19096">
+              Hateful Manacles&nbsp;
+            </font>
           </b>
-          и держи цель на нём примерно 8 секунд. <br />
-          Однако, не получится сделать это с&nbsp;
-          <b>защитой разума.</b>
+          , you can restrain targets
+          to keep them from escaping the light.
           <br />
-          Убедись, что снял их&nbsp;
-          <b>наушник&nbsp;</b>
-          , чтобы они не говорили много!
+          Invoke&nbsp;
+          <b>
+            <font color="#D5B8DC">
+              Abscond&nbsp;
+            </font>
+          </b>
+          to warp back to Reebe, where the being you are
+          dragging will be pulled with you.
+          <br />
+          From there, summon a&nbsp;
+          <b>
+            <font color="#9EA7E5">
+              Sigil of Submission&nbsp;
+            </font>
+          </b>
+          and hold them over
+          it for 8 seconds. <br />
+          You cannot enlighten those who have&nbsp;
+          <b>
+            mindshields.
+          </b>
+          <br />
+          Make sure to take their&nbsp;
+          <b>
+            headset&nbsp;
+          </b>
+          so they don&#39;t spread misinformation!
           <br />
         </Section>
       </Collapsible>
-      <Collapsible title="Защита Риби" color="average">
+      <Collapsible title="Defending Reebe" color="average">
         <Section>
           <b>
-            У вас широкий спектр структур и механизмов это будет жизненно важно
-            для защиты Ковчега.
+            You have a wide range of structures and powers
+            that will be vital in defending the Celestial
+            Gateway.
           </b>
           <br />
           <b>
-            <font color="#B5FD9D">Производитель реплик:&nbsp;</font>
+            <font color="#B5FD9D">
+              Replicant Fabricator:&nbsp;
+            </font>
           </b>
-          Мощный инструмент, который может быстро построить Латунные конструкции
-          или преобразовать большинство материалов в латунь.
+          A powerful tool that can rapidly construct
+          Brass structures, or convert most materials
+          to Brass.
           <br />
           <b>
-            <font color="#DED09F">Мехскарабей:&nbsp;</font>
+            <font color="#DED09F">
+              Cogscarab:&nbsp;
+            </font>
           </b>
-          Маленький дрон, одержимый духами павших солдат, который будет защищать
-          Риби, пока вы выходите и распространяете правду!
-          <br />
+          A small drone possessed by the spirits
+          of the fallen soldiers which will protect
+          Reebe while you go out and spread the
+          truth!<br />
           <b>
-            <font color="#FF9D9D">Механический мародёр:&nbsp;</font>
+            <font color="#FF9D9D">
+              Clockwork Marauder:&nbsp;
+            </font>
           </b>
-          Сильный боец, который может отражать атаки дальнего боя и наносить
-          сильные удары в ближнем бою.
-          <br />
+          A powerful shell that can deflect ranged
+          attacks and delivers a strong blow in close
+          quarter combat.<br />
           <br />
         </Section>
       </Collapsible>
-      <Collapsible title="Ковчег" color="average">
+      <Collapsible title="Celestial Gateway" color="average">
         <Section>
-          Для призыва Рат&#39;вара &nbsp;
+          To summon Rat&#39;Var the&nbsp;
           <b>
-            <font color="#E9E094">Ковчег&nbsp;</font>
-          </b>{' '}
-          должен быть открыт.
+            <font color="#E9E094">
+              Celestial Gateway&nbsp;
+            </font>
+          </b> must be opened.
           <br />
-          Это можно сделать, если рядом будет достаточное количество слуг
-          у&nbsp;
+          This can be done by having enough servants invoke&nbsp;
           <b>
-            <font color="#B5FD9D">Ковчега.&nbsp;</font>
+            <font color="#B5FD9D">
+              Celestial Gateway.&nbsp;
+            </font>
           </b>
           <br />
-          После того, как вы достаточно просветите станцию,&nbsp;
+          After you enlighten enough of the crew,
+          the&nbsp;
           <b>
-            <font color="#E9E094">Ковчег&nbsp;</font>
+            <font color="#E9E094">
+              Celestial Gateway&nbsp;
+            </font>
           </b>
-          будет открыт.
+          will be forced open.
           <br />
           <b>
-            Убедитесь, что вы готовы к открытию Ковчега, так как вся станция
-            собирается уничтожить его!
+            Make sure you are prepared for when the
+            Gateway opens, since the entire crew
+            will swarm to destroy it!
           </b>
           <br />
         </Section>
@@ -220,113 +294,129 @@ export const ClockworkHelp = (props, context) => {
 export const ClockworkSpellList = (props, context) => {
   const { act, data } = useBackend(context);
   const { selectedTab } = props;
-  const { scriptures = [] } = data;
+  const {
+    scriptures = [],
+  } = data;
   return (
     <Table>
-      {scriptures.map((script) =>
-        script.type === selectedTab ? (
-          <Fragment key={script}>
-            <TableRow>
-              <Table.Cell bold>{script.name}</Table.Cell>
-              <Table.Cell collapsing textAlign="right">
-                <Button
-                  fluid
-                  color={script.purchased ? 'default' : 'average'}
-                  content={
-                    script.purchased
-                      ? 'Вызвать ' + convertPower(script.cost)
-                      : script.cog_cost + ' Шестерней'
-                  }
-                  disabled={false}
-                  onClick={() =>
-                    act('invoke', {
+      {scriptures.map(script => (
+        script.type === selectedTab
+          ? (
+            <Fragment
+              key={script}>
+              <TableRow>
+                <Table.Cell bold>
+                  {script.name}
+                </Table.Cell>
+                <Table.Cell collapsing textAlign="right">
+                  <Button
+                    fluid
+                    color={script.purchased
+                      ? "default"
+                      : "average"}
+                    content={script.purchased
+                      ? "Invoke " + (convertPower(script.cost))
+                      : script.cog_cost + " Cogs"}
+                    disabled={false}
+                    onClick={() => act("invoke", {
                       scriptureName: script.name,
-                    })
-                  }
-                />
-              </Table.Cell>
-            </TableRow>
-            <TableRow>
-              <Table.Cell>{script.desc}</Table.Cell>
-              <Table.Cell collapsing textAlign="right">
-                <Button
-                  fluid
-                  content={'Быстрый вызов'}
-                  disabled={!script.purchased}
-                  onClick={() =>
-                    act('quickbind', {
+                    })} />
+                </Table.Cell>
+              </TableRow>
+              <TableRow>
+                <Table.Cell>
+                  {script.desc}
+                </Table.Cell>
+                <Table.Cell collapsing textAlign="right">
+                  <Button
+                    fluid
+                    content={"Quickbind"}
+                    disabled={!script.purchased}
+                    onClick={() => act("quickbind", {
                       scriptureName: script.name,
-                    })
-                  }
-                />
+                    })} />
+                </Table.Cell>
+              </TableRow>
+              <Table.Cell>
+                <Divider />
               </Table.Cell>
-            </TableRow>
-            <Table.Cell>
-              <Divider />
-            </Table.Cell>
-          </Fragment>
-        ) : (
-          <Box key={script} />
-        )
-      )}
+            </Fragment>
+          )
+          : <Box key={script} />
+      ))}
     </Table>
   );
 };
 
 export const ClockworkOverview = (props, context) => {
   const { data } = useBackend(context);
-  const { power, cogs, vitality } = data;
+  const {
+    power,
+    cogs,
+    vitality,
+  } = data;
   return (
     <Box>
-      <Box color="good" bold fontSize="16px">
-        {'Состояние Ковчега'}
+      <Box
+        color="good"
+        bold
+        fontSize="16px">
+        {"Celestial Gateway Report"}
       </Box>
       <Divider />
       <ClockworkOverviewStat
-        title="Шестерни"
+        title="Cogs"
         amount={cogs}
-        maxAmount={cogs + 50 / cogs}
+        maxAmount={cogs + (50 / cogs)}
         iconName="cog"
-        unit=""
-      />
+        unit="" />
       <ClockworkOverviewStat
-        title="Энергия"
+        title="Power"
         amount={power}
-        maxAmount={power + 500000 / power}
+        maxAmount={power + (500000 / power)}
         iconName="battery-half "
-        overrideText={convertPower(power)}
-      />
+        overrideText={convertPower(power)} />
       <ClockworkOverviewStat
-        title="Жизнеспособность"
+        title="Vitality"
         amount={vitality}
-        maxAmount={vitality + 50 / vitality}
+        maxAmount={vitality + (50 / vitality)}
         iconName="tint"
-        unit="е"
-      />
+        unit="u" />
     </Box>
   );
 };
 
 export const ClockworkOverviewStat = (props, context) => {
-  const { title, iconName, amount, maxAmount, unit, overrideText } = props;
+  const {
+    title,
+    iconName,
+    amount,
+    maxAmount,
+    unit,
+    overrideText,
+  } = props;
   return (
-    <Box height="32px" fontSize="16px">
+    <Box height="22px" fontSize="16px">
       <Grid>
         <Grid.Column>
           <Icon name={iconName} rotation={0} spin={0} />
         </Grid.Column>
-        <Grid.Column size="2">{title}</Grid.Column>
+        <Grid.Column size="2">
+          {title}
+        </Grid.Column>
         <Grid.Column size="8">
           <ProgressBar
             value={amount}
             minValue={0}
             maxValue={maxAmount}
             ranges={{
-              good: [maxAmount / 2, Infinity],
-              average: [maxAmount / 4, maxAmount / 2],
-              bad: [-Infinity, maxAmount / 4],
+              good: [maxAmount/2, Infinity],
+              average: [maxAmount/4, maxAmount/2],
+              bad: [-Infinity, maxAmount/4],
             }}>
-            {overrideText ? overrideText : amount + ' ' + unit}
+            {overrideText
+              ? overrideText
+              : amount + " " + unit}
           </ProgressBar>
         </Grid.Column>
       </Grid>
@@ -335,23 +425,23 @@ export const ClockworkOverviewStat = (props, context) => {
 };
 
 export const ClockworkButtonSelection = (props, context) => {
-  const [selectedTab, setSelectedTab] = useLocalState(
-    context,
-    'selectedTab',
-    {}
-  );
-  const tabs = ['Порабощение', 'Сохранение', 'Структуры'];
+  const [
+    selectedTab,
+    setSelectedTab,
+  ] = useLocalState(context, 'selectedTab', {});
+  const tabs = ["Servitude", "Preservation", "Structures"];
   return (
     <Table>
       <Table.Row>
-        {tabs.map((tab) => (
-          <Table.Cell key={tab} collapsing>
+        {tabs.map(tab => (
+          <Table.Cell
+            key={tab}
+            collapsing>
             <Button
               key={tab}
               fluid
               content={tab}
-              onClick={() => setSelectedTab(tab)}
-            />
+              onClick={() => setSelectedTab(tab)} />
           </Table.Cell>
         ))}
       </Table.Row>
