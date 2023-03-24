@@ -10,15 +10,15 @@
 	cogs_required = 1
 	power_cost = 80
 
-/datum/clockcult/scripture/slab/sentinelscompromise/click_on(atom/A)
-	if(!(invoker in viewers(7, get_turf(A))))
+/datum/clockcult/scripture/slab/sentinelscompromise/InterceptClickOn(mob/living/caller, params, atom/target)
+	if(!(invoker in viewers(7, get_turf(target))))
 		return
-	var/mob/living/M = A
+	var/mob/living/M = target
 	if(!istype(M))
 		return
 	if(!is_servant_of_ratvar(M))
 		return
-	if(apply_effects(A))
+	if(apply_effects(target))
 		uses_left --
 		if(uses_left <= 0)
 			if(after_use_text)
