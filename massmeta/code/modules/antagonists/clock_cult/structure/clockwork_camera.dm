@@ -15,7 +15,7 @@
 		return FALSE
 	return ..()
 
-/datum/action/innate/clockcult/warp/Activate()
+/datum/action/innate/clockcult/warp/Trigger()
 	if(!isliving(owner))
 		return
 	if(GLOB.gateway_opening)

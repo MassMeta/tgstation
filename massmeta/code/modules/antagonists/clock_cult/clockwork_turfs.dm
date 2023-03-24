@@ -40,9 +40,8 @@
 	icon_state = "clockwork_wall"
 	base_icon_state = "clockwork_wall-0"
 	icon = 'icons/turf/walls/clockwork_wall.dmi'
-	smoothing_flags = SMOOTH_CORNERS
-	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_SILVER_WALLS)
-	canSmoothWith = list(SMOOTH_GROUP_SILVER_WALLS)
+	smoothing_flags = SMOOTH_BITMASK
+	canSmoothWith = null
 	hardness = 10
 	slicing_duration = 80
 	sheet_type = /obj/item/stack/tile/bronze
@@ -146,13 +145,8 @@
 	. = ..()
 	if(d_state == INTACT)
 		realappearence.icon_state = "clockwork_wall"
-		smoothing_flags = SMOOTH_CORNERS
-		QUEUE_SMOOTH_NEIGHBORS(src)
-		QUEUE_SMOOTH(src)
 	else
 		realappearence.icon_state = "clockwork_wall-[d_state]"
-		smoothing_flags = NONE
-		clear_smooth_overlays()
 	realappearence.update_icon()
 	return
 
