@@ -4,18 +4,13 @@
 	icon_state = "generic_camera"
 	use_static = FALSE
 
-/datum/action/innate/clockcult/warp
+/datum/action/cooldown/clockcult/warp
 	name = "Переместиться"
 	desc = "Прям туда, да."
 	button_icon_state = "warp_down"
 	var/warping = FALSE
 
-/datum/action/innate/clockcult/warp/IsAvailable()
-	if(!is_servant_of_ratvar(owner) || owner.incapacitated())
-		return FALSE
-	return ..()
-
-/datum/action/innate/clockcult/warp/Trigger()
+/datum/action/cooldown/clockcult/warp/Activate(atom/target)
 	if(!isliving(owner))
 		return
 	if(GLOB.gateway_opening)

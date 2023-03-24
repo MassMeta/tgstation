@@ -32,8 +32,6 @@
 	var/list/selected_servants = list()
 
 /datum/dynamic_ruleset/roundstart/clockcult/pre_execute()
-	//Load Reebe
-	LoadReebe()
 	//Make cultists
 	var/starter_servants = 4
 	var/number_players = mode.roundstart_pop_ready
