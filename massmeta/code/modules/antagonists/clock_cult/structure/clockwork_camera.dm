@@ -36,7 +36,7 @@
 	button_icon_state = "warp_down"
 	warping = FALSE
 
-/datum/action/innate/clockcult/warp/proc/special_check()
+/datum/action/cooldown/clockcult/warp/proc/special_check()
 	return warping
 
 /obj/machinery/computer/camera_advanced/ratvar
