@@ -25,10 +25,6 @@
 	crystal_type = /obj/structure/slime_crystal/grey
 	colour = "grey"
 
-/obj/item/slimecross/crystalized/orange
-	crystal_type = /obj/structure/slime_crystal/orange
-	colour = "orange"
-
 /obj/item/slimecross/crystalized/purple
 	crystal_type = /obj/structure/slime_crystal/purple
 	colour = "purple"
@@ -40,10 +36,6 @@
 /obj/item/slimecross/crystalized/yellow
 	crystal_type = /obj/structure/slime_crystal/yellow
 	colour = "yellow"
-
-/obj/item/slimecross/crystalized/darkpurple
-	crystal_type = /obj/structure/slime_crystal/darkpurple
-	colour = "dark purple"
 
 /obj/item/slimecross/crystalized/darkblue
 	crystal_type = /obj/structure/slime_crystal/darkblue
