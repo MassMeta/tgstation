@@ -23,7 +23,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 	if(master_crystal)
 		invisibility = INVISIBILITY_MAXIMUM
 		max_integrity = 1000
-		obj_integrity = 1000
+		atom_integrity = 1000
 
 /obj/structure/slime_crystal/Initialize()
 	. = ..()
@@ -86,7 +86,11 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 	if(!uses_process)
 		return PROCESS_KILL
 
-	var/list/current_mobs = view_or_range(3, src, range_type)
+	var/list/current_mobs
+    if(range_type == "view")
+        current_mobs = view(3, src)
+    else
+        current_mobs = range(3, src)
 	for(var/mob/living/mob_in_range in current_mobs)
 		if(!(mob_in_range in affected_mobs))
 			on_mob_enter(mob_in_range)
@@ -121,26 +125,6 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 	var/mob/living/simple_animal/slime/slime_mob = affected_mob
 	slime_mob.nutrition += 2
 
-/obj/structure/slime_crystal/orange
-	colour = "orange"
-	range_type = "view"
-
-/obj/structure/slime_crystal/orange/on_mob_effect(mob/living/affected_mob)
-	if(!istype(affected_mob, /mob/living/carbon))
-		return
-	var/mob/living/carbon/carbon_mob = affected_mob
-	carbon_mob.fire_stacks++
-	carbon_mob.IgniteMob()
-
-/obj/structure/slime_crystal/orange/process()
-	. = ..()
-	var/turf/open/T = get_turf(src)
-	if(!istype(T))
-		return
-	var/datum/gas_mixture/gas = T.return_air()
-	gas.set_temperature(T0C + 200)
-	T.air_update_turf()
-
 /obj/structure/slime_crystal/purple
 	colour = "purple"
 
@@ -170,18 +154,6 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 		if(6 to 10)
 			carbon_mob.adjustOrganLoss(pick(ORGAN_SLOT_BRAIN,ORGAN_SLOT_HEART,ORGAN_SLOT_LIVER,ORGAN_SLOT_LUNGS), -heal_amt)
 
-/obj/structure/slime_crystal/blue
-	colour = "blue"
-	range_type = "view"
-
-/obj/structure/slime_crystal/blue/process()
-	for(var/turf/open/T in view(2, src))
-		if(isspaceturf(T))
-			continue
-		var/datum/gas_mixture/gas = T.return_air()
-		gas.parse_gas_string(OPENTURF_DEFAULT_ATMOS)
-		T.air_update_turf()
-
 /obj/structure/slime_crystal/metal
 	colour = "metal"
 
@@ -195,7 +167,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 
 /obj/structure/slime_crystal/yellow
 	colour = "yellow"
-	light_color = LIGHT_COLOR_YELLOW //a good, sickly atmosphere
+	light_color = COLOR_YELLOW //a good, sickly atmosphere
 	light_power = 0.75
 	uses_process = FALSE
 
@@ -214,23 +186,6 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 		to_chat("<span class = 'notice'> You charged the [I.name] on [name]!")
 		cell.give(cell.maxcharge)
 		return
-	return ..()
-/obj/structure/slime_crystal/darkpurple
-	colour = "dark purple"
-
-/obj/structure/slime_crystal/darkpurple/process()
-	var/turf/T = get_turf(src)
-	if(!istype(T, /turf/open))
-		return
-	var/turf/open/open_turf = T
-	var/datum/gas_mixture/air = open_turf.return_air()
-
-	if(air.get_moles(/datum/gas/plasma) > 15)
-		air.adjust_moles(/datum/gas/plasma, -15)
-		new /obj/item/stack/sheet/mineral/plasma(open_turf)
-
-/obj/structure/slime_crystal/darkpurple/Destroy()
-	atmos_spawn_air("plasma=[20];TEMP=[500]")
 	return ..()
 
 /obj/structure/slime_crystal/darkblue
@@ -373,8 +328,6 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 
 /obj/structure/slime_crystal/cerulean/process()
 	for(var/turf/T in range(2,src))
-		if(is_blocked_turf(T) || isspaceturf(T)  || T == get_turf(src) || prob(50))
-			continue
 		var/obj/structure/cerulean_slime_crystal/CSC = locate() in range(1,T)
 		if(CSC)
 			continue
@@ -424,17 +377,17 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 		return ..()
 
 	blood_amt -= 100
-	var/type = pick(/obj/item/reagent_containers/food/snacks/meat/slab,/obj/item/organ/heart,/obj/item/organ/lungs,/obj/item/organ/liver,/obj/item/organ/eyes,/obj/item/organ/tongue,/obj/item/organ/stomach,/obj/item/organ/ears)
+	var/type = pick(/obj/item/food/meat/slab,/obj/item/organ/internal/heart,/obj/item/organ/internal/lungs,/obj/item/organ/internal/liver,/obj/item/organ/internal/eyes,/obj/item/organ/internal/tongue,/obj/item/organ/internal/stomach,/obj/item/organ/internal/ears)
 	new type(get_turf(src))
 
 /obj/structure/slime_crystal/red/attacked_by(obj/item/I, mob/living/user)
 	if(blood_amt < 10)
 		return ..()
 
-	if(!istype(I, /obj/item/reagent_containers/glass/beaker))
+	if(!istype(I, /obj/item/reagent_containers/cup/beaker))
 		return ..()
 
-	var/obj/item/reagent_containers/glass/beaker/item_beaker = I
+	var/obj/item/reagent_containers/cup/beaker/item_beaker = I
 
 	if(!item_beaker.is_refillable() || (item_beaker.reagents.total_volume + 10 > item_beaker.reagents.maximum_volume))
 		return ..()
@@ -505,13 +458,13 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/human_mob = user
-	var/mob/living/simple_animal/pet/chosen_pet = pick(/mob/living/simple_animal/pet/dog/corgi,/mob/living/simple_animal/pet/dog/pug,/mob/living/simple_animal/pet/dog/bullterrier,/mob/living/simple_animal/pet/fox,/mob/living/simple_animal/pet/cat/kitten,/mob/living/simple_animal/pet/cat/space,/mob/living/simple_animal/pet,/mob/living/simple_animal/pet/penguin)
+	var/mob/living/basic/pet/chosen_pet = pick(/mob/living/basic/pet/dog/corgi,/mob/living/basic/pet/dog/pug,/mob/living/basic/pet/dog/bullterrier,/mob/living/simple_animal/pet/fox,/mob/living/simple_animal/pet/cat/kitten,/mob/living/simple_animal/pet/cat/space,/mob/living/simple_animal/pet/penguin)
 	chosen_pet = new chosen_pet(get_turf(human_mob))
 	human_mob.forceMove(chosen_pet)
 	human_mob.mind.transfer_to(chosen_pet)
 
 /obj/structure/slime_crystal/gold/on_mob_leave(mob/living/affected_mob)
-	if(!istype(affected_mob,/mob/living/simple_animal/pet))
+	if(!istype(affected_mob,/mob/living/basic/pet))
 		return
 
 	var/mob/living/carbon/human/human_mob = locate() in affected_mob

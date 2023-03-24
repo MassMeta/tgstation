@@ -33,10 +33,6 @@
 	crystal_type = /obj/structure/slime_crystal/purple
 	colour = "purple"
 
-/obj/item/slimecross/crystalized/blue
-	crystal_type = /obj/structure/slime_crystal/blue
-	colour = "blue"
-
 /obj/item/slimecross/crystalized/metal
 	crystal_type = /obj/structure/slime_crystal/metal
 	colour = "metal"
