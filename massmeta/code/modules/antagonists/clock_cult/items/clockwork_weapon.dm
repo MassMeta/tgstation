@@ -150,5 +150,5 @@
 /obj/projectile/energy/clockbolt
 	name = "энергетическая стрела"
 	icon_state = "arrow_energy"
-	damage = 4
+	damage = 15
 	damage_type = BURN

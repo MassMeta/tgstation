@@ -4,12 +4,22 @@
 	icon = 'massmeta/icons/obj/clothing/clockwork_garb.dmi'
 	icon_state = "clockwork_cuirass"
 	worn_icon = 'icons/mob/clothing/suits/chaplain.dmi'
-	armor = list("melee" = 50, "bullet" = 60, "laser" = 30, "energy" = 80, "bomb" = 80, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
+	armor = /datum/armor/clockwork_suit
 	slowdown = 0.6
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	w_class = WEIGHT_CLASS_BULKY
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	allowed = list(/obj/item/clockwork, /obj/item/stack/tile/bronze, /obj/item/clockwork, /obj/item/gun/energy/kinetic_accelerator/crossbow/clockwork)
+
+/datum/armor/clockwork_suit
+	melee = 50
+	bullet = 60
+	laser = 30
+	energy = 80
+	bomb = 80
+	rad = 100
+	fire = 100
+	acid = 100
 
 /obj/item/clothing/suit/clockwork/equipped(mob/living/user, slot)
 	. = ..()
@@ -28,17 +38,30 @@
 	name = "роба божества"
 	desc = "Блестящий костюм, светящийся яркой энергией. Владелец сможет быстро перемещаться по полям битвы, но сможет выдержать меньший урон перед падением.."
 	icon = 'massmeta/icons/obj/clothing/clockwork_garb.dmi'
+	worn_icon = 'icons/mob/clothing/suit.dmi'
 	icon_state = "clockwork_cuirass_speed"
 	slowdown = -0.3
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	armor = list("melee" = 40, "bullet" = 40, "laser" = 10, "energy" = -20, "bomb" = 60, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
+	armor = /datum/armor/clockwork_cuirass_speed
+
+/datum/armor/clockwork_cuirass_speed
+	melee = 40
+	bullet = 40
+	laser = 10
+	energy = -20
+	bomb = 60
+	bio = 100
+	rad = 100
+	fire = 100
+	acid = 100
 
 /obj/item/clothing/suit/clockwork/cloak
 	name = "плащ-покров"
 	desc = "Шатающийся плащ, который рассеивает свет вокруг себя, искажая внешний вид пользователя, из-за чего его трудно увидеть невооруженным глазом. Однако он обеспечивает очень слабую защиту.."
+	worn_icon = 'icons/mob/clothing/suit.dmi'
 	icon = 'massmeta/icons/obj/clothing/clockwork_garb.dmi'
 	icon_state = "clockwork_cloak"
-	armor = list("melee" = 10, "bullet" = 60, "laser" = 40, "energy" = 20, "bomb" = 40, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
+	armor = /datum/armor/clockwork_cloak
 	slowdown = 0.4
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	var/shroud_active = FALSE
@@ -46,6 +69,17 @@
 	var/f
 	var/start
 	var/previous_alpha
+
+/datum/armor/clockwork_cloak
+	melee = 10
+	bullet = 60
+	laser = 40
+	energy = 20
+	bomb = 40
+	bio = 100
+	rad = 100
+	fire = 100
+	acid = 100
 
 /obj/item/clothing/suit/clockwork/cloak/equipped(mob/user, slot)
 	. = ..()
@@ -145,10 +179,21 @@
 	icon = 'massmeta/icons/obj/clothing/clockwork_garb.dmi'
 	icon_state = "clockwork_helmet"
 	worn_icon = 'icons/mob/clothing/head/chaplain.dmi'
-	armor = list("melee" = 50, "bullet" = 60, "laser" = 30, "energy" = 80, "bomb" = 80, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
+	armor = /datum/armor/clockwork_helmet
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	w_class = WEIGHT_CLASS_BULKY
 	flash_protect = 1
+
+/datum/armor/clockwork_helmet
+	melee = 50
+	bullet = 60
+	laser = 30
+	energy = 80
+	bio = 100
+	bomb = 80
+	rad = 100
+	fire = 100
+	acid = 100
 
 /obj/item/clothing/shoes/clockcult
 	name = "латунные протекторы"
@@ -162,10 +207,14 @@
 	icon = 'massmeta/icons/obj/clothing/clockwork_garb.dmi'
 	icon_state = "clockwork_gauntlets"
 	siemens_coefficient = 0
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, FIRE = 80, ACID = 50)
+	armor = /datum/armor/clockwork_gloves
 	strip_delay = 80
 	cold_protection = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
 	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
 	resistance_flags = NONE
+
+/datum/armor/clockwork_gloves
+	fire = 80
+	acid = 50
