@@ -73,7 +73,7 @@ GLOBAL_LIST_INIT(clockwork_slabs, list())
 	if(!is_servant_of_ratvar(user))
 		return
 	//Grant quickbound spells
-	for(var//datum/action/cooldown/clockcult/quick_bind/script in quick_bound_scriptures)
+	for(var/datum/action/cooldown/clockcult/quick_bind/script in quick_bound_scriptures)
 		script.Grant(user)
 	user.update_action_buttons()
 
