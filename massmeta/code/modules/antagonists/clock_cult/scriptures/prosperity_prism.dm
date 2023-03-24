@@ -18,6 +18,7 @@
 	name = "призма процветания"
 	desc = "Призма, которая, кажется, всегда пристально смотрит на меня."
 	clockwork_desc = "Призма, которая исцеляет ближайших слуг от токсинов.."
+	icon_state = "prolonging_prism"
 	default_icon_state = "prolonging_prism"
 	anchored = TRUE
 	break_message = span_warning("Призма разваливается, токсичная жидкость утекает в воздух.")

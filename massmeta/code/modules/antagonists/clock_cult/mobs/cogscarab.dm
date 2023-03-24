@@ -57,12 +57,6 @@ GLOBAL_LIST_INIT(cogscarabs, list())
 			if(user.client.player_age < 14)
 				to_chat(user, span_danger("Ты слишком слаб. Попробуй через [14 - user.client.player_age] дней."))
 				return
-	if(!check_whitelist(user?.ckey))
-		to_chat(user, span_danger("Тебя нет в вайтлисте."))
-		return
-	if(!SSticker.mode)
-		to_chat(user, "Невозможно стать мехскарабеем, пока игра не началась.")
-		return
 	var/be_drone = tgui_alert(usr, "Будем мехскарабеем? (Внимание, старое тело будет покинуто!)",,list("Да","Нет"))
 	if(be_drone != "Да" || QDELETED(src) || !isobserver(user))
 		return

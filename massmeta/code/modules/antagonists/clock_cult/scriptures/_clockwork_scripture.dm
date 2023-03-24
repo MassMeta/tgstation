@@ -280,8 +280,6 @@
 	return ..()
 
 /datum/action/cooldown/clockcult/quick_bind/Activate(atom/target)
-	if(!(.=..()))
-		return FALSE
 	if(!activation_slab)
 		to_chat(owner, span_warning("No slab!"))
 		return
@@ -289,6 +287,7 @@
 		scripture.begin_invoke(owner, activation_slab)
 	else
 		to_chat(owner, span_brass("Не вышло вызвать [name]."))
+	return ..()
 
 //==================================//
 // !     Hierophant Transmit      ! //
@@ -306,7 +305,6 @@
 		return FALSE
 	return ..()
 
-/datum/action/cooldown/clockcult/transmit/Trigger()
-	if(!(.=..()))
-		return FALSE
+/datum/action/cooldown/clockcult/transmit/Activate(atom/target)
 	hierophant_message(stripped_input(owner, "Что же мы скажем нашим союзничкам?", "Иерофантовый канал", ""), owner, "<span class='brass'>")
+	return ..()
