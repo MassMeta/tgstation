@@ -360,7 +360,7 @@
 		/obj/item/clock_module/stargazer,
 		/obj/item/clock_module/abstraction_crystal,
 		/obj/item/clockwork/replica_fabricator,
-		/obj/item/stack/tile/bronze)
+		/obj/item/stack/sheet/bronze)
 	cyborg_base_icon = "engineer"
 	model_select_icon = "engineer"
 	model_traits = list(TRAIT_NEGATES_GRAVITY)
@@ -921,7 +921,7 @@
 		/obj/item/clock_module/stargazer,
 		/obj/item/clock_module/abstraction_crystal,
 		/obj/item/clockwork/replica_fabricator,
-		/obj/item/stack/tile/bronze)
+		/obj/item/stack/sheet/bronze)
 
 	cyborg_base_icon = "synd_engi"
 	model_select_icon = "malf"
