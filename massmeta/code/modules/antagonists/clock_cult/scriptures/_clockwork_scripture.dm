@@ -182,7 +182,7 @@
 	invoking_slab.charge_overlay = slab_overlay
 	invoking_slab.update_icon()
 	invoking_slab.active_scripture = src
-	invoker.click_intercept = src
+	invoker.click_intercept = slab_action
 	to_chat(invoker, span_brass("Готовлю [name]. <b>Клик на цели для использования.</b>"))
 	count_down()
 	invoke_success()
