@@ -24,12 +24,17 @@
 	weight = 0 //W.I.P.
 	cost = 20
 	requirements = list(100,90,80,60,40,30,10,10,10,10)
+	required_candidates = 4
 	flags = HIGH_IMPACT_RULESET
 	antag_cap = list("denominator" = 20, "offset" = 1)
 
+	var/datum/team/clock_cult/main_cult
+	var/list/selected_servants = list()
+
 /datum/dynamic_ruleset/roundstart/clockcult/pre_execute()
+	//Load Reebe
 	LoadReebe()
-	
+	//Make cultists
 	var/starter_servants = 4
 	var/number_players = mode.roundstart_pop_ready
 	if(number_players > 30)
@@ -41,43 +46,22 @@
 		assigned += servant.mind
 		servant.mind.assigned_role = ROLE_SERVANT_OF_RATVAR
 		servant.mind.special_role = ROLE_SERVANT_OF_RATVAR
-		GLOB.pre_setup_antags += servant.mind
+	//Generate scriptures
+	generate_clockcult_scriptures()
 	return TRUE
 
 /datum/dynamic_ruleset/roundstart/clockcult/execute()
-	var/list/spread_out_spawns = GLOB.servant_spawns.Copy()
-	for(var/datum/mind/servant in assigned)
-		var/mob/S = servant.current
-		if(!spread_out_spawns.len)
-			spread_out_spawns = GLOB.servant_spawns.Copy()
-		log_game("[key_name(servant)] was made an initial servant of Ratvar")
-		var/turf/T = pick_n_take(spread_out_spawns)
-		S.forceMove(T)
-		equip_servant(S)
-		add_servant_of_ratvar(S, TRUE)
-		GLOB.pre_setup_antags -= S.mind
-	return TRUE
-
-/datum/dynamic_ruleset/roundstart/clockcult/proc/equip_servant(mob/living/M) //Grants a clockwork slab to the mob, with one of each component
-	if(!M || !ishuman(M))
-		return FALSE
-	var/mob/living/carbon/human/L = M
-	L.equipOutfit(/datum/outfit/clockcult)
-	var/obj/item/clockwork/clockwork_slab/S = new
-	var/slot = "At your feet"
-	var/list/slots = list("In your left pocket" = ITEM_SLOT_LPOCKET, "In your right pocket" = ITEM_SLOT_RPOCKET, "In your backpack" = ITEM_SLOT_BACKPACK, "On your belt" = ITEM_SLOT_BELT)
-	if(ishuman(L))
-		var/mob/living/carbon/human/H = L
-		slot = H.equip_in_one_of_slots(S, slots)
-		if(slot == "In your backpack")
-			slot = "In your [H.back.name]"
-	if(slot == "At your feet")
-		if(!S.forceMove(get_turf(L)))
-			qdel(S)
-	if(S && !QDELETED(S))
-		to_chat(L, "<span class='bold large_brass'>There is a paper in your backpack! It'll tell you if anything's changed, as well as what to expect.</span>")
-		to_chat(L, "<span class='alloy'>[slot] is a <b>clockwork slab</b>, a multipurpose tool used to construct machines and invoke ancient words of power. If this is your first time \
-		as a servant, you can find a concise tutorial in the Recollection category of its interface.</span>")
-		to_chat(L, "<span class='alloy italics'>If you want more information, you can read <a href=\"https://tgstation13.org/wiki/Clockwork_Cult\">the wiki page</a> to learn more.</span>")
-		return TRUE
-	return FALSE
+	var/list/spawns = GLOB.servant_spawns.Copy()
+	main_cult = new
+	main_cult.setup_objectives()
+	//Create team
+	for(var/datum/mind/servant_mind in assigned)
+		servant_mind.current.forceMove(pick_n_take(spawns))
+		servant_mind.current.set_species(/datum/species/human)
+		var/datum/antagonist/servant_of_ratvar/S = add_servant_of_ratvar(servant_mind.current, team=main_cult)
+		S.equip_carbon(servant_mind.current)
+		S.equip_servant()
+		S.prefix = CLOCKCULT_PREFIX_MASTER
+	//Setup the conversion limits for auto opening the ark
+	calculate_clockcult_values()
+	return ..()
