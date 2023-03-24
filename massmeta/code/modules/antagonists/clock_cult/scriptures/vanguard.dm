@@ -12,7 +12,7 @@
 	var/last_recorded_stam_dam = 0
 	var/total_stamina_damage = 0
 
-/datum/clockcult/scripture/slab/vanguard/click_on(atom/A)
+/datum/clockcult/scripture/slab/vanguard/InterceptClickOn(mob/living/caller, params, atom/target)
 	return FALSE
 
 /datum/clockcult/scripture/slab/vanguard/invoke_success()
