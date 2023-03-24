@@ -30,6 +30,8 @@ GLOBAL_LIST_EMPTY(bloodsucker_clan_members)
 	var/rank_up_type = BLOODSUCKER_RANK_UP_NORMAL
 	///Whether they become entirely stun immune when entering Frenzy.
 	var/frenzy_stun_immune = FALSE
+	///Are u able to cast spells and do other shit while in Frenzy
+	var/controlled_frenzy = FALSE
 	///How we will drink blood using Feed.
 	var/blood_drink_type = BLOODSUCKER_DRINK_NORMAL
 

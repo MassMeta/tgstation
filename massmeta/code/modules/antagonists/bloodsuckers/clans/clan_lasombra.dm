@@ -1,6 +1,6 @@
 /datum/bloodsucker_clan/lasombra
 	name = CLAN_LASOMBRA
-	description = "This Clan seems to adore living in the <i>Shadows</i> and worshipping it's secrets.. \n\
+	description = "This Clan seems to adore living in the Shadows and worshipping it's secrets.. \n\
 		Their vassals adapt to see in darkness, and their favorite vassal turns into a horrific shadow creature."
 	join_icon_state = "lasombra"
 	join_description = "You live in shadows, light sources damage your eyes and your body, but you gain an ability to vanish in shadows.\

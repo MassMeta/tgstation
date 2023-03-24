@@ -52,9 +52,15 @@
 	bloodsuckerdatum = IS_BLOODSUCKER(user)
 
 	// Disable ALL Powers and notify their entry
-	bloodsuckerdatum.DisableAllPowers(forced = TRUE)
-	to_chat(owner, span_userdanger("<FONT size = 3>Blood! You need Blood, now! You enter a total Frenzy!"))
-	to_chat(owner, span_announce("* Bloodsucker Tip: While in Frenzy, you instantly Aggresively grab, have stun resistance, cannot speak, hear, or use any powers outside of Feed and Trespass (If you have it)."))
+	if(!bloodsuckerdatum.my_clan.controlled_frenzy)
+		bloodsuckerdatum.DisableAllPowers(forced = TRUE)
+	if(bloodsuckerdatum.my_clan.controlled_frenzy)
+		to_chat(parent, span_announce("While in Frenzy, you gain the ability to instantly aggressively grab people, move faster, get stun resistance, and have no blood cost on abilities.<br> \n\
+		* In exchange, you will slowly gain Brute damage, cannot speak, hear, or use advanced machineries. Be careful of how you handle it!<br> \n\
+		* To leave Frenzy, simply drink enough Blood ([FRENZY_THRESHOLD_EXIT]) to exit.<br>"))
+	else
+		to_chat(owner, span_userdanger("<FONT size = 3>Blood! You need Blood, now! You enter a total Frenzy!"))
+		to_chat(owner, span_announce("* Bloodsucker Tip: While in Frenzy, you instantly Aggresively grab, have stun resistance, cannot speak, hear, or use any powers outside of Feed and Trespass (If you have it)."))
 	owner.balloon_alert(owner, "you enter a frenzy!")
 
 	// Stamina resistances
@@ -94,8 +100,10 @@
 
 	if(bloodsuckerdatum.my_clan.frenzy_stun_immune)
 		REMOVE_TRAIT(owner, TRAIT_STUNIMMUNE, FRENZY_TRAIT)
-	else
+	else if(!bloodsuckerdatum.my_clan.controlled_frenzy)
 		owner.set_timed_status_effect(3 SECONDS, /datum/status_effect/dizziness, only_if_higher = TRUE)
+		user.physiology.stamina_mod /= 0.4
+	else
 		user.physiology.stamina_mod /= 0.4
 
 	bloodsuckerdatum.frenzied = FALSE
@@ -105,4 +113,7 @@
 	var/mob/living/carbon/human/user = owner
 	if(!bloodsuckerdatum.frenzied)
 		return
-	user.adjustFireLoss(1.5 + (bloodsuckerdatum.humanity_lost / 10))
+	if(bloodsuckerdatum.my_clan.controlled_frenzy)
+		user.adjustBruteLoss(1.5 + (bloodsuckerdatum.humanity_lost / 10))
+	else
+		user.adjustFireLoss(1.5 + (bloodsuckerdatum.humanity_lost / 10))
