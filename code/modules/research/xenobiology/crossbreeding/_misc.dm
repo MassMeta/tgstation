@@ -230,7 +230,6 @@ Slimecrossing Items
 	var/obj/item/stack/stack_item = target
 
 	if(istype(stack_item,/obj/item/stack/telecrystal))
-		var/mob/living/carbon/carbie = user
 		to_chat(user,"<span class='big red'>FUCK YOU!</span>")
 		return
 
