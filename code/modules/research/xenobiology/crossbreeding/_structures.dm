@@ -87,10 +87,10 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 		return PROCESS_KILL
 
 	var/list/current_mobs
-    if(range_type == "view")
-        current_mobs = view(3, src)
-    else
-        current_mobs = range(3, src)
+	if(range_type == "view")
+		current_mobs = view(3, src)
+	else
+		current_mobs = range(3, src)
 	for(var/mob/living/mob_in_range in current_mobs)
 		if(!(mob_in_range in affected_mobs))
 			on_mob_enter(mob_in_range)
