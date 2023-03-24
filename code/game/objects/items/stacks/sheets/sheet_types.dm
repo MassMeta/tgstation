@@ -677,8 +677,8 @@ GLOBAL_LIST_INIT(bronze_recipes, list ( \
 	new/datum/stack_recipe("полное латунное окно", /obj/structure/window/bronze/fulltile/unanchored, 2, time = 0, on_floor = TRUE, window_checks = TRUE), \
 	new/datum/stack_recipe("латунный шлюз", /obj/machinery/door/airlock/bronze, 4, time = 50, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("латунный шлюз с щелью", /obj/machinery/door/airlock/bronze/seethru, 4, time = 50, one_per_turf = TRUE, on_floor = TRUE), \
-	new/datum/stack_recipe("латунная шляпа", /obj/item/clothing/head/bronze), \
-	new/datum/stack_recipe("латунный костюм", /obj/item/clothing/suit/bronze), \
+	new/datum/stack_recipe("латунная шляпа", /obj/item/clothing/head/costume/bronze), \
+	new/datum/stack_recipe("латунный костюм", /obj/item/clothing/suit/costume/bronze), \
 	new/datum/stack_recipe("латунные ботинки", /obj/item/clothing/shoes/bronze), \
 	null,
 	new/datum/stack_recipe("латунный стул", /obj/structure/chair/bronze, 1, time = 0, one_per_turf = TRUE, on_floor = TRUE), \
