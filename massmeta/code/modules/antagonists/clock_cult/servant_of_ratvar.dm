@@ -67,7 +67,7 @@
 	current_mob.throw_alert("clockinfo", /atom/movable/screen/alert/clockwork/clocksense)
 	var/datum/language_holder/LH = current_mob.get_language_holder()
 	LH.grant_language(/datum/language/ratvar, TRUE, TRUE, LANGUAGE_CULTIST)
-	add_team_hud(current_mob)
+	add_team_hud(current_mob, /datum/antagonist/servant_of_ratvar)
 
 /datum/antagonist/servant_of_ratvar/remove_innate_effects(mob/living/M)
 	var/mob/living/current_mob = mob_override || owner.current
