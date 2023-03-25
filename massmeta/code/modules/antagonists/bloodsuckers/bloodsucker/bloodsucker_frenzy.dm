@@ -55,7 +55,7 @@
 	if(!bloodsuckerdatum.my_clan.controlled_frenzy)
 		bloodsuckerdatum.DisableAllPowers(forced = TRUE)
 	if(bloodsuckerdatum.my_clan.controlled_frenzy)
-		to_chat(parent, span_announce("While in Frenzy, you gain the ability to instantly aggressively grab people, move faster, get stun resistance, and have no blood cost on abilities.<br> \n\
+		to_chat(owner, span_announce("While in Frenzy, you gain the ability to instantly aggressively grab people, move faster, get stun resistance, and have no blood cost on abilities.<br> \n\
 		* In exchange, you will slowly gain Brute damage, cannot speak, hear, or use advanced machineries. Be careful of how you handle it!<br> \n\
 		* To leave Frenzy, simply drink enough Blood ([FRENZY_THRESHOLD_EXIT]) to exit.<br>"))
 	else
