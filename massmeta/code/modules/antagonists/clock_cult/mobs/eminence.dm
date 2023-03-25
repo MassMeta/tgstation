@@ -181,7 +181,7 @@
 
 /datum/action/cooldown/spell/eminence/station/cast(atom/cast_on)
 	. = ..()
-	if(!is_station_level(user.z))
+	if(!is_station_level(owner.z))
 		owner.forceMove(get_turf(pick(GLOB.generic_event_spawns)))
 		SEND_SOUND(owner, sound('sound/magic/magic_missile.ogg'))
 		flash_color(owner, flash_color = "#AF0AAF", flash_time = 25)
@@ -287,7 +287,7 @@
 
 /datum/action/cooldown/spell/eminence/trigger_event/cast(atom/cast_on)
 	. = ..()
-	var/picked_event = tgui_input_list(user, "Что мы запустим?", "Манипуляция с реальностью", list(
+	var/picked_event = tgui_input_list(owner, "Что мы запустим?", "Манипуляция с реальностью", list(
 		"Anomaly",
 		"Brand Intelligence",
 		"Camera Failure",
