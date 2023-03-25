@@ -217,8 +217,11 @@
 		return
 
 	if(iscarbon(prey))
-		prey.adjustCloneLoss(rand(2, 4) * 0.5 * delta_time)
-		prey.adjustToxLoss(rand(1, 2) * 0.5 * delta_time)
+		var/bonus_damage = 1
+		if(transformeffects & SLIME_EFFECT_RED)
+			bonus_damage = 1.1
+		prey.adjustCloneLoss(rand(2, 4) * bonus_damage * 0.5 * delta_time)
+		prey.adjustToxLoss(rand(1, 2) * bonus_damage * 0.5 * delta_time)
 
 		if(DT_PROB(5, delta_time) && prey.client)
 			to_chat(prey, "<span class='userdanger'>[pick("You can feel your body becoming weak!", \
@@ -255,7 +258,7 @@
 		set_nutrition(700) //fuck you for using the base nutrition var
 		return
 
-	if(DT_PROB(7.5, delta_time))
+	if(DT_PROB(7.5, delta_time) && !(transformeffects & SLIME_EFFECT_SILVER))
 		adjust_nutrition(-0.5 * (1 + is_adult) * delta_time)
 
 	if(nutrition <= 0)
@@ -275,15 +278,16 @@
 			Evolve()
 
 /mob/living/simple_animal/slime/proc/add_nutrition(nutrition_to_add = 0)
+	var/gainpower = (transformeffects & SLIME_EFFECT_YELLOW) ? 3 : 1
 	set_nutrition(min((nutrition + nutrition_to_add), get_max_nutrition()))
 	if(nutrition >= get_grow_nutrition())
 		if(powerlevel<10)
 			if(prob(30-powerlevel*2))
-				powerlevel++
+				powerlevel += gainpower
 	else if(nutrition >= get_hunger_nutrition() + 100) //can't get power levels unless you're a bit above hunger level.
 		if(powerlevel<5)
 			if(prob(25-powerlevel*5))
-				powerlevel++
+				powerlevel += gainpower
 
 
 
