@@ -13,9 +13,18 @@
 	if(!.)
 		return
 
+	alpha = 255
+	if(transformeffects & SLIME_EFFECT_BLACK)
+		alpha = 64
+
 	// We get some passive bruteloss healing if we're not dead
 	if(stat != DEAD && DT_PROB(16, delta_time))
-		adjustBruteLoss(-0.5 * delta_time)
+		var/heal = 0.5
+		if(transformeffects & SLIME_EFFECT_PURPLE)
+			heal += 0.5
+		adjustBruteLoss(-heal)
+	if((transformeffects & SLIME_EFFECT_RAINBOW) && prob(5))
+		random_colour()
 	if(ismob(buckled))
 		handle_feeding(delta_time, times_fired)
 	if(stat != CONSCIOUS) // Slimes in stasis don't lose nutrition, don't change mood and don't respond to speech
@@ -103,6 +112,10 @@
 			else if(Target in view(7, src))
 				if(!Target.Adjacent(src))
 				// Bug of the month candidate: slimes were attempting to move to target only if it was directly next to them, which caused them to target things, but not approach them
+				if((transformeffects & SLIME_EFFECT_BLUESPACE) && powerlevel >= 5)
+					do_teleport(src, get_turf(Target), asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE)
+					powerlevel -= 5
+				else
 					step_to(src, Target)
 			else
 				set_target(null)
@@ -150,6 +163,12 @@
 		if(environment.gases[/datum/gas/bz])
 			bz_percentage = environment.gases[/datum/gas/bz][MOLES] / environment.total_moles()
 		var/stasis = (bz_percentage >= 0.05 && bodytemperature < (T0C + 100)) || force_stasis
+		if(transformeffects & SLIME_EFFECT_DARK_PURPLE)
+			var/amt = is_adult ? 30 : 15
+			var/plas_amt = min(amt,environment.get_moles(/datum/gas/plasma))
+			environment.adjust_moles(/datum/gas/plasma, -plas_amt)
+			environment.adjust_moles(/datum/gas/oxygen, plas_amt)
+			adjustBruteLoss(plas_amt ? -2 : 0)
 
 		switch(stat)
 			if(CONSCIOUS)
@@ -169,6 +188,13 @@
 
 /mob/living/simple_animal/slime/proc/handle_feeding(delta_time, times_fired)
 	var/mob/living/prey = buckled
+
+	alpha = 255
+	var/mob/living/M = buckled
+	if(transformeffects & SLIME_EFFECT_OIL)
+		var/datum/reagent/fuel/fuel = new
+		fuel.reaction_mob(buckled,TOUCH,20)
+		qdel(fuel)
 
 	if(stat)
 		Feedstop(silent = TRUE)
