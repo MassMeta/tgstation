@@ -69,7 +69,7 @@
 	LH.grant_language(/datum/language/ratvar, TRUE, TRUE, LANGUAGE_CULTIST)
 	add_team_hud(current_mob, /datum/antagonist/servant_of_ratvar)
 
-/datum/antagonist/servant_of_ratvar/remove_innate_effects(mob/living/M)
+/datum/antagonist/servant_of_ratvar/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/current_mob = mob_override || owner.current
 	current_mob.faction -= "ratvar"
 	current_mob.clear_alert("clockinfo")
