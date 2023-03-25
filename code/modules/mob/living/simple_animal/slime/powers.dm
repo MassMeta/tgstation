@@ -249,8 +249,6 @@
 		M.grant_language(/datum/language/common, TRUE, TRUE)
 		var/datum/language_holder/LH = M.get_language_holder()
 		LH.selected_language = /datum/language/common
-	if(transformeffects & SLIME_EFFECT_BLUESPACE)
-		M.add_verb(/mob/living/simple_animal/slime/proc/teleport)
 	if(transformeffects & SLIME_EFFECT_LIGHT_PINK)
 		M.master = master
 	M.Friends = Friends.Copy()
@@ -259,15 +257,6 @@
 	M.mutation_chance = clamp(mutation_chance+(rand(5,-5)),0,100)
 	SSblackbox.record_feedback("tally", "slime_babies_born", 1, M.colour)
 	return M
-
-/mob/living/simple_animal/slime/proc/teleport()
-	set category = "Slime"
-	set name = "teleport"
-	set desc = "teleport to random location"
-	if(powerlevel <= 0)
-		to_chat(src, "<span class='warning'>No enough power.</span>")
-	else
-		random_tp()
 
 /mob/living/simple_animal/slime/proc/random_tp()
 	var/power = rand(1,powerlevel)

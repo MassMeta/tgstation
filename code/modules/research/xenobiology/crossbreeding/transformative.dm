@@ -80,15 +80,6 @@ transformative extracts:
 	effect_applied = SLIME_EFFECT_SILVER
 	effect_desc = "Slimes will no longer lose nutrition over time."
 
-/obj/item/slimecross/transformative/bluespace
-	colour = "bluespace"
-	effect_applied = SLIME_EFFECT_BLUESPACE
-	effect_desc = "Slimes will teleport to targets when they are at full electric charge."
-
-/obj/item/slimecross/transformative/bluespace/do_effect(mob/living/simple_animal/slime/S, mob/user)
-	..()
-	S.add_verb(/mob/living/simple_animal/slime/proc/teleport)
-
 /obj/item/slimecross/transformative/cerulean
 	colour = "cerulean"
 	effect_applied = SLIME_EFFECT_CERULEAN

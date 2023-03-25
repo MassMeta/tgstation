@@ -112,11 +112,11 @@
 			else if(Target in view(7, src))
 				if(!Target.Adjacent(src))
 				// Bug of the month candidate: slimes were attempting to move to target only if it was directly next to them, which caused them to target things, but not approach them
-				if((transformeffects & SLIME_EFFECT_BLUESPACE) && powerlevel >= 5)
-					do_teleport(src, get_turf(Target), asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE)
-					powerlevel -= 5
-				else
-					step_to(src, Target)
+					if((transformeffects & SLIME_EFFECT_BLUESPACE) && powerlevel >= 5)
+						do_teleport(src, get_turf(Target), asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE)
+						powerlevel -= 5
+					else
+						step_to(src, Target)
 			else
 				set_target(null)
 				AIproc = 0
@@ -184,7 +184,6 @@
 	var/mob/living/prey = buckled
 
 	alpha = 255
-	var/mob/living/M = buckled
 	if(transformeffects & SLIME_EFFECT_OIL)
 		var/datum/reagent/fuel/fuel = new
 		fuel.expose_mob(buckled,TOUCH,20)
