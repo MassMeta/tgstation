@@ -149,8 +149,8 @@
 	if(!istype(eminence))
 		return FALSE
 	if(eminence.cogs < cog_cost)
-			if(feedback)
-				owner.balloon_alert(owner, "not enough cogs!")
+		if(feedback)
+			owner.balloon_alert(owner, "not enough cogs!")
 		return FALSE
 	return ..()
 
