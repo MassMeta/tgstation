@@ -70,11 +70,6 @@ transformative extracts:
 	effect_applied = SLIME_EFFECT_YELLOW
 	effect_desc = "Slimes will gain electric charge faster."
 
-/obj/item/slimecross/transformative/darkpurple
-	colour = "dark purple"
-	effect_applied = SLIME_EFFECT_DARK_PURPLE
-	effect_desc = "Slime rapidly converts atmospheric plasma to oxygen, healing in the process."
-
 /obj/item/slimecross/transformative/darkblue
 	colour = "dark blue"
 	effect_applied = SLIME_EFFECT_DARK_BLUE

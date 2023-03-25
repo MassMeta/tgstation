@@ -211,7 +211,7 @@
 						force_colour = TRUE
 				if(transformeffects & SLIME_EFFECT_CERULEAN)
 					force_colour = TRUE
-				var/mob/living/simple_animal/slime/M = make_baby(drop_loc, new_adult, new_nutrition, new_powerlevel, force_colour, step_away, original_nanites)
+				var/mob/living/simple_animal/slime/M = make_baby(drop_loc, new_adult, new_nutrition, new_powerlevel, force_colour, step_away)
 				babies += M
 
 			var/mob/living/simple_animal/slime/new_slime = pick(babies)
@@ -226,7 +226,7 @@
 	else
 		to_chat(src, "<i>I am not old enough to reproduce yet...</i>")
 
-/mob/living/simple_animal/slime/proc/make_baby(drop_loc, new_adult, new_nutrition, new_powerlevel, force_original_colour=FALSE, step_away=TRUE,datum/component/nanites/original_nanites=null)
+/mob/living/simple_animal/slime/proc/make_baby(drop_loc, new_adult, new_nutrition, new_powerlevel, force_original_colour=FALSE, step_away=TRUE)
 	var/child_colour = colour
 	if(!force_original_colour)
 		if(prob(mutation_chance))
@@ -252,17 +252,12 @@
 	if(transformeffects & SLIME_EFFECT_BLUESPACE)
 		M.add_verb(/mob/living/simple_animal/slime/proc/teleport)
 	if(transformeffects & SLIME_EFFECT_LIGHT_PINK)
-		GLOB.poi_list |= M
 		M.master = master
-		LAZYADD(GLOB.mob_spawners["[master.real_name]'s slime"], M)
 	M.Friends = Friends.Copy()
 	if(step_away)
 		step_away(M,src)
 	M.mutation_chance = clamp(mutation_chance+(rand(5,-5)),0,100)
 	SSblackbox.record_feedback("tally", "slime_babies_born", 1, M.colour)
-	if(original_nanites)
-		M.AddComponent(/datum/component/nanites, original_nanites.nanite_volume*0.25)
-		SEND_SIGNAL(M, COMSIG_NANITE_SYNC, original_nanites, TRUE, TRUE) //The trues are to copy activation as well
 	return M
 
 /mob/living/simple_animal/slime/proc/teleport()

@@ -163,12 +163,6 @@
 		if(environment.gases[/datum/gas/bz])
 			bz_percentage = environment.gases[/datum/gas/bz][MOLES] / environment.total_moles()
 		var/stasis = (bz_percentage >= 0.05 && bodytemperature < (T0C + 100)) || force_stasis
-		if(transformeffects & SLIME_EFFECT_DARK_PURPLE)
-			var/amt = is_adult ? 30 : 15
-			var/plas_amt = min(amt,environment.get_moles(/datum/gas/plasma))
-			environment.adjust_moles(/datum/gas/plasma, -plas_amt)
-			environment.adjust_moles(/datum/gas/oxygen, plas_amt)
-			adjustBruteLoss(plas_amt ? -2 : 0)
 
 		switch(stat)
 			if(CONSCIOUS)
@@ -193,7 +187,7 @@
 	var/mob/living/M = buckled
 	if(transformeffects & SLIME_EFFECT_OIL)
 		var/datum/reagent/fuel/fuel = new
-		fuel.reaction_mob(buckled,TOUCH,20)
+		fuel.expose_mob(buckled,TOUCH,20)
 		qdel(fuel)
 
 	if(stat)

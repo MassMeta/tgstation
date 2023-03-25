@@ -585,8 +585,11 @@
 		to_chat(user, "<span class='warning'>Someone else already took this slime!</span>")
 		return
 	key = user.key
+	mind_initialize()
+	sentience_act()
 	if(mind && master)
-		mind.store_memory("<b>Serve [master.real_name], your master.</b>")
+		mind.enslave_mind_to_creator(master)
+		mind.add_antag_datum(/datum/antagonist/sentient_creature)
 	log_game("[key_name(src)] took control of [name].")
 
 #undef SLIME_CARES_ABOUT
