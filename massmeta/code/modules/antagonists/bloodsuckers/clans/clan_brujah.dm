@@ -13,6 +13,9 @@
 
 /datum/bloodsucker_clan/brujah/New(mob/living/carbon/user)
 	. = ..()
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(user)
+	if(!bloodsuckerdatum)
+		return
 	bloodsuckerdatum.BuyPower(/datum/action/bloodsucker/brujah) // :)
 	bloodsuckerdatum.AddHumanityLost(17.5) // :(
 	for(var/obj/item/bodypart/bodypart in user.bodyparts)
