@@ -14,10 +14,9 @@
 /datum/bloodsucker_clan/brujah/New(mob/living/carbon/user)
 	. = ..()
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(user)
-	if(!bloodsuckerdatum)
-		return
-	bloodsuckerdatum.BuyPower(/datum/action/bloodsucker/brujah) // :)
-	bloodsuckerdatum.AddHumanityLost(17.5) // :(
+	if(bloodsuckerdatum)
+		bloodsuckerdatum.BuyPower(/datum/action/bloodsucker/brujah) // :)
+		bloodsuckerdatum.AddHumanityLost(17.5) // :(
 	for(var/obj/item/bodypart/bodypart in user.bodyparts)
 		bodypart.unarmed_damage_high += 1.5
 		bodypart.unarmed_damage_low += 1.5
@@ -25,8 +24,7 @@
 /datum/bloodsucker_clan/brujah/on_favorite_vassal(datum/source, datum/antagonist/vassal/vassaldatum, mob/living/bloodsucker)
 	. = ..()
 	var/mob/living/carbon/carbon_vassal = vassaldatum.owner.current
-	if(!istype(carbon_vassal))
-		return
-	for(var/obj/item/bodypart/bodypart in carbon_vassal.bodyparts)
-		bodypart.unarmed_damage_high += 1.5
-		bodypart.unarmed_damage_low += 1.5
+	if(istype(carbon_vassal))
+		for(var/obj/item/bodypart/bodypart in carbon_vassal.bodyparts)
+			bodypart.unarmed_damage_high += 1.5
+			bodypart.unarmed_damage_low += 1.5
