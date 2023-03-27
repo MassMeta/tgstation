@@ -36,33 +36,61 @@
 		playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
 		to_chat(user, span_nzcrentr("Превращаю [S.amount] [S] в [S.amount] латуни."))
 		qdel(target)
-	else if(isfloorturf(target) && !isindestructiblefloor(target))
+	else if(isturf(target))
 		var/turf/T = target
-		if(istype(target,/turf/open/floor/clockwork))
-			if(GLOB.clockcult_power < 700)
-				user.balloon_alert(user, "not enough power")
+		if(isfloorturf(target) && !isindestructiblefloor(target))
+			if(istype(target,/turf/open/floor/clockwork))
+				if(GLOB.clockcult_power < 700)
+					user.balloon_alert(user, "not enough power")
+					return
+				user.balloon_alert(user, "constructing a wall...")
+				if(!do_after(user, 15 SECONDS, target))
+					return
+				if(GLOB.clockcult_power < 700)
+					user.balloon_alert(user, "not enough power")
+					return
+				T.ChangeTurf(/turf/closed/wall/clockwork)
+				GLOB.clockcult_power -= 700
+			else
+				if(GLOB.clockcult_power < 350)
+					user.balloon_alert(user, "not enough power")
+					return
+				user.balloon_alert(user, "transforming [target]...")
+				if(!do_after(user, 5 SECONDS, target))
+					return
+				if(GLOB.clockcult_power < 350)
+					user.balloon_alert(user, "not enough power")
+					return
+				T.ChangeTurf(/turf/open/floor/clockwork)
+				GLOB.clockcult_power -= 350
 				return
-			user.balloon_alert(user, "constructing a wall...")
-			if(!do_after(user, 15 SECONDS, target))
+		else if (iswallturf(target) && (isindestructiblewall(target)))
+			if(istype(target, /turf/closed/wall/clockwork))
+				if(GLOB.clockcult_power < 550)
+					user.balloon_alert(user, "not enough power")
+					return
+				user.balloon_alert(user, "deconstructing [target]...")
+				if(!do_after(user, 12.5 SECONDS, target))
+					return
+				if(GLOB.clockcult_power < 550)
+					user.balloon_alert(user, "not enough power")
+					return
+				T.ChangeTurf(/turf/open/floor/clockwork)
+				GLOB.clockcult_power -= 550
 				return
-			if(GLOB.clockcult_power < 700)
-				user.balloon_alert(user, "not enough power")
+			else
+				if(GLOB.clockcult_power < 300)
+					user.balloon_alert(user, "not enough power")
+					return
+				user.balloon_alert(user, "transforming [target]...")
+				if(!do_after(user, 10 SECONDS, target))
+					return
+				if(GLOB.clockcult_power < 300)
+					user.balloon_alert(user, "not enough power")
+					return
+				T.ChangeTurf(/turf/closed/wall/clockwork)
+				GLOB.clockcult_power -= 300
 				return
-			T.ChangeTurf(/turf/closed/wall/clockwork)
-			GLOB.clockcult_power -= 700
-			return
-		else
-			if(GLOB.clockcult_power < 350)
-				user.balloon_alert(user, "not enough power")
-				return
-			user.balloon_alert(user, "transforming [target]...")
-			if(!do_after(user, 5 SECONDS, target))
-				return
-			if(GLOB.clockcult_power < 350)
-				user.balloon_alert(user, "not enough power")
-				return
-			T.ChangeTurf(/turf/open/floor/clockwork)
-			GLOB.clockcult_power -= 350
 
 	else if(istype(target, /obj/structure/destructible/clockwork))
 		var/obj/structure/destructible/clockwork/C = target
