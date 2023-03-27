@@ -32,6 +32,7 @@
 			return FALSE
 		var/obj/item/restraints/handcuffs/clockwork/cuffs = new /obj/item/restraints/handcuffs/clockwork(M)
 		cuffs.apply_cuffs(M, invoker)
+		M.adjust_silence(10 SECONDS)
 		return TRUE
 	return FALSE
 

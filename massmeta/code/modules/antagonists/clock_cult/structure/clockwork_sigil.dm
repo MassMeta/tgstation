@@ -30,7 +30,8 @@
 
 /obj/structure/destructible/clockwork/sigil/attack_hand(mob/user)
 	. = ..()
-	dispell()
+	if(user.combat_mode)
+		dispell()
 
 /obj/structure/destructible/clockwork/sigil/proc/on_entered(datum/source, atom/movable/AM)
 	SIGNAL_HANDLER

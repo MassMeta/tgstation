@@ -54,6 +54,7 @@
 		else
 			to_chat(invoker, span_brass("[M] кажется несколько устойчивым к моим силам!"))
 			M.adjust_confusion(5 SECONDS)
+			M.adjust_silence(5 SECONDS)
 	if(issilicon(M))
 		var/mob/living/silicon/S = M
 		S.emp_act(EMP_HEAVY)
