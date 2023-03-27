@@ -33,7 +33,7 @@
 	do_sparks(5, TRUE, get_turf(cam))
 	warping = TRUE
 	button_icon_state = "warp_cancel"
-	var/warp_time = 10 SECONDS
+	var/warp_time = 20 SECONDS
 	if(istype(target_loc, /turf/open/floor/clockwork))
 		warp_time = 5 SECONDS
 	if(do_after(M, warp_time, target=target_loc, extra_checks=CALLBACK(src, PROC_REF(special_check))))
@@ -49,6 +49,11 @@
 
 /datum/action/cooldown/clockcult/warp/proc/special_check()
 	return warping
+
+/obj/machinery/computer/camera_advanced/attack_animal(mob/living/simple_animal/user, list/modifiers)
+	if(!is_servant_of_ratvar(user))
+		return ..()
+	return attack_hand(user, modifiers)
 
 /obj/machinery/computer/camera_advanced/ratvar
 	name = "пульт наблюдения Ратвара"
