@@ -92,6 +92,18 @@
 				GLOB.clockcult_power -= 300
 				return
 
+	else if(istype(target, /obj/machinery/door/airlock) && !istype(target, /obj/machinery/door/airlock/clockwork))
+		if(GLOB.clockcult_power < 750)
+			user.balloon_alert(user, "not enough power")
+			return
+		user.balloon_alert(user, "transforming [target]...")
+		if(!do_after(user, 15 SECONDS, target))
+			return
+		if(GLOB.clockcult_power < 750)
+			user.balloon_alert(user, "not enough power")
+			return
+		target.ratvar_act()	
+
 	else if(istype(target, /obj/structure/destructible/clockwork))
 		var/obj/structure/destructible/clockwork/C = target
 		if(!C.can_be_repaired)

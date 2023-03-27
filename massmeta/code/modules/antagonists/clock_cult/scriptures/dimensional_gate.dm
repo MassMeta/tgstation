@@ -7,8 +7,8 @@
 	tip = "Essential for the cult, the one of the few way to get to Reebe."
 	button_icon_state = "dimensional_gate"
 	power_cost = 1000
-	invokation_time = 50
-	invokation_text = list("Направь мою руку, и мы создадим величие.")
+	invokation_time = 15 SECONDS
+	invokation_text = list("Когда мы прощаемся и возвращаемся к звездам...", "мы найдем дорогу домой.")
 	summoned_structure = /obj/structure/destructible/clockwork/gear_base/dimensional_gate
 	category = SPELLTYPE_STRUCTURES
 
