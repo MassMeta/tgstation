@@ -30,7 +30,10 @@
 
 /obj/structure/destructible/clockwork/sigil/attack_hand(mob/user)
 	. = ..()
-	if(user.combat_mode)
+	var/mob/living/L = user
+	if(!istype(L))
+		return
+	if(L.combat_mode)
 		dispell()
 
 /obj/structure/destructible/clockwork/sigil/proc/on_entered(datum/source, atom/movable/AM)
