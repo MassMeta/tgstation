@@ -6,8 +6,8 @@
 	desc = "Creates a Dimensional Gate, a structure which allows you to warp to Reebe."
 	tip = "Essential for the cult, the one of the few way to get to Reebe."
 	button_icon_state = "dimensional_gate"
-	power_cost = 1000
-	invokation_time = 15 SECONDS
+	power_cost = 2000
+	invokation_time = 20 SECONDS
 	invokation_text = list("Когда мы прощаемся и возвращаемся к звездам...", "мы найдем дорогу домой.")
 	summoned_structure = /obj/structure/destructible/clockwork/gear_base/dimensional_gate
 	category = SPELLTYPE_STRUCTURES
@@ -16,14 +16,26 @@
 // Dimensional Gate Structure
 //===============
 
+GLOBAL_LIST_EMPTY(dimensional_gates)
+
 /obj/structure/destructible/clockwork/gear_base/dimensional_gate
 	name = "dimensional gate"
 	desc = "A portal in a bronze frame."
 	clockwork_desc = "A portal in a bronze frame. Use it to warp to Reebe."
 	default_icon_state = "dimensional_gate"
+	max_integrity = 300
+	atom_integrity = 300
 	anchored = TRUE
 	break_message = span_warning("The dimensional gate shatters!")
 	can_unanchor = FALSE
+
+/obj/structure/destructible/clockwork/gear_base/dimensional_gate/Initialize()
+	. = ..()
+	GLOB.dimensional_gates += src
+
+/obj/structure/destructible/clockwork/gear_base/dimensional_gate/Destroy()
+	. = ..()
+	GLOB.dimensional_gates -= src
 
 /obj/structure/destructible/clockwork/gear_base/dimensional_gate/attack_hand(mob/living/user)
 	. = ..()
