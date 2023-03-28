@@ -106,7 +106,7 @@
 		"right pocket" = ITEM_SLOT_RPOCKET
 	)
 
-	var/item/T = new /obj/item/clockwork/clockwork_slab(mob)
+	var/obj/item/T = new /obj/item/clockwork/clockwork_slab(mob)
 	var/item_name = initial(T.name)
 	var/where = mob.equip_in_one_of_slots(T, slots)
 	if(!where)
