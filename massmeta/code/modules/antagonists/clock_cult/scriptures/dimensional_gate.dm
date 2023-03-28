@@ -7,10 +7,28 @@
 	tip = "Essential for the cult, the one of the few way to get to Reebe."
 	button_icon_state = "dimensional_gate"
 	power_cost = 2000
-	invokation_time = 20 SECONDS
+	invokation_time = 15 SECONDS
 	invokation_text = list("Когда мы прощаемся и возвращаемся к звездам...", "мы найдем дорогу домой.")
 	summoned_structure = /obj/structure/destructible/clockwork/gear_base/dimensional_gate
 	category = SPELLTYPE_STRUCTURES
+
+/datum/clockcult/scripture/create_structure/dimensional_gate/check_special_requirements()
+	if(!..())
+		return FALSE
+	var/area/gate_location = get_area(invoker)
+	if(!is_station_level(gate_location.z))
+		to_chat(owner, span_warning("You can summon a dimensional gate only on the station!"))
+		return FALSE
+	for(/obj/structure/destructible/clockwork/gear_base/dimensional_gate/gate as anything in GLOB.dimensional_gates)
+		var/area/used_location = get_area(gate)
+		if(used_location == gate_location)
+			to_chat(owner, span_warning("You've already summoned a gate in this area! You have to summon again somewhere else!"))
+			return FALSE
+	return TRUE
+
+/datum/clockcult/scripture/create_structure/dimensional_gate/begin_invoke(mob/living/M, obj/item/clockwork/clockwork_slab/slab, bypass_unlock_checks)
+	invokation_time = 15 SECONDS + (5 SECONDS * GLOB.dimensional_gates.len)
+	. = ..()
 
 //===============
 // Dimensional Gate Structure
