@@ -192,7 +192,7 @@ put up a rune with bluespace effects, lots of those runes are fluff or act as a 
 
 /obj/effect/warped_rune/orangespace/do_effect(mob/user)
 	var/obj/structure/bonfire/bluespace/B = new (rune_turf)
-	B.StartBurning()
+	B.start_burning()
 	. = ..()
 
 /obj/item/slimecross/warping/purple
@@ -495,11 +495,6 @@ GLOBAL_DATUM(blue_storage, /obj/item/storage/backpack/holding/bluespace)
 		playsound(src, 'sound/items/bikehorn.ogg', 50, TRUE)
 	. = ..()
 
-/obj/item/slimecross/warping/red
-	colour = "red"
-	runepath = /obj/effect/warped_rune/redspace
-	effect_desc = "Draw a rune that covers with blood whoever steps on it."
-
 /obj/item/slimecross/warping/green
 	colour = "green"
 	effect_desc = "Draw a rune that alters the DNA of those who step on it."
@@ -532,7 +527,7 @@ GLOBAL_DATUM(blue_storage, /obj/item/storage/backpack/holding/bluespace)
 	if(istype(AM, /mob/living/carbon/human))
 		var/mob/living/carbon/human/human_target = AM
 		playsound(rune_turf, "sound/weapons/thudswoosh.ogg", 50, TRUE)
-		human_rarget.add_mood_event("jolly", /datum/mood_event/jolly)
+		human_target.add_mood_event("jolly", /datum/mood_event/jolly)
 		to_chat(AM, "<span class='notice'>You feel happier.</span>")
 		activated_on_step = TRUE
 	. = ..()
@@ -599,7 +594,6 @@ GLOBAL_DATUM(blue_storage, /obj/item/storage/backpack/holding/bluespace)
 	var/static/list/rare_items = list(
 		/obj/effect/mob_spawn/ghost_role/human/syndicate/battlecruiser/captain,
 		/obj/structure/spawner/skeleton,
-		/obj/effect/spawner/lootdrop/armory_contraband,
 	)
 
 
@@ -667,12 +661,11 @@ GLOBAL_DATUM(blue_storage, /obj/item/storage/backpack/holding/bluespace)
 			return
 
 		to_chat(user, "<span class='warning'>The rune is trying to repair [host.name]'s soul!</span>")
-		var/list/candidates = pollCandidatesForMob("Do you want to replace the soul of [host.name]?", ROLE_SENTIENCE, null, ROLE_SENTIENCE, 50, host, POLL_IGNORE_SHADE)//todo: fix desc
+		var/list/candidates = poll_candidates_for_mob("Do you want to replace the soul of [host.name]?", ROLE_SENTIENCE, null, ROLE_SENTIENCE, 50, host, POLL_IGNORE_SHADE)//todo: fix desc
 
 		if(length(candidates) && !host.key) //check if anyone wanted to play as the dead person and check if no one's in control of the body one last time.
 			var/mob/dead/observer/ghost = pick(candidates)
 
-			host.mind.memory = "" //resets the memory since it's a new soul inside.
 			host.key = ghost.key
 			var/mob/living/simple_animal/shade/S = host.change_mob_type(/mob/living/simple_animal/shade , rune_turf, "Shade", FALSE)
 			S.maxHealth = 1
@@ -721,7 +714,7 @@ GLOBAL_DATUM(blue_storage, /obj/item/storage/backpack/holding/bluespace)
 /obj/effect/warped_rune/adamantinespace/do_effect(mob/user)
 	for(var/turf/open/T in RANGE_TURFS(1, src) - rune_turf)
 		var/obj/structure/reflector/box/anchored/mob_pass/D = new (T)
-		D.setAngle(dir2angle(get_dir(src, D)))
+		D.set_angle(dir2angle(get_dir(src, D)))
 		D.admin = TRUE
 		QDEL_IN(D, 300)
 	activated_on_step = TRUE
@@ -761,10 +754,9 @@ GLOBAL_DATUM(warped_room, /datum/map_template/warped_room)
 /area/warped_room
 	name = "warped room"
 	icon_state = "yellow"
-	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 	requires_power = FALSE
 	has_gravity = TRUE
-	noteleport = TRUE
+	area_flags = HIDDEN_AREA | NOTELEPORT
 
 ///creates the warped room and place an exit rune to exit the room
 /obj/effect/warped_rune/rainbowspace/Initialize()
