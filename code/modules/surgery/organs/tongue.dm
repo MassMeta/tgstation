@@ -66,6 +66,7 @@
 		/datum/language/narsie,
 		/datum/language/russian,
 		/datum/language/beachbum,
+		/datum/language/ratvar,
 		/datum/language/aphasia,
 		/datum/language/piratespeak,
 		/datum/language/moffic,
@@ -86,6 +87,8 @@
 
 /obj/item/organ/internal/tongue/Insert(mob/living/carbon/tongue_owner, special = FALSE, drop_if_replaced = TRUE)
 	. = ..()
+	if(!.)
+		return
 	ADD_TRAIT(tongue_owner, TRAIT_SPEAKS_CLEARLY, SPEAKING_FROM_TONGUE)
 	if (modifies_speech)
 		RegisterSignal(tongue_owner, COMSIG_MOB_SAY, PROC_REF(handle_speech))
@@ -233,7 +236,7 @@
 	if(!istype(tongue_holder))
 		return
 
-	var/obj/item/organ/internal/tongue/abductor/tongue = tongue_holder.getorganslot(ORGAN_SLOT_TONGUE)
+	var/obj/item/organ/internal/tongue/abductor/tongue = tongue_holder.get_organ_slot(ORGAN_SLOT_TONGUE)
 	if(!istype(tongue))
 		return
 
@@ -261,7 +264,7 @@
 	var/rendered = span_abductor("<b>[user.real_name]:</b> [message]")
 	user.log_talk(message, LOG_SAY, tag=SPECIES_ABDUCTOR)
 	for(var/mob/living/carbon/human/living_mob in GLOB.alive_mob_list)
-		var/obj/item/organ/internal/tongue/abductor/tongue = living_mob.getorganslot(ORGAN_SLOT_TONGUE)
+		var/obj/item/organ/internal/tongue/abductor/tongue = living_mob.get_organ_slot(ORGAN_SLOT_TONGUE)
 		if(!istype(tongue))
 			continue
 		if(mothership == tongue.mothership)
@@ -354,6 +357,7 @@ GLOBAL_LIST_INIT(english_to_zombie, list())
 		/datum/language/uncommon,
 		/datum/language/draconic, // Both hiss?
 		/datum/language/monkey,
+		/datum/language/ratvar,
 	)
 
 /obj/item/organ/internal/tongue/alien/modify_speech(datum/source, list/speech_args)

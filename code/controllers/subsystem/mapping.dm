@@ -80,7 +80,7 @@ SUBSYSTEM_DEF(mapping)
 	var/adding_new_zlevel = FALSE
 
 	///shows the default gravity value for each z level. recalculated when gravity generators change.
-	///associative list of the form: list("[z level num]" = max generator gravity in that z level OR the gravity level trait)
+	///List in the form: list(z level num = max generator gravity in that z level OR the gravity level trait)
 	var/list/gravity_by_z_level = list()
 
 	/// list of traits and their associated z leves
@@ -222,7 +222,7 @@ SUBSYSTEM_DEF(mapping)
 		max_gravity = max(grav_gen.setting, max_gravity)
 
 	max_gravity = max_gravity || level_trait(z_level_number, ZTRAIT_GRAVITY) || 0//just to make sure no nulls
-	gravity_by_z_level["[z_level_number]"] = max_gravity
+	gravity_by_z_level[z_level_number] = max_gravity
 	return max_gravity
 
 
@@ -419,6 +419,8 @@ Used by the AI doomsday and the self-destruct nuke.
 		LoadGroup(FailedZs, "Lavaland", "map_files/Mining", "Lavaland.dmm", default_traits = ZTRAITS_LAVALAND)
 	else if (!isnull(config.minetype) && config.minetype != "none")
 		INIT_ANNOUNCE("WARNING: An unknown minetype '[config.minetype]' was set! This is being ignored! Update the maploader code!")
+	
+	LoadGroup(FailedZs, "Reebe", "templates", "clockwork_cityofcogs.dmm", default_traits = ZTRAITS_REEBE)
 #endif
 
 	if(LAZYLEN(FailedZs)) //but seriously, unless the server's filesystem is messed up this will never happen
@@ -764,6 +766,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	// Suck it jannies
 	z_level_to_plane_offset.len += 1
 	z_level_to_lowest_plane_offset += 1
+	gravity_by_z_level.len += 1
 	// 0's the default value, we'll update it later if required
 	z_level_to_plane_offset[z_value] = 0
 	z_level_to_lowest_plane_offset[z_value] = 0

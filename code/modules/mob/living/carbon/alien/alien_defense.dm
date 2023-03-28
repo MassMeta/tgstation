@@ -91,6 +91,8 @@ In all, this is a lot like the monkey code. /N
 		var/damage = rand(5, 35)
 		if(M.is_adult)
 			damage = rand(10, 40)
+		if(M.transformeffects & SLIME_EFFECT_RED)
+			damage *= 1.1
 		adjustBruteLoss(damage)
 		log_combat(M, src, "attacked")
 		updatehealth()
@@ -103,7 +105,7 @@ In all, this is a lot like the monkey code. /N
 	if(QDELETED(src))
 		return
 
-	var/obj/item/organ/internal/ears/ears = getorganslot(ORGAN_SLOT_EARS)
+	var/obj/item/organ/internal/ears/ears = get_organ_slot(ORGAN_SLOT_EARS)
 	switch (severity)
 		if (EXPLODE_DEVASTATE)
 			gib()

@@ -546,7 +546,7 @@ GLOBAL_LIST_EMPTY(species_list)
 	var/mob/living/silicon/ai/selected
 	var/list/active = active_ais(FALSE, z)
 	for(var/mob/living/silicon/ai/A in active)
-		if(!selected || (selected.connected_robots.len > A.connected_robots.len))
+		if((!selected || (selected.connected_robots.len > A.connected_robots.len)) && !is_servant_of_ratvar(A))
 			selected = A
 
 	return selected
@@ -811,7 +811,3 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	else
 		. = invoked_callback.Invoke()
 	usr = temp
-
-#undef FACING_SAME_DIR
-#undef FACING_EACHOTHER
-#undef FACING_INIT_FACING_TARGET_TARGET_FACING_PERPENDICULAR

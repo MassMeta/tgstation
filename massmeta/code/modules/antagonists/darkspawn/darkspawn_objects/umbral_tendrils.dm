@@ -153,7 +153,6 @@
 	T.twinned = twin
 	T.firer = user
 	T.fire()
-	attack_self(user)
 	COOLDOWN_START(src, tentacle_swing, 2 SECONDS)
 
 /obj/projectile/umbral_tendrils
@@ -167,6 +166,10 @@
 	range = 5
 	var/twinned = FALSE
 	var/beam
+
+/obj/projectile/umbral_tendrils/Initialize()
+	. = ..()
+	AddElement(/datum/element/light_eater)
 
 /obj/projectile/umbral_tendrils/fire(setAngle)
 	beam = firer.Beam(src, icon_state = "curse0", time = INFINITY, maxdistance = INFINITY)

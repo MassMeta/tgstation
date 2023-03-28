@@ -56,9 +56,8 @@
 
 //Lung respiration type flags
 #define RESPIRATION_OXYGEN (1 << 0)
-#define RESPIRATION_CO2 (1 << 1)
-#define RESPIRATION_N2 (1 << 2)
-#define RESPIRATION_PLASMA (1 << 3)
+#define RESPIRATION_N2 (1 << 1)
+#define RESPIRATION_PLASMA (1 << 2)
 
 //Organ defines for carbon mobs
 #define ORGAN_ORGANIC 1
@@ -388,6 +387,7 @@
 #define INCORPOREAL_MOVE_BASIC 1 /// normal movement, see: [/mob/living/var/incorporeal_move]
 #define INCORPOREAL_MOVE_SHADOW 2 /// leaves a trail of shadows
 #define INCORPOREAL_MOVE_JAUNT 3 /// is blocked by holy water/salt
+#define INCORPOREAL_MOVE_EMINENCE 4 //! same as jaunt, but lets eminence pass clockwalls
 
 #define SHADOW_SPECIES_LIGHT_THRESHOLD 0.2
 
@@ -901,3 +901,28 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define NO_OBSERVED_ACTIONS (1<<1)
 /// Flag which stops you from attacking while observed
 #define NO_OBSERVED_ATTACKS (1<<2)
+
+//Slime transformative extract effects
+#define SLIME_EFFECT_DEFAULT		(1<<0)
+#define SLIME_EFFECT_GREY			(1<<1)
+#define SLIME_EFFECT_ORANGE			(1<<2)
+#define SLIME_EFFECT_PURPLE			(1<<3)
+#define SLIME_EFFECT_BLUE			(1<<4)
+#define SLIME_EFFECT_METAL			(1<<5)
+#define SLIME_EFFECT_YELLOW			(1<<6)
+#define SLIME_EFFECT_DARK_PURPLE	(1<<7)
+#define SLIME_EFFECT_DARK_BLUE		(1<<8)
+#define SLIME_EFFECT_SILVER			(1<<9)
+#define SLIME_EFFECT_BLUESPACE		(1<<10)
+#define SLIME_EFFECT_SEPIA			(1<<11)
+#define SLIME_EFFECT_CERULEAN		(1<<12)
+#define SLIME_EFFECT_PYRITE			(1<<13)
+#define SLIME_EFFECT_RED			(1<<14)
+#define SLIME_EFFECT_GREEN			(1<<15)
+#define SLIME_EFFECT_PINK			(1<<16)
+#define SLIME_EFFECT_GOLD			(1<<17)
+#define SLIME_EFFECT_OIL			(1<<18)
+#define SLIME_EFFECT_BLACK			(1<<19)
+#define SLIME_EFFECT_LIGHT_PINK		(1<<20)
+#define SLIME_EFFECT_ADAMANTINE		(1<<21)
+#define SLIME_EFFECT_RAINBOW		(1<<22)

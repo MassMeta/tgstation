@@ -2501,7 +2501,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
-/obj/machinery/destructive_scanner,
 /obj/effect/turf_decal/tile/purple/half/contrasted{
 	dir = 1
 	},
@@ -2556,7 +2555,6 @@
 /obj/effect/turf_decal/trimline/brown/filled/line{
 	dir = 8
 	},
-/obj/effect/spawner/random/bureaucracy/birthday_wrap,
 /turf/open/floor/iron,
 /area/station/construction/storage_wing)
 "aUk" = (
@@ -5612,7 +5610,7 @@
 /turf/open/floor/iron/dark,
 /area/station/security/courtroom)
 "caC" = (
-/obj/machinery/portable_atmospherics/canister/anesthetic_mix,
+/obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/effect/turf_decal/box/white{
 	color = "#52B4E9"
 	},
@@ -10851,7 +10849,6 @@
 /turf/open/floor/wood,
 /area/station/commons/lounge)
 "dYT" = (
-/obj/machinery/rnd/destructive_analyzer,
 /obj/effect/turf_decal/siding{
 	dir = 1
 	},
@@ -12626,7 +12623,7 @@
 /obj/effect/turf_decal/box/white{
 	color = "#52B4E9"
 	},
-/obj/machinery/portable_atmospherics/canister/anesthetic_mix,
+/obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/effect/turf_decal/siding/white{
 	dir = 1
 	},
@@ -20724,10 +20721,8 @@
 /area/station/command/heads_quarters/cmo)
 "hGm" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/machinery/atmospherics/components/unary/portables_connector/visible{
-	dir = 8
-	},
 /obj/effect/turf_decal/box/red,
+/obj/structure/table,
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance/testlab)
 "hGv" = (
@@ -24405,12 +24400,12 @@
 /turf/closed/wall/r_wall,
 /area/station/security/prison/garden)
 "iOD" = (
-/obj/machinery/atmospherics/components/binary/tank_compressor{
-	dir = 8
-	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/turf_decal/delivery,
+/obj/structure/table,
+/obj/item/storage/box/mothic_rations,
+/obj/item/storage/box/mothic_goods,
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance/testlab)
 "iOJ" = (
@@ -25526,7 +25521,6 @@
 /obj/effect/turf_decal/tile/brown/anticorner/contrasted{
 	dir = 8
 	},
-/obj/effect/spawner/random/bureaucracy/birthday_wrap,
 /turf/open/floor/iron,
 /area/station/cargo/sorting)
 "jgT" = (
@@ -27381,10 +27375,8 @@
 /area/station/science/xenobiology)
 "jNp" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/machinery/atmospherics/components/trinary/filter{
-	dir = 4
-	},
 /obj/effect/turf_decal/delivery,
+/obj/structure/table,
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance/testlab)
 "jNK" = (
@@ -32496,10 +32488,9 @@
 "lCG" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/turf_decal/stripes/white/line,
-/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+/obj/structure/chair/comfy{
 	dir = 1
 	},
-/obj/effect/turf_decal/box/red,
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance/testlab)
 "lCN" = (
@@ -33156,9 +33147,6 @@
 /turf/open/floor/iron/grimy,
 /area/station/service/chapel/office)
 "lPC" = (
-/obj/machinery/atmospherics/components/unary/portables_connector/visible{
-	dir = 1
-	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/turf_decal/stripes/white/line,
 /obj/effect/turf_decal/box/red,
@@ -40691,10 +40679,9 @@
 /area/station/maintenance/disposal/incinerator)
 "ouX" = (
 /obj/effect/turf_decal/box,
-/obj/machinery/atmospherics/components/unary/portables_connector/visible{
-	dir = 4
-	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/structure/table,
+/obj/item/food/pizza/mothic_five_cheese,
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance/testlab)
 "ouZ" = (
@@ -46725,12 +46712,11 @@
 /turf/open/floor/iron,
 /area/station/commons/dorms)
 "qEF" = (
-/obj/machinery/atmospherics/components/trinary/filter{
-	dir = 4
-	},
 /obj/machinery/light/directional/north,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/turf_decal/delivery,
+/obj/structure/table,
+/obj/item/knife,
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance/testlab)
 "qEG" = (
@@ -68775,7 +68761,6 @@
 "ykj" = (
 /obj/structure/table,
 /obj/structure/cable,
-/obj/effect/spawner/random/food_or_drink/cake_ingredients,
 /turf/open/floor/iron/cafeteria,
 /area/station/service/kitchen)
 "ykn" = (
@@ -102745,7 +102730,7 @@ ttM
 jJm
 oWk
 iOD
-iAq
+lCG
 guG
 unP
 gKK
@@ -103259,7 +103244,7 @@ fPD
 xZx
 oWk
 jNp
-lCG
+lPC
 guG
 gYl
 nrm

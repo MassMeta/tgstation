@@ -5,7 +5,6 @@
  * * GLOB.mob_list
  * * GLOB.dead_mob_list
  * * GLOB.alive_mob_list
- * * GLOB.all_clockwork_mobs
  * * GLOB.mob_directory
  *
  * Unsets the focus var
@@ -1232,7 +1231,15 @@
 **/
 /mob/proc/has_light_nearby(light_amount = LIGHTING_TILE_IS_DARK)
 	var/turf/mob_location = get_turf(src)
-	return mob_location.get_lumcount() > light_amount
+	var/area/mob_area = get_area(src)
+
+	if(mob_location.get_lumcount() > light_amount)
+		return TRUE
+	else if(!mob_area.static_lighting)
+		return TRUE
+
+	return FALSE
+
 
 
 /// Can this mob read

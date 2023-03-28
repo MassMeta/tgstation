@@ -101,7 +101,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 		mind = body.mind //we don't transfer the mind but we keep a reference to it.
 
-		set_suicide(body.suiciding) // Transfer whether they committed suicide.
+		if(HAS_TRAIT_FROM_ONLY(body, TRAIT_SUICIDED, REF(body))) // transfer if the body was killed due to suicide
+			ADD_TRAIT(src, TRAIT_SUICIDED, REF(body))
 
 		if(ishuman(body))
 			var/mob/living/carbon/human/body_human = body
@@ -153,6 +154,12 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 /mob/dead/observer/get_photo_description(obj/item/camera/camera)
 	if(!invisibility || camera.see_ghosts)
 		return "You can also see a g-g-g-g-ghooooost!"
+
+/mob/dead/observer/ratvar_act()
+	var/old_color = color
+	color = "#FAE48C"
+	animate(src, color = old_color, time = 10, flags = ANIMATION_PARALLEL)
+	addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 10)
 
 /mob/dead/observer/narsie_act()
 	var/old_color = color
@@ -289,7 +296,7 @@ Works together with spawning an observer, noted above.
 			return
 		if(ishuman(usr)) //following code only applies to those capable of having an ethereal heart, ie humans
 			var/mob/living/carbon/human/crystal_fella = usr
-			var/our_heart = crystal_fella.getorganslot(ORGAN_SLOT_HEART)
+			var/our_heart = crystal_fella.get_organ_slot(ORGAN_SLOT_HEART)
 			if(istype(our_heart, /obj/item/organ/internal/heart/ethereal)) //so you got the heart?
 				var/obj/item/organ/internal/heart/ethereal/ethereal_heart = our_heart
 				ethereal_heart.stop_crystalization_process(crystal_fella) //stops the crystallization process
@@ -950,6 +957,20 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		SSpai.recruit_window(src)
 	else
 		to_chat(usr, span_warning("Can't become a pAI candidate while not dead!"))
+
+/mob/dead/observer/verb/deathmatch_signup()
+	set category = "Ghost"
+	set name = "Signup for Deathmatch"
+	set desc = "Opens the deathmatch lobby list."
+	if(!client)
+		return
+	if(!isobserver(src))
+		to_chat(usr, span_warning("You must be a ghost to join mafia!"))
+		return
+	var/datum/deathmatch_controller/game = GLOB.deathmatch_game
+	if(!game)
+		game = new
+	game.ui_interact(usr)
 
 /mob/dead/observer/verb/mafia_game_signup()
 	set category = "Ghost"

@@ -262,7 +262,7 @@
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	clothing_flags = THICKMATERIAL
 	resistance_flags = FIRE_PROOF|LAVA_PROOF|ACID_PROOF
-	transparent_protection = HIDEGLOVES|HIDESUITSTORAGE|HIDEJUMPSUIT|HIDESHOES
+	transparent_protection = HIDESUITSTORAGE|HIDEJUMPSUIT
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/gun/energy/recharge/kinetic_accelerator, /obj/item/pickaxe)
 	greyscale_colors = "#4d4d4d#808080"
 	greyscale_config = /datum/greyscale_config/heck_suit
@@ -966,7 +966,7 @@
 	var/max_thunder_charges = 3
 	var/thunder_charges = 3
 	var/thunder_charge_time = 15 SECONDS
-	var/static/list/excluded_areas = list(/area/space)
+	var/static/list/excluded_areas = list(/area/space, /area/reebe/city_of_cogs)
 	var/list/targeted_turfs = list()
 
 /obj/item/storm_staff/examine(mob/user)

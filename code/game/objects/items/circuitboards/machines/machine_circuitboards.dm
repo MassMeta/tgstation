@@ -1337,15 +1337,6 @@
 		/datum/stock_part/scanning_module = 2
 	)
 
-/obj/item/circuitboard/machine/destructive_scanner
-	name = "Experimental Destructive Scanner"
-	greyscale_colors = CIRCUIT_COLOR_SCIENCE
-	build_path = /obj/machinery/destructive_scanner
-	req_components = list(
-		/datum/stock_part/micro_laser = 2,
-		/datum/stock_part/matter_bin = 1,
-		/datum/stock_part/manipulator = 2)
-
 /obj/item/circuitboard/machine/doppler_array
 	name = "Tachyon-Doppler Research Array"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
@@ -1387,15 +1378,6 @@
 		/datum/stock_part/manipulator = 1,
 		)
 
-/obj/item/circuitboard/machine/tank_compressor
-	name = "Tank Compressor"
-	greyscale_colors = CIRCUIT_COLOR_SCIENCE
-	build_path = /obj/machinery/atmospherics/components/binary/tank_compressor
-	req_components = list(
-		/obj/item/stack/sheet/plasteel = 5,
-		/datum/stock_part/scanning_module = 4,
-		)
-
 /obj/item/circuitboard/machine/coffeemaker
 	name = "Coffeemaker (Machine Board)"
 	greyscale_colors = CIRCUIT_COLOR_SERVICE
@@ -1419,3 +1401,7 @@
 		/datum/stock_part/capacitor/tier2 = 1,
 		/datum/stock_part/micro_laser/tier2 = 2,
 	)
+
+/obj/item/circuitboard/machine/clockwork
+	name = "clockwork board (Report This)"
+	icon_state = "clock_mod"
