@@ -1,7 +1,7 @@
 /obj/item/slimecross/crystalized
 	name = "crystalized extract"
 	desc = "It's crystalline,"
-	effect = "adamantine"
+	effect = "crystalline"
 	icon_state = "crystalline"
 	var/obj/structure/slime_crystal/crystal_type
 
@@ -15,7 +15,7 @@
 
 	var/user_turf = get_turf(user)
 
-	if(!do_after(user,15 SECONDS,FALSE,user_turf))
+	if(!do_after(user,15 SECONDS,user_turf, timed_action_flags = IGNORE_HELD_ITEM))
 		return
 
 	new crystal_type(user_turf)
