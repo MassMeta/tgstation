@@ -43,7 +43,7 @@
 		for(var/obj/item/clockwork/clockwork_slab/slab in M.get_all_contents())
 			if(istype(slab.active_scripture, /datum/clockcult/scripture/slab/kindle))
 				slab.active_scripture.end_invokation() //Cultist jumpscare
-		if(!istype(target_loc, /turf/open/floor/clockwork) && (M.getStaminaLoss() < 60))
+		if(!istype(target_loc, /turf/open/floor/clockwork) && (M.getStaminaLoss() <= 60))
 			M.setStaminaLoss(60)
 		var/obj/machinery/computer/camera_advanced/console = cam.origin
 		console.remove_eye_control(M)

@@ -56,7 +56,7 @@
 	//Create team
 	for(var/datum/mind/servant_mind in assigned)
 		var/datum/antagonist/servant_of_ratvar/S = add_servant_of_ratvar(servant_mind.current, team=main_cult)
-		S.equip_servant()
+		S.give_slab()
 		S.prefix = CLOCKCULT_PREFIX_MASTER
 		GLOB.pre_setup_antags -= servant_mind
 	//Setup the conversion limits for auto opening the ark
