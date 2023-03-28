@@ -1,9 +1,9 @@
 /mob/living/simple_animal/hostile/imposter
 	name = "Imposter"
 	desc = "Susususus is it amogus??? Sussy baka."
-	icon = 'icons/effects/effects.dmi' //Placeholder sprite
-	icon_state = "blank_dspawn"
-	icon_living = "blank_dspawn"
+	icon = 'massmeta/icons/mob/Amogus.dmi'
+	icon_state = "amogus_red_mob"
+	icon_living = "amogus_red_mob"
 	response_help_continuous = "backs away from"
 	response_help_simple = "backs away from"
 	response_disarm_continuous = "shoves away"
@@ -15,6 +15,8 @@
 	health = 100
 	dextrous = TRUE
 	held_items = list(null, null)
+
+	sharpness = SHARP_EDGED
 
 	lighting_cutoff_red = 60
 	lighting_cutoff_green = 16
