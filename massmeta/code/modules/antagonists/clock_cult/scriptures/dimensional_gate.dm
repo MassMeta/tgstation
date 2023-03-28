@@ -17,12 +17,12 @@
 		return FALSE
 	var/area/gate_location = get_area(invoker)
 	if(!is_station_level(gate_location.z))
-		to_chat(owner, span_warning("You can summon a dimensional gate only on the station!"))
+		to_chat(invoker, span_warning("You can summon a dimensional gate only on the station!"))
 		return FALSE
-	for(/obj/structure/destructible/clockwork/gear_base/dimensional_gate/gate as anything in GLOB.dimensional_gates)
+	for(var/obj/structure/destructible/clockwork/gear_base/dimensional_gate/gate as anything in GLOB.dimensional_gates)
 		var/area/used_location = get_area(gate)
 		if(used_location == gate_location)
-			to_chat(owner, span_warning("You've already summoned a gate in this area! You have to summon again somewhere else!"))
+			to_chat(invoker, span_warning("You've already summoned a gate in this area! You have to summon again somewhere else!"))
 			return FALSE
 	return TRUE
 

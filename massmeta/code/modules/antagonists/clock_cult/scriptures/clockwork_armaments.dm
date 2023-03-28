@@ -34,7 +34,5 @@
 			armaments_hammer.equip(M)
 		if("Меч")
 			armaments_sword.equip(M)
-		if("Лук")
-			armaments_bow.equip(M)
 		if("Базовое")
 			default.equip(M)

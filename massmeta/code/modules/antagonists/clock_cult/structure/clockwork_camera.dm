@@ -36,12 +36,15 @@
 	var/warp_time = 20 SECONDS
 	if(istype(target_loc, /turf/open/floor/clockwork))
 		warp_time = 5 SECONDS
+	else
+		to_chat(M, span_warning("Warping on a non-clockwork floor will take more time and leave you exhausted!"))
 	if(do_after(M, warp_time, target=target_loc, extra_checks=CALLBACK(src, PROC_REF(special_check))))
 		try_warp_servant(M, target_loc, 50, FALSE)
-		for(var/obj/item/clockwork/clockwork_slab/slab in owner.get_all_contents())
+		for(var/obj/item/clockwork/clockwork_slab/slab in M.get_all_contents())
 			if(istype(slab.active_scripture, /datum/clockcult/scripture/slab/kindle))
 				slab.active_scripture.end_invokation() //Cultist jumpscare
-				return
+		if(!istype(target_loc, /turf/open/floor/clockwork) && (M.getStaminaLoss() < 60))
+			M.setStaminaLoss(60)
 		var/obj/machinery/computer/camera_advanced/console = cam.origin
 		console.remove_eye_control(M)
 	button_icon_state = "warp_down"
