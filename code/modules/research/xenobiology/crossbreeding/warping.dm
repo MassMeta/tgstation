@@ -824,7 +824,7 @@ GLOBAL_DATUM(warped_room, /datum/map_template/warped_room)
 	return ..()
 
 ///anyone on the exit rune when it is used will be teleported to the rune that was used to teleport to the warped room
-    /obj/effect/warped_room_exit/attack_hand(mob/living/user)
+/obj/effect/warped_room_exit/attack_hand(mob/living/user)
 	. = ..()
 	var/exit_turf
 	var/tp_mob = FALSE
