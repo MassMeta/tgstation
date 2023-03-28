@@ -211,12 +211,8 @@ put up a rune with bluespace effects, lots of those runes are fluff or act as a 
 		/obj/item/stack/medical/bruise_pack,
 		/obj/item/stack/medical/ointment,
 		/obj/item/reagent_containers/pill/oxandrolone,
-		/obj/item/storage/pill_bottle/charcoal,
 		/obj/item/reagent_containers/pill/mutadone,
-		/obj/item/reagent_containers/pill/antirad,
-		/obj/item/reagent_containers/pill/patch/styptic,
 		/obj/item/reagent_containers/pill/patch/synthflesh,
-		/obj/item/reagent_containers/pill/patch/silver_sulf,
 		/obj/item/healthanalyzer,
 		/obj/item/surgical_drapes,
 		/obj/item/scalpel,
@@ -246,7 +242,7 @@ put up a rune with bluespace effects, lots of those runes are fluff or act as a 
 		T.MakeSlippery(TURF_WET_PERMAFROST, 1 MINUTES)
 	. = ..()
 
-/obj/effect/warped_rune/cyanspace/ComponentInitialize()
+/obj/effect/warped_rune/cyanspace/Initialize()
 	. = ..()
 	AddComponent(/datum/component/slippery, 30)
 
@@ -301,7 +297,7 @@ put up a rune with bluespace effects, lots of those runes are fluff or act as a 
 	var/obj/item/stock_parts/cell/C = AM.get_cell()
 	if(!C && isliving(AM))
 		var/mob/living/L = AM
-		for(var/obj/item/I in L.GetAllContents())
+		for(var/obj/item/I in L.get_all_contents())
 			C = I.get_cell()
 			if(C?.charge)
 				break
@@ -323,7 +319,7 @@ put up a rune with bluespace effects, lots of those runes are fluff or act as a 
 	desc = "To gain something you must sacrifice something else in return."
 	var/static/list/materials = list(/obj/item/stack/sheet/iron, /obj/item/stack/sheet/glass, /obj/item/stack/sheet/mineral/silver,
 									/obj/item/stack/sheet/mineral/gold, /obj/item/stack/sheet/mineral/diamond, /obj/item/stack/sheet/mineral/uranium,
-									/obj/item/stack/sheet/mineral/titanium, /obj/item/stack/sheet/mineral/copper, /obj/item/stack/sheet/mineral/uranium,
+									/obj/item/stack/sheet/mineral/titanium, /obj/item/stack/sheet/mineral/uranium,
 									/obj/item/stack/sheet/bluespace_crystal)
 
 /obj/effect/warped_rune/darkpurplespace/do_effect(mob/user)
@@ -378,8 +374,7 @@ GLOBAL_DATUM(blue_storage, /obj/item/storage/backpack/holding/bluespace)
 	if(!GLOB.blue_storage)
 		GLOB.blue_storage = new
 	GLOB.blue_storage.loc = loc
-	var/datum/component/storage/STR = GLOB.blue_storage.GetComponent(/datum/component/storage)
-	STR.show_to(user)
+	GLOB.blue_storage.atom_storage?.open_storage(user)
 	playsound(rune_turf, dir_sound, 20, TRUE)
 	. = ..()
 
@@ -457,7 +452,7 @@ GLOBAL_DATUM(blue_storage, /obj/item/storage/backpack/holding/bluespace)
 		if(nlog_type & LOG_SAY)
 			var/list/reversed = log_source[log_type] //reverse the list so we get the last sentences instead of the first
 			if(islist(reversed))
-				say_log = reverseRange(reversed.Copy())
+				say_log = reverse_range(reversed.Copy())
 				break
 
 	if(length(say_log) > 10) //we're going to get up to the last 10 sentences spoken by the holo_host
@@ -505,25 +500,6 @@ GLOBAL_DATUM(blue_storage, /obj/item/storage/backpack/holding/bluespace)
 	runepath = /obj/effect/warped_rune/redspace
 	effect_desc = "Draw a rune that covers with blood whoever steps on it."
 
-/obj/effect/warped_rune/redspace
-	desc = "Watch out for blood!"
-	icon_state = "rune_red"
-	remove_on_activation = FALSE
-
-/obj/effect/warped_rune/redspace/Crossed(atom/movable/AM, oldloc)
-	if(ishuman(AM))
-		var/mob/living/carbon/human/H = AM
-		add_blood_DNA(list("Non-human DNA" = random_blood_type()))
-		for(var/obj/item/I in H.get_equipped_items(TRUE))
-			I.add_blood_DNA(return_blood_DNA())
-			I.update_icon()
-		for(var/obj/item/I in H.held_items)
-			I.add_blood_DNA(return_blood_DNA())
-			I.update_icon()
-		playsound(src, 'sound/effects/blobattack.ogg', 50, TRUE)
-		activated_on_step = TRUE
-	. = ..()
-
 /obj/item/slimecross/warping/green
 	colour = "green"
 	effect_desc = "Draw a rune that alters the DNA of those who step on it."
@@ -554,8 +530,9 @@ GLOBAL_DATUM(blue_storage, /obj/item/storage/backpack/holding/bluespace)
 ///adds the jolly mood effect along with hug sound effect.
 /obj/effect/warped_rune/pinkspace/Crossed(atom/movable/AM, oldloc)
 	if(istype(AM, /mob/living/carbon/human))
+        var/mob/living/carbon/human/human_target = AM
 		playsound(rune_turf, "sound/weapons/thudswoosh.ogg", 50, TRUE)
-		SEND_SIGNAL(AM, COMSIG_ADD_MOOD_EVENT,"jolly", /datum/mood_event/jolly)
+		human_rarget.add_mood_event("jolly", /datum/mood_event/jolly)
 		to_chat(AM, "<span class='notice'>You feel happier.</span>")
 		activated_on_step = TRUE
 	. = ..()
@@ -573,9 +550,8 @@ GLOBAL_DATUM(blue_storage, /obj/item/storage/backpack/holding/bluespace)
 	var/static/list/common_items = list(
 		/obj/item/toy/plush/carpplushie,
 		/obj/item/toy/plush/bubbleplush,
-		/obj/item/toy/plush/plushvar,
+		/obj/item/toy/plush/ratplush,
 		/obj/item/toy/plush/narplush,
-		/obj/item/toy/plush/lizardplushie,
 		/obj/item/toy/plush/snakeplushie,
 		/obj/item/toy/plush/nukeplushie,
 		/obj/item/toy/plush/slimeplushie,
@@ -586,18 +562,15 @@ GLOBAL_DATUM(blue_storage, /obj/item/storage/backpack/holding/bluespace)
 		/obj/item/toy/foamblade,
 		/obj/item/toy/katana,
 		/obj/item/toy/snappop/phoenix,
-		/obj/item/toy/cards/deck/unum,
 		/obj/item/toy/redbutton,
 		/obj/item/toy/toy_xeno,
 		/obj/item/toy/reality_pierce,
 		/obj/item/toy/xmas_cracker,
 		/obj/item/gun/ballistic/automatic/c20r/toy/unrestricted,
 		/obj/item/gun/ballistic/automatic/l6_saw/toy/unrestricted,
-		/obj/item/gun/ballistic/automatic/toy/pistol/unrestricted,
 		/obj/item/gun/ballistic/shotgun/toy/unrestricted,
 		/obj/item/gun/ballistic/shotgun/toy/crossbow,
 		/obj/item/clothing/mask/facehugger/toy,
-		/obj/item/twohanded/dualsaber/toy,
 		/obj/item/clothing/under/costume/roman,
 		/obj/item/clothing/under/costume/pirate,
 		/obj/item/clothing/under/costume/kilt/highlander,
@@ -609,27 +582,22 @@ GLOBAL_DATUM(blue_storage, /obj/item/storage/backpack/holding/bluespace)
 	)
 
 	var/static/list/uncommon_items = list(
-		/obj/item/clothing/head/speedwagon/cursed,
 		/obj/item/clothing/suit/space/hardsuit/ancient,
 		/obj/item/gun/energy/laser/retro/old,
 		/obj/item/storage/toolbox/mechanical/old,
 		/obj/item/storage/toolbox/emergency/old,
-		/obj/effect/mob_spawn/human/ash_walker,
-		/obj/effect/spawner/lootdrop/three_course_meal,
-		/mob/living/simple_animal/pet/dog/corgi/puppy/void,
 		/obj/structure/closet/crate/necropolis,
 		/obj/item/card/emagfake,
 		/obj/item/gun/ballistic/revolver/reverse,
 		/obj/item/flashlight/flashdark,
-		/mob/living/simple_animal/slime/rainbow,
 		/obj/item/storage/belt/sabre,
-		/obj/item/drone_shell,
+		/obj/effect/mob_spawn/ghost_role/drone,
 		/obj/item/sharpener,
 		/mob/living/simple_animal/hostile/cat_butcherer
 	)
 
 	var/static/list/rare_items = list(
-		/obj/effect/mob_spawn/human/syndicate/battlecruiser/captain,
+		/obj/effect/mob_spawn/ghost_role/human/syndicate/battlecruiser/captain,
 		/obj/structure/spawner/skeleton,
 		/obj/effect/spawner/lootdrop/armory_contraband,
 	)
