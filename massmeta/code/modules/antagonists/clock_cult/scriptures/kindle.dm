@@ -13,7 +13,6 @@
 	after_use_text = "Позвольте энергии течь сквозь вас!"
 	slab_overlay = "volt"
 	use_time = 150
-	cogs_required = 1
 	category = SPELLTYPE_SERVITUDE
 
 /datum/clockcult/scripture/slab/kindle/apply_effects(atom/A)
