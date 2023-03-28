@@ -530,7 +530,7 @@ GLOBAL_DATUM(blue_storage, /obj/item/storage/backpack/holding/bluespace)
 ///adds the jolly mood effect along with hug sound effect.
 /obj/effect/warped_rune/pinkspace/Crossed(atom/movable/AM, oldloc)
 	if(istype(AM, /mob/living/carbon/human))
-        var/mob/living/carbon/human/human_target = AM
+		var/mob/living/carbon/human/human_target = AM
 		playsound(rune_turf, "sound/weapons/thudswoosh.ogg", 50, TRUE)
 		human_rarget.add_mood_event("jolly", /datum/mood_event/jolly)
 		to_chat(AM, "<span class='notice'>You feel happier.</span>")
