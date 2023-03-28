@@ -99,7 +99,7 @@
 		clockwork_outfit.equip(H)
 
 /datum/antagonist/servant_of_ratvar/proc/give_slab()
-	var/mob/living/mob = owner.current
+	var/mob/living/carbon/human/mob = owner.current
 	var/list/slots = list(
 		"backpack" = ITEM_SLOT_BACKPACK,
 		"left pocket" = ITEM_SLOT_LPOCKET,
