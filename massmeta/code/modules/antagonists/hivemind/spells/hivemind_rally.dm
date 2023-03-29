@@ -1,4 +1,4 @@
-/obj/effect/proc_holder/spell/targeted/hive_rally
+/datum/action/cooldown/spell/aoe/hive_rally
 	name = "Hive Rythms"
 	desc = "We send out a burst of psionic energy, invigorating us and nearby awakened vessels, removing any stuns."
 	panel = "Hivemind Abilities"
@@ -13,26 +13,39 @@
 	action_background_icon_state = "bg_hive"
 	action_icon_state = "rally"
 
-/obj/effect/proc_holder/spell/targeted/hive_rally/cast(list/targets, mob/living/user = usr)
-	var/datum/antagonist/hivemind/hive = user.mind.has_antag_datum(/datum/antagonist/hivemind)
-	if(!targets)
-		to_chat(user, "<span class='notice'>Nobody is in sight, it'd be a waste to do that now.</span>")
-		revert_cast()
+/datum/action/cooldown/spell/aoe/hive_rally/get_things_to_cast_on(atom/center)
+	RETURN_TYPE(/list)
+
+	var/list/things = list()
+	var/datum/antagonist/hivemind/hive = owner.mind.has_antag_datum(/datum/antagonist/hivemind)
+	// Default behavior is to get all atoms in range, center and owner not included.
+	for(var/mob/living/carbon/human/nearby_thing in range(aoe_radius, center))
+		if(!istype(nearby_thing))
+			continue
+		if(nearby_thing == owner || nearby_thing == center)
+			continue
+		if(nearby_thing.stat == DEAD)
+			continue
+
+		if(!IS_HIVEHOST(nearby_thing))
+			var/datum/mind/mind = nearby_thing.mind
+			if(!(mind in hive.avessels))
+				continue
+
+		things += nearby_thing
+
+	return things
+
+/datum/action/cooldown/spell/aoe/hive_rally/cast_on_thing_in_aoe(atom/victim, atom/caster)
+	var/mob/living/carbon/affected = victim
+	if(!istype(affected))
 		return
-	var/list/victims = list()
-	for(var/mob/living/target in targets)
-		if(IS_HIVEHOST(target))
-			victims += target
-		var/datum/mind/mind = target.mind
-		if(mind in hive.avessels)
-			victims += target
-		flash_color(target, flash_color="#800080", flash_time=10)
-	for(var/mob/living/carbon/affected in victims)
-		to_chat(affected, "<span class='assimilator'>Otherworldly strength flows through us!</span>")
-		affected.SetSleeping(0)
-		affected.SetUnconscious(0)
-		affected.SetStun(0)
-		affected.SetKnockdown(0)
-		affected.SetImmobilized(0)
-		affected.SetParalyzed(0)
-		affected.adjustStaminaLoss(-200)
+	to_chat(affected, "<span class='assimilator'>Otherworldly strength flows through us!</span>")
+	affected.SetSleeping(0)
+	affected.SetUnconscious(0)
+	affected.SetStun(0)
+	affected.SetKnockdown(0)
+	affected.SetImmobilized(0)
+	affected.SetParalyzed(0)
+	affected.adjustStaminaLoss(-200)
+	flash_color(affected, flash_color="#800080", flash_time=10)

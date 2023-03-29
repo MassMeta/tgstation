@@ -1,4 +1,4 @@
-/obj/effect/proc_holder/spell/targeted/hive_probe
+/datum/action/cooldown/spell/pointed/hive_probe
 	name = "Probe Mind"
 	desc = "We examine a mind for any enemy activity."
 	panel = "Hivemind Abilities"
@@ -12,14 +12,16 @@
 	action_icon_state = "probe"
 	antimagic_allowed = TRUE
 
-/obj/effect/proc_holder/spell/targeted/hive_probe/cast(list/targets, mob/living/user = usr)
+/datum/action/cooldown/spell/pointed/hive_probe/cast(atom/cast_on)
+	var/mob/living/user = owner
 	var/datum/antagonist/hivemind/hive = user.mind.has_antag_datum(/datum/antagonist/hivemind)
 	if(!hive)
 		to_chat(user, "<span class='notice'>This is a bug. Error:HIVE1</span>")
 		return
-	var/mob/living/carbon/target = targets[1]
+	var/mob/living/carbon/target = cast_on
+	if(!istype(target))
+		return
 	var/detected
-
 
 	to_chat(user, "<span class='notice'>We begin probing [target.name]'s mind!</span>")
 	if(do_after(user,15,0,target))
@@ -51,4 +53,3 @@
 			to_chat(user, "<span class='notice'>Untroubled waters meet our tentative search, there is nothing out of the ordinary here.</span>")
 	else
 		to_chat(user, "<span class='notice'>Our concentration has been broken!</span>")
-		revert_cast()

@@ -1,4 +1,4 @@
-/datum/action/cooldown/spell/pointed/hive_integrate
+/datum/action/cooldown/spell/hive_integrate
 	name = "Integrate"
 	desc = "Allows us to syphon the psionic energy from a Host within our grasp."
 	panel = "Hivemind Abilities"
@@ -13,7 +13,7 @@
 	action_icon_state = "reclaim"
 	antimagic_allowed = TRUE
 
-/datum/action/cooldown/spell/pointed/hive_integrate/cast(atom/cast_on)
+/datum/action/cooldown/spell/hive_integrate/cast(atom/cast_on)
 	var/datum/antagonist/hivemind/hivehost = user.mind.has_antag_datum(/datum/antagonist/hivemind)
 	if(!hivehost)
 		to_chat(user, "<span class='notice'>This is a bug. Error:HIVE1</span>")
