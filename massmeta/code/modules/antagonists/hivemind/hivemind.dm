@@ -24,7 +24,7 @@
 	var/list/upgrade_tiers = list(
 		//Tier 1 - Roundstart powers
 		/obj/effect/proc_holder/spell/targeted/hive_add = 0,
-		/obj/effect/proc_holder/spell/target_hive/hive_see = 0,
+		///obj/effect/proc_holder/spell/target_hive/hive_see = 0,
 		/obj/effect/proc_holder/spell/target_hive/hive_shock = 0,
 		//Tier 2 - Host vs Host
 		/obj/effect/proc_holder/spell/targeted/hive_integrate = 5,

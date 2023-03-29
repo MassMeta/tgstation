@@ -1,12 +1,13 @@
-/obj/effect/proc_holder/spell/target_hive/hive_shock
+/datum/action/cooldown/spell/target_hive/hive_shock
 	name = "Neural Shock"
 	desc = "After a short charging time, we overload the mind of one of our vessels with psionic energy, rendering them unconscious for a short period of time. This power weakens over distance, but strengthens with hive size."
 	action_icon_state = "shock"
 
 	charge_max = 600
 
-/obj/effect/proc_holder/spell/target_hive/hive_shock/cast(list/targets, mob/living/user = usr)
-	var/mob/living/carbon/human/target = targets[1]
+/datum/action/cooldown/spell/target_hive/hive_shock/cast(atom/cast_on)
+	var/mob/living/user = cast_on
+	var/mob/living/carbon/human/target = choose_targets()
 	var/datum/antagonist/hivemind/hive = user.mind.has_antag_datum(/datum/antagonist/hivemind)
 	if(!hive)
 		to_chat(user, "<span class='notice'>This is a bug. Error:HIVE1</span>")

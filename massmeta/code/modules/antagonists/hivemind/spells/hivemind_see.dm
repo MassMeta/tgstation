@@ -1,4 +1,4 @@
-/obj/effect/proc_holder/spell/target_hive/hive_see
+/*/datum/action/cooldown/spell/target_hive/hive_see
 	name = "Hive Vision"
 	desc = "We use the eyes of one of our vessels. Use again to look through our own eyes once more."
 	action_icon_state = "see"
@@ -7,11 +7,11 @@
 
 	charge_max = 20
 
-/obj/effect/proc_holder/spell/target_hive/hive_see/on_lose(mob/living/user)
+/datum/action/cooldown/spell/target_hive/hive_see/on_lose(mob/living/user)
 	user.reset_perspective()
 	user.clear_fullscreen("hive_eyes")
 
-/obj/effect/proc_holder/spell/target_hive/hive_see/cast(list/targets, mob/living/user = usr)
+/datum/action/cooldown/spell/target_hive/hive_see/cast(list/targets, mob/living/user = usr)
 	if(!active)
 		vessel = targets[1]
 		if(vessel)
@@ -28,7 +28,7 @@
 		active = FALSE
 		revert_cast()
 
-/obj/effect/proc_holder/spell/target_hive/hive_see/process()
+/datum/action/cooldown/spell/target_hive/hive_see/process()
 	if(active && (!vessel || !is_hivemember(vessel) || QDELETED(vessel)))
 		to_chat(host, "<span class='warning'>Our vessel is one of us no more!</span>")
 		host.reset_perspective()
@@ -38,8 +38,9 @@
 			vessel.remove_status_effect(STATUS_EFFECT_BUGGED)
 	..()
 
-/obj/effect/proc_holder/spell/target_hive/hive_see/choose_targets(mob/user = usr)
+/datum/action/cooldown/spell/target_hive/hive_see/choose_targets(mob/user = usr)
 	if(!active)
 		..()
 	else
 		perform(null,user)
+*/
