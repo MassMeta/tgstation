@@ -2,7 +2,7 @@
 	panel = "Hivemind Abilities"
 	invocation_type = "none"
 	selection_type = "range"
-	action_icon = 'icons/mob/actions/actions_hive.dmi'
+	action_icon = 'massmeta/icons/mob/actions/actions_hive.dmi'
 	action_background_icon_state = "bg_hive"
 	action_icon_state = "spell_default"
 	clothes_req = 0
