@@ -367,3 +367,13 @@
 /datum/mood_event/sling
 	description = "<span class='velvet'><b>The keys to reality are within my grasp.</b></span>\n"
 	mood_change = 20
+
+/datum/mood_event/hivehost
+	description = "<span class='nicegreen'>Our psyche expands, our influence broadens.</span>\n"
+	mood_change = 5
+	hidden = TRUE
+
+/datum/mood_event/hiveawakened
+	description = "<span class='nicegreen'>True purpose has been revealed to us, at last!.</span>\n"
+	mood_change =  2
+	hidden = TRUE

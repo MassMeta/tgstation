@@ -13,3 +13,5 @@ GLOBAL_VAR_INIT(required_succs, 15)
 GLOBAL_VAR_INIT(sacrament_done, FALSE)
 
 GLOBAL_LIST_EMPTY(servants_of_ratvar)
+
+GLOBAL_LIST_EMPTY(hivehosts)

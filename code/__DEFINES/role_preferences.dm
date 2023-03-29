@@ -62,7 +62,7 @@
 #define ROLE_BRAINWASHED "Brainwashed Victim"
 #define ROLE_HYPNOTIZED "Hypnotized Victim"
 #define ROLE_OVERTHROW "Syndicate Mutineer" //Role removed, left here for safety.
-#define ROLE_HIVE "Hivemind Host" //Role removed, left here for safety.
+#define ROLE_HIVE "Hivemind Host"
 #define ROLE_SENTIENCE "Sentience Potion Spawn"
 #define ROLE_PYROCLASTIC_SLIME "Pyroclastic Anomaly Slime"
 #define ROLE_ANOMALY_GHOST "Ectoplasmic Anomaly Ghost"
@@ -129,6 +129,7 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_DARKSPAWN = 14, //Massmeta edit
 	ROLE_MONKEY = 0, //Massmeta edit
 	ROLE_SERVANT_OF_RATVAR = 14, //Massmeta edit
+	ROLE_HIVE = 0,
 
 	// Midround
 	ROLE_ABDUCTOR = 0,
