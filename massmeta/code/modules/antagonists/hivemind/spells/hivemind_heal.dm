@@ -1,4 +1,4 @@
-/obj/effect/proc_holder/spell/self/hive_drain
+/datum/action/cooldown/spell/hive_drain
 	name = "Repair Protocol"
 	desc = "Our many vessels sacrifice a small portion of their mind's vitality to cure us of our physical and mental ailments."
 
@@ -12,7 +12,10 @@
 	human_req = 1
 	antimagic_allowed = TRUE
 
-/obj/effect/proc_holder/spell/self/hive_drain/cast(mob/living/carbon/human/user)
+/datum/action/cooldown/spell/hive_drain/cast(atom/cast_on)
+	var/mob/living/carbon/human/user = cast_on
+	if(!istype(user))
+		return
 	var/datum/antagonist/hivemind/hive = user.mind.has_antag_datum(/datum/antagonist/hivemind)
 	if(!hive || !hive.hivemembers)
 		return

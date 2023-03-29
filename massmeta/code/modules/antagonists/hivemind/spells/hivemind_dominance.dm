@@ -1,4 +1,4 @@
-/obj/effect/proc_holder/spell/self/hive_dominance
+/datum/action/cooldown/spell/hive_dominance
 	name = "One Mind"
 	desc = "Our true power... finally within reach."
 	panel = "Hivemind Abilities"
@@ -12,7 +12,10 @@
 	action_icon_state = "assim"
 	antimagic_allowed = TRUE
 
-/obj/effect/proc_holder/spell/self/hive_dominance/cast(mob/living/user = usr)
+/datum/action/cooldown/spell/hive_dominance/cast(atom/cast_on)
+	var/mob/living/user = cast_on
+	if(!istype(user))
+		return
 	var/datum/antagonist/hivemind/hive = user.mind.has_antag_datum(/datum/antagonist/hivemind)
 	if(!hive)
 		to_chat(user, "<span class='notice'>This is a bug. Error:HIVE1</span>")

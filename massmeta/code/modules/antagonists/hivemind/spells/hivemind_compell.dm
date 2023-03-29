@@ -1,11 +1,12 @@
-/obj/effect/proc_holder/spell/target_hive/hive_compell
+/datum/action/cooldown/spell/target_hive/hive_compell
 	name = "Compell"
 	desc = "We forcefully insert a directive into a vessels mind for a limited time, they'll obey anything short of suicide."
 	action_icon_state = "empower"
 
 	charge_max = 10 MINUTES
 
-/obj/effect/proc_holder/spell/target_hive/hive_compell/cast(list/targets, mob/living/user = usr)
+/datum/action/cooldown/spell/target_hive/hive_compell/cast(atom/cast_on)
+	var/list/targets = choose_targets()
 	var/mob/living/carbon/human/target = targets[1]
 	var/datum/antagonist/hivemind/hive = user.mind.has_antag_datum(/datum/antagonist/hivemind)
 	var/success = FALSE

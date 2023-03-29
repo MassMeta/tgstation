@@ -1,4 +1,4 @@
-/obj/effect/proc_holder/spell/target_hive
+/datum/action/cooldown/spell/target_hive
 	panel = "Hivemind Abilities"
 	invocation_type = "none"
 	selection_type = "range"
@@ -12,7 +12,8 @@
 	var/target_external = 0 //Whether or not we select targets inside or outside of the hive
 
 
-/obj/effect/proc_holder/spell/target_hive/choose_targets(mob/user = usr)
+/datum/action/cooldown/spell/target_hive/proc/choose_targets()
+	var/mob/living/user = owner
 	var/datum/antagonist/hivemind/hive = user.mind.has_antag_datum(/datum/antagonist/hivemind)
 	if(!hive || !hive.hivemembers)
 		to_chat(user, "<span class='notice'>This is a bug. Error:HIVE1</span>")
@@ -38,5 +39,5 @@
 		revert_cast()
 		return
 	targets += H
-	perform(targets,user=user)
+	return targets
 

@@ -1,4 +1,4 @@
-/obj/effect/proc_holder/spell/targeted/hive_integrate
+/datum/action/cooldown/spell/pointed/hive_integrate
 	name = "Integrate"
 	desc = "Allows us to syphon the psionic energy from a Host within our grasp."
 	panel = "Hivemind Abilities"
@@ -13,7 +13,7 @@
 	action_icon_state = "reclaim"
 	antimagic_allowed = TRUE
 
-/obj/effect/proc_holder/spell/targeted/hive_integrate/cast(list/targets, mob/living/user = usr)
+/datum/action/cooldown/spell/pointed/hive_integrate/cast(atom/cast_on)
 	var/datum/antagonist/hivemind/hivehost = user.mind.has_antag_datum(/datum/antagonist/hivemind)
 	if(!hivehost)
 		to_chat(user, "<span class='notice'>This is a bug. Error:HIVE1</span>")
@@ -41,7 +41,7 @@
 	for(var/i in 1 to 3)
 		switch(i)
 			if(1)
-				to_chat(user, "<span class='notice'>This shining mind is with reach.We must stay still..</span>")
+				to_chat(user, "<span class='notice'>This shining mind is with reach. We must stay still..</span>")
 			if(2)
 				user.visible_message("<span class='warning'>[user] places their hands on [target]'s head!</span>", "<span class='notice'>We place our hands on their temple.</span>")
 			if(3)

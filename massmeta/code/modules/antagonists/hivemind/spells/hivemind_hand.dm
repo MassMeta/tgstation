@@ -1,4 +1,4 @@
-/obj/effect/proc_holder/spell/targeted/touch/hive_fist
+/datum/action/cooldown/spell/touch/hive_fist
 	name = "Mental Fist"
 	desc = "We channel the strength of our host's hive into a physical weapon, specially effective on rival hives."
 	hand_path = /obj/item/melee/touch_attack/hive_fist

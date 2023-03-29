@@ -1,4 +1,4 @@
-/obj/effect/proc_holder/spell/targeted/forcewall/hive
+/datum/action/cooldown/spell/forcewall/hive
 	name = "Telekinetic Field"
 	desc = "Our psionic powers form a barrier around us in the physical world that only we can pass through."
 	panel = "Hivemind Abilities"
@@ -14,11 +14,6 @@
 	antimagic_allowed = TRUE
 	wall_type = /obj/effect/forcefield/wizard/hive
 	var/wall_type_b = /obj/effect/forcefield/wizard/hive/invis
-
-/obj/effect/proc_holder/spell/targeted/forcewall/hive/cast(list/targets,mob/user = usr)
-	new wall_type(get_turf(user), null, user)
-	for(var/dir in GLOB.alldirs)
-		new wall_type_b(get_step(user, dir), null, user)
 
 /obj/effect/forcefield/wizard/hive
 	name = "Telekinetic Field"
