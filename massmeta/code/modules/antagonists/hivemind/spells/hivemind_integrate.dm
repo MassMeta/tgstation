@@ -8,9 +8,9 @@
 	invocation_type = "none"
 	clothes_req = 0
 	human_req = 1
-	action_icon = 'massmeta/icons/mob/actions/actions_hive.dmi'
-	action_background_icon_state = "bg_hive"
-	action_icon_state = "reclaim"
+	button_icon = 'massmeta/icons/mob/actions/actions_hive.dmi'
+	background_icon_state = "bg_hive"
+	button_icon_state = "reclaim"
 	antimagic_allowed = TRUE
 
 /datum/action/cooldown/spell/hive_integrate/cast(atom/cast_on)

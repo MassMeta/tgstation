@@ -9,9 +9,9 @@
 	max_targets = 0
 	include_user = 1
 	antimagic_allowed = TRUE
-	action_icon = 'massmeta/icons/mob/actions/actions_hive.dmi'
-	action_background_icon_state = "bg_hive"
-	action_icon_state = "rally"
+	button_icon = 'massmeta/icons/mob/actions/actions_hive.dmi'
+	background_icon_state = "bg_hive"
+	button_icon_state = "rally"
 
 /datum/action/cooldown/spell/aoe/hive_rally/get_things_to_cast_on(atom/center)
 	RETURN_TYPE(/list)

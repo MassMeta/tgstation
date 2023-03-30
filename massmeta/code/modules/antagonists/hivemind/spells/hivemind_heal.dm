@@ -6,9 +6,9 @@
 	charge_max = 600
 	clothes_req = 0
 	invocation_type = "none"
-	action_icon = 'massmeta/icons/mob/actions/actions_hive.dmi'
-	action_background_icon_state = "bg_hive"
-	action_icon_state = "drain"
+	button_icon = 'massmeta/icons/mob/actions/actions_hive.dmi'
+	background_icon_state = "bg_hive"
+	button_icon_state = "drain"
 	human_req = 1
 	antimagic_allowed = TRUE
 

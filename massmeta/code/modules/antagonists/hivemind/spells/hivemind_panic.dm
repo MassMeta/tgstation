@@ -8,9 +8,9 @@
 	clothes_req = 0
 	max_targets = 0
 	antimagic_allowed = TRUE
-	action_icon = 'massmeta/icons/mob/actions/actions_hive.dmi'
-	action_background_icon_state = "bg_hive"
-	action_icon_state = "panic"
+	button_icon = 'massmeta/icons/mob/actions/actions_hive.dmi'
+	background_icon_state = "bg_hive"
+	button_icon_state = "panic"
 
 /datum/action/cooldown/spell/aoe/induce_panic/get_things_to_cast_on(atom/center)
 	RETURN_TYPE(/list)

@@ -6,9 +6,9 @@
 	clothes_req = 0
 	human_req = 1
 	invocation_type = "none"
-	action_icon = 'massmeta/icons/mob/actions/actions_hive.dmi'
-	action_background_icon_state = "bg_hive"
-	action_icon_state = "forcewall"
+	button_icon = 'massmeta/icons/mob/actions/actions_hive.dmi'
+	background_icon_state = "bg_hive"
+	button_icon_state = "forcewall"
 	range = -1
 	include_user = 1
 	antimagic_allowed = TRUE

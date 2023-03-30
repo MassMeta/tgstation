@@ -1,7 +1,7 @@
 /datum/action/cooldown/spell/target_hive/hive_shatter
 	name = "Crush Protections"
 	desc = "We destroy any Mindshield implants a vesssel might have, granting us further control over their mind."
-	action_icon_state = "shatter"
+	button_icon_state = "shatter"
 
 	charge_max = 1800
 

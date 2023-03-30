@@ -1,7 +1,7 @@
 /datum/action/cooldown/spell/target_hive/hive_compell
 	name = "Compell"
 	desc = "We forcefully insert a directive into a vessels mind for a limited time, they'll obey anything short of suicide."
-	action_icon_state = "empower"
+	button_icon_state = "empower"
 
 	charge_max = 10 MINUTES
 
