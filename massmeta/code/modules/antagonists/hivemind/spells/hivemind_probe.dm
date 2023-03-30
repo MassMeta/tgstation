@@ -4,13 +4,10 @@
 	panel = "Hivemind Abilities"
 	charge_max = 30
 	range = 1
-	invocation_type = "none"
-	clothes_req = 0
-	max_targets = 1
+	spell_requirements = NONE
 	button_icon = 'massmeta/icons/mob/actions/actions_hive.dmi'
 	background_icon_state = "bg_hive"
 	button_icon_state = "probe"
-	antimagic_allowed = TRUE
 
 /datum/action/cooldown/spell/pointed/hive_probe/cast(atom/cast_on)
 	var/mob/living/user = owner

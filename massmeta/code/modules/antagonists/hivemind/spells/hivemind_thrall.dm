@@ -3,15 +3,10 @@
 	desc = "We awaken one of our vessels, permanently turning them into an extension of our will, we can only sustain two awakened vessels increasing with integrations."
 	panel = "Hivemind Abilities"
 	charge_max = 600
-	range = 1
-	max_targets = 0
-	invocation_type = "none"
-	clothes_req = 0
-	human_req = 1
+	spell_requirements = SPELL_REQUIRES_HUMAN
 	button_icon = 'massmeta/icons/mob/actions/actions_hive.dmi'
 	background_icon_state = "bg_hive"
 	button_icon_state = "chaos"
-	antimagic_allowed = TRUE
 
 /datum/action/cooldown/spell/hive_thrall/cast(atom/cast_on)
 	var/mob/living/user = owner
