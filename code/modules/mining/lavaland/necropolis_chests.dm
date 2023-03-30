@@ -70,7 +70,6 @@
 		if(20)
 			new /obj/item/clothing/neck/necklace/memento_mori(src)
 		if(21)
-			new /obj/item/reagent_containers/food/drinks/bottle/holywater/hell(src)
 			new /obj/item/clothing/suit/space/hardsuit/ert/paranormal/inquisitor(src)
 	if(!contents.len)
 		to_chat(user, span_warning("[src] makes a clunking sound as you try to open it. You feel compelled to let the gods know! (Please open an adminhelp and try again!)"))
