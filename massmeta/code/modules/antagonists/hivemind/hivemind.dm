@@ -23,24 +23,24 @@
 
 	var/list/upgrade_tiers = list(
 		//Tier 1 - Roundstart powers
-		/obj/effect/proc_holder/spell/targeted/hive_add = 0,
+		/datum/action/cooldown/spell/pointed/hive_add = 0,
 		///obj/effect/proc_holder/spell/target_hive/hive_see = 0,
-		/obj/effect/proc_holder/spell/target_hive/hive_shock = 0,
+		/datum/action/cooldown/spell/target_hive/hive_shock = 0,
 		//Tier 2 - Host vs Host
-		/obj/effect/proc_holder/spell/targeted/hive_integrate = 5,
-		/obj/effect/proc_holder/spell/targeted/hive_hack = 5,
-		/obj/effect/proc_holder/spell/targeted/hive_probe = 5,
+		/datum/action/cooldown/spell/hive_integrate = 5,
+		/datum/action/cooldown/spell/pointed/hive_hack = 5,
+		/datum/action/cooldown/spell/pointed/hive_probe = 5,
 		//Tier 3 - Crew manipulation powers
-		/obj/effect/proc_holder/spell/target_hive/hive_compell = 10,
-		/obj/effect/proc_holder/spell/self/hive_loyal = 10,
-		/obj/effect/proc_holder/spell/targeted/hive_thrall = 10,
+		/datum/action/cooldown/spell/target_hive/hive_compell = 10,
+		/datum/action/cooldown/spell/hive_loyal = 10,
+		/datum/action/cooldown/spell/hive_thrall = 10,
 		//Tier 4 - Combat powers
-		/obj/effect/proc_holder/spell/self/hive_drain = 15,
-		/obj/effect/proc_holder/spell/targeted/forcewall/hive = 15,
+		/datum/action/cooldown/spell/hive_drain = 15,
+		/datum/action/cooldown/spell/forcewall/hive = 15,
 		/obj/effect/proc_holder/spell/targeted/induce_panic = 15,
 		//Tier 5 - Finishers
-		/obj/effect/proc_holder/spell/target_hive/hive_shatter = 20,
-		/obj/effect/proc_holder/spell/targeted/hive_rally = 20,
+		/datum/action/cooldown/spell/target_hive/hive_shatter = 20,
+		/datum/action/cooldown/spell/aoe/hive_rally = 20,
 	)
 
 
@@ -66,8 +66,8 @@
 	for(var/power in upgrade_tiers)
 		var/level = upgrade_tiers[power]
 		if(hive_size+size_mod >= level && !(locate(power) in owner.spell_list))
-			var/obj/effect/proc_holder/spell/the_spell = new power(null)
-			owner.AddSpell(the_spell)
+			var/datum/action/cooldown/spell/the_spell = new power(null)
+			the_spell.Grant(owner.current)
 			if(hive_size > 0)
 				to_chat(owner, "<span class='assimilator'>We have unlocked [the_spell.name].</span><span class='bold'> [the_spell.desc]</span>")
 	if(!unlocked_dominance && hive_size >= 20)
@@ -83,7 +83,8 @@
 			break
 		if(lead)
 			unlocked_dominance = TRUE
-			owner.AddSpell(/obj/effect/proc_holder/spell/self/hive_dominance)
+			var/datum/action/cooldown/spell/hive_dominance/dominance = new /datum/action/cooldown/spell/hive_dominance ()
+			dominance.Grant(owner.current)
 			to_chat(owner, "<span class='assimilator'>Our strength overflowing and our competitors left in the dust, we can proclaim our Dominance and enter a heightened state.</span>")
 
 /datum/antagonist/hivemind/proc/add_to_hive(mob/living/carbon/C)
@@ -149,7 +150,9 @@
 	for(var/power in upgrade_tiers)
 		if(!upgrade_tiers[power])
 			continue
-		owner.RemoveSpell(power)
+		if(istype(power, /datum/action))
+			var/datum/action/spell_to_remove = power
+			spell_to_remove.Remove(owner.current)
 
 /datum/antagonist/hivemind/antag_panel_data()
 	return "Vessels Assimilated: [hive_size] (+[size_mod])"

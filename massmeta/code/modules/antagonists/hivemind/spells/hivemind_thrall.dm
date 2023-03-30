@@ -1,4 +1,4 @@
-/obj/effect/proc_holder/spell/targeted/hive_thrall
+/datum/action/cooldown/spell/hive_thrall
 	name = "Awaken Vessel"
 	desc = "We awaken one of our vessels, permanently turning them into an extension of our will, we can only sustain two awakened vessels increasing with integrations."
 	panel = "Hivemind Abilities"
@@ -13,7 +13,8 @@
 	action_icon_state = "chaos"
 	antimagic_allowed = TRUE
 
-/obj/effect/proc_holder/spell/targeted/hive_thrall/cast(list/targets, mob/living/user = usr)
+/datum/action/cooldown/spell/hive_thrall/cast(atom/cast_on)
+	var/mob/living/user = owner
 	var/datum/antagonist/hivemind/hivehost = user.mind.has_antag_datum(/datum/antagonist/hivemind)
 	if(!hivehost)
 		to_chat(user, "<span class='notice'>This is a bug. Error:HIVE1</span>")
@@ -22,7 +23,7 @@
 		to_chat(user, "<span class='notice'>We can't support another awakened vessel!</span>")
 		return
 	var/mob/living/carbon/human/target = user.pulling
-	if(!target)
+	if(!istype(target) || !target)
 		to_chat(user, "<span class='warning'>We must be grabbing a creature to awaken them!</span>")
 		hivehost.isintegrating = FALSE
 		revert_cast()
