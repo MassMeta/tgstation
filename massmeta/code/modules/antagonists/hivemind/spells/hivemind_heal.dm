@@ -4,13 +4,11 @@
 
 	panel = "Hivemind Abilities"
 	charge_max = 600
-	clothes_req = 0
 	invocation_type = "none"
 	button_icon = 'massmeta/icons/mob/actions/actions_hive.dmi'
 	background_icon_state = "bg_hive"
 	button_icon_state = "drain"
-	human_req = 1
-	antimagic_allowed = TRUE
+	spell_requirements = SPELL_REQUIRES_HUMAN
 
 /datum/action/cooldown/spell/hive_drain/cast(atom/cast_on)
 	var/mob/living/carbon/human/user = cast_on

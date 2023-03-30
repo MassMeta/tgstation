@@ -3,11 +3,8 @@
 	desc = "Allows us to syphon the psionic energy from a Host within our grasp."
 	panel = "Hivemind Abilities"
 	charge_max = 600
-	range = 1
-	max_targets = 0
 	invocation_type = "none"
-	clothes_req = 0
-	human_req = 1
+	spell_requirements = SPELL_REQUIRES_HUMAN
 	button_icon = 'massmeta/icons/mob/actions/actions_hive.dmi'
 	background_icon_state = "bg_hive"
 	button_icon_state = "reclaim"

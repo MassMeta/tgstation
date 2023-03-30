@@ -3,11 +3,9 @@
 	desc = "We silently add an unsuspecting target to the hive."
 	button_icon = 'massmeta/icons/mob/actions/actions_hive.dmi'
 	background_icon_state = "bg_hive"
-	selection_type = "view"
 	button_icon_state = "add"
 	range = 7
-	invocation_type = "none"
-	clothes_req = 0
+	spell_requirements = NONE
 	max_targets = 1
 	var/ignore_mindshield = FALSE
 

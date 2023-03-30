@@ -5,9 +5,7 @@
 	charge_max = 900
 	range = 7
 	invocation_type = "none"
-	clothes_req = 0
-	max_targets = 0
-	antimagic_allowed = TRUE
+	spell_requirements = NONE
 	button_icon = 'massmeta/icons/mob/actions/actions_hive.dmi'
 	background_icon_state = "bg_hive"
 	button_icon_state = "panic"

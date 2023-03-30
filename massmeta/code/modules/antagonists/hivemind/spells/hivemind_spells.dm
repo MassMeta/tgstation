@@ -1,7 +1,6 @@
 /datum/action/cooldown/spell/target_hive
 	panel = "Hivemind Abilities"
 	invocation_type = "none"
-	selection_type = "range"
 	button_icon = 'massmeta/icons/mob/actions/actions_hive.dmi'
 	background_icon_state = "bg_hive"
 	button_icon_state = "spell_default"
@@ -22,7 +21,7 @@
 	var/list/targets = list()
 
 	if(target_external)
-		for(var/mob/living/carbon/H in view_or_range(range, user, selection_type))
+		for(var/mob/living/carbon/H in range(range, user))
 			if(user == H)
 				continue
 			if(!can_target(H))
@@ -32,12 +31,9 @@
 	else
 		possible_targets = hive.get_carbon_members()
 		if(range)
-			possible_targets &= view_or_range(range, user, selection_type)
+			possible_targets &= range(range, user)
 
 	var/mob/living/carbon/human/H = input("Choose the target for the spell.", "Targeting") as null|mob in possible_targets
-	if(!H)
-		revert_cast()
-		return
 	targets += H
 	return targets
 

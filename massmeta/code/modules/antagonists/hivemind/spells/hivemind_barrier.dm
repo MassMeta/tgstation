@@ -5,13 +5,12 @@
 	charge_max = 600
 	clothes_req = 0
 	human_req = 1
-	invocation_type = "none"
+	spell_requirements = NONE
 	button_icon = 'massmeta/icons/mob/actions/actions_hive.dmi'
 	background_icon_state = "bg_hive"
 	button_icon_state = "forcewall"
 	range = -1
 	include_user = 1
-	antimagic_allowed = TRUE
 	wall_type = /obj/effect/forcefield/wizard/hive
 	var/wall_type_b = /obj/effect/forcefield/wizard/hive/invis
 

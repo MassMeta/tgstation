@@ -4,7 +4,7 @@
 	hand_path = /obj/item/melee/touch_attack/hive_fist
 	school = "evocation"
 	charge_max = 150
-	clothes_req = FALSE
+	spell_requirements = SPELL_REQUIRES_HUMAN
 	button_icon = 'massmeta/icons/mob/actions/actions_hive.dmi'
 	button_icon_state = "hand"
 	background_icon_state = "bg_hive"
