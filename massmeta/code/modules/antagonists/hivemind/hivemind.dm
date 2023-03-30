@@ -141,6 +141,9 @@
 			to_chat(self, "<span class='notice'>Our latent psychic power destroys our mindshield implant!</span>")
 			qdel(M)
 
+/datum/antagonist/hivemind/proc/on_death()
+	destroy_hive() //:(
+
 /datum/antagonist/hivemind/proc/destroy_hive()
 	hivemembers = list()
 	for(var/datum/mind/mind in avessels)
@@ -165,7 +168,12 @@
 	create_actions()
 	check_powers()
 	forge_objectives()
+	RegisterSignal(owner.current, COMSIG_LIVING_DEATH, .proc/on_death)
+	RegisterSignal(owner.current, COMSIG_MOB_LOGIN, .proc/on_login)
 	..()
+
+/datum/antagonist/hivemind/proc/on_login()
+	regain_images()
 
 /datum/antagonist/hivemind/apply_innate_effects()
 	handle_clown_mutation(owner.current, "The great psionic powers of the Hive lets you overcome your clownish nature, allowing you to wield weapons with impunity.")
@@ -202,6 +210,8 @@
 	if(!silent && owner.current)
 		to_chat(owner.current,"<span class='userdanger'> Your psionic powers fade, you are no longer the hivemind's host! </span>")
 	owner.special_role = null
+	UnregisterSignal(owner.current, COMSIG_LIVING_DEATH)
+	UnregisterSignal(owner.current, COMSIG_MOB_LOGIN)
 	..()
 
 /datum/antagonist/hivemind/proc/forge_objectives()
