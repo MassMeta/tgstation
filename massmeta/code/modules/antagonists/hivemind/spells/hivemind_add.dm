@@ -4,7 +4,7 @@
 	button_icon = 'massmeta/icons/mob/actions/actions_hive.dmi'
 	background_icon_state = "bg_hive"
 	button_icon_state = "add"
-	range = 7
+	cast_range = 7
 	spell_requirements = NONE
 	max_targets = 1
 	var/ignore_mindshield = FALSE
@@ -36,9 +36,9 @@
 	else
 		to_chat(user, "<span class='notice'>We begin linking our mind with [target.name]!</span>")
 
-	if(do_after(user,5*(1.5**get_dist(user, target)),0,user) && (user in viewers(range, target)))
-		if(do_after(user,5*(1.5**get_dist(user, target)),0,user) && (user in viewers(range, target)))
-			if((!HAS_TRAIT(target, TRAIT_MINDSHIELD) || ignore_mindshield) && (user in viewers(range, target)))
+	if(do_after(user,5*(1.5**get_dist(user, target)),0,user) && (user in viewers(cast_range, target)))
+		if(do_after(user,5*(1.5**get_dist(user, target)),0,user) && (user in viewers(cast_range, target)))
+			if((!HAS_TRAIT(target, TRAIT_MINDSHIELD) || ignore_mindshield) && (user in viewers(cast_range, target)))
 				to_chat(user, "<span class='notice'>[target.name] was added to the Hive!</span>")
 				success = TRUE
 				hive.add_to_hive(target)

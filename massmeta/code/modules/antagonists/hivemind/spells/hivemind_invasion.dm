@@ -3,7 +3,7 @@
 	desc = "We attack any foreign presences in the target mind keeping them only for ourselves. Takes longer if the target is not in our hive. Will grant us a tracking charge if successful."
 	panel = "Hivemind Abilities"
 	charge_max = 600
-	range = 1
+	cast_range = 1
 	invocation_type = "none"
 	spell_requirements = NONE
 	button_icon = 'massmeta/icons/mob/actions/actions_hive.dmi'

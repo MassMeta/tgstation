@@ -18,7 +18,7 @@
 	var/list/targets = list()
 
 	if(target_external)
-		for(var/mob/living/carbon/H in range(range, user))
+		for(var/mob/living/carbon/H in range(cast_range, user))
 			if(user == H)
 				continue
 			if(!can_target(H))
@@ -27,8 +27,8 @@
 				possible_targets += H
 	else
 		possible_targets = hive.get_carbon_members()
-		if(range)
-			possible_targets &= range(range, user)
+		if(cast_range)
+			possible_targets &= range(cast_range, user)
 
 	var/mob/living/carbon/human/H = input("Choose the target for the spell.", "Targeting") as null|mob in possible_targets
 	targets += H

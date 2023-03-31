@@ -3,7 +3,7 @@
 	desc = "We examine a mind for any enemy activity."
 	panel = "Hivemind Abilities"
 	charge_max = 30
-	range = 1
+	cast_range = 1
 	spell_requirements = NONE
 	button_icon = 'massmeta/icons/mob/actions/actions_hive.dmi'
 	background_icon_state = "bg_hive"

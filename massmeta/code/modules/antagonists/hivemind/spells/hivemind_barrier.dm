@@ -9,7 +9,6 @@
 	button_icon = 'massmeta/icons/mob/actions/actions_hive.dmi'
 	background_icon_state = "bg_hive"
 	button_icon_state = "forcewall"
-	range = -1
 	include_user = 1
 	wall_type = /obj/effect/forcefield/wizard/hive
 	var/wall_type_b = /obj/effect/forcefield/wizard/hive/invis

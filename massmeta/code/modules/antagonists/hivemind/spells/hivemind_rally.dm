@@ -3,7 +3,7 @@
 	desc = "We send out a burst of psionic energy, invigorating us and nearby awakened vessels, removing any stuns."
 	panel = "Hivemind Abilities"
 	charge_max = 3000
-	range = 7
+	cast_range = 7
 	invocation_type = "none"
 	spell_requirements = NONE
 	button_icon = 'massmeta/icons/mob/actions/actions_hive.dmi'
@@ -15,8 +15,8 @@
 
 	var/list/things = list()
 	var/datum/antagonist/hivemind/hive = owner.mind.has_antag_datum(/datum/antagonist/hivemind)
-	// Default behavior is to get all atoms in range, center and owner not included.
-	for(var/mob/living/carbon/human/nearby_thing in range(aoe_radius, center))
+	// Default behavior is to get all atoms in cast_range, center and owner not included.
+	for(var/mob/living/carbon/human/nearby_thing in cast_range(aoe_radius, center))
 		if(!istype(nearby_thing))
 			continue
 		if(nearby_thing == owner || nearby_thing == center)

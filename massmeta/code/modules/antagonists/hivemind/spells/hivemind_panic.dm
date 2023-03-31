@@ -3,7 +3,7 @@
 	desc = "We unleash a burst of psionic energy, inducing a debilitating fear in those around us and reducing their combat readiness. We can also briefly affect silicon-based life with this burst."
 	panel = "Hivemind Abilities"
 	charge_max = 900
-	range = 7
+	cast_range = 7
 	invocation_type = "none"
 	spell_requirements = NONE
 	button_icon = 'massmeta/icons/mob/actions/actions_hive.dmi'
@@ -14,8 +14,8 @@
 	RETURN_TYPE(/list)
 
 	var/list/things = list()
-	// Default behavior is to get all atoms in range, center and owner not included.
-	for(var/mob/living/carbon/human/nearby_thing in range(aoe_radius, center))
+	// Default behavior is to get all atoms in cast_range, center and owner not included.
+	for(var/mob/living/carbon/human/nearby_thing in cast_range(aoe_radius, center))
 		if(!istype(nearby_thing))
 			continue
 		if(nearby_thing == owner || nearby_thing == center)
