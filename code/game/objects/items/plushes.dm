@@ -832,3 +832,26 @@
 	var/mutable_appearance/base_overlay_among = mutable_appearance(icon, "plushie_among_visor")
 	base_overlay_among.appearance_flags = RESET_COLOR
 	add_overlay(base_overlay_among)
+
+/obj/item/toy/plush/pig
+	name = "pig toy"
+	desc = "Captain Dementy! Bring the pigs! Marines demand pigs!."
+	icon = 'massmeta/icons/obj/pig.dmi'
+	left
+	lefthand_file ='massmeta/icons/mob/inhands/pig_lefthand.dmi'
+	righthand_file = 'massmeta/icons/mob/inhands/pig_righthand.dmi'
+	icon_state = "pig"
+	item_state = "pig"
+	attack_verb_continuous = list("oinks", "grunts")
+	attack_verb_simple = list("oinks", "grunts")
+
+/*/obj/item/toy/plush/pig/attack_self(mob/user)
+	if(world.time > last_hug_time)
+		user.visible_message(span_notice("[user] presses [src]! Oink! "), \
+							span_notice("You press [src]. Oink! "))
+		last_hug_time = world.time + 50 //5 second cooldown
+*/
+
+/obj/item/toy/plush/pig/Initialize()
+	. = ..()
+	AddComponent(/datum/component/squeak, 'massmeta/sounds/misc/khryu.ogg', 50)
