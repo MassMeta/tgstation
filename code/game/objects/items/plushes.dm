@@ -843,6 +843,7 @@
 	inhand_icon_state = "pig"
 	attack_verb_continuous = list("oinks", "grunts")
 	attack_verb_simple = list("oinks", "grunts")
+	squeak_override = list('massmeta/sounds/misc/khryu.ogg')
 
 /*/obj/item/toy/plush/pig/attack_self(mob/user)
 	if(world.time > last_hug_time)
@@ -850,7 +851,3 @@
 							span_notice("You press [src]. Oink! "))
 		last_hug_time = world.time + 50 //5 second cooldown
 */
-
-/obj/item/toy/plush/pig/Initialize()
-	. = ..()
-	AddComponent(/datum/component/squeak, 'massmeta/sounds/misc/khryu.ogg', 50)
