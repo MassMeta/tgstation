@@ -35,7 +35,6 @@
 
 	movement_type = FLYING
 	pressure_resistance = INFINITY
-	see_in_dark = 8
 	see_invisible = SEE_INVISIBLE_MINIMUM
 	gold_core_spawnable = FALSE
 
