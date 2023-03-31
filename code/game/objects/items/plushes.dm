@@ -837,11 +837,10 @@
 	name = "pig toy"
 	desc = "Captain Dementy! Bring the pigs! Marines demand pigs!."
 	icon = 'massmeta/icons/obj/pig.dmi'
-	left
 	lefthand_file ='massmeta/icons/mob/inhands/pig_lefthand.dmi'
 	righthand_file = 'massmeta/icons/mob/inhands/pig_righthand.dmi'
 	icon_state = "pig"
-	item_state = "pig"
+	inhand_icon_state = "pig"
 	attack_verb_continuous = list("oinks", "grunts")
 	attack_verb_simple = list("oinks", "grunts")
 
