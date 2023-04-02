@@ -757,3 +757,30 @@
 /obj/item/bodypart/head/golem/clockwork
 	limb_id = "clockgolem"
 	is_dimorphic = FALSE
+
+// IPC bois!
+/obj/item/bodypart/head/robot/mutant/ipc
+	icon_greyscale = 'massmeta/icons/mob/ipc/ipc_parts.dmi'
+	is_dimorphic = FALSE
+	limb_id = SPECIES_IPC
+
+/obj/item/bodypart/chest/robot/mutant/ipc
+	icon_greyscale = 'massmeta/icons/mob/ipc/ipc_parts.dmi'
+	is_dimorphic = FALSE
+	limb_id = SPECIES_IPC
+
+/obj/item/bodypart/arm/left/robot/mutant/ipc
+	icon_greyscale = 'massmeta/icons/mob/ipc/ipc_parts.dmi'
+	limb_id = SPECIES_IPC
+
+/obj/item/bodypart/arm/right/robot/mutant/ipc
+	icon_greyscale = 'massmeta/icons/mob/ipc/ipc_parts.dmi'
+	limb_id = SPECIES_IPC
+
+/obj/item/bodypart/leg/left/robot/mutant/ipc
+	icon_greyscale = 'massmeta/icons/mob/ipc/ipc_parts.dmi'
+	limb_id = SPECIES_IPC
+
+/obj/item/bodypart/leg/right/robot/mutant/ipc
+	icon_greyscale = 'massmeta/icons/mob/ipc/ipc_parts.dmi'
+	limb_id = SPECIES_IPC
