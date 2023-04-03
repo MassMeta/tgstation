@@ -348,7 +348,7 @@
 
 /datum/quirk/augmented/add_unique(client/client_source)
 	var/mob/living/carbon/human/human_holder = quirk_holder
-	human_holder.del_and_replace_bodypart(new /obj/item/bodypart/arm/left/robot)
+	human_holder.del_and_replace_bodypart(new /obj/item/bodypart/arm/left/robot) 
 	human_holder.del_and_replace_bodypart(new /obj/item/bodypart/arm/right/robot)
 	human_holder.del_and_replace_bodypart(new /obj/item/bodypart/leg/left/robot)
 	human_holder.del_and_replace_bodypart(new /obj/item/bodypart/leg/right/robot)
