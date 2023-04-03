@@ -86,7 +86,7 @@ export const heterochromatic: Feature<string> = {
 };
 
 export const ipc_screen_toggle: FeatureToggle = {
-  name: 'IPC Screen',
+  name: 'IPC Screen', 
   component: CheckboxInput,
 };
 
