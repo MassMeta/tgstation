@@ -13,7 +13,7 @@
 		TRAIT_LIMBATTACHMENT,
 		TRAIT_LITERATE,
 	)
-	features = list()
+	mutant_bodyparts = list()
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	burnmod = 1.3 // Every 0.1% is 10% above the base.
 	brutemod = 1.3
@@ -78,7 +78,7 @@
 		NOEYESPRITES,
 		NOTRANSSTING,
 	)
-	features = list(
+	mutant_bodyparts = list(
 		"ipc_antenna" = ACC_RANDOM,
 		"ipc_screen" = ACC_RANDOM,
 		"ipc_chassis" = ACC_RANDOM,
@@ -105,7 +105,7 @@
 
 /datum/species/robotic/ipc/spec_death(gibbed, mob/living/carbon/human/transformer)
 	. = ..()
-	saved_screen = transformer.dna.features["ipc_screen"]
+	saved_screen = transformer.dna.mutant_bodyparts["ipc_screen"]
 	switch_to_screen(transformer, "BSOD")
 	addtimer(CALLBACK(src, PROC_REF(switch_to_screen), transformer, "Blank"), 5 SECONDS)
 
@@ -117,7 +117,7 @@
  * * screen_name - The name of the screen to switch the ipc_screen mutant bodypart to.
  */
 /datum/species/robotic/ipc/proc/switch_to_screen(mob/living/carbon/human/tranformer, screen_name)
-	tranformer.dna.features["ipc_screen"] = screen_name
+	tranformer.dna.mutant_bodyparts["ipc_screen"] = screen_name
 	tranformer.update_body()
 
 /datum/species/robotic/ipc/on_species_gain(mob/living/carbon/human/transformer)
@@ -125,8 +125,8 @@
 	if(!screen)
 		screen = new
 		screen.Grant(transformer)
-	var/chassis = transformer.dna.features["ipc_chassis"]
-	var/head = transformer.dna.features["ipc_head"]
+	var/chassis = transformer.dna.mutant_bodyparts["ipc_chassis"]
+	var/head = transformer.dna.mutant_bodyparts["ipc_head"]
 	if(!chassis && !head)
 		return
 	var/datum/sprite_accessory/ipc_chassis/chassis_of_choice = GLOB.sprite_accessories["ipc_chassis"][chassis["name"]]
@@ -148,7 +148,7 @@
 
 /datum/species/robotic/ipc/replace_body(mob/living/carbon/target, datum/species/new_species)
 	..()
-	var/chassis = target.dna.features["ipc_chassis"]
+	var/chassis = target.dna.mutant_bodyparts["ipc_chassis"]
 	if(!chassis)
 		return
 	var/datum/sprite_accessory/ipc_chassis/chassis_of_choice = GLOB.sprite_accessories["ipc_chassis"][chassis["name"]]
@@ -156,7 +156,7 @@
 	for(var/obj/item/bodypart/iterating_bodypart as anything in target.bodyparts) //Override bodypart data as necessary
 		if(chassis_of_choice.color_src)
 			iterating_bodypart.should_draw_greyscale = TRUE
-			iterating_bodypart.species_color = target.dna?.features["mcolor"]
+			iterating_bodypart.species_color = target.dna?.mutant_bodyparts["mcolor"]
 		iterating_bodypart.limb_id = chassis_of_choice.icon_state
 		iterating_bodypart.name = "\improper[chassis_of_choice.name] [parse_zone(iterating_bodypart.body_zone)]"
 		iterating_bodypart.update_limb()
@@ -178,5 +178,5 @@
 	var/new_ipc_screen = input(usr, "Choose your character's screen:", "Monitor Display") as null|anything in GLOB.sprite_accessories["ipc_screen"]
 	if(!new_ipc_screen)
 		return
-	H.dna.species.features["ipc_screen"] = new_ipc_screen
+	H.dna.species.mutant_bodyparts["ipc_screen"] = new_ipc_screen
 	H.update_body()
