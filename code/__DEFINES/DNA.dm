@@ -224,3 +224,5 @@ GLOBAL_LIST_INIT(organ_process_order, list(
 #define SPECIES_POSITIVE_PERK "positive"
 #define SPECIES_NEGATIVE_PERK "negative"
 #define SPECIES_NEUTRAL_PERK "neutral"
+
+#define SPECIES_IPC "ipc"

@@ -84,3 +84,73 @@ export const heterochromatic: Feature<string> = {
   name: 'Heterochromatic (Right Eye) color',
   component: FeatureColorInput,
 };
+
+export const ipc_screen_toggle: FeatureToggle = {
+  name: 'IPC Screen',
+  component: CheckboxInput,
+};
+
+export const feature_ipc_screen: Feature<string> = {
+  name: 'IPC Screen Selection',
+  component: FeatureDropdownInput,
+};
+
+export const ipc_screen_color: Feature<string[]> = {
+  name: 'IPC Screen Colors',
+  component: FeatureTriColorInput,
+};
+
+export const ipc_screen_emissive: Feature<boolean[]> = {
+  name: 'IPC Screen Emissives',
+  component: FeatureTriBoolInput,
+};
+
+export const ipc_antenna_toggle: FeatureToggle = {
+  name: 'IPC Antenna',
+  component: CheckboxInput,
+};
+
+export const feature_ipc_antenna: Feature<string> = {
+  name: 'IPC Antenna Selection',
+  component: FeatureDropdownInput,
+};
+
+export const ipc_antenna_color: Feature<string[]> = {
+  name: 'IPC Antenna Colors',
+  component: FeatureTriColorInput,
+};
+
+export const ipc_antenna_emissive: Feature<boolean[]> = {
+  name: 'IPC Antenna Emissives',
+  component: FeatureTriBoolInput,
+};
+
+export const ipc_chassis_toggle: FeatureToggle = {
+  name: 'IPC Chassis',
+  component: CheckboxInput,
+};
+
+export const feature_ipc_chassis: Feature<string> = {
+  name: 'IPC Chassis Selection',
+  component: FeatureDropdownInput,
+};
+
+export const ipc_chassis_color: Feature<string[]> = {
+  name: 'IPC Chassis Colors',
+  component: FeatureTriColorInput,
+};
+
+export const ipc_head_toggle: FeatureToggle = {
+  name: 'IPC Head',
+  component: CheckboxInput,
+};
+
+export const feature_ipc_head: Feature<string> = {
+  name: 'IPC Head Selection',
+  component: FeatureDropdownInput,
+};
+
+export const ipc_head_color: Feature<string[]> = {
+  name: 'IPC Head Colors',
+  component: FeatureTriColorInput,
+};

@@ -17,6 +17,7 @@
 #define SCANGATE_POD "pod"
 #define SCANGATE_GOLEM "golem"
 #define SCANGATE_ZOMBIE "zombie"
+#define SCANGATE_IPC "ipc"
 
 /obj/machinery/scanner_gate
 	name = "scanner gate"
@@ -142,6 +143,8 @@
 				switch(detect_species)
 					if(SCANGATE_BEEFMAN)
 						scan_species = /datum/species/beefman
+					if(SCANGATE_IPC)
+						scan_species = /datum/species/robotic/ipc
 					if(SCANGATE_LIZARD)
 						scan_species = /datum/species/lizard
 					if(SCANGATE_FLY)
@@ -285,3 +288,4 @@
 #undef SCANGATE_POD
 #undef SCANGATE_GOLEM
 #undef SCANGATE_ZOMBIE
+#undef SCANGATE_IPC

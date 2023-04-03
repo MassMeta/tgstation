@@ -3039,6 +3039,7 @@
 #include "code\modules\client\preferences\species_features\beefman.dm"
 #include "code\modules\client\preferences\species_features\ethereal.dm"
 #include "code\modules\client\preferences\species_features\felinid.dm"
+#include "code\modules\client\preferences\species_features\ipc.dm"
 #include "code\modules\client\preferences\species_features\lizard.dm"
 #include "code\modules\client\preferences\species_features\moth.dm"
 #include "code\modules\client\preferences\species_features\mutants.dm"
@@ -5354,4 +5355,6 @@
 #include "massmeta\code\modules\dynamic_rulesets\monsterhunter_ruleset.dm"
 #include "massmeta\code\modules\languages\darkspeak.dm"
 #include "massmeta\code\modules\languages\ratvarian.dm"
+#include "massmeta\code\modules\mob\ipc\ipc.dm"
+#include "massmeta\code\modules\mob\ipc\orgnas.dm"
 // END_INCLUDE
