@@ -1,5 +1,4 @@
 /datum/species/robotic
-	say_mod = "beeps"
 	inherent_biotypes = MOB_ROBOTIC|MOB_HUMANOID
 	inherent_traits = list(
 		TRAIT_CAN_STRIP,
@@ -12,13 +11,10 @@
 		TRAIT_GENELESS,
 		TRAIT_STABLEHEART,
 		TRAIT_LIMBATTACHMENT,
-		TRAIT_NO_HUSK,
-		TRAIT_OXYIMMUNE,
 		TRAIT_LITERATE,
 	)
 	mutant_bodyparts = list()
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
-	reagent_flags = PROCESS_SYNTHETIC
 	burnmod = 1.3 // Every 0.1% is 10% above the base.
 	brutemod = 1.3
 	coldmod = 1.2
@@ -175,7 +171,7 @@
 /datum/action/innate/monitor_change
 	name = "Screen Change"
 	check_flags = AB_CHECK_CONSCIOUS
-	icon_icon = 'icons/mob/actions/actions_silicon.dmi'
+	button_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "drone_vision"
 
 /datum/action/innate/monitor_change/Activate()
@@ -183,5 +179,5 @@
 	var/new_ipc_screen = input(usr, "Choose your character's screen:", "Monitor Display") as null|anything in GLOB.sprite_accessories["ipc_screen"]
 	if(!new_ipc_screen)
 		return
-	H.dna.species.mutant_bodyparts["ipc_screen"][MUTANT_INDEX_NAME] = new_ipc_screen
+	H.dna.species.mutant_bodyparts["ipc_screen"] = new_ipc_screen
 	H.update_body()

@@ -343,6 +343,12 @@ Key procs
 							/datum/language/voltaic = list(LANGUAGE_ATOM),
 							/datum/language/nekomimetic = list(LANGUAGE_ATOM))
 
+/datum/language_holder/machine
+	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
+							/datum/language/machine = list(LANGUAGE_ATOM),)
+	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
+							/datum/language/machine = list(LANGUAGE_ATOM),)
+
 /datum/language_holder/moth
 	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
 								/datum/language/moffic = list(LANGUAGE_ATOM))

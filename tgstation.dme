@@ -5356,5 +5356,5 @@
 #include "massmeta\code\modules\languages\darkspeak.dm"
 #include "massmeta\code\modules\languages\ratvarian.dm"
 #include "massmeta\code\modules\mob\ipc\ipc.dm"
-#include "massmeta\code\modules\mob\ipc\orgnas.dm"
+#include "massmeta\code\modules\mob\ipc\organs.dm"
 // END_INCLUDE
