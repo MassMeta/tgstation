@@ -13,7 +13,7 @@
 		TRAIT_LIMBATTACHMENT,
 		TRAIT_LITERATE,
 	)
-	mutant_bodyparts = list()
+	features = list()
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	burnmod = 1.3 // Every 0.1% is 10% above the base.
 	brutemod = 1.3
@@ -60,26 +60,25 @@
 /datum/species/robotic/get_types_to_preload()
 	return ..() - typesof(/obj/item/organ/internal/cyberimp/arm/power_cord) // Don't cache things that lead to hard deletions.
 
-/datum/species/robotic/get_species_description()
-	return placeholder_description
+/datum/species/robotic/ipc/get_species_description()
+	return "IPCs, or Integrated Posibrain Chassis, are a series of constructed bipedal humanoids which vaguely represent humans in their figure. \
+		IPCs were made by several human corporations after the second generation of cyborg units was created."
 
-/datum/species/robotic/get_species_lore()
-	return list(placeholder_lore)
+/datum/species/robotic/ipc/get_species_lore()
+	return list("The development and creation of IPCs was a natural occurrence after Sol Interplanetary Coalition explorers, flying a Martian flag, uncovered MMI technology in 2419. \
+		It was massively hoped by scientists, explorers, and opportunists that this discovery would lead to a breakthrough in humanity’s ability to access and understand much of the derelict technology left behind.")
 
 /datum/species/robotic/ipc
 	name = "I.P.C."
 	id = SPECIES_IPC
 	species_traits = list(
-		ROBOTIC_DNA_ORGANS,
 		EYECOLOR,
 		LIPS,
 		HAIR,
 		NOEYESPRITES,
-		ROBOTIC_LIMBS,
 		NOTRANSSTING,
 	)
-	mutant_bodyparts = list()
-	default_mutant_bodyparts = list(
+	features = list(
 		"ipc_antenna" = ACC_RANDOM,
 		"ipc_screen" = ACC_RANDOM,
 		"ipc_chassis" = ACC_RANDOM,
@@ -106,7 +105,7 @@
 
 /datum/species/robotic/ipc/spec_death(gibbed, mob/living/carbon/human/transformer)
 	. = ..()
-	saved_screen = transformer.dna.mutant_bodyparts["ipc_screen"][MUTANT_INDEX_NAME]
+	saved_screen = transformer.dna.features["ipc_screen"]
 	switch_to_screen(transformer, "BSOD")
 	addtimer(CALLBACK(src, PROC_REF(switch_to_screen), transformer, "Blank"), 5 SECONDS)
 
@@ -118,7 +117,7 @@
  * * screen_name - The name of the screen to switch the ipc_screen mutant bodypart to.
  */
 /datum/species/robotic/ipc/proc/switch_to_screen(mob/living/carbon/human/tranformer, screen_name)
-	tranformer.dna.mutant_bodyparts["ipc_screen"][MUTANT_INDEX_NAME] = screen_name
+	tranformer.dna.features["ipc_screen"] = screen_name
 	tranformer.update_body()
 
 /datum/species/robotic/ipc/on_species_gain(mob/living/carbon/human/transformer)
@@ -126,8 +125,8 @@
 	if(!screen)
 		screen = new
 		screen.Grant(transformer)
-	var/chassis = transformer.dna.mutant_bodyparts["ipc_chassis"]
-	var/head = transformer.dna.mutant_bodyparts["ipc_head"]
+	var/chassis = transformer.dna.features["ipc_chassis"]
+	var/head = transformer.dna.features["ipc_head"]
 	if(!chassis && !head)
 		return
 	var/datum/sprite_accessory/ipc_chassis/chassis_of_choice = GLOB.sprite_accessories["ipc_chassis"][chassis["name"]]
@@ -149,7 +148,7 @@
 
 /datum/species/robotic/ipc/replace_body(mob/living/carbon/target, datum/species/new_species)
 	..()
-	var/chassis = target.dna.mutant_bodyparts["ipc_chassis"]
+	var/chassis = target.dna.features["ipc_chassis"]
 	if(!chassis)
 		return
 	var/datum/sprite_accessory/ipc_chassis/chassis_of_choice = GLOB.sprite_accessories["ipc_chassis"][chassis["name"]]
@@ -179,5 +178,5 @@
 	var/new_ipc_screen = input(usr, "Choose your character's screen:", "Monitor Display") as null|anything in GLOB.sprite_accessories["ipc_screen"]
 	if(!new_ipc_screen)
 		return
-	H.dna.species.mutant_bodyparts["ipc_screen"] = new_ipc_screen
+	H.dna.species.features["ipc_screen"] = new_ipc_screen
 	H.update_body()
