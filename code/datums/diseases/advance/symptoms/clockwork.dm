@@ -1,6 +1,6 @@
 /datum/symptom/robotic_adaptation
 	name = "Biometallic Replication"
-	desc = "The virus can manipulate metal and silicate compounds, becoming able to infect robotic beings. The virus also provides a suitable substrate for nanites in otherwise inhospitable hosts"
+	desc = "The virus can manipulate metal and silicate compounds, becoming able to infect robotic beings."
 	stealth = 0
 	resistance = 1
 	stage_speed = 4 //while the reference material has low speed, this virus will take a good while to completely convert someone
@@ -53,7 +53,6 @@
 		if(5)
 			if(replaceorgans || replacebody)
 				Replace(H)
-			ADD_TRAIT(H, TRAIT_NANITECOMPATIBLE, DISEASE_TRAIT)
 	return
 
 /datum/symptom/robotic_adaptation/proc/Replace(mob/living/carbon/human/H)
@@ -206,7 +205,6 @@
 	if(!..())
 		return
 	var/mob/living/carbon/human/H = A.affected_mob
-	REMOVE_TRAIT(H, TRAIT_NANITECOMPATIBLE, DISEASE_TRAIT)
 	if(A.stage >= 5 && (replaceorgans || replacebody)) //sorry. no disease quartets allowed
 		to_chat(H, "<span class='userdanger'>You feel lighter and springier as your innards lose their clockwork facade.</span>")
 		H.dna.species.regenerate_organs(H, replace_current = TRUE)
