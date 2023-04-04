@@ -851,3 +851,32 @@
 							span_notice("You press [src]. Oink! "))
 		last_hug_time = world.time + 50 //5 second cooldown
 */
+
+/obj/item/toy/plush/beefplushie
+	name = "beef plushie"
+	desc = "Made from real meat!"
+	icon = 'massmeta/icons/obj/beefplushie.dmi'
+	icon_state = "beefman"
+	squeak_override = list('sound/effects/meatslap.ogg'=1)
+
+//Do your cooldown changes here.
+#define BEEFPLUSHIE_COOLDOWN_TIME (1 MINUTES)
+
+/obj/item/toy/plush/beefplushie/living
+	desc = "It looks oddly alive. You feel like you should pet it."
+	COOLDOWN_DECLARE(beefplushie_cooldown)
+
+//When used in hand.
+/obj/item/toy/plush/beefplushie/living/attack_self(mob/user)
+	. = ..()
+	if(!COOLDOWN_FINISHED(src, beefplushie_cooldown))
+		balloon_alert(user, "not ready yet!")
+		return
+	balloon_alert(user, "producing meat")
+	if(!do_after(user, 2 SECONDS, target = src))
+		return
+	playsound(src, "sound/effects/splat.ogg", 50)
+	user.put_in_hands(new /obj/item/food/meat/slab)
+	COOLDOWN_START(src, beefplushie_cooldown, BEEFPLUSHIE_COOLDOWN_TIME)
+
+#undef BEEFPLUSHIE_COOLDOWN_TIME
