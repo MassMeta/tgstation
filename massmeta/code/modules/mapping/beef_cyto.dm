@@ -3,7 +3,7 @@
 	name = "Beefman Research Outpost"
 	id = "beef cyto"
 	description = "A remote research outpost."
-	suffix = "icemoon_surface_beef_cytology.dmm"
+	suffix = "icemoon_surface_beef_cytology.dmm" 
 
 /obj/effect/mob_spawn/ghost_role/human/beefman
 	name = "Beefman Cytology Researcher"
