@@ -19,8 +19,8 @@
 /datum/symptom/robotic_adaptation/OnAdd(datum/disease/advance/A)
 	A.infectable_biotypes |= MOB_ROBOTIC
 
-/datum/symptom/robotic_adaptation/severityset(datum/disease/advance/A)
-	. = ..()
+/datum/symptom/robotic_adaptation/proc/severityset(datum/disease/advance/A)
+	severity = initial(severity)
 	if(A.totalStageSpeed() >= 4) //at base level, robotic organs are purely a liability
 		severity += 1
 		if(A.totalStageSpeed() >= 12)//but at this threshold, it all becomes worthwhile, though getting augged is a better choice
@@ -31,6 +31,7 @@
 
 /datum/symptom/robotic_adaptation/Start(datum/disease/advance/A)
 	. = ..()
+	severityset(AddSymptom)
 	if(A.totalStageSpeed() >= 4)
 		replaceorgans = TRUE
 	if(A.totalResistance() >= 4)
