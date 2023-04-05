@@ -13,8 +13,8 @@
 	var/replacebody = FALSE
 	var/robustbits = FALSE
 	threshold_descs = list("Stage Speed 4" = "The virus will replace the host's organic organs with mundane, biometallic versions. +1 severity.",
-                      "Resistance 4" ="The virus will eventually convert the host's entire body to biometallic materials, and maintain its cellular integrity. +1 severity.",
-                      "Stage Speed 12" = "Biometallic mass created by the virus will be superior to typical organic mass. -3 severity.",)
+					  "Resistance 4" ="The virus will eventually convert the host's entire body to biometallic materials, and maintain its cellular integrity. +1 severity.",
+					  "Stage Speed 12" = "Biometallic mass created by the virus will be superior to typical organic mass. -3 severity.",)
 
 /datum/symptom/robotic_adaptation/OnAdd(datum/disease/advance/A)
 	A.infectable_biotypes |= MOB_ROBOTIC
@@ -92,7 +92,7 @@
 					var/obj/item/organ/internal/lungs/clockwork/organ = new()
 					if(robustbits)
 						organ.safe_plasma_max = 15
-                        organ.safe_co2_max = 15
+						organ.safe_co2_max = 15
 						organ.n2o_para_min = 15
 						organ.n2o_sleep_min = 15
 						organ.BZ_trip_balls_min = 15
