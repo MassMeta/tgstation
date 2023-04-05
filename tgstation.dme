@@ -1093,6 +1093,7 @@
 #include "code\datums\diseases\advance\presets.dm"
 #include "code\datums\diseases\advance\symptoms\beard.dm"
 #include "code\datums\diseases\advance\symptoms\chills.dm"
+#include "code\datums\diseases\advance\symptoms\clockwork.dm"
 #include "code\datums\diseases\advance\symptoms\choking.dm"
 #include "code\datums\diseases\advance\symptoms\confusion.dm"
 #include "code\datums\diseases\advance\symptoms\cough.dm"
