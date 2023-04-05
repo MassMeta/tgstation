@@ -5354,4 +5354,6 @@
 #include "massmeta\code\modules\dynamic_rulesets\monsterhunter_ruleset.dm"
 #include "massmeta\code\modules\languages\darkspeak.dm"
 #include "massmeta\code\modules\languages\ratvarian.dm"
+#include "massmeta\code\modules\mapping\beefstation.dm"
+#include "massmeta\code\modules\mapping\beef_cyto.dm"
 // END_INCLUDE
