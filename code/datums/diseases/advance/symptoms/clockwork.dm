@@ -21,11 +21,11 @@
 
 /datum/symptom/robotic_adaptation/severityset(datum/disease/advance/A)
 	. = ..()
-	if(A.stage_rate >= 4) //at base level, robotic organs are purely a liability
+	if(A.totalStageSpeed() >= 4) //at base level, robotic organs are purely a liability
 		severity += 1
-		if(A.stage_rate >= 12)//but at this threshold, it all becomes worthwhile, though getting augged is a better choice
+		if(A.totalStageSpeed() >= 12)//but at this threshold, it all becomes worthwhile, though getting augged is a better choice
 			severity -= 3//net benefits: 2 damage reduction, filter out low amounts of gas, durable ears, flash protection, a liver half as good as an upgraded cyberliver, and flight if you are a winged species
-	if(A.resistance >= 4)//at base level, robotic bodyparts have very few bonuses, mostly being a liability in the case of EMPS
+	if(A.totalResistance() >= 4)//at base level, robotic bodyparts have very few bonuses, mostly being a liability in the case of EMPS
 		severity += 1 //at this stage, even one EMP will hurt, a lot.
 
 
@@ -54,7 +54,7 @@
 
 /datum/symptom/robotic_adaptation/proc/Replace(mob/living/carbon/human/H)
 	if(replaceorgans)
-		for(var/obj/item/organ/O in H.internal_organs)
+		for(var/obj/item/organ/O in H.organs)
 			if(O.status == ORGAN_ROBOTIC) //they are either part robotic or we already converted them!
 				continue
 			switch(O.slot) //i hate doing it this way, but the cleaner way runtimes and does not work
@@ -91,12 +91,10 @@
 				if(ORGAN_SLOT_LUNGS)
 					var/obj/item/organ/internal/lungs/clockwork/organ = new()
 					if(robustbits)
-						organ.gas_max = list(
-							GAS_PLASMA = 15,
-							GAS_CO2 = 15,
-						)
-						organ.SA_para_min = 15
-						organ.SA_sleep_min = 15
+						organ.safe_plasma_max = 15
+                        organ.safe_co2_max = 15
+						organ.n2o_para_min = 15
+						organ.n2o_sleep_min = 15
 						organ.BZ_trip_balls_min = 15
 						organ.gas_stimulation_min = 15
 					organ.Insert(H, TRUE, FALSE)
@@ -265,7 +263,7 @@
 /obj/item/organ/internal/brain/clockwork/on_life()
 	. = ..()
 	if(prob(5) && !robust)
-		SEND_SOUND(owner, pickweight(list('sound/effects/clock_tick.ogg' = 6, 'sound/effects/smoke.ogg' = 2, 'sound/spookoween/chain_rattling.ogg' = 1, 'sound/ambience/ambiruin3.ogg' = 1)))
+		SEND_SOUND(owner, pick('sound/effects/clock_tick.ogg', 'sound/effects/smoke.ogg', 'sound/ambience/ambiruin3.ogg'))
 
 /obj/item/organ/internal/liver/clockwork
 	name = "biometallic alembic"
@@ -274,10 +272,10 @@
 	organ_flags = ORGAN_SYNTHETIC
 	status = ORGAN_ROBOTIC
 	alcohol_tolerance = 0
-	toxLethality = 0
+	liver_resistance = 0
 	toxTolerance = 1 //while the organ isn't damaged by doing its job, it doesnt do it very well
 
-/obj/item/organ/lungs/clockwork
+/obj/item/organ/internal/lungs/clockwork
 	name = "clockwork diaphragm"
 	desc = "A utilitarian bellows which serves to pump oxygen into an automaton's body."
 	icon_state = "lungs-clock"
