@@ -4,20 +4,17 @@
 	stealth = 0
 	resistance = 1
 	stage_speed = 4 //while the reference material has low speed, this virus will take a good while to completely convert someone
-	transmission = -1
+	transmittable = -1
 	level = 9
 	severity = 0
 	symptom_delay_min = 10
 	symptom_delay_max = 30
-	prefixes = list("Ratvarian ", "Keter ", "Clockwork ", "Robo")
-	bodies = list("Robot")
-	suffixes = list("-217")
 	var/replaceorgans = FALSE
 	var/replacebody = FALSE
 	var/robustbits = FALSE
-	threshold_desc = "<b>Stage Speed 4:</b>The virus will replace the host's organic organs with mundane, biometallic versions. +1 severity.<br>\
-                      <b>Resistance 4:</b>The virus will eventually convert the host's entire body to biometallic materials, and maintain its cellular integrity. +1 severity.<br>\
-                      <b>Stage Speed 12:</b>Biometallic mass created by the virus will be superior to typical organic mass. -3 severity."
+	threshold_descs = list("Stage Speed 4" = "The virus will replace the host's organic organs with mundane, biometallic versions. +1 severity.",
+                      "Resistance 4" ="The virus will eventually convert the host's entire body to biometallic materials, and maintain its cellular integrity. +1 severity.",
+                      "Stage Speed 12" = "Biometallic mass created by the virus will be superior to typical organic mass. -3 severity.",)
 
 /datum/symptom/robotic_adaptation/OnAdd(datum/disease/advance/A)
 	A.infectable_biotypes |= MOB_ROBOTIC
@@ -69,14 +66,8 @@
 					O.organ_flags = ORGAN_SYNTHETIC
 					return TRUE
 				if(ORGAN_SLOT_STOMACH)
-					if(HAS_TRAIT(H, TRAIT_POWERHUNGRY))
-						var/obj/item/organ/internal/stomach/battery/clockwork/organ = new()
-						if(robustbits)
-							organ.max_charge = 15000
-						organ.Insert(H, TRUE, FALSE)
-					else
-						var/obj/item/organ/internal/stomach/clockwork/organ = new()
-						organ.Insert(H, TRUE, FALSE)
+					var/obj/item/organ/internal/stomach/clockwork/organ = new()
+					organ.Insert(H, TRUE, FALSE)
 					if(prob(40))
 						to_chat(H, "<span class='userdanger'>You feel a stabbing pain in your abdomen!</span>")
 						H.emote("scream")
@@ -243,15 +234,6 @@
 
 /obj/item/organ/internal/stomach/clockwork/emp_act(severity)
 	owner.adjust_nutrition(-200/severity)
-
-/obj/item/organ/internal/stomach/battery/clockwork
-	name = "biometallic flywheel"
-	desc = "A biomechanical battery which stores mechanical energy."
-	icon_state = "stomach-clock"
-	status = ORGAN_ROBOTIC
-	organ_flags = ORGAN_SYNTHETIC
-	max_charge = 7500
-	charge = 7500
 
 /obj/item/organ/internal/tongue/robot/clockwork
 	name = "dynamic micro-phonograph"
