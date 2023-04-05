@@ -31,7 +31,7 @@
 
 /datum/symptom/robotic_adaptation/Start(datum/disease/advance/A)
 	. = ..()
-	severityset(AddSymptom)
+	severityset(A)
 	if(A.totalStageSpeed() >= 4)
 		replaceorgans = TRUE
 	if(A.totalResistance() >= 4)
