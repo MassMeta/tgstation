@@ -398,7 +398,7 @@
 /turf/open/misc/asteroid/snow/atmosphere,
 /area/icemoon/underground/explored)
 "sZ" = (
-/mob/living/simple_animal/hostile/netherworld/migo,
+/mob/living/basic/migo,
 /obj/machinery/light/floor,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/beefcyto)
@@ -458,7 +458,7 @@
 /turf/open/floor/plating,
 /area/ruin/powered/beefcyto)
 "uZ" = (
-/mob/living/simple_animal/hostile/carp,
+/mob/living/basic/carp,
 /obj/machinery/light/floor,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/beefcyto)
