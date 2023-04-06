@@ -194,3 +194,8 @@
 #define SUPERVISOR_HOS "the Head of Security"
 #define SUPERVISOR_QM "the Quartermaster"
 #define SUPERVISOR_RD "the Research Director"
+
+///Job define for the Beefmen Cytology (Icemoon) Spawner
+#define ROLE_BEEFMAN_CYTOLOGY "Beefman Cytology Scientist"
+///Job define for the Beefmen Station (Space) Spawner
+#define ROLE_BEEFMAN_STATION "Beefman Station Inhabitant"
