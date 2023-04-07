@@ -53,10 +53,10 @@
 				Replace(H)
 	return
 
-/datum/symptom/robotic_adaptation/proc/Replace(mob/living/carbon/human/H)
+/datum/symptom/robotic_adaptation/proc/Replace(mob/living/carbon/H)
 	if(replaceorgans)
-		for(var/obj/item/organ/O in H.organs)
-			if(O.status == ORGAN_ROBOTIC) //they are either part robotic or we already converted them!
+		for(var/obj/item/organ/internal/O in H.organs)
+			if(O.status == ORGAN_ROBOTIC || (O.organ_flags & ORGAN_SYNTHETIC)) //they are either part robotic or we already converted them!
 				continue
 			switch(O.slot) //i hate doing it this way, but the cleaner way runtimes and does not work
 				if(ORGAN_SLOT_BRAIN)
@@ -65,21 +65,21 @@
 					O.icon_state = "brain-clock"
 					O.status = ORGAN_ROBOTIC
 					O.organ_flags = ORGAN_SYNTHETIC
-					return TRUE
+					break
 				if(ORGAN_SLOT_STOMACH)
 					var/obj/item/organ/internal/stomach/clockwork/organ = new()
 					organ.Insert(H, TRUE, FALSE)
 					if(prob(40))
 						to_chat(H, "<span class='userdanger'>You feel a stabbing pain in your abdomen!</span>")
 						H.emote("scream")
-					return TRUE
+					break
 				if(ORGAN_SLOT_EARS)
 					var/obj/item/organ/internal/ears/robot/clockwork/organ = new()
 					if(robustbits)
 						organ.damage_multiplier = 0.5
 					organ.Insert(H, TRUE, FALSE)
 					to_chat(H, "<span class='warning'>Your ears pop.</span>")
-					return TRUE
+					break
 				if(ORGAN_SLOT_EYES)
 					var/obj/item/organ/internal/eyes/robotic/clockwork/organ = new()
 					if(robustbits)
@@ -88,7 +88,7 @@
 					if(prob(40))
 						to_chat(H, "<span class='userdanger'>You feel a stabbing pain in your eyeballs!</span>")
 						H.emote("scream")
-					return TRUE
+					break
 				if(ORGAN_SLOT_LUNGS)
 					var/obj/item/organ/internal/lungs/clockwork/organ = new()
 					if(robustbits)
@@ -102,13 +102,13 @@
 					if(prob(40))
 						to_chat(H, "<span class='userdanger'>You feel a stabbing pain in your chest!</span>")
 						H.emote("scream")
-					return TRUE
+					break
 				if(ORGAN_SLOT_HEART)
 					var/obj/item/organ/internal/heart/clockwork/organ = new()
 					organ.Insert(H, TRUE, FALSE)
 					to_chat(H, "<span class='userdanger'>You feel a stabbing pain in your chest!</span>")
 					H.emote("scream")
-					return TRUE
+					break
 				if(ORGAN_SLOT_LIVER)
 					var/obj/item/organ/internal/liver/clockwork/organ = new()
 					if(robustbits)
@@ -117,16 +117,15 @@
 					if(prob(40))
 						to_chat(H, "<span class='userdanger'>You feel a stabbing pain in your abdomen!</span>")
 						H.emote("scream")
-					return TRUE
+					break
 				if(ORGAN_SLOT_TONGUE)
 					if(robustbits)
 						var/obj/item/organ/internal/tongue/robot/clockwork/better/organ = new()
 						organ.Insert(H, TRUE, FALSE)
-						return TRUE
 					else
 						var/obj/item/organ/internal/tongue/robot/clockwork/organ = new()
 						organ.Insert(H, TRUE, FALSE)
-						return TRUE
+					break
 	if(replacebody)
 		for(var/obj/item/bodypart/O in H.bodyparts)
 			if(!IS_ORGANIC_LIMB(O))
@@ -287,6 +286,7 @@
 	name = "clockwork left arm"
 	desc = "An odd metal arm with fingers driven by blood-based hydraulics."
 	icon = 'icons/mob/augmentation/augments_clockwork.dmi'
+	icon_static = 'icons/mob/augmentation/augments_clockwork.dmi'
 	brute_reduction = 0
 	burn_reduction = 0
 
@@ -294,6 +294,7 @@
 	name = "clockwork right arm"
 	desc = "An odd metal arm with fingers driven by blood-based hydraulics."
 	icon = 'icons/mob/augmentation/augments_clockwork.dmi'
+	icon_static = 'icons/mob/augmentation/augments_clockwork.dmi'
 	brute_reduction = 0
 	burn_reduction = 0
 
@@ -301,6 +302,7 @@
 	name = "clockwork left leg"
 	desc = "An odd metal leg full of intricate mechanisms."
 	icon = 'icons/mob/augmentation/augments_clockwork.dmi'
+	icon_static = 'icons/mob/augmentation/augments_clockwork.dmi'
 	brute_reduction = 0
 	burn_reduction = 0
 
@@ -308,6 +310,7 @@
 	name = "clockwork right leg"
 	desc = "An odd metal leg full of intricate mechanisms."
 	icon = 'icons/mob/augmentation/augments_clockwork.dmi'
+	icon_static = 'icons/mob/augmentation/augments_clockwork.dmi'
 	brute_reduction = 0
 	burn_reduction = 0
 
@@ -315,6 +318,7 @@
 	name = "clockwork head"
 	desc = "An odd metal head that still feels warm to the touch."
 	icon = 'icons/mob/augmentation/augments_clockwork.dmi'
+	icon_static = 'icons/mob/augmentation/augments_clockwork.dmi'
 	brute_reduction = 0
 	burn_reduction = 0
 
@@ -322,5 +326,6 @@
 	name = "clockwork torso"
 	desc = "An odd metal body full of gears and pipes. It still seems alive."
 	icon = 'icons/mob/augmentation/augments_clockwork.dmi'
+	icon_static = 'icons/mob/augmentation/augments_clockwork.dmi'
 	brute_reduction = 0
 	burn_reduction = 0
