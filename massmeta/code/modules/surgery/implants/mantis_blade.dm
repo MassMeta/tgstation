@@ -8,6 +8,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	flags_1 = CONDUCT_1
 	force = 25
+	sharpness = SHARP_EDGED
 	armour_penetration = 20
 	item_flags = NEEDS_PERMIT
 	hitsound = 'massmeta/sounds/misc/mantis_slice.ogg'
