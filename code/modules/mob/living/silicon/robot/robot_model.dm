@@ -287,6 +287,35 @@
 		return FALSE
 	return TRUE
 
+// --------------------- Standart
+/obj/item/robot_model/standard
+	name = "Standard" 
+	basic_modules = list(
+		/obj/item/assembly/flash/cyborg,
+		/obj/item/reagent_containers/borghypo/epi,
+		/obj/item/reagent_containers/borghypo/borgshaker/standard,
+		/obj/item/healthanalyzer,
+		/obj/item/weldingtool/largetank/cyborg,
+		/obj/item/wrench/cyborg,
+		/obj/item/crowbar/cyborg,
+		/obj/item/stack/sheet/iron,
+		/obj/item/stack/rods/cyborg,
+		/obj/item/stack/tile/iron/base/cyborg,
+		/obj/item/extinguisher,
+		/obj/item/pickaxe,
+		/obj/item/t_scanner/adv_mining_scanner,
+		/obj/item/restraints/handcuffs/cable/zipties,
+		/obj/item/soap/nanotrasen,
+		/obj/item/borg/cyborghug)
+	emag_modules = list(/obj/item/melee/energy/sword/cyborg)
+	ratvar_modules = list(
+		/obj/item/clock_module/abscond,
+		/obj/item/clockwork/weapon/brass_spear,
+		/obj/item/clock_module/sigil_submission,
+		/obj/item/clock_module/kindle,)
+	model_select_icon = "standard"
+	hat_offset = -3
+
 /obj/item/robot_model/clown
 	name = "Clown"
 	basic_modules = list(
