@@ -5357,4 +5357,6 @@
 #include "massmeta\code\modules\languages\ratvarian.dm"
 #include "massmeta\code\modules\mapping\beefstation.dm"
 #include "massmeta\code\modules\mapping\beef_cyto.dm"
+#include "massmeta\code\modules\research\designs\misc.dm"
+#include "massmeta\code\modules\surgery\implants\mantis_blade.dm"
 // END_INCLUDE
