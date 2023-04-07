@@ -2130,6 +2130,7 @@
 		"rapidsyringe",
 		"suppressor",
 		"super_pointy_tape",
+		"ci-mantis",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
 	hidden = TRUE

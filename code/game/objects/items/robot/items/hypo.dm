@@ -74,6 +74,8 @@
 		/datum/reagent/consumable/ethanol/fernet\
 	)
 
+#define BASE_STANDARD_REAGENTS list(/datum/reagent/consumable/kvass)
+
 ///Borg Hypospray
 /obj/item/reagent_containers/borghypo
 	name = "cyborg hypospray"
@@ -235,6 +237,9 @@
 		return //IF YOU CAN HEAR ME SET MY TRANSFER AMOUNT TO 1
 	change_transfer_amount(user)
 
+/obj/item/reagent_containers/borghypo/epi
+	default_reagent_types = list(/datum/reagent/medicine/epinephrine)
+
 /// Default Medborg Hypospray
 /obj/item/reagent_containers/borghypo/medical
 	default_reagent_types = BASE_MEDICAL_REAGENTS
@@ -370,6 +375,9 @@
 		shaker.trans_to(target, amount_per_transfer_from_this, transfered_by = user)
 		balloon_alert(user, "[amount_per_transfer_from_this] unit\s poured")
 	return .
+
+/obj/item/reagent_containers/borghypo/borgshaker/standard
+	default_reagent_types = BASE_STANDARD_REAGENTS
 
 /obj/item/reagent_containers/borghypo/borgshaker/hacked
 	name = "cyborg shaker"

@@ -192,6 +192,7 @@
 		"Miner" = /obj/item/robot_model/miner,
 		"Janitor" = /obj/item/robot_model/janitor,
 		"Service" = /obj/item/robot_model/service,
+		"Standard" = /obj/item/robot_model/standard,
 	)
 	if(!CONFIG_GET(flag/disable_peaceborg))
 		model_list["Peacekeeper"] = /obj/item/robot_model/peacekeeper
@@ -1034,6 +1035,3 @@
 /// Draw power from the robot
 /mob/living/silicon/robot/proc/draw_power(power_to_draw)
 	cell?.use(power_to_draw)
-
-/mob/living/silicon/robot/shell
-	shell = TRUE
