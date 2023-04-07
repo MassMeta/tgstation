@@ -305,7 +305,7 @@
 		/obj/item/pickaxe,
 		/obj/item/t_scanner/adv_mining_scanner,
 		/obj/item/restraints/handcuffs/cable/zipties,
-		/obj/item/soap/nanotrasen,
+		/obj/item/soap/nanotrasen/cyborg,
 		/obj/item/borg/cyborghug)
 	emag_modules = list(/obj/item/melee/energy/sword/cyborg)
 	ratvar_modules = list(
@@ -315,6 +315,14 @@
 		/obj/item/clock_module/kindle,)
 	model_select_icon = "standard"
 	hat_offset = -3
+
+/obj/item/robot_model/standard/respawn_consumable(mob/living/silicon/robot/cyborg, coeff = 1)
+	..()
+	var/obj/item/soap/nanotrasen/cyborg/soap = locate(/obj/item/soap/nanotrasen/cyborg) in basic_modules
+	if(!soap)
+		return
+	if(soap.uses < initial(soap.uses))
+		soap.uses += ROUND_UP(initial(soap.uses) / 100) * coeff
 
 /obj/item/robot_model/clown
 	name = "Clown"
