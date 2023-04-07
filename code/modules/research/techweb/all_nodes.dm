@@ -1249,6 +1249,7 @@
 		"cybernetic_liver_tier2",
 		"cybernetic_lungs_tier2",
 		"cybernetic_stomach_tier2",
+		"cybernetic_tongue",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
 
@@ -1323,8 +1324,10 @@
 	design_ids = list(
 		"ci-antidrop",
 		"ci-antistun",
+		"ci-antisleep",
 		"ci-thermals",
 		"ci-thrusters",
+		"ci-nv",
 		"ci-xray",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
