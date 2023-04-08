@@ -11,7 +11,7 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
-/datum/design/cyberimp_nv
+/datum/design/cyberimp_nanite_heart
 	name = "Nanite Heart"
 	desc = "A heart that improves the functions of nanites"
 	id = "ci-nanite-heart"
