@@ -139,54 +139,54 @@
 					if(robustbits)
 						B.brute_reduction = 3 //this is just below the amount that lets augs ignore space damage.
 						B.burn_reduction = 2
-					B.replace_limb(H, TRUE)
-					H.visible_message("<span class='notice'>[H]'s head shifts, and becomes metal before your very eyes", "<span_class='userdanger'>Your head feels numb, and cold.</span>")
-					qdel(O)
+					if(B.replace_limb(H, TRUE))
+						H.visible_message("<span class='notice'>[H]'s head shifts, and becomes metal before your very eyes", "<span_class='userdanger'>Your head feels numb, and cold.</span>")
+						qdel(O)
 					return TRUE
 				if(BODY_ZONE_CHEST)
 					var/obj/item/bodypart/chest/robot/clockwork/B = new()
 					if(robustbits)
 						B.brute_reduction = 3
 						B.burn_reduction = 2
-					B.replace_limb(H, TRUE)
-					H.visible_message("<span class='notice'>[H]'s [O] shifts, and becomes metal before your very eyes", "<span_class='userdanger'>Your [O] feels numb, and cold.</span>")
-					qdel(O)
+					if(B.replace_limb(H, TRUE))
+						H.visible_message("<span class='notice'>[H]'s [O] shifts, and becomes metal before your very eyes", "<span_class='userdanger'>Your [O] feels numb, and cold.</span>")
+						qdel(O)
 					return TRUE
 				if(BODY_ZONE_L_ARM)
 					var/obj/item/bodypart/l_arm/robot/clockwork/B = new()
 					if(robustbits)
 						B.brute_reduction = 3
 						B.burn_reduction = 2
-					B.replace_limb(H, TRUE)
-					H.visible_message("<span class='notice'>[H]'s [O] shifts, and becomes metal before your very eyes", "<span_class='userdanger'>Your [O] feels numb, and cold.</span>")
-					qdel(O)
+					if(B.replace_limb(H, TRUE))
+						H.visible_message("<span class='notice'>[H]'s [O] shifts, and becomes metal before your very eyes", "<span_class='userdanger'>Your [O] feels numb, and cold.</span>")
+						qdel(O)
 					return TRUE
 				if(BODY_ZONE_R_ARM)
 					var/obj/item/bodypart/r_arm/robot/clockwork/B = new()
 					if(robustbits)
 						B.brute_reduction = 3
 						B.burn_reduction = 2
-					B.replace_limb(H, TRUE)
-					H.visible_message("<span class='notice'>[H]'s [O] shifts, and becomes metal before your very eyes", "<span_class='userdanger'>Your [O] feels numb, and cold.</span>")
-					qdel(O)
+					if(B.replace_limb(H, TRUE))
+						H.visible_message("<span class='notice'>[H]'s [O] shifts, and becomes metal before your very eyes", "<span_class='userdanger'>Your [O] feels numb, and cold.</span>")
+						qdel(O)
 					return TRUE
 				if(BODY_ZONE_L_LEG)
 					var/obj/item/bodypart/l_leg/robot/clockwork/B = new()
 					if(robustbits)
 						B.brute_reduction = 3
 						B.burn_reduction = 2
-					B.replace_limb(H, TRUE)
-					H.visible_message("<span class='notice'>[H]'s [O] shifts, and becomes metal before your very eyes", "<span_class='userdanger'>Your [O] feels numb, and cold.</span>")
-					qdel(O)
+					if(B.replace_limb(H, TRUE))
+						H.visible_message("<span class='notice'>[H]'s [O] shifts, and becomes metal before your very eyes", "<span_class='userdanger'>Your [O] feels numb, and cold.</span>")
+						qdel(O)
 					return TRUE
 				if(BODY_ZONE_R_LEG)
 					var/obj/item/bodypart/r_leg/robot/clockwork/B = new()
 					if(robustbits)
 						B.brute_reduction = 3
 						B.burn_reduction = 2
-					B.replace_limb(H, TRUE)
-					H.visible_message("<span class='notice'>[H]'s [O] shifts, and becomes metal before your very eyes", "<span_class='userdanger'>Your [O] feels numb, and cold.</span>")
-					qdel(O)
+					if(B.replace_limb(H, TRUE))
+						H.visible_message("<span class='notice'>[H]'s [O] shifts, and becomes metal before your very eyes", "<span_class='userdanger'>Your [O] feels numb, and cold.</span>")
+						qdel(O)
 					return TRUE
 	return FALSE
 
