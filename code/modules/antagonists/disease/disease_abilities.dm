@@ -31,6 +31,8 @@ new /datum/disease_ability/symptom/medium/itching,
 new /datum/disease_ability/symptom/medium/heal/weight_loss,
 new /datum/disease_ability/symptom/medium/heal/sensory_restoration,
 new /datum/disease_ability/symptom/medium/heal/mind_restoration,
+new /datum/disease_ability/symptom/medium/nano_boost,
+new /datum/disease_ability/symptom/medium/nano_destroy,
 new /datum/disease_ability/symptom/powerful/fire,
 new /datum/disease_ability/symptom/powerful/flesh_eating,
 new /datum/disease_ability/symptom/powerful/genetic_mutation,
@@ -375,6 +377,12 @@ new /datum/disease_ability/symptom/powerful/youth
 
 /datum/disease_ability/symptom/medium/headache
 	symptoms = list(/datum/symptom/headache)
+
+/datum/disease_ability/symptom/medium/nano_boost
+	symptoms = list(/datum/symptom/nano_boost)
+
+/datum/disease_ability/symptom/medium/nano_destroy
+	symptoms = list(/datum/symptom/nano_destroy)
 
 /datum/disease_ability/symptom/medium/viraladaptation
 	symptoms = list(/datum/symptom/viraladaptation)

@@ -1425,6 +1425,10 @@
 	icon_state = "abandoned_sci"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
+/area/science/nanite
+	name = "Nanite Lab"
+	icon_state = "nanite"
+
 /area/station/escapepodbay
 	name = "\improper Pod Bay"
 	icon_state = "podbay"
