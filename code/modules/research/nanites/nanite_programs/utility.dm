@@ -231,13 +231,13 @@
 		consume_nanites(-5)
 		return
 	var/mob/living/infectee = pick(target_hosts)
-	if(prob(100 - (infectee.get_permeability_protection() * 100)))
-		//unlike with Infective Exo-Locomotion, this can't take over existing nanites, because Nanite Sting only targets non-hosts.
-		infectee.AddComponent(/datum/component/nanites, 5)
-		SEND_SIGNAL(infectee, COMSIG_NANITE_SYNC, nanites)
-		SEND_SIGNAL(infectee, COMSIG_NANITE_SET_CLOUD, nanites.cloud_id)
-		infectee.investigate_log("was infected by a nanite cluster with cloud ID [nanites.cloud_id] by [key_name(host_mob)] at [AREACOORD(infectee)].", INVESTIGATE_NANITES)
-		to_chat(infectee, span_warning("You feel a tiny prick."))
+	//if(prob(100 - (infectee.get_permeability_protection() * 100)))
+	//unlike with Infective Exo-Locomotion, this can't take over existing nanites, because Nanite Sting only targets non-hosts.
+	infectee.AddComponent(/datum/component/nanites, 5)
+	SEND_SIGNAL(infectee, COMSIG_NANITE_SYNC, nanites)
+	SEND_SIGNAL(infectee, COMSIG_NANITE_SET_CLOUD, nanites.cloud_id)
+	infectee.investigate_log("was infected by a nanite cluster with cloud ID [nanites.cloud_id] by [key_name(host_mob)] at [AREACOORD(infectee)].", INVESTIGATE_NANITES)
+	to_chat(infectee, span_warning("You feel a tiny prick."))
 
 /datum/nanite_program/mitosis
 	name = "Mitosis"
