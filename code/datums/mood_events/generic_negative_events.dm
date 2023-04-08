@@ -292,6 +292,14 @@
 	description = "THEY'RE CUTTING ME OPEN!!"
 	mood_change = -8
 
+
+/datum/mood_event/nanite_sadness
+	description = "<span class='warning robot'>+++++++HAPPINESS SUPPRESSION+++++++</span>\n"
+	mood_change = -7
+
+/datum/mood_event/nanite_sadness/add_effects(message)
+	description = "<span class='warning robot'>+++++++[message]+++++++</span>\n"
+
 /datum/mood_event/bald
 	description = "I need something to cover my head..."
 	mood_change = -3
