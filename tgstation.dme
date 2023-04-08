@@ -5395,6 +5395,7 @@
 #include "massmeta\code\modules\surgery\implants\cyberimps.dm"
 #include "massmeta\code\modules\surgery\implants\mantis_blade.dm"
 #include "massmeta\code\modules\surgery\eyes.dm"
+#include "massmeta\code\modules\surgery\heart.dm"
 #include "massmeta\code\modules\surgery\lungs.dm"
 #include "massmeta\code\modules\surgery\tongue.dm"
 // END_INCLUDE

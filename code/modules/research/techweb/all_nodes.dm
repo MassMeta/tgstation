@@ -1329,6 +1329,7 @@
 		"ci-thrusters",
 		"ci-nv",
 		"ci-xray",
+		"ci-nanite-heart",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
