@@ -10,7 +10,7 @@
 
 /datum/nanite_program/sleepy/on_trigger(comm_message)
 	to_chat(host_mob, span_warning("You start to feel very sleepy..."))
-	host_mob.drowsyness += 20
+	host_mob.adjust_drowsiness (20)
 	addtimer(CALLBACK(host_mob, /mob/living.proc/Sleeping, 200), rand(60,200))
 
 /datum/nanite_program/paralyzing
@@ -220,7 +220,7 @@
 	if(hal_details == "random")
 		hal_details = null
 	if(hal_type == "Random")
-		C.hallucination += 15
+		C.adjust_hallucinations(15 SECONDS)
 	else
 		switch(hal_type)
 			if("Message")
@@ -228,11 +228,11 @@
 			if("Battle")
 				new /datum/hallucination/battle(C, TRUE, hal_details)
 			if("Sound")
-				new /datum/hallucination/sounds(C, TRUE, hal_details)
+				new /datum/hallucination/fake_sound(C, TRUE, hal_details)
 			if("Weird Sound")
-				new /datum/hallucination/weird_sounds(C, TRUE, hal_details)
+				new /datum/hallucination/fake_sound/weird(C, TRUE, hal_details)
 			if("Station Message")
-				new /datum/hallucination/stationmessage(C, TRUE, hal_details)
+				new /datum/hallucination/station_message(C, TRUE, hal_details)
 			if("Health")
 				switch(hal_details)
 					if("critical")
@@ -241,7 +241,7 @@
 						hal_details = SCREWYHUD_DEAD
 					if("healthy")
 						hal_details = SCREWYHUD_HEALTHY
-				new /datum/hallucination/hudscrew(C, TRUE, hal_details)
+				new /datum/hallucination/fake_health_doll(C, TRUE, hal_details)
 			if("Alert")
 				new /datum/hallucination/fake_alert(C, TRUE, hal_details)
 			if("Fire")
@@ -284,11 +284,11 @@
 
 /datum/nanite_program/good_mood/enable_passive_effect()
 	. = ..()
-	SEND_SIGNAL(host_mob, COMSIG_ADD_MOOD_EVENT, "nanite_happy", /datum/mood_event/nanite_happiness, get_extra_setting_value(NES_MOOD_MESSAGE))
+	host_mob.add_mood_event("nanite_happy", /datum/mood_event/nanite_happiness, get_extra_setting_value(NES_MOOD_MESSAGE))
 
 /datum/nanite_program/good_mood/disable_passive_effect()
 	. = ..()
-	SEND_SIGNAL(host_mob, COMSIG_CLEAR_MOOD_EVENT, "nanite_happy")
+	host_mob.clear_mood_event("nanite_happy")
 
 /datum/nanite_program/bad_mood
 	name = "Happiness Suppressor"
@@ -302,8 +302,8 @@
 
 /datum/nanite_program/bad_mood/enable_passive_effect()
 	. = ..()
-	SEND_SIGNAL(host_mob, COMSIG_ADD_MOOD_EVENT, "nanite_sadness", /datum/mood_event/nanite_sadness, get_extra_setting_value(NES_MOOD_MESSAGE))
+	host_mob.add_mood_event("nanite_sadness", /datum/mood_event/nanite_sadness, get_extra_setting_value(NES_MOOD_MESSAGE))
 
 /datum/nanite_program/bad_mood/disable_passive_effect()
 	. = ..()
-	SEND_SIGNAL(host_mob, COMSIG_CLEAR_MOOD_EVENT, "nanite_sadness")
+	host_mob.clear_mood_event("nanite_sadness")

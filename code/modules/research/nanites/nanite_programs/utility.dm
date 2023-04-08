@@ -206,12 +206,12 @@
 	if(!target_hosts.len)
 		return
 	var/mob/living/infectee = pick(target_hosts)
-	if(prob(100 - (infectee.get_permeability_protection() * 100)))
+	//if(prob(100 - (infectee.get_permeability_protection() * 100))) //fuck my life
 		//this will potentially take over existing nanites!
-		infectee.AddComponent(/datum/component/nanites, 10)
-		SEND_SIGNAL(infectee, COMSIG_NANITE_SYNC, nanites)
-		SEND_SIGNAL(infectee, COMSIG_NANITE_SET_CLOUD, nanites.cloud_id)
-		infectee.investigate_log("was infected by spreading nanites with cloud ID [nanites.cloud_id] by [key_name(host_mob)] at [AREACOORD(infectee)].", INVESTIGATE_NANITES)
+	infectee.AddComponent(/datum/component/nanites, 10)
+	SEND_SIGNAL(infectee, COMSIG_NANITE_SYNC, nanites)
+	SEND_SIGNAL(infectee, COMSIG_NANITE_SET_CLOUD, nanites.cloud_id)
+	infectee.investigate_log("was infected by spreading nanites with cloud ID [nanites.cloud_id] by [key_name(host_mob)] at [AREACOORD(infectee)].", INVESTIGATE_NANITES)
 
 /datum/nanite_program/nanite_sting
 	name = "Nanite Sting"

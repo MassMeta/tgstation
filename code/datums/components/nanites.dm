@@ -61,7 +61,7 @@
 	if(isliving(parent))
 		RegisterSignal(parent, COMSIG_ATOM_EMP_ACT, .proc/on_emp)
 		RegisterSignal(parent, COMSIG_LIVING_DEATH, .proc/on_death)
-		RegisterSignal(parent, COMSIG_MOB_ALLOWED, .proc/check_access)
+		RegisterSignal(parent, COMSIG_MOB_TRIED_ACCESS, .proc/check_access)
 		RegisterSignal(parent, COMSIG_LIVING_ELECTROCUTE_ACT, .proc/on_shock)
 		RegisterSignal(parent, COMSIG_LIVING_MINOR_SHOCK, .proc/on_minor_shock)
 		RegisterSignal(parent, COMSIG_SPECIES_GAIN, .proc/check_viable_biotype)
@@ -86,7 +86,7 @@
 								COMSIG_NANITE_SYNC,
 								COMSIG_ATOM_EMP_ACT,
 								COMSIG_LIVING_DEATH,
-								COMSIG_MOB_ALLOWED,
+								COMSIG_MOB_TRIED_ACCESS,
 								COMSIG_LIVING_ELECTROCUTE_ACT,
 								COMSIG_LIVING_MINOR_SHOCK,
 								COMSIG_MOVABLE_HEAR,
@@ -227,13 +227,13 @@
 			host_mob.visible_message(span_warning("A torrent of metallic grey slurry violently bursts out of [host_mob]'s face and floods out of [host_mob.p_their()] skin!"),
 								span_userdanger("A torrent of metallic grey slurry violently bursts out of your eyes, ears, and mouth, and floods out of your skin!"));
 
-			host_mob.blind_eyes(15) //nanites coming out of your eyes
+			host_mob.adjust_temp_blindness(15) //nanites coming out of your eyes
 			host_mob.Paralyze(120)
 			if(iscarbon(host_mob))
 				var/mob/living/carbon/C = host_mob
-				var/obj/item/organ/ears/ears = C.getorganslot(ORGAN_SLOT_EARS)
+				var/obj/item/organ/internal/ears/ears = C.get_organ_slot(ORGAN_SLOT_EARS)
 				if(ears)
-					ears.adjustEarDamage(0, 30) //nanites coming out of your ears
+					ears.apply_organ_damage(0, 30) //nanites coming out of your ears
 				C.vomit(0, FALSE, TRUE, 2, FALSE, VOMIT_NANITE, FALSE, TRUE, 0) //nanites coming out of your mouth
 
 			//nanites everywhere
@@ -323,9 +323,13 @@
 	if(!(host_mob.mob_biotypes & (MOB_ORGANIC|MOB_UNDEAD)))
 		qdel(src) //bodytype no longer sustains nanites
 
-/datum/component/nanites/proc/check_access(datum/source, obj/O)
+/datum/component/nanites/proc/check_access(datum/source, atom/A)
 	SIGNAL_HANDLER
 
+	if(!isobj(A))
+		return LOCKED_ATOM_INCOMPATIBLE
+
+	var/obj/O = A
 	for(var/datum/nanite_program/access/access_program in programs)
 		if(access_program.activated)
 			return O.check_access_list(access_program.access)

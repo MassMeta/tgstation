@@ -375,7 +375,7 @@
 			render_list += "<span class='notice ml-1'>Detected cybernetic modifications:</span>\n"
 			render_list += "<span class='notice ml-2'>[cyberimp_detect]</span>\n"
 	// we handled the last <br> so we don't need handholding
-	SEND_SIGNAL(M, COMSIG_NANITE_SCAN, user, FALSE)
+	SEND_SIGNAL(target, COMSIG_NANITE_SCAN, user, FALSE)
 	if(tochat)
 		to_chat(user, examine_block(jointext(render_list, "")), trailing_newline = FALSE, type = MESSAGE_TYPE_INFO)
 	else

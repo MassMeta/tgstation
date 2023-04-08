@@ -199,7 +199,7 @@
 	toggle_open(user)
 
 /obj/machinery/public_nanite_chamber/MouseDrop_T(mob/target, mob/user)
-	if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK) || !Adjacent(target) || !user.Adjacent(target) || !iscarbon(target))
+	if(!user.can_interact_with(src) || !Adjacent(target) || !user.Adjacent(target) || !iscarbon(target))
 		return
 	if(close_machine(target, user))
 		log_combat(user, target, "inserted", null, "into [src].")

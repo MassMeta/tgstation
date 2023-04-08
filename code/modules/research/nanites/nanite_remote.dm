@@ -27,7 +27,7 @@
 
 /obj/item/nanite_remote/AltClick(mob/user)
 	. = ..()
-	if(!user.canUseTopic(src, BE_CLOSE))
+	if(!user.can_interact_with(src))
 		return
 	if(locked)
 		if(allowed(user))
