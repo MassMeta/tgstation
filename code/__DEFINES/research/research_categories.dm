@@ -199,3 +199,14 @@
 #define RND_CATEGORY_INITIAL "initial"
 #define RND_CATEGORY_HACKED "hacked"
 #define RND_CATEGORY_IMPORTED "/Imported Designs"
+
+// Nanites
+#define RND_CATEGORY_NANITES "/Nanites"
+#define RND_SUBCATEGORY_NANITES_UTILITY "/Utility Nanites"
+#define RND_SUBCATEGORY_NANITES_MEDICAL "/Medical Nanites"
+#define RND_SUBCATEGORY_NANITES_AUGMENTATION "/Augmentation Nanites"
+#define RND_SUBCATEGORY_NANITES_DEFECTIVE "/Defective Nanites"
+#define RND_SUBCATEGORY_NANITES_WEAPONIZED "/Defective Nanites"
+#define RND_SUBCATEGORY_NANITES_SUPRESSION "/Supression Nanites"
+#define RND_SUBCATEGORY_NANITES_SENSOR "/Sensor Nanites"
+#define RND_SUBCATEGORY_NANITES_PROTOCOLS "/Nanite Protocols"
