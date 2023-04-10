@@ -1290,6 +1290,7 @@
 		"ci-nutriment",
 		"ci-sechud",
 		"ci-welding",
+		"ci-scanner",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 

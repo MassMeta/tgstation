@@ -3,6 +3,7 @@
 /datum/unit_test/designs/Run()
 //Can't use allocate because of bug with certain datums
 	var/datum/design/default_design = new /datum/design()
+	var/datum/design/nanites/default_design_nanites = new /datum/design/nanites()
 	var/datum/design/surgery/default_design_surgery = new /datum/design/surgery()
 
 	for(var/path in subtypesof(/datum/design))

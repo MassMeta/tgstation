@@ -1,9 +1,3 @@
-/* Emags
- * Contains:
- * EMAGS AND DOORMAGS
- */
-
-
 /*
  * EMAG AND SUBTYPES
  */
@@ -99,14 +93,15 @@
 /obj/item/card/emag/examine(mob/user)
 	. = ..()
 	. += span_notice("It has [charges] charges remaining.")
-	var/timeleft = timeleft(current_cooldown)
+	var/timeleft = timeleft(current_cooldown[1])
 	var/loadingbar = num2loadingbar(timeleft/charge_time)
 	if(charges == max_charges)
 		. += span_notice("<b> All [charges] charges are ready for use!</b>")
 	else
+		. += "[span_notice("<b>A small display on the back reads:")]</b>"
 		for (var/i in 1 to length(current_cooldown))
-			. += "[span_notice("<b>A small display on the back reads:")]</b>"
-			. += span_notice("<b>CHARGE #[i]: [loadingbar] ([DisplayTimeText(timeleft[i])])</b>")
+			timeleft = timeleft(current_cooldown[i])
+			. += span_notice("<b>CHARGE #[i]: [loadingbar] ([DisplayTimeText(timeleft)])</b>")
 
 
 
