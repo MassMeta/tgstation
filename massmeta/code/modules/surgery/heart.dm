@@ -5,7 +5,7 @@
 	icon = 'massmeta/icons/obj/organs.dmi'
 	organ_flags = ORGAN_SYNTHETIC
 	var/nanite_boost = 1
-    var/active = FALSE
+	var/active = FALSE
 
 /obj/item/organ/heart/nanite/emp_act()
 	. = ..()
@@ -22,7 +22,7 @@
 
 	if(SEND_SIGNAL(owner, COMSIG_HAS_NANITES))
 		SEND_SIGNAL(owner, COMSIG_NANITE_ADJUST_VOLUME, nanite_boost)
-        active = TRUE
+		active = TRUE
 	else if(active)
 		if(owner)
 			to_chat(owner, span_userdanger("You feel your heart collapse in on itself!"))
