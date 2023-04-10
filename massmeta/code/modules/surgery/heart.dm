@@ -2,7 +2,7 @@
 	name = "Nanite heart"
 	desc = "A specialized heart constructed from nanites that helps coordinate nanites allowing them to regenerate quicker inside the body without any ill effects. Caution this organ will fall apart without nanites to sustain itself!"
 	icon_state = "heart-nanites"
-    icon = 'massmeta/icons/obj/organs.dmi'
+	icon = 'massmeta/icons/obj/organs.dmi'
 	organ_flags = ORGAN_SYNTHETIC
 	var/nanite_boost = 1
     var/active = FALSE
