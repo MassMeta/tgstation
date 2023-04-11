@@ -42,8 +42,6 @@
 	if(hood_up)
 		return
 
-	// Our hood gains the heretic_focus element.
-	. += span_notice("Allows you to cast heretic spells while the hood is up.")
 
 // Void cloak. Turns invisible with the hood up, lets you hide stuff.
 /obj/item/clothing/head/hooded/cult_hoodie/void
@@ -53,8 +51,8 @@
 	desc = "Black like tar, doesn't reflect any light. Runic symbols line the outside, \
 		with each flash you loose comprehension of what you are seeing."
 	icon_state = "void_cloak"
+	clothing_flags = STOPSPRESSUREDAMAGE
 	flags_inv = NONE
-	flags_cover = NONE
 	item_flags = EXAMINE_SKIP
 	armor_type = /datum/armor/cult_hoodie_void
 
@@ -77,7 +75,8 @@
 	inhand_icon_state = null
 	allowed = list(/obj/item/melee/sickly_blade)
 	hoodtype = /obj/item/clothing/head/hooded/cult_hoodie/void
-	flags_inv = NONE
+	clothing_flags = STOPSPRESSUREDAMAGE
+	flags_inv = HIDESUITSTORAGE
 	body_parts_covered = CHEST|GROIN|ARMS
 	// slightly worse than normal cult robes
 	armor_type = /datum/armor/cultrobes_void
@@ -94,6 +93,10 @@
 	. = ..()
 
 	create_storage(storage_type = /datum/storage/pockets/void_cloak)
+
+/obj/item/clothing/suit/hooded/cultrobes/void/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/heretic_focus)
 
 /obj/item/clothing/suit/hooded/cultrobes/void/Initialize(mapload)
 	. = ..()
@@ -134,7 +137,6 @@
 /obj/item/clothing/suit/hooded/cultrobes/void/proc/make_invisible()
 	item_flags |= EXAMINE_SKIP
 	ADD_TRAIT(src, TRAIT_NO_STRIP, REF(src))
-	RemoveElement(/datum/element/heretic_focus)
 
 	if(isliving(loc))
 		loc.balloon_alert(loc, "cloak hidden")
@@ -144,7 +146,6 @@
 /obj/item/clothing/suit/hooded/cultrobes/void/proc/make_visible()
 	item_flags &= ~EXAMINE_SKIP
 	REMOVE_TRAIT(src, TRAIT_NO_STRIP, REF(src))
-	AddElement(/datum/element/heretic_focus)
 
 	if(isliving(loc))
 		loc.balloon_alert(loc, "cloak revealed")
