@@ -68,7 +68,7 @@
 		JOB_CYBORG,
 	)
 	required_candidates = 1
-	weight = 11
+	weight = 9
 	cost = 5
 	requirements = list(5,5,5,5,5,5,5,5,5,5)
 	repeatable = TRUE
@@ -198,6 +198,7 @@
 	weight = 8
 	cost = 6
 	requirements = list(101,101,50,10,10,10,10,10,10,10)
+	minimum_players = 10
 	repeatable = TRUE
 
 /datum/dynamic_ruleset/latejoin/heretic_smuggler/execute()
@@ -215,4 +216,43 @@
 	// Limit it to four missed passive gain cycles (4 points).
 	new_heretic.knowledge_points = min(new_heretic.knowledge_points, 5)
 
+	return TRUE
+
+//////////////////////////////////////////////
+//                                          //
+//              BLOODSUCKER                 //
+//                                          //
+//////////////////////////////////////////////
+
+/datum/dynamic_ruleset/latejoin/bloodsucker
+	name = "Bloodsucker Breakout"
+	antag_datum = /datum/antagonist/bloodsucker
+	antag_flag = ROLE_BLOODSUCKERBREAKOUT
+	antag_flag_override = ROLE_BLOODSUCKER
+	protected_roles = list(
+		JOB_CAPTAIN, JOB_HEAD_OF_PERSONNEL, JOB_HEAD_OF_SECURITY,
+		JOB_WARDEN, JOB_SECURITY_OFFICER, JOB_DETECTIVE,
+		JOB_CURATOR,
+	)
+	restricted_roles = list(JOB_AI, JOB_CYBORG)
+	required_candidates = 1
+	weight = 6
+	cost = 10
+	requirements = list(101,101,50,10,10,10,10,10,10,10)
+	minimum_players = 15
+	repeatable = FALSE
+
+/datum/dynamic_ruleset/latejoin/bloodsucker/execute()
+	var/mob/latejoiner = pick(candidates) // This should contain a single player, but in case.
+	assigned += latejoiner.mind
+
+	for(var/datum/mind/candidate_mind as anything in assigned)
+		var/datum/antagonist/bloodsucker/bloodsuckerdatum = candidate_mind.make_bloodsucker()
+		if(!bloodsuckerdatum)
+			assigned -= candidate_mind
+			message_admins("[ADMIN_LOOKUPFLW(candidate_mind)] was selected by the [name] ruleset, but couldn't be made into a Bloodsucker.")
+			continue
+		bloodsuckerdatum.bloodsucker_level_unspent = rand(2,3)
+		message_admins("[ADMIN_LOOKUPFLW(candidate_mind)] was selected by the [name] ruleset and has been made into a midround Bloodsucker.")
+		log_game("DYNAMIC: [key_name(candidate_mind)] was selected by the [name] ruleset and has been made into a midround Bloodsucker.")
 	return TRUE

@@ -33,6 +33,7 @@
 	item = /obj/item/storage/box/syndie_kit/space
 	cost = 4
 
+// Low progression cost
 
 /datum/uplink_item/suits/modsuit
 	name = "Syndicate MODsuit"
@@ -40,6 +41,13 @@
 	item = /obj/item/mod/control/pre_equipped/traitor
 	cost = 8
 	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS) //you can't buy it in nuke, because the elite modsuit costs the same while being better
+
+/datum/uplink_item/suits/hardsuit/traitor
+	name = "Blood-red hardsuit"
+	desc = "A dual-mode advanced hardsuit designed for work in special operations."
+	item = /obj/item/clothing/suit/space/hardsuit/syndi
+	cost = 8
+	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS)
 
 /datum/uplink_item/suits/thermal
 	name = "MODsuit Thermal Visor Module"
@@ -65,12 +73,15 @@
 	item = /obj/item/mod/module/plate_compression
 	cost = 2
 
+// Medium progression cost
 
 /datum/uplink_item/suits/noslip
 	name = "MODsuit Anti-Slip Module"
 	desc = "A MODsuit module preventing the user from slipping on water."
 	item = /obj/item/mod/module/noslip
 	cost = 2
+
+// Very high progression cost
 
 /datum/uplink_item/suits/modsuit/elite_traitor
 	name = "Elite Syndicate MODsuit"
@@ -79,5 +90,11 @@
 	item = /obj/item/mod/control/pre_equipped/traitor_elite
 	// This one costs more than the nuke op counterpart
 	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS)
-	progression_minimum = 90 MINUTES
 	cost = 16
+
+/datum/uplink_item/suits/hardsuit/elite_traitor
+	name = "Elite Syndicate hardsuit"
+	desc = "An elite version of the syndicate hardsuit, with improved armour and fireproofing."
+	item = /obj/item/clothing/suit/space/hardsuit/syndi/elite
+	cost = 16
+	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS)

@@ -218,6 +218,8 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 		damage = rand(20, 40)
 	else
 		damage = rand(5, 35)
+	if(M.transformeffects & SLIME_EFFECT_RED)
+		damage *= 1.1
 	damage = round(damage / 2) // borgs receive half damage
 	adjustBruteLoss(damage)
 
@@ -345,6 +347,13 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 
 	to_chat(user, span_notice("You emag [src]'s interface."))
 	emag_cooldown = world.time + 100
+
+
+	if(is_servant_of_ratvar(src))
+		to_chat(src, "<span class='nezbere'>\"[text2ratvar("You will serve Engine above all else")]!\"</span>\n\
+		<span class='danger'>ALERT: Subversion attempt denied.</span>")
+		log_game("[key_name(user)] attempted to emag cyborg [key_name(src)], but they serve only Ratvar.")
+		return
 
 	if(connected_ai && connected_ai.mind && connected_ai.mind.has_antag_datum(/datum/antagonist/malf_ai))
 		to_chat(src, span_danger("ALERT: Foreign software execution prevented."))

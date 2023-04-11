@@ -221,7 +221,7 @@
 		ROLE_POSITRONIC_BRAIN,
 	)
 	required_candidates = 1
-	weight = 35
+	weight = 12
 	cost = 3
 	requirements = list(3,3,3,3,3,3,3,3,3,3)
 	repeatable = TRUE
@@ -269,6 +269,7 @@
 	minimum_players = 25
 	weight = 2
 	cost = 10
+	requirements = list(10,10,10,10,10,10,10,10,10,10)
 	required_type = /mob/living/silicon/ai
 	blocking_rules = list(/datum/dynamic_ruleset/roundstart/malf_ai)
 
@@ -310,11 +311,11 @@
 	antag_datum = /datum/antagonist/wizard
 	antag_flag = ROLE_WIZARD_MIDROUND
 	antag_flag_override = ROLE_WIZARD
-	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
 	weight = 1
 	cost = 10
-	requirements = REQUIREMENTS_VERY_HIGH_THREAT_NEEDED
+	requirements = list(90,80,80,70,60,40,30,20,10,10)
+	minimum_players = 25
 	flags = HIGH_IMPACT_RULESET
 	ruleset_lazy_templates = list(LAZY_TEMPLATE_KEY_WIZARDDEN)
 
@@ -346,16 +347,16 @@
 		JOB_HEAD_OF_SECURITY,
 		JOB_SECURITY_OFFICER,
 	)
-	required_enemies = list(3,3,3,3,3,2,1,1,0,0)
 	required_candidates = 5
 	weight = 5
 	cost = 7
-	minimum_round_time = 70 MINUTES
-	requirements = REQUIREMENTS_VERY_HIGH_THREAT_NEEDED
+	requirements = list(90,80,80,70,60,40,30,20,10,10)
+	minimum_round_time = 50 MINUTES
+	minimum_players = 25
 	ruleset_lazy_templates = list(LAZY_TEMPLATE_KEY_NUKIEBASE)
 	flags = HIGH_IMPACT_RULESET
 
-	var/list/operative_cap = list(2,2,3,3,4,5,5,5,5,5)
+	var/list/operative_cap = list(1,2,2,3,4,5,5,5,5,5)
 	/// The nuke ops team datum.
 	var/datum/team/nuclear/nuke_team
 
@@ -394,11 +395,11 @@
 	midround_ruleset_style = MIDROUND_RULESET_STYLE_HEAVY
 	antag_datum = /datum/antagonist/blob
 	antag_flag = ROLE_BLOB
-	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
 	minimum_round_time = 35 MINUTES
 	weight = 3
 	cost = 8
+	requirements = list(8,8,8,8,8,8,8,8,8,8)
 	minimum_players = 25
 	repeatable = TRUE
 
@@ -426,11 +427,11 @@
 		JOB_CYBORG,
 		ROLE_POSITRONIC_BRAIN,
 	)
-	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
 	minimum_round_time = 35 MINUTES
 	weight = 3
 	cost = 10
+	requirements = list(10,10,10,10,10,10,10,10,10,10)
 	minimum_players = 25
 	repeatable = TRUE
 
@@ -460,11 +461,11 @@
 	midround_ruleset_style = MIDROUND_RULESET_STYLE_HEAVY
 	antag_datum = /datum/antagonist/xeno
 	antag_flag = ROLE_ALIEN
-	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
 	minimum_round_time = 40 MINUTES
 	weight = 5
 	cost = 10
+	requirements = list(10,10,10,10,10,10,10,10,10,10)
 	minimum_players = 25
 	repeatable = TRUE
 	var/list/vents = list()
@@ -503,10 +504,10 @@
 	antag_datum = /datum/antagonist/nightmare
 	antag_flag = ROLE_NIGHTMARE
 	antag_flag_override = ROLE_ALIEN
-	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
 	weight = 3
 	cost = 5
+	requirements = list(5,5,5,5,5,5,5,5,5,5)
 	minimum_players = 15
 	repeatable = TRUE
 	var/list/spawn_locs = list()
@@ -544,10 +545,10 @@
 	antag_datum = /datum/antagonist/space_dragon
 	antag_flag = ROLE_SPACE_DRAGON
 	antag_flag_override = ROLE_SPACE_DRAGON
-	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
 	weight = 4
 	cost = 7
+	requirements = list(7,7,7,7,7,7,7,7,7,7)
 	minimum_players = 25
 	repeatable = TRUE
 	var/list/spawn_locs = list()
@@ -576,16 +577,19 @@
 	priority_announce("A large organic energy flux has been recorded near of [station_name()], please stand-by.", "Lifesign Alert")
 	return S
 
+/// Midround Abductors Ruleset (From Ghosts)
+#define ABDUCTOR_MAX_TEAMS 4
+
 /datum/dynamic_ruleset/midround/from_ghosts/abductors
 	name = "Abductors"
 	midround_ruleset_style = MIDROUND_RULESET_STYLE_LIGHT
 	antag_datum = /datum/antagonist/abductor
 	antag_flag = ROLE_ABDUCTOR
-	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 2
 	required_applicants = 2
 	weight = 4
 	cost = 7
+	requirements = list(7,7,7,7,7,7,7,7,7,7)
 	minimum_players = 25
 	repeatable = TRUE
 	ruleset_lazy_templates = list(LAZY_TEMPLATE_KEY_ABDUCTOR_SHIPS)
@@ -608,17 +612,19 @@
 		var/datum/antagonist/abductor/agent/new_role = new
 		new_character.mind.add_antag_datum(new_role, new_team)
 
+#undef ABDUCTOR_MAX_TEAMS
+
 /// Midround Space Ninja Ruleset (From Ghosts)
 /datum/dynamic_ruleset/midround/from_ghosts/space_ninja
 	name = "Space Ninja"
 	midround_ruleset_style = MIDROUND_RULESET_STYLE_HEAVY
 	antag_datum = /datum/antagonist/ninja
 	antag_flag = ROLE_NINJA
-	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
 	weight = 4
 	cost = 8
-	minimum_players = 30
+	requirements = list(8,8,8,8,8,8,8,8,8,8)
+	minimum_players = 25
 	repeatable = TRUE
 	ruleset_lazy_templates = list(LAZY_TEMPLATE_KEY_NINJA_HOLDING_FACILITY) // I mean, no one uses the nets anymore but whateva
 
@@ -650,11 +656,11 @@
 	midround_ruleset_style = MIDROUND_RULESET_STYLE_HEAVY
 	antag_flag = ROLE_SPIDER
 	required_type = /mob/dead/observer
-	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 0
 	weight = 3
 	cost = 8
-	minimum_players = 27
+	requirements = list(8,8,8,8,8,8,8,8,8,8)
+	minimum_players = 25
 	repeatable = TRUE
 	var/spawncount = 2
 
@@ -668,10 +674,10 @@
 	midround_ruleset_style = MIDROUND_RULESET_STYLE_LIGHT
 	antag_datum = /datum/antagonist/revenant
 	antag_flag = ROLE_REVENANT
-	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
 	weight = 4
 	cost = 5
+	requirements = list(5,5,5,5,5,5,5,5,5,5)
 	minimum_players = 15
 	repeatable = TRUE
 	var/dead_mobs_required = 20
@@ -718,6 +724,7 @@
 	minimum_players = 25
 	weight = 4
 	cost = 8
+	requirements = list(8,8,8,8,8,8,8,8,8,8)
 	repeatable = TRUE
 
 /datum/dynamic_ruleset/midround/from_ghosts/sentient_disease/generate_ruleset_body(mob/applicant)
@@ -731,45 +738,23 @@
 /// Midround Space Pirates Ruleset (From Ghosts)
 /datum/dynamic_ruleset/midround/pirates
 	name = "Space Pirates"
-	midround_ruleset_style = MIDROUND_RULESET_STYLE_LIGHT
+	midround_ruleset_style = MIDROUND_RULESET_STYLE_HEAVY
 	antag_flag = "Space Pirates"
 	required_type = /mob/dead/observer
-	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 0
-	weight = 3
+	weight = 4
 	cost = 8
-	minimum_players = 20
+	requirements = list(8,8,8,8,8,8,8,8,8,8)
+	minimum_players = 25
 	repeatable = TRUE
 
 /datum/dynamic_ruleset/midround/pirates/acceptable(population=0, threat=0)
-	if (SSmapping.is_planetary() || GLOB.light_pirate_gangs.len == 0)
+	if (SSmapping.is_planetary())
 		return FALSE
 	return ..()
 
 /datum/dynamic_ruleset/midround/pirates/execute()
-	send_pirate_threat(GLOB.light_pirate_gangs)
-	return ..()
-
-/// Dangerous Space Pirates ruleset
-/datum/dynamic_ruleset/midround/dangerous_pirates
-	name = "Dangerous Space Pirates"
-	midround_ruleset_style = MIDROUND_RULESET_STYLE_HEAVY
-	antag_flag = "Space Pirates"
-	required_type = /mob/dead/observer
-	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
-	required_candidates = 0
-	weight = 3
-	cost = 8
-	minimum_players = 25
-	repeatable = TRUE
-
-/datum/dynamic_ruleset/midround/dangerous_pirates/acceptable(population=0, threat=0)
-	if (SSmapping.is_planetary() || GLOB.heavy_pirate_gangs.len == 0)
-		return FALSE
-	return ..()
-
-/datum/dynamic_ruleset/midround/dangerous_pirates/execute()
-	send_pirate_threat(GLOB.heavy_pirate_gangs)
+	send_pirate_threat()
 	return ..()
 
 /// Midround Obsessed Ruleset (From Living)
@@ -783,10 +768,10 @@
 		JOB_CYBORG,
 		ROLE_POSITRONIC_BRAIN,
 	)
-	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
-	weight = 4
+	weight = 2
 	cost = 3 // Doesn't have the same impact on rounds as revenants, dragons, sentient disease (10) or syndicate infiltrators (5).
+	requirements = list(3,3,3,3,3,3,3,3,3,3)
 	repeatable = TRUE
 
 /datum/dynamic_ruleset/midround/from_living/obsessed/trim_candidates()
@@ -817,10 +802,10 @@
 	antag_flag = ROLE_CHANGELING_MIDROUND
 	antag_flag_override = ROLE_CHANGELING
 	required_type = /mob/dead/observer
-	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
 	weight = 3
 	cost = 7
+	requirements = list(7,7,7,7,7,7,7,7,7,7)
 	minimum_players = 15
 	repeatable = TRUE
 
@@ -842,10 +827,10 @@
 		JOB_HEAD_OF_SECURITY,
 		JOB_SECURITY_OFFICER,
 	)
-	required_enemies = list(2, 2, 1, 1, 1, 1, 1, 0, 0, 0)
 	required_candidates = 1
-	weight = 4
+	weight = 2
 	cost = 3
+	requirements = list(3,3,3,3,3,3,3,3,3,3)
 	repeatable = TRUE
 	var/list/possible_spawns = list() ///places the antag can spawn
 
@@ -898,5 +883,55 @@
 		return pick(possible_targets)
 	return FALSE
 
-#undef MALF_ION_PROB
-#undef REPLACE_LAW_WITH_ION_PROB
+//////////////////////////////////////////////
+//                                          //
+//               BLOODSUCKER                //
+//                                          //
+//////////////////////////////////////////////
+
+/datum/dynamic_ruleset/midround/bloodsucker
+	name = "Vampiric Accident"
+	midround_ruleset_style = MIDROUND_RULESET_STYLE_LIGHT
+	antag_datum = /datum/antagonist/bloodsucker
+	antag_flag = ROLE_VAMPIRICACCIDENT
+	antag_flag_override = ROLE_BLOODSUCKER
+	protected_roles = list(
+		JOB_CAPTAIN, JOB_HEAD_OF_PERSONNEL, JOB_HEAD_OF_SECURITY,
+		JOB_WARDEN, JOB_SECURITY_OFFICER, JOB_DETECTIVE,
+		JOB_CURATOR,
+	)
+	restricted_roles = list(JOB_AI, JOB_CYBORG, "Positronic Brain")
+	required_candidates = 1
+	weight = 5
+	cost = 10
+	requirements = list(101,101,50,10,10,10,10,10,10,10)
+	minimum_players = 15
+	repeatable = FALSE
+
+/datum/dynamic_ruleset/midround/bloodsucker/trim_candidates()
+	. = ..()
+	for(var/mob/living/player in living_players)
+		// Your assigned role doesn't change when you are turned into a silicon.
+		if(issilicon(player))
+			living_players -= player
+		// Only people on-station are allowed
+		else if(!is_station_level(player.z) || !is_mining_level(player.z))
+			living_players -= player
+		// We don't allow people with roles already
+		else if(player.mind.special_role || player.mind.antag_datums.len)
+			living_players -= player
+
+/datum/dynamic_ruleset/midround/bloodsucker/execute()
+	var/mob/selected_mobs = pick(living_players)
+	assigned += selected_mobs.mind
+	living_players -= selected_mobs
+	var/datum/mind/candidate_mind = selected_mobs.mind
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = candidate_mind.make_bloodsucker()
+	if(!bloodsuckerdatum)
+		assigned -= selected_mobs.mind
+		message_admins("[ADMIN_LOOKUPFLW(selected_mobs)] was selected by the [name] ruleset, but couldn't be made into a Bloodsucker.")
+		return FALSE
+	bloodsuckerdatum.bloodsucker_level_unspent = rand(2,3)
+	message_admins("[ADMIN_LOOKUPFLW(selected_mobs)] was selected by the [name] ruleset and has been made into a midround Bloodsucker.")
+	log_game("DYNAMIC: [key_name(selected_mobs)] was selected by the [name] ruleset and has been made into a midround Bloodsucker.")
+	return TRUE

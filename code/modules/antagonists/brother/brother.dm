@@ -24,10 +24,14 @@
 	objectives += team.objectives
 	owner.special_role = special_role
 	finalize_brother()
+	equip_bloodbro()
+	if(owner.current)
+		give_pinpointer()
 	return ..()
 
 /datum/antagonist/brother/on_removal()
 	owner.special_role = null
+	owner.current.remove_status_effect(/datum/status_effect/agent_pinpointer/brother)
 	return ..()
 
 /datum/antagonist/brother/antag_panel_data()
@@ -84,6 +88,7 @@
 	to_chat(owner.current, span_alertsyndie("You are the [owner.special_role] of [brother_text]."))
 	to_chat(owner.current, "The Syndicate only accepts those that have proven themselves. Prove yourself and prove your [team.member_name]s by completing your objectives together!")
 	owner.announce_objectives()
+	to_chat(owner.current, "You both start with a storage implant containing one item, chosen by your employers. Use it wise!")
 	give_meeting_area()
 
 /datum/antagonist/brother/proc/finalize_brother()
@@ -170,3 +175,53 @@
 			add_objective(new /datum/objective/assassinate, needs_target = TRUE)
 	else
 		add_objective(new /datum/objective/steal, needs_target = TRUE)
+
+/datum/antagonist/brother/proc/equip_bloodbro()
+	if(!owner || !owner.current || !ishuman(owner.current))
+		return
+	var/list/possible_items = list(/obj/item/soap/syndie,/obj/item/pen/sleepy,/obj/item/pen/edagger,/obj/item/language_manual/codespeak_manual/unlimited,
+								   /obj/item/clothing/shoes/chameleon/noslip, /obj/item/storage/box/syndie_kit/c4,
+								   /obj/item/storage/box/syndie_kit/throwing_weapons, /obj/item/storage/box/syndie_kit/emp,
+								   /obj/item/card/id/advanced/chameleon, /obj/item/multitool/ai_detect, /obj/item/storage/box/syndie_kit/chameleon,
+								   /obj/item/card/emag, /obj/item/storage/box/syndie_kit/syndi_keys, /obj/item/jammer,
+								   /obj/item/clothing/glasses/thermal/syndi, /obj/item/encryptionkey/binary, /obj/item/storage/box/syndie_kit/chemical)
+	var/obj/item/implant/storage/S = locate(/obj/item/implant/storage) in owner.current
+	if(!S)
+		S = new(owner.current)
+		S.implant(owner.current)
+	var/I = pick(possible_items)
+	if(ispath(I))
+		I = new I(S)
+
+/datum/antagonist/brother/proc/give_pinpointer()
+	if(owner && owner.current)
+		var/datum/status_effect/agent_pinpointer/brother/P = owner.current.apply_status_effect(/datum/status_effect/agent_pinpointer/brother)
+		P.allowed_targets = team.members - owner
+
+/datum/status_effect/agent_pinpointer/brother
+	id = "brother_pinpointer"
+	alert_type = /atom/movable/screen/alert/status_effect/agent_pinpointer/brother
+	var/datum/mind/set_target
+	var/list/datum/mind/allowed_targets
+
+	range_fuzz_factor = 0
+
+/atom/movable/screen/alert/status_effect/agent_pinpointer/brother
+	name = "Blood Brother Integrated Pinpointer"
+	desc = "Even stealthier than a normal implant."
+	icon = 'icons/obj/device.dmi'
+	icon_state = "pinon"
+
+/datum/status_effect/agent_pinpointer/brother/scan_for_target()
+	scan_target = null
+	if(set_target)
+		scan_target = set_target.current
+		return
+	var/datum/mind/picked = pick(allowed_targets)
+	scan_target = picked.current
+
+/atom/movable/screen/alert/status_effect/agent_pinpointer/brother/Click()
+	if(attached_effect)
+		var/datum/status_effect/agent_pinpointer/brother/E = attached_effect
+		E.set_target = input(usr,"Select target to track","Pinpointer") as null|anything in E.allowed_targets
+	..()

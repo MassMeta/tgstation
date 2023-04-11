@@ -97,7 +97,7 @@
 
 /datum/hallucination/fake_item/emag/make_fake_item(where_to_put_it, equip_flags)
 	if(prob(50))
-		template_item_type  = /obj/item/card/emag/doorjack
+		template_item_type  = /obj/item/card/emag
 	return ..()
 
 /datum/hallucination/fake_item/flashbang

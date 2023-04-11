@@ -94,6 +94,45 @@
 		return TRUE
 	return FALSE
 
+/obj/item/chainsaw/syndicate_chainsaw
+	name = "syndicate ripper"
+	desc = "Terror and madness"
+	icon_state = "ripper_off"
+	lefthand_file = 'massmeta/icons/mob/inhands/ripper_lefthand.dmi'
+	righthand_file = 'massmeta/icons/mob/inhands/ripper_righthand.dmi'
+	force_on = 34
+	armour_penetration = 100
+
+/obj/item/chainsaw/syndicate_chainsaw/attack_self(mob/user)
+	on = !on
+	to_chat(user, "As you pull the starting cord dangling from [src], [on ? "it begins to whirr." : "the chain stops moving."]")
+	force = on ? force_on : initial(force)
+	throwforce = on ? force_on : initial(force)
+	icon_state = "ripper_[on ? "on" : "off"]"
+	var/datum/component/butchering/butchering = src.GetComponent(/datum/component/butchering)
+	butchering.butchering_enabled = on
+
+	if(on)
+		hitsound = 'sound/weapons/chainsawhit.ogg'
+		chainsaw_loop.start()
+	else
+		hitsound = SFX_SWING_HIT
+		chainsaw_loop.stop()
+
+	toolspeed = on ? 0.5 : initial(toolspeed) //Turning it on halves the speed
+	if(src == user.get_active_held_item()) //update inhands
+		user.update_held_items()
+	update_item_action_buttons()
+
+/obj/item/chainsaw/syndicate_chainsaw/attack(mob/living/target, mob/living/user)
+	if(on)
+		. = ..()
+		target.Stun(0.5 SECONDS)
+		target.Knockdown(5 SECONDS)
+		target.emote("scream")
+	else
+		. = ..()
+
 /obj/item/chainsaw/mounted_chainsaw
 	name = "mounted chainsaw"
 	desc = "A chainsaw that has replaced your arm."

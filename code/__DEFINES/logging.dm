@@ -9,6 +9,7 @@
 #define INVESTIGATE_EXPERIMENTOR "experimentor"
 #define INVESTIGATE_GRAVITY "gravity"
 #define INVESTIGATE_HALLUCINATIONS "hallucinations"
+#define INVESTIGATE_NANITES "nanites"
 #define INVESTIGATE_HYPERTORUS "hypertorus"
 #define INVESTIGATE_PORTAL "portals"
 #define INVESTIGATE_PRESENTS "presents"

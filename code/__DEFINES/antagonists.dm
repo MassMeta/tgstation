@@ -136,6 +136,9 @@
 ///File to the malf flavor
 #define MALFUNCTION_FLAVOR_FILE "antagonist_flavor/malfunction_flavor.json"
 
+///File to the IAA flavor
+#define IAA_FLAVOR_FILE "antagonist_flavor/internalaffair_flavor.json"
+
 /// JSON string file for all of our heretic influence flavors
 #define HERETIC_INFLUENCE_FILE "antagonist_flavor/heretic_influences.json"
 
@@ -156,7 +159,6 @@ GLOBAL_LIST_INIT(nanotrasen_employers, list(
 	"Champions of Evil",
 	"Corporate Climber",
 	"Gone Postal",
-	"Internal Affairs Agent",
 	"Legal Trouble",
 ))
 
@@ -176,7 +178,6 @@ GLOBAL_LIST_INIT(normal_employers, list(
 	"Cybersun Industries",
 	"Donk Corporation",
 	"Gorlex Marauders",
-	"Internal Affairs Agent",
 	"Legal Trouble",
 	"MI13",
 	"Waffle Corporation",
@@ -323,3 +324,26 @@ GLOBAL_LIST_INIT(human_invader_antagonists, list(
 #define ANTAG_GROUP_SYNDICATE "Syndicate"
 #define ANTAG_GROUP_WIZARDS "Wizard Federation"
 #define ANTAG_GROUP_XENOS "Xenomorph Infestation"
+
+//Massmeta edit start
+#define isdarkspawn(A) (A.mind && A.mind.has_antag_datum(/datum/antagonist/darkspawn))
+#define isveil(A) (A.mind && A.mind.has_antag_datum(/datum/antagonist/veil))
+#define is_darkspawn_or_veil(A) (A.mind && isdarkspawn(A) || isveil(A))
+
+#define DARKSPAWN_DIM_LIGHT 0.2 //light of this intensity suppresses healing and causes very slow burn damage
+#define DARKSPAWN_BRIGHT_LIGHT 0.3 //light of this intensity causes rapid burn damage
+
+#define DARKSPAWN_DARK_HEAL 5 //how much damage of each type (with fire damage half rate) is healed in the dark
+#define DARKSPAWN_LIGHT_BURN 7 //how much damage the darkspawn receives per tick in lit areas
+
+#define STATUS_EFFECT_CREEP /datum/status_effect/creep //Provides immunity to lightburn for darkspawn, does nothing to anyone else //Massmeta edit
+#define STATUS_EFFECT_TIME_DILATION /datum/status_effect/time_dilation //Provides immunity to slowdown and halves click-delay/action times //Massmeta edit
+#define STATUS_EFFECT_BROKEN_WILL /datum/status_effect/broken_will //A 30-second sleep effect reduced by 1 second for every point
+#define STATUS_EFFECT_TAGALONG /datum/status_effect/tagalong //allows darkspawn to accompany people's shadows //Massmeta edit
+
+/// Checks if the given mind is a leader of the monkey antagonists
+#define IS_MONKEY_LEADER(mind) mind?.has_antag_datum(/datum/antagonist/monkey/leader)
+
+/// Checks if the given mind is a monkey antagonist
+#define IS_INFECTED_MONKEY(mind) mind?.has_antag_datum(/datum/antagonist/monkey)
+//Massmeta edit end

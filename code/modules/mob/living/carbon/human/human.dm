@@ -969,6 +969,9 @@
 /mob/living/carbon/human/species/android
 	race = /datum/species/android
 
+/mob/living/carbon/human/species/beefman
+	race = /datum/species/beefman
+
 /mob/living/carbon/human/species/dullahan
 	race = /datum/species/dullahan
 
@@ -1109,3 +1112,9 @@
 
 /mob/living/carbon/human/species/zombie/infectious
 	race = /datum/species/zombie/infectious
+
+/mob/living/carbon/human/species/golem/clockwork
+	race = /datum/species/golem/clockwork
+
+/mob/living/carbon/human/species/golem/clockwork/no_scrap
+	race = /datum/species/golem/clockwork/no_scrap

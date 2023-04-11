@@ -16,6 +16,7 @@
 	preview_outfit = /datum/outfit/traitor
 	var/give_objectives = TRUE
 	var/should_give_codewords = TRUE
+	var/progressive = FALSE
 	///give this traitor an uplink?
 	var/give_uplink = TRUE
 	/// Code that allows traitor to get a replacement uplink
@@ -36,6 +37,8 @@
 
 	/// The uplink handler that this traitor belongs to.
 	var/datum/uplink_handler/uplink_handler
+
+	var/datum/contractor_hub/contractor_hub
 
 	var/uplink_sale_count = 3
 
@@ -61,14 +64,15 @@
 		else
 			uplink_handler = uplink.uplink_handler
 		uplink_handler.primary_objectives = objectives
-		uplink_handler.has_progression = TRUE
+		uplink_handler.has_progression = progressive
 		SStraitor.register_uplink_handler(uplink_handler)
 
-		uplink_handler.has_objectives = TRUE
-		uplink_handler.generate_objectives()
+		if(progressive)
+			uplink_handler.has_objectives = TRUE
+			uplink_handler.generate_objectives()
 
-		if(uplink_handler.progression_points < SStraitor.current_global_progression)
-			uplink_handler.progression_points = SStraitor.current_global_progression * SStraitor.newjoin_progression_coeff
+			if(uplink_handler.progression_points < SStraitor.current_global_progression)
+				uplink_handler.progression_points = SStraitor.current_global_progression * SStraitor.newjoin_progression_coeff
 
 		var/list/uplink_items = list()
 		for(var/datum/uplink_item/item as anything in SStraitor.uplink_items)
@@ -79,7 +83,7 @@
 				if((uplink_handler.assigned_role in item.restricted_roles) || (uplink_handler.assigned_species in item.restricted_species))
 					uplink_items += item
 					continue
-		uplink_handler.extra_purchasable += create_uplink_sales(uplink_sale_count, /datum/uplink_category/discounts, 1, uplink_items)
+		uplink_handler.extra_purchasable += create_uplink_sales(uplink_sale_count, /datum/uplink_category/discounts, -1, uplink_items)
 
 	if(give_objectives)
 		forge_traitor_objectives()
@@ -176,7 +180,7 @@
 	traitor_flavor = strings(TRAITOR_FLAVOR_FILE, employer)
 
 /// Generates a complete set of traitor objectives up to the traitor objective limit, including non-generic objectives such as martyr and hijack.
-/datum/antagonist/traitor/proc/forge_traitor_objectives()
+/datum/antagonist/traitor/proc/forge_traitor_objectives(var/amount_override = 0, give_escape_obj = TRUE)
 	objectives.Cut()
 	var/objective_count = 0
 
@@ -185,7 +189,8 @@
 		objective_count++
 
 	var/objective_limit = CONFIG_GET(number/traitor_objectives_amount)
-
+	if(amount_override)
+		objective_limit = amount_override
 	// for(in...to) loops iterate inclusively, so to reach objective_limit we need to loop to objective_limit - 1
 	// This does not give them 1 fewer objectives than intended.
 	for(var/i in objective_count to objective_limit - 1)
@@ -332,6 +337,9 @@
 
 	var/special_role_text = lowertext(name)
 
+	if(contractor_hub)
+		result += contractor_round_end()
+
 	if(traitor_won)
 		result += span_greentext("The [special_role_text] was successful!")
 	else
@@ -348,6 +356,42 @@
 					<b>The code responses were:</b> [span_redtext("[responses]")]<br>"
 
 	return message
+
+/// Proc detailing contract kit buys/completed contracts/additional info
+/datum/antagonist/traitor/proc/contractor_round_end()
+	var/result = ""
+	var/total_spent_rep = 0
+
+	var/completed_contracts = contractor_hub.contracts_completed
+	var/tc_total = contractor_hub.contract_TC_payed_out + contractor_hub.contract_TC_to_redeem
+
+	var/contractor_item_icons = "" // Icons of purchases
+	var/contractor_support_unit = "" // Set if they had a support unit - and shows appended to their contracts completed
+
+	/// Get all the icons/total cost for all our items bought
+	for (var/datum/contractor_item/contractor_purchase in contractor_hub.purchased_items)
+		contractor_item_icons += "<span class='tooltip_container'>\[ <i class=\"fas [contractor_purchase.item_icon]\"></i><span class='tooltip_hover'><b>[contractor_purchase.name] - [contractor_purchase.cost] Rep</b><br><br>[contractor_purchase.desc]</span> \]</span>"
+
+		total_spent_rep += contractor_purchase.cost
+
+		/// Special case for reinforcements, we want to show their ckey and name on round end.
+		if (istype(contractor_purchase, /datum/contractor_item/contractor_partner))
+			var/datum/contractor_item/contractor_partner/partner = contractor_purchase
+			contractor_support_unit += "<br><b>[partner.partner_mind.key]</b> played <b>[partner.partner_mind.current.name]</b>, their contractor support unit."
+
+	if (contractor_hub.purchased_items.len)
+		result += "<br>(used [total_spent_rep] Rep) "
+		result += contractor_item_icons
+	result += "<br>"
+	if (completed_contracts > 0)
+		var/pluralCheck = "contract"
+		if (completed_contracts > 1)
+			pluralCheck = "contracts"
+
+		result += "Completed [span_greentext("[completed_contracts]")] [pluralCheck] for a total of \
+					[span_greentext("[tc_total] TC")]![contractor_support_unit]<br>"
+
+	return result
 
 /datum/outfit/traitor
 	name = "Traitor (Preview only)"

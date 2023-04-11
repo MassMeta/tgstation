@@ -23,7 +23,7 @@
 		JOB_CYBORG,
 	)
 	required_candidates = 1
-	weight = 5
+	weight = 3
 	cost = 8 // Avoid raising traitor threat above this, as it is the default low cost ruleset.
 	scaling_cost = 9
 	requirements = list(8,8,8,8,8,8,8,8,8,8)
@@ -223,7 +223,8 @@
 	weight = 3
 	cost = 10
 	scaling_cost = 9
-	requirements = list(101,101,60,30,30,25,20,15,10,10)
+	requirements = list(101,101,60,30,20,15,15,15,10,10)
+	minimum_players = 10
 	antag_cap = list("denominator" = 24)
 
 
@@ -272,7 +273,7 @@
 	required_candidates = 1
 	weight = 2
 	cost = 20
-	requirements = list(90,90,90,80,60,40,30,20,10,10)
+	requirements = list(90,90,80,70,60,40,30,20,10,10)
 	ruleset_lazy_templates = list(LAZY_TEMPLATE_KEY_WIZARDDEN)
 
 /datum/dynamic_ruleset/roundstart/wizard/ready(forced = FALSE)
@@ -344,6 +345,7 @@
 	requirements = list(100,90,80,60,40,30,10,10,10,10)
 	flags = HIGH_IMPACT_RULESET
 	antag_cap = list("denominator" = 20, "offset" = 1)
+	minimum_players = 25
 	var/datum/team/cult/main_cult
 
 /datum/dynamic_ruleset/roundstart/bloodcult/ready(population, forced = FALSE)
@@ -414,7 +416,7 @@
 	required_candidates = 5
 	weight = 3
 	cost = 20
-	requirements = list(90,90,90,80,60,40,30,20,10,10)
+	requirements = list(90,80,80,70,60,40,30,20,10,10)
 	flags = HIGH_IMPACT_RULESET
 	antag_cap = list("denominator" = 18, "offset" = 1)
 	ruleset_lazy_templates = list(LAZY_TEMPLATE_KEY_NUKIEBASE)
@@ -696,3 +698,54 @@
 
 	for(var/department_type in department_types)
 		create_separatist_nation(department_type, announcement = FALSE, dangerous = FALSE, message_admins = FALSE)
+
+
+//////////////////////////////////////////////
+//                                          //
+//               BLOODSUCKER                //
+//                                          //
+//////////////////////////////////////////////
+
+/datum/dynamic_ruleset/roundstart/bloodsucker
+	name = "Bloodsuckers"
+	antag_flag = ROLE_BLOODSUCKER
+	antag_datum = /datum/antagonist/bloodsucker
+	protected_roles = list(
+		// Command
+		JOB_CAPTAIN, JOB_HEAD_OF_PERSONNEL, JOB_HEAD_OF_SECURITY,
+		// Security
+		JOB_WARDEN, JOB_SECURITY_OFFICER, JOB_DETECTIVE,
+		// Curator
+		JOB_CURATOR,
+	)
+	restricted_roles = list(JOB_AI, JOB_CYBORG)
+	required_candidates = 1
+	weight = 5
+	cost = 10
+	scaling_cost = 9
+	requirements = list(101,101,50,10,10,10,10,10,10,10)
+	minimum_players = 15
+	antag_cap = list("denominator" = 24)
+
+/datum/dynamic_ruleset/roundstart/bloodsucker/pre_execute(population)
+	. = ..()
+	var/num_bloodsuckers = get_antag_cap(population) * (scaled_times + 1)
+
+	for(var/i = 1 to num_bloodsuckers)
+		if(candidates.len <= 0)
+			break
+		var/mob/selected_mobs = pick_n_take(candidates)
+		assigned += selected_mobs.mind
+		selected_mobs.mind.restricted_roles = restricted_roles
+		GLOB.pre_setup_antags += selected_mobs.mind
+	return TRUE
+
+/datum/dynamic_ruleset/roundstart/bloodsucker/execute()
+	for(var/datum/mind/candidate_minds as anything in assigned)
+		if(!candidate_minds.make_bloodsucker())
+			message_admins("[ADMIN_LOOKUPFLW(candidate_minds)] was selected by the [name] ruleset, but couldn't be made into a Bloodsucker.")
+			assigned -= candidate_minds
+			continue
+		GLOB.pre_setup_antags -= candidate_minds
+		candidate_minds.special_role = ROLE_BLOODSUCKER
+	return TRUE

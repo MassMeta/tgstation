@@ -360,6 +360,18 @@
 	admin_notes = "Choo choo motherfucker!"
 	credit_cost = CARGO_CRATE_VALUE * 2
 
+/datum/map_template/shuttle/emergency/helio
+	suffix = "helio"
+	name = "Helio Station Emergency Shuttle"
+	credit_cost = CARGO_CRATE_VALUE * 4
+	description = "For when you're not quite ready to say goodbye to your home station. May cause damage to smaller stations."
+
+/datum/map_template/shuttle/emergency/cps
+	suffix = "cps"
+	name = "XXL Limitless Shuttle"
+	credit_cost = CARGO_CRATE_VALUE * 30
+	description = "We found this stray shuttle drifting powerless and depressurized in some mothic sector, so we just fixed some systems, refilled gas storage and welded NT cockpit part to it. Important note: try to not release plasma at least for first five minutes."
+
 /datum/map_template/shuttle/emergency/cere
 	suffix = "cere"
 	name = "Cere Station Emergency Shuttle"
@@ -479,6 +491,13 @@
 	description = "A large shuttle, covered in flora and comfortable resting areas. The perfect way to end a peaceful shift"
 	admin_notes = "it's pretty big, and comfy. Be careful when placing it down!"
 	credit_cost = CARGO_CRATE_VALUE * 25
+
+/datum/map_template/shuttle/emergency/ragecage
+	suffix = "ragecage"
+	name = "Rage-Cage Victimizing Evacuation System"
+	description = "Ever wanted to beat someone up while getting beat up yourself? Introducing the RVES, a shuttle whose interior is mostly taken up by its brutal ragecage."
+	admin_notes = "Shuttle console is in the middle of the ragecage, contains bats and other makeshift weapons and electrified grilles. Does not have a brig."
+	credit_cost = CARGO_CRATE_VALUE * 18
 
 /datum/map_template/shuttle/ferry/base
 	suffix = "base"
@@ -648,6 +667,10 @@
 /datum/map_template/shuttle/cargo/delta
 	suffix = "delta"
 	name = "cargo ferry (Delta)"
+
+/datum/map_template/shuttle/cargo/helio
+	suffix = "helio"
+	name = "cargo ferry (Helio)"
 
 /datum/map_template/shuttle/mining/delta
 	suffix = "delta"

@@ -1,0 +1,5 @@
+author: "SuperSlayer0"
+delete-after: True
+changes:
+  - rscadd: "Standard модуль для киборгов"
+  - bugfix: "Пофикшен баг с отсутствием батарейки у оболочки ИИ"

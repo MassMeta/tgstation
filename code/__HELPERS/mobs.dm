@@ -59,6 +59,12 @@
 	return pick(GLOB.backpacklist)
 
 /proc/random_features()
+	if(!GLOB.eyes_beefman.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/beef/eyes, GLOB.eyes_beefman)
+	if(!GLOB.mouths_beefman.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/beef/mouth, GLOB.mouths_beefman)
+	if(!GLOB.body_markings_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/body_markings, GLOB.body_markings_list)
 	if(!GLOB.tails_list.len)
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/, GLOB.tails_list,  add_blank = TRUE)
 	if(!GLOB.tails_list_human.len)
@@ -164,6 +170,13 @@
 /proc/random_unique_moth_name(attempts_to_find_unique_name=10)
 	for(var/i in 1 to attempts_to_find_unique_name)
 		. = capitalize(pick(GLOB.moth_first)) + " " + capitalize(pick(GLOB.moth_last))
+
+		if(!findname(.))
+			break
+
+/proc/random_unique_beefman_name(attempts_to_find_unique_name = 10)
+	for(var/i in 1 to attempts_to_find_unique_name)
+		. = capitalize(beefman_name())
 
 		if(!findname(.))
 			break
@@ -533,7 +546,7 @@ GLOBAL_LIST_EMPTY(species_list)
 	var/mob/living/silicon/ai/selected
 	var/list/active = active_ais(FALSE, z)
 	for(var/mob/living/silicon/ai/A in active)
-		if(!selected || (selected.connected_robots.len > A.connected_robots.len))
+		if((!selected || (selected.connected_robots.len > A.connected_robots.len)) && !is_servant_of_ratvar(A))
 			selected = A
 
 	return selected

@@ -76,7 +76,7 @@
 			new /obj/item/ammo_box/a357(src) // 4tc
 			new /obj/item/ammo_box/a357(src)
 			new /obj/item/storage/belt/holster/chameleon(src) // 1 tc
-			new /obj/item/card/emag/doorjack(src) // 3 tc replaced the emag with the doorjack
+			new /obj/item/card/emag(src) // 6 tc
 			new /obj/item/grenade/c4(src) // 1 tc
 			new /obj/item/clothing/gloves/latex/nitrile(src) // ~1 tc for whole outfit
 			new /obj/item/clothing/mask/gas/clown_hat(src)
@@ -94,7 +94,7 @@
 		if(KIT_MURDER)
 			new /obj/item/melee/energy/sword/saber(src) // 8 tc
 			new /obj/item/clothing/glasses/thermal/syndi(src) // 4 tc
-			new /obj/item/card/emag/doorjack(src) // 3 tc
+			new /obj/item/card/emag(src) // 6 tc
 			new /obj/item/clothing/shoes/chameleon/noslip(src) // 2 tc
 			new /obj/item/encryptionkey/syndicate(src) // 2 tc
 			new /obj/item/grenade/syndieminibomb(src) // 6 tc
@@ -108,8 +108,7 @@
 
 		if(KIT_HACKER) //L-L--LOOK AT YOU, HACKER
 			new /obj/item/ai_module/syndicate(src) // 4 tc
-			new /obj/item/card/emag(src) // 4 tc
-			new /obj/item/card/emag/doorjack(src) // 3 tc
+			new /obj/item/card/emag(src) // 6 tc
 			new /obj/item/encryptionkey/binary(src) // 5 tc
 			new /obj/item/ai_module/toy_ai(src) // ~6 tc
 			new /obj/item/multitool/ai_detect(src) // 1 tc
@@ -122,7 +121,7 @@
 			new /obj/item/sbeacondrop(src) // 10 tc
 			new /obj/item/clothing/suit/space/syndicate/black/red(src)
 			new /obj/item/clothing/head/helmet/space/syndicate/black/red(src)
-			new /obj/item/card/emag(src) // 4 tc
+			new /obj/item/card/emag(src) // 6 tc
 			new /obj/item/storage/toolbox/syndicate(src) // 1 tc
 			new /obj/item/card/id/advanced/mining(src)
 			new /obj/item/stack/spacecash/c10000(src) // this is technically 10 tc but not really
@@ -157,8 +156,9 @@
 			new /obj/item/ammo_box/magazine/m12g(src) // 2 tc
 			new /obj/item/grenade/c4 (src) // 1 tc
 			new /obj/item/grenade/c4 (src) // 1 tc
-			new /obj/item/card/emag(src) // 4 tc
-			new /obj/item/card/emag/doorjack(src) // 3 tc
+			new /obj/item/grenade/c4 (src) // 1 tc
+			new /obj/item/card/emag(src) // 6 tc
+
 
 /obj/item/storage/box/syndicate/bundle_b/PopulateContents()
 	switch (pick_weight(list(
@@ -194,7 +194,7 @@
 			new /obj/item/storage/belt/chameleon(src) // worth some fraction of a tc
 			new /obj/item/chameleon(src) // 7 tc
 			new /obj/item/card/id/advanced/chameleon(src) // 2 tc
-			new /obj/item/card/emag/doorjack(src) // 3 tc
+			new /obj/item/card/emag(src) // 6 tc
 			new /obj/item/book/granter/action/spell/smoke(src) // ninja smoke bomb. 1 tc
 			new /obj/item/clothing/shoes/bhop(src) // mining item, lets you jump at people, at least 2 tc
 
@@ -263,8 +263,7 @@
 /obj/item/storage/toolbox/emergency/old/ancientbundle/ //So the subtype works
 
 /obj/item/storage/toolbox/emergency/old/ancientbundle/PopulateContents()
-	new /obj/item/card/emag(src) // 4 tc
-	new /obj/item/card/emag/doorjack(src) //emag used to do both. 3 tc
+	new /obj/item/card/emag(src) // 6 tc
 	new /obj/item/pen/sleepy(src) // 4 tc
 	new /obj/item/reagent_containers/pill/cyanide(src)
 	new /obj/item/chameleon(src) //its not the original cloaking device, but it will do. 8 tc
@@ -272,11 +271,6 @@
 	new /obj/item/implanter/freedom(src) // 5 tc
 	new /obj/item/stack/telecrystal(src) //The failsafe/self destruct isn't an item we can physically include in the kit, but 1 TC is technically enough to buy the equivalent.
 
-/obj/item/storage/box/syndicate/contract_kit
-	name = "Contract Kit"
-	desc = "Supplied to Syndicate contractors."
-	icon_state = "syndiebox"
-	illustration = "writing_syndie"
 
 /obj/item/storage/box/syndicate/contractor_loadout
 	name = "Standard Loadout"
@@ -329,11 +323,73 @@
 			<p>Good luck agent. You can burn this document with the supplied lighter.</p>"}
 	return ..()
 
-/obj/item/storage/box/syndie_kit
-	name = "box"
-	desc = "A sleek, sturdy box."
-	icon_state = "syndiebox"
-	illustration = "writing_syndie"
+/obj/item/storage/box/syndicate/contractor_loadout/PopulateContents()
+	new /obj/item/clothing/head/helmet/space/syndicate/contract(src)
+	new /obj/item/clothing/suit/space/syndicate/contract(src)
+	new /obj/item/clothing/under/chameleon(src)
+	new /obj/item/clothing/mask/chameleon(src)
+	new /obj/item/storage/fancy/cigarettes/cigpack_syndicate(src)
+	new /obj/item/card/id/advanced/chameleon(src)
+	new /obj/item/lighter(src)
+
+/obj/item/storage/box/syndicate/contract_kit/PopulateContents()
+	new /obj/item/modular_computer/pda/contract_uplink(src)
+	new /obj/item/storage/box/syndicate/contractor_loadout(src)
+	new /obj/item/melee/baton/telescopic/contractor_baton(src)
+
+	// All about 4 TC or less - some nukeops only items, but fit nicely to the theme.
+	var/list/item_list = list(
+		/obj/item/storage/backpack/duffelbag/syndie/x4,
+		/obj/item/storage/box/syndie_kit/throwing_weapons,
+		/obj/item/gun/syringe/syndicate,
+		/obj/item/pen/edagger,
+		/obj/item/pen/sleepy,
+		/obj/item/flashlight/emp,
+		/obj/item/reagent_containers/syringe/mulligan,
+		/obj/item/clothing/shoes/chameleon/noslip,
+		/obj/item/encryptionkey/syndicate,
+		/obj/item/clothing/glasses/thermal/syndi,
+		/obj/item/slimepotion/slime/sentience/nuclear,
+		/obj/item/storage/box/syndie_kit/imp_radio,
+		/obj/item/storage/box/syndie_kit/imp_uplink,
+		/obj/item/clothing/gloves/krav_maga/combatglovesplus,
+		/obj/item/gun/ballistic/automatic/c20r/toy/unrestricted/riot,
+		/obj/item/reagent_containers/hypospray/medipen/stimulants,
+		/obj/item/storage/box/syndie_kit/imp_freedom,
+		/obj/item/toy/eightball/haunted
+	)
+
+	var/obj/item1 = pick_n_take(item_list)
+	var/obj/item2 = pick_n_take(item_list)
+	var/obj/item3 = pick_n_take(item_list)
+
+	// Create two, non repeat items from the list.
+	new item1(src)
+	new item2(src)
+	new item3(src)
+
+	// Paper guide
+	new /obj/item/paper/contractor_guide(src)
+
+
+/obj/item/modular_computer/pda/contract_uplink
+	name = "nuclear pda"
+	device_theme = PDA_THEME_SYNDICATE
+	comp_light_luminosity = 6.3 //matching a flashlight
+	light_color = COLOR_RED
+	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
+	greyscale_colors = "#a80001#5C070F#000000"
+	long_ranged = TRUE
+	starting_programs = list(
+		/datum/computer_file/program/contract_uplink,
+	)
+
+/obj/item/modular_computer/pda/contract_uplink/Initialize(mapload)
+	. = ..()
+	emag_act(forced = TRUE)
+	var/datum/computer_file/program/messenger/msg = locate() in stored_files
+	if(msg)
+		msg.invisible = TRUE
 
 /obj/item/storage/box/syndie_kit/origami_bundle
 	name = "origami kit"
@@ -619,6 +675,29 @@
 	for(var/i in implants)
 		group.register(i)
 	desc += " The implants are registered to the \"[group.name]\" group."
+
+/obj/item/storage/box/syndie_kit/c4
+
+/obj/item/storage/box/syndie_kit/c4/PopulateContents()
+	new /obj/item/grenade/c4 (src)
+	new /obj/item/grenade/c4 (src)
+	new /obj/item/grenade/c4 (src)
+
+/obj/item/storage/box/syndie_kit/syndi_keys
+
+/obj/item/storage/box/syndie_kit/syndi_keys/PopulateContents()
+	new /obj/item/encryptionkey/syndicate
+	new /obj/item/encryptionkey/syndicate
+
+/obj/item/storage/box/syndie_kit/armstrong
+	name = "\improper Brad Armstrong Family Style Karate Kit"
+	desc = "A kit with the necessary tools to become the best karate master on the planet!\
+	Contains a paper letting you know how to fight. \
+	The only cost is your right to not suck at parenting."
+
+/obj/item/storage/box/syndie_kit/armstrong/PopulateContents()
+	new /obj/item/armstrong_scroll(src)
+	new /obj/item/paper/armstrong_tutorial(src)
 
 /obj/item/storage/box/syndie_kit/stickers
 	name = "sticker kit"

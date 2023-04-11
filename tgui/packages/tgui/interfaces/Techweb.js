@@ -75,6 +75,7 @@ const useRemappedBackend = (context) => {
 
 const abbreviations = {
   'General Research': 'Gen. Res.',
+  'Nanite Research': 'Nanite Res.',
 };
 const abbreviateName = (name) => abbreviations[name] ?? name;
 

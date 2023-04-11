@@ -58,7 +58,7 @@
 /obj/item/organ/internal/cyberimp/chest/reviver/on_life(delta_time, times_fired)
 	if(reviving)
 		switch(owner.stat)
-			if(UNCONSCIOUS, HARD_CRIT)
+			if(UNCONSCIOUS, HARD_CRIT, SOFT_CRIT)
 				addtimer(CALLBACK(src, PROC_REF(heal)), 3 SECONDS)
 			else
 				COOLDOWN_START(src, reviver_cooldown, revive_cost)
@@ -105,7 +105,7 @@
 		if(human_owner.stat != DEAD && prob(50 / severity) && human_owner.can_heartattack())
 			human_owner.set_heartattack(TRUE)
 			to_chat(human_owner, span_userdanger("You feel a horrible agony in your chest!"))
-			addtimer(CALLBACK(src, PROC_REF(undo_heart_attack)), 600 / severity)
+			addtimer(CALLBACK(src, PROC_REF(undo_heart_attack)), (10 SECONDS) / severity)
 
 /obj/item/organ/internal/cyberimp/chest/reviver/proc/undo_heart_attack()
 	var/mob/living/carbon/human/human_owner = owner

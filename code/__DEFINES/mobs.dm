@@ -96,6 +96,7 @@
 // Defines for Species IDs. Used to refer to the name of a species, for things like bodypart names or species preferences.
 #define SPECIES_ABDUCTOR "abductor"
 #define SPECIES_ANDROID "android"
+#define SPECIES_BEEFMAN "beefman"
 #define SPECIES_DULLAHAN "dullahan"
 #define SPECIES_ETHEREAL "ethereal"
 #define SPECIES_FELINE "felinid"
@@ -386,6 +387,7 @@
 #define INCORPOREAL_MOVE_BASIC 1 /// normal movement, see: [/mob/living/var/incorporeal_move]
 #define INCORPOREAL_MOVE_SHADOW 2 /// leaves a trail of shadows
 #define INCORPOREAL_MOVE_JAUNT 3 /// is blocked by holy water/salt
+#define INCORPOREAL_MOVE_EMINENCE 4 //! same as jaunt, but lets eminence pass clockwalls
 
 #define SHADOW_SPECIES_LIGHT_THRESHOLD 0.2
 
@@ -816,6 +818,7 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define VOMIT_TOXIC 1
 /// The mob will vomit a purple color
 #define VOMIT_PURPLE 2
+#define VOMIT_NANITE 3
 
 /// Possible value of [/atom/movable/buckle_lying]. If set to a different (positive-or-zero) value than this, the buckling thing will force a lying angle on the buckled.
 #define NO_BUCKLE_LYING -1
@@ -908,3 +911,28 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define NO_OBSERVED_ACTIONS (1<<1)
 /// Flag which stops you from attacking while observed
 #define NO_OBSERVED_ATTACKS (1<<2)
+
+//Slime transformative extract effects
+#define SLIME_EFFECT_DEFAULT		(1<<0)
+#define SLIME_EFFECT_GREY			(1<<1)
+#define SLIME_EFFECT_ORANGE			(1<<2)
+#define SLIME_EFFECT_PURPLE			(1<<3)
+#define SLIME_EFFECT_BLUE			(1<<4)
+#define SLIME_EFFECT_METAL			(1<<5)
+#define SLIME_EFFECT_YELLOW			(1<<6)
+#define SLIME_EFFECT_DARK_PURPLE	(1<<7)
+#define SLIME_EFFECT_DARK_BLUE		(1<<8)
+#define SLIME_EFFECT_SILVER			(1<<9)
+#define SLIME_EFFECT_BLUESPACE		(1<<10)
+#define SLIME_EFFECT_SEPIA			(1<<11)
+#define SLIME_EFFECT_CERULEAN		(1<<12)
+#define SLIME_EFFECT_PYRITE			(1<<13)
+#define SLIME_EFFECT_RED			(1<<14)
+#define SLIME_EFFECT_GREEN			(1<<15)
+#define SLIME_EFFECT_PINK			(1<<16)
+#define SLIME_EFFECT_GOLD			(1<<17)
+#define SLIME_EFFECT_OIL			(1<<18)
+#define SLIME_EFFECT_BLACK			(1<<19)
+#define SLIME_EFFECT_LIGHT_PINK		(1<<20)
+#define SLIME_EFFECT_ADAMANTINE		(1<<21)
+#define SLIME_EFFECT_RAINBOW		(1<<22)

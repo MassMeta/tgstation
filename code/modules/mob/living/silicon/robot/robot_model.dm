@@ -29,6 +29,7 @@
 	var/list/basic_modules = list()
 	///Paths of modules to be created on emagging
 	var/list/emag_modules = list()
+	var/list/ratvar_modules = list() //ditto ditto
 	///Modules not inherent to the robot configuration
 	var/list/added_modules = list()
 	///Storage types of the model
@@ -64,10 +65,15 @@
 		var/obj/item/new_module = new path(src)
 		emag_modules += new_module
 		emag_modules -= path
+	for(var/i in ratvar_modules)
+		var/obj/item/I = new i(src)
+		ratvar_modules += I
+		ratvar_modules -= i
 
 /obj/item/robot_model/Destroy()
 	basic_modules.Cut()
 	emag_modules.Cut()
+	ratvar_modules.Cut()
 	modules.Cut()
 	added_modules.Cut()
 	storages.Cut()
@@ -113,6 +119,7 @@
 	basic_modules -= removed_module
 	modules -= removed_module
 	emag_modules -= removed_module
+	ratvar_modules -= removed_module
 	added_modules -= removed_module
 	rebuild_modules()
 	if(delete_after)
@@ -131,6 +138,11 @@
 	if(cyborg.emagged)
 		for(var/obj/item/module in emag_modules)
 			add_module(module, FALSE, FALSE)
+	if(is_servant_of_ratvar(cyborg) && !cyborg.ratvar)	//It just works :^)
+		cyborg.SetRatvar(TRUE, FALSE)
+	if(cyborg.ratvar)
+		for(var/obj/item/I in ratvar_modules)
+			add_module(I, FALSE, FALSE)
 	for(var/obj/item/module in added_modules)
 		add_module(module, FALSE, FALSE)
 	for(var/module in held_modules)
@@ -275,6 +287,43 @@
 		return FALSE
 	return TRUE
 
+// --------------------- Standart
+/obj/item/robot_model/standard
+	name = "Standard" 
+	basic_modules = list(
+		/obj/item/assembly/flash/cyborg,
+		/obj/item/reagent_containers/borghypo/epi,
+		/obj/item/reagent_containers/borghypo/borgshaker/standard,
+		/obj/item/healthanalyzer,
+		/obj/item/weldingtool/largetank/cyborg,
+		/obj/item/wrench/cyborg,
+		/obj/item/crowbar/cyborg,
+		/obj/item/stack/sheet/iron,
+		/obj/item/stack/rods/cyborg,
+		/obj/item/stack/tile/iron/base/cyborg,
+		/obj/item/extinguisher,
+		/obj/item/pickaxe,
+		/obj/item/t_scanner/adv_mining_scanner,
+		/obj/item/restraints/handcuffs/cable/zipties,
+		/obj/item/soap/nanotrasen/cyborg,
+		/obj/item/borg/cyborghug)
+	emag_modules = list(/obj/item/melee/energy/sword/cyborg)
+	ratvar_modules = list(
+		/obj/item/clock_module/abscond,
+		/obj/item/clockwork/weapon/brass_spear,
+		/obj/item/clock_module/sigil_submission,
+		/obj/item/clock_module/kindle,)
+	model_select_icon = "standard"
+	hat_offset = -3
+
+/obj/item/robot_model/standard/respawn_consumable(mob/living/silicon/robot/cyborg, coeff = 1)
+	..()
+	var/obj/item/soap/nanotrasen/cyborg/soap = locate(/obj/item/soap/nanotrasen/cyborg) in basic_modules
+	if(!soap)
+		return
+	if(soap.uses < initial(soap.uses))
+		soap.uses += ROUND_UP(initial(soap.uses) / 100) * coeff
+
 /obj/item/robot_model/clown
 	name = "Clown"
 	basic_modules = list(
@@ -298,8 +347,11 @@
 	)
 	emag_modules = list(
 		/obj/item/reagent_containers/borghypo/clown/hacked,
-		/obj/item/reagent_containers/spray/waterflower/cyborg/hacked,
-	)
+		/obj/item/reagent_containers/spray/waterflower/cyborg/hacked)
+	ratvar_modules = list(
+		/obj/item/clock_module/abscond,
+		/obj/item/clock_module/vanguard,
+		/obj/item/clockwork/weapon/brass_battlehammer)	//honk
 	model_select_icon = "service"
 	cyborg_base_icon = "clown"
 	hat_offset = -2
@@ -339,9 +391,15 @@
 		/obj/item/stack/cable_coil,
 	)
 	radio_channels = list(RADIO_CHANNEL_ENGINEERING)
-	emag_modules = list(
-		/obj/item/borg/stun,
-	)
+	emag_modules = list(/obj/item/borg/stun)
+	ratvar_modules = list(
+		/obj/item/clock_module/abscond,
+		/obj/item/clock_module/ocular_warden,
+		/obj/item/clock_module/tinkerers_cache,
+		/obj/item/clock_module/stargazer,
+		/obj/item/clock_module/abstraction_crystal,
+		/obj/item/clockwork/replica_fabricator,
+		/obj/item/stack/sheet/bronze)
 	cyborg_base_icon = "engineer"
 	model_select_icon = "engineer"
 	model_traits = list(TRAIT_NEGATES_GRAVITY)
@@ -367,9 +425,12 @@
 		/obj/item/wirebrush,
 	)
 	radio_channels = list(RADIO_CHANNEL_SERVICE)
-	emag_modules = list(
-		/obj/item/reagent_containers/spray/cyborg_lube,
-	)
+	emag_modules = list(/obj/item/reagent_containers/spray/cyborg_lube)
+	ratvar_modules = list(
+		/obj/item/clock_module/abscond,
+		/obj/item/clock_module/sigil_submission,
+		/obj/item/clock_module/kindle,
+		/obj/item/clock_module/vanguard)
 	cyborg_base_icon = "janitor"
 	model_select_icon = "janitor"
 	hat_offset = -5
@@ -634,9 +695,12 @@
 		/obj/item/borg/lollipop,
 	)
 	radio_channels = list(RADIO_CHANNEL_MEDICAL)
-	emag_modules = list(
-		/obj/item/reagent_containers/borghypo/medical/hacked,
-	)
+	emag_modules = list(/obj/item/reagent_containers/borghypo/medical/hacked)
+	ratvar_modules = list(
+		/obj/item/clock_module/abscond,
+		/obj/item/clock_module/sentinels_compromise,
+		/obj/item/clock_module/prosperity_prism,
+		/obj/item/clock_module/vanguard)
 	cyborg_base_icon = "medical"
 	model_select_icon = "medical"
 	model_traits = list(TRAIT_PUSHIMMUNE)
@@ -663,9 +727,12 @@
 		/obj/item/stack/marker_beacon,
 	)
 	radio_channels = list(RADIO_CHANNEL_SCIENCE, RADIO_CHANNEL_SUPPLY)
-	emag_modules = list(
-		/obj/item/borg/stun,
-	)
+	emag_modules = list(/obj/item/borg/stun)
+	ratvar_modules = list(
+		/obj/item/clock_module/abscond,
+		/obj/item/clock_module/vanguard,
+		/obj/item/clock_module/ocular_warden,
+		/obj/item/clock_module/sentinels_compromise)
 	cyborg_base_icon = "miner"
 	model_select_icon = "miner"
 	hat_offset = 0
@@ -695,11 +762,13 @@
 		/obj/item/holosign_creator/cyborg,
 		/obj/item/borg/cyborghug/peacekeeper,
 		/obj/item/extinguisher,
-		/obj/item/borg/projectile_dampen,
-	)
-	emag_modules = list(
-		/obj/item/reagent_containers/borghypo/peace/hacked,
-	)
+		/obj/item/borg/projectile_dampen)
+	emag_modules = list(/obj/item/reagent_containers/borghypo/peace/hacked)
+	ratvar_modules = list(
+		/obj/item/clock_module/abscond,
+		/obj/item/clock_module/vanguard,
+		/obj/item/clock_module/kindle,
+		/obj/item/clock_module/sigil_submission)
 	cyborg_base_icon = "peace"
 	model_select_icon = "standard"
 	model_traits = list(TRAIT_PUSHIMMUNE)
@@ -721,9 +790,12 @@
 		/obj/item/extinguisher/mini,
 	)
 	radio_channels = list(RADIO_CHANNEL_SECURITY)
-	emag_modules = list(
-		/obj/item/gun/energy/laser/cyborg,
-	)
+	emag_modules = list(/obj/item/gun/energy/laser/cyborg)
+	ratvar_modules = list(
+		/obj/item/clock_module/abscond,
+		/obj/item/clockwork/weapon/brass_spear,
+		/obj/item/clock_module/ocular_warden,
+		/obj/item/clock_module/vanguard)
 	cyborg_base_icon = "sec"
 	model_select_icon = "security"
 	model_traits = list(TRAIT_PUSHIMMUNE)
@@ -769,9 +841,14 @@
 		/obj/item/chisel,
 	)
 	radio_channels = list(RADIO_CHANNEL_SERVICE)
-	emag_modules = list(
-		/obj/item/reagent_containers/borghypo/borgshaker/hacked,
-	)
+	emag_modules = list(/obj/item/reagent_containers/borghypo/borgshaker/hacked)
+	ratvar_modules = list(
+		/obj/item/clock_module/abscond,
+		/obj/item/clock_module/vanguard,
+		/obj/item/clock_module/sigil_submission,
+		/obj/item/clock_module/kindle,
+		/obj/item/clock_module/sentinels_compromise,
+		/obj/item/clockwork/replica_fabricator)
 	cyborg_base_icon = "service_m" // display as butlerborg for radial model selection
 	model_select_icon = "service"
 	special_light_key = "service"
@@ -800,8 +877,12 @@
 		/obj/item/card/emag,
 		/obj/item/crowbar/cyborg,
 		/obj/item/extinguisher/mini,
-		/obj/item/pinpointer/syndicate_cyborg,
-	)
+		/obj/item/pinpointer/syndicate_cyborg)
+	ratvar_modules = list(
+		/obj/item/clock_module/abscond,
+		/obj/item/clockwork/weapon/brass_spear,
+		/obj/item/clock_module/ocular_warden,
+		/obj/item/clock_module/vanguard)
 	cyborg_base_icon = "synd_sec"
 	model_select_icon = "malf"
 	model_traits = list(TRAIT_PUSHIMMUNE)
@@ -836,9 +917,12 @@
 		/obj/item/extinguisher/mini,
 		/obj/item/pinpointer/syndicate_cyborg,
 		/obj/item/stack/medical/gauze,
-		/obj/item/gun/medbeam,
-		/obj/item/borg/apparatus/organ_storage,
-	)
+		/obj/item/borg/apparatus/organ_storage)
+	ratvar_modules = list(
+		/obj/item/clock_module/abscond,
+		/obj/item/clock_module/sentinels_compromise,
+		/obj/item/clock_module/prosperity_prism,
+		/obj/item/clock_module/vanguard)
 	cyborg_base_icon = "synd_medical"
 	model_select_icon = "malf"
 	model_traits = list(TRAIT_PUSHIMMUNE)
@@ -870,7 +954,15 @@
 		/obj/item/pinpointer/syndicate_cyborg,
 		/obj/item/borg_chameleon,
 		/obj/item/card/emag,
-	)
+		)
+	ratvar_modules = list(
+		/obj/item/clock_module/abscond,
+		/obj/item/clock_module/ocular_warden,
+		/obj/item/clock_module/tinkerers_cache,
+		/obj/item/clock_module/stargazer,
+		/obj/item/clock_module/abstraction_crystal,
+		/obj/item/clockwork/replica_fabricator,
+		/obj/item/stack/sheet/bronze)
 	cyborg_base_icon = "synd_engi"
 	model_select_icon = "malf"
 	model_traits = list(TRAIT_PUSHIMMUNE, TRAIT_NEGATES_GRAVITY)
@@ -881,8 +973,7 @@
 	name = "Highlander"
 	basic_modules = list(
 		/obj/item/claymore/highlander/robot,
-		/obj/item/pinpointer/nuke,
-	)
+		/obj/item/pinpointer/nuke,)
 	model_select_icon = "kilt"
 	cyborg_base_icon = "kilt"
 	hat_offset = -2
@@ -948,6 +1039,9 @@
 
 /datum/robot_energy_storage/glass
 	name = "Glass Synthesizer"
+
+/datum/robot_energy_storage/bronze
+	name = "Brass Synthesizer"
 
 /datum/robot_energy_storage/wire
 	max_energy = 50

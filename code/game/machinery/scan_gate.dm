@@ -1,5 +1,6 @@
 #define SCANGATE_NONE "Off"
 #define SCANGATE_MINDSHIELD "Mindshield"
+#define SCANGATE_NANITES "Nanites"
 #define SCANGATE_DISEASE "Disease"
 #define SCANGATE_GUNS "Guns"
 #define SCANGATE_WANTED "Wanted"
@@ -7,6 +8,7 @@
 #define SCANGATE_NUTRITION "Nutrition"
 
 #define SCANGATE_HUMAN "human"
+#define SCANGATE_BEEFMAN "beefman"
 #define SCANGATE_LIZARD "lizard"
 #define SCANGATE_FELINID "felinid"
 #define SCANGATE_FLY "fly"
@@ -33,6 +35,8 @@
 	var/scangate_mode = SCANGATE_NONE
 	///Is searching for a disease, what severity is enough to trigger the gate?
 	var/disease_threshold = DISEASE_SEVERITY_MINOR
+	///If scanning for a nanite strain, what cloud is it looking for?
+	var/nanite_cloud = 1
 	///If scanning for a specific species, what species is it looking for?
 	var/detect_species = SCANGATE_HUMAN
 	///Flips all scan results for inverse scanning. Signals if scan returns false.
@@ -129,6 +133,14 @@
 		if(SCANGATE_MINDSHIELD)
 			if(HAS_TRAIT(M, TRAIT_MINDSHIELD))
 				beep = TRUE
+		if(SCANGATE_NANITES)
+			if(SEND_SIGNAL(M, COMSIG_HAS_NANITES))
+				if(nanite_cloud)
+					var/datum/component/nanites/nanites = M.GetComponent(/datum/component/nanites)
+					if(nanites && nanites.cloud_id == nanite_cloud)
+						beep = TRUE
+				else
+					beep = TRUE
 		if(SCANGATE_DISEASE)
 			if(iscarbon(M))
 				var/mob/living/carbon/C = M
@@ -139,6 +151,8 @@
 				var/mob/living/carbon/human/H = M
 				var/datum/species/scan_species = /datum/species/human
 				switch(detect_species)
+					if(SCANGATE_BEEFMAN)
+						scan_species = /datum/species/beefman
 					if(SCANGATE_LIZARD)
 						scan_species = /datum/species/lizard
 					if(SCANGATE_FLY)
@@ -218,6 +232,7 @@
 	data["locked"] = locked
 	data["scan_mode"] = scangate_mode
 	data["reverse"] = reverse
+	data["nanite_cloud"] = nanite_cloud
 	data["disease_threshold"] = disease_threshold
 	data["target_species"] = detect_species
 	data["target_nutrition"] = detect_nutrition
@@ -244,6 +259,10 @@
 			var/new_threshold = params["new_threshold"]
 			disease_threshold = new_threshold
 			. = TRUE
+		if("set_nanite_cloud")
+			var/new_cloud = text2num(params["new_cloud"])
+			nanite_cloud = clamp(round(new_cloud, 1), 1, 100)
+			. = TRUE
 		//Some species are not scannable, like abductors (too unknown), androids (too artificial) or skeletons (too magic)
 		if("set_target_species")
 			var/new_species = params["new_species"]
@@ -266,12 +285,14 @@
 #undef SCANGATE_NONE
 #undef SCANGATE_MINDSHIELD
 #undef SCANGATE_DISEASE
+#undef SCANGATE_NANITES
 #undef SCANGATE_GUNS
 #undef SCANGATE_WANTED
 #undef SCANGATE_SPECIES
 #undef SCANGATE_NUTRITION
 
 #undef SCANGATE_HUMAN
+#undef SCANGATE_BEEFMAN
 #undef SCANGATE_LIZARD
 #undef SCANGATE_FELINID
 #undef SCANGATE_FLY

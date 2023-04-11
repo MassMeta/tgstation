@@ -19,6 +19,10 @@ const TARGET_SPECIES_LIST = [
     value: 'human',
   },
   {
+    name: 'Beefman',
+    value: 'beefman',
+  },
+  {
     name: 'Lizardperson',
     value: 'lizard',
   },
@@ -110,6 +114,10 @@ const SCANNER_GATE_ROUTES = {
     title: 'Scanner Mode: Nutrition',
     component: () => ScannerGateNutrition,
   },
+  Nanites: {
+    title: 'Scanner Mode: Nanites',
+    component: () => ScannerGateNanites,
+  },
 };
 
 const ScannerGateControl = (props, context) => {
@@ -165,6 +173,35 @@ const ScannerGateOff = (props, context) => {
           onClick={() => act('set_mode', { new_mode: 'Nutrition' })}
         />
       </Box>
+    </>
+  );
+};
+
+const ScannerGateNanites = (props, context) => {
+  const { act, data } = useBackend(context);
+  const { reverse, nanite_cloud } = data;
+  return (
+    <>
+      <Box mb={2}>
+        Trigger if the person scanned {reverse ? 'does not have' : 'has'}
+        {' '}nanite cloud {nanite_cloud}.
+      </Box>
+      <Box mb={2}>
+        <LabeledList>
+          <LabeledList.Item label="Cloud ID">
+            <NumberInput
+              value={nanite_cloud}
+              width="65px"
+              minValue={1}
+              maxValue={100}
+              stepPixelSize={2}
+              onChange={(e, value) => act('set_nanite_cloud', {
+                new_cloud: value,
+              })} />
+          </LabeledList.Item>
+        </LabeledList>
+      </Box>
+      <ScannerGateMode />
     </>
   );
 };

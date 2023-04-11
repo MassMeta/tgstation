@@ -97,13 +97,6 @@
 	item = /obj/item/storage/belt/military
 	cost = 1
 
-/datum/uplink_item/device_tools/doorjack
-	name = "Airlock Authentication Override Card"
-	desc = "A specialized cryptographic sequencer specifically designed to override station airlock access codes. \
-			After hacking a certain number of airlocks, the device will require some time to recharge."
-	item = /obj/item/card/emag/doorjack
-	cost = 3
-
 /datum/uplink_item/device_tools/fakenucleardisk
 	name = "Decoy Nuclear Authentication Disk"
 	desc = "It's just a normal disk. Visually it's identical to the real deal, but it won't hold up under closer scrutiny by the Captain. \
@@ -197,9 +190,9 @@
 /datum/uplink_item/device_tools/emag
 	name = "Cryptographic Sequencer"
 	desc = "The cryptographic sequencer, electromagnetic card, or emag, is a small card that unlocks hidden functions \
-			in electronic devices, subverts intended functions, and easily breaks security mechanisms. Cannot be used to open airlocks."
+			in electronic devices, subverts intended functions, and easily breaks security mechanisms, including airlocks."
 	item = /obj/item/card/emag
-	cost = 4
+	cost = 6
 
 /datum/uplink_item/device_tools/stimpack
 	name = "Stimpack"
@@ -220,7 +213,6 @@
 	name = "Hacked AI Law Upload Module"
 	desc = "When used with an upload console, this module allows you to upload priority laws to an artificial intelligence. \
 			Be careful with wording, as artificial intelligences may look for loopholes to exploit."
-	progression_minimum = 30 MINUTES
 	item = /obj/item/ai_module/syndicate
 	cost = 4
 
@@ -242,7 +234,6 @@
 			active gravitational singularities or tesla balls towards it. This will not work when the engine is still \
 			in containment. Because of its size, it cannot be carried. Ordering this \
 			sends you a small beacon that will teleport the larger beacon to your location upon activation."
-	progression_minimum = 30 MINUTES
 	item = /obj/item/sbeacondrop
 	cost = 10
 	surplus = 0 // not while there isnt one on any station
@@ -253,6 +244,5 @@
 	desc = "When screwed to wiring attached to a power grid and activated, this large device lights up and places excessive \
 			load on the grid, causing a station-wide blackout. The sink is large and cannot be stored in most \
 			traditional bags and boxes. Caution: Will explode if the powernet contains sufficient amounts of energy."
-	progression_minimum = 30 MINUTES
 	item = /obj/item/powersink
 	cost = 11

@@ -270,6 +270,46 @@
 /obj/item/bodypart/arm/right/shadow/nightmare
 	bodypart_traits = list(TRAIT_CHUNKYFINGERS)
 
+///DARKSPAWN
+/obj/item/bodypart/head/darkspawn
+	biological_state = BIO_INORGANIC
+	limb_id = "darkspawn"
+	is_dimorphic = FALSE
+	should_draw_greyscale = FALSE
+	icon_static = 'icons/mob/species/darkspawn/darkspawn_parts.dmi'
+
+/obj/item/bodypart/chest/darkspawn
+	biological_state = BIO_INORGANIC
+	limb_id = "darkspawn"
+	is_dimorphic = FALSE
+	should_draw_greyscale = FALSE
+	icon_static = 'icons/mob/species/darkspawn/darkspawn_parts.dmi'
+	bodypart_traits = list(TRAIT_NO_JUMPSUIT)
+
+/obj/item/bodypart/arm/left/darkspawn
+	biological_state = BIO_INORGANIC
+	limb_id = "darkspawn"
+	should_draw_greyscale = FALSE
+	icon_static = 'icons/mob/species/darkspawn/darkspawn_parts.dmi'
+
+/obj/item/bodypart/arm/right/darkspawn
+	biological_state = BIO_INORGANIC
+	limb_id = "darkspawn"
+	should_draw_greyscale = FALSE
+	icon_static = 'icons/mob/species/darkspawn/darkspawn_parts.dmi'
+
+/obj/item/bodypart/leg/left/darkspawn
+	biological_state = BIO_INORGANIC
+	limb_id = "darkspawn"
+	should_draw_greyscale = FALSE
+	icon_static = 'icons/mob/species/darkspawn/darkspawn_parts.dmi'
+
+/obj/item/bodypart/leg/right/darkspawn
+	biological_state = BIO_INORGANIC
+	limb_id = "darkspawn"
+	should_draw_greyscale = FALSE
+	icon_static = 'icons/mob/species/darkspawn/darkspawn_parts.dmi'
+
 ///SKELETON
 /obj/item/bodypart/head/skeleton
 	biological_state = BIO_BONE
@@ -684,3 +724,36 @@
 	unarmed_damage_low = 0
 	unarmed_damage_high = 1
 	unarmed_stun_threshold = 2
+
+///CLOCKWORK GOLEM
+/obj/item/bodypart/arm/left/golem/clockwork
+	unarmed_attack_verb = "smash"
+	unarmed_attack_sound = 'sound/magic/clockwork/anima_fragment_attack.ogg'
+	limb_id = "clockgolem"
+
+/obj/item/bodypart/arm/right/golem/clockwork
+	unarmed_attack_verb = "smash"
+	unarmed_attack_sound = 'sound/magic/clockwork/anima_fragment_attack.ogg'
+	limb_id = "clockgolem"
+
+/obj/item/bodypart/leg/right/golem/clockwork
+	unarmed_attack_verb = "smash"
+	unarmed_attack_sound = 'sound/magic/clockwork/anima_fragment_attack.ogg'
+	limb_id = "clockgolem"
+
+/obj/item/bodypart/leg/left/golem/clockwork
+	unarmed_attack_verb = "smash"
+	unarmed_attack_sound = 'sound/magic/clockwork/anima_fragment_attack.ogg'
+	limb_id = "clockgolem"
+
+/obj/item/bodypart/chest/golem/clockwork
+	bodypart_traits = list(TRAIT_NO_JUMPSUIT)
+	limb_id = "clockgolem"
+	is_dimorphic = FALSE
+
+/obj/item/bodypart/chest/golem/clockwork/no_scrap
+	bodypart_traits = list()
+
+/obj/item/bodypart/head/golem/clockwork
+	limb_id = "clockgolem"
+	is_dimorphic = FALSE

@@ -779,3 +779,104 @@
 		'sound/effects/slosh.ogg' = 1,
 		'sound/effects/splat.ogg' = 2
 	)
+
+/obj/item/toy/plush/among //Shiptest begin, with our debut plushy
+	name = "amoung pequeño"
+	desc = "A little pill shaped guy, with a price tag of 3€."
+	icon = 'icons/obj/toys/plushes.dmi'
+	icon_state = "plushie_among"
+	attack_verb_continuous = list("kills","stabbs","shoots","slaps","stings", "ejects")
+	attack_verb_simple = list("kill","stab","shoot","slap","sting", "eject")
+	squeak_override = list('massmeta/sounds/misc/agoguskill.ogg')
+	var/random_among = TRUE //if the (among) uses random coloring
+	var/rare_among = 1 //chance for rare color variant
+
+
+	var/static/list/among_colors = list(\
+		"red" = "#c51111",
+		"blue" = "#123ed1",
+		"green" = "#117f2d",
+		"pink" = "#ed54ba",
+		"orange" = "#ef7d0d",
+		"yellow" = "#f5f557",
+		"black" = "#3f474e",
+		"white" = "#d6e0f0",
+		"purple" = "#6b2fbb",
+		"brown" = "#71491e",
+		"cyan" = "#39FEDD",
+		"lime" = "#4EEF38",
+	)
+	var/static/list/among_colors_rare = list(\
+		"puce" = "#CC8899",
+	)
+
+/obj/item/toy/plush/among/Initialize(mapload)
+	. = ..()
+	among_randomify(rare_among)
+
+/obj/item/toy/plush/among/proc/among_randomify(rare_among)
+	if(random_among)
+		var/among_color
+		if(prob(rare_among))
+			among_color = pick(among_colors_rare)
+			add_atom_colour(among_colors_rare[among_color], FIXED_COLOUR_PRIORITY)
+		else
+			among_color = pick(among_colors)
+			add_atom_colour(among_colors[among_color], FIXED_COLOUR_PRIORITY)
+		add_among_overlay()
+
+/obj/item/toy/plush/among/proc/add_among_overlay()
+	if(!random_among)
+		return
+	cut_overlays()
+	var/mutable_appearance/base_overlay_among = mutable_appearance(icon, "plushie_among_visor")
+	base_overlay_among.appearance_flags = RESET_COLOR
+	add_overlay(base_overlay_among)
+
+/obj/item/toy/plush/pig
+	name = "pig toy"
+	desc = "Captain Dementy! Bring the pigs! Marines demand pigs!."
+	icon = 'massmeta/icons/obj/pig.dmi'
+	lefthand_file ='massmeta/icons/mob/inhands/pig_lefthand.dmi'
+	righthand_file = 'massmeta/icons/mob/inhands/pig_righthand.dmi'
+	icon_state = "pig"
+	inhand_icon_state = "pig"
+	attack_verb_continuous = list("oinks", "grunts")
+	attack_verb_simple = list("oinks", "grunts")
+	squeak_override = list('massmeta/sounds/misc/khryu.ogg')
+
+/*/obj/item/toy/plush/pig/attack_self(mob/user)
+	if(world.time > last_hug_time)
+		user.visible_message(span_notice("[user] presses [src]! Oink! "), \
+							span_notice("You press [src]. Oink! "))
+		last_hug_time = world.time + 50 //5 second cooldown
+*/
+
+/obj/item/toy/plush/beefplushie
+	name = "beef plushie"
+	desc = "Made from real meat!"
+	icon = 'massmeta/icons/obj/beefplushie.dmi'
+	icon_state = "beefman"
+	squeak_override = list('sound/effects/meatslap.ogg'=1)
+
+//Do your cooldown changes here.
+#define BEEFPLUSHIE_COOLDOWN_TIME (1 MINUTES)
+
+/obj/item/toy/plush/beefplushie/living
+	desc = "It looks oddly alive. You feel like you should pet it."
+	COOLDOWN_DECLARE(beefplushie_cooldown)
+
+//When used in hand.
+/obj/item/toy/plush/beefplushie/living/attack_self(mob/user)
+	. = ..()
+	if(!COOLDOWN_FINISHED(src, beefplushie_cooldown))
+		balloon_alert(user, "not ready yet!")
+		return
+	balloon_alert(user, "producing meat")
+	if(!do_after(user, 2 SECONDS, target = src))
+		return
+	playsound(src, "sound/effects/splat.ogg", 50)
+	user.put_in_hands(new /obj/item/food/meat/slab)
+	COOLDOWN_START(src, beefplushie_cooldown, BEEFPLUSHIE_COOLDOWN_TIME)
+
+#undef BEEFPLUSHIE_COOLDOWN_TIME

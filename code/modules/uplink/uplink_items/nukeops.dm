@@ -55,6 +55,15 @@
 	surplus = 30
 	purchasable_from = UPLINK_NUKE_OPS
 
+/datum/uplink_item/dangerous/highfrequencyblade
+	name = "High Frequency Blade"
+	desc = "A sword reinforced by a powerful alternating current and resonating at extremely high vibration frequencies. \
+		This oscillation weakens the molecular bonds of anything it cuts, thereby increasing its cutting ability."
+	item = /obj/item/highfrequencyblade/nukie
+	cost = 20
+	surplus = 0
+	purchasable_from = UPLINK_NUKE_OPS
+
 /datum/uplink_item/dangerous/pie_cannon
 	name = "Banana Cream Pie Cannon"
 	desc = "A special pie cannon for a special clown, this gadget can hold up to 20 pies and automatically fabricates one every two seconds!"
@@ -628,6 +637,27 @@
 	desc = "An upgraded, elite version of the Syndicate MODsuit. It features fireproofing, and also \
 			provides the user with superior armor and mobility compared to the standard Syndicate MODsuit."
 	item = /obj/item/mod/control/pre_equipped/elite
+	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS
+
+/datum/uplink_item/suits/hardsuit/syndi_elite
+	name = "Elite Syndicate hardsuit"
+	desc = "An elite version of the syndicate hardsuit, with improved armour and fireproofing."
+	item = /obj/item/clothing/suit/space/hardsuit/syndi/elite
+	cost = 8
+	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS
+
+/datum/uplink_item/suits/hardsuit/syndi
+	name = "Blood-red hardsuit"
+	desc = "A dual-mode advanced hardsuit designed for work in special operations."
+	item = /obj/item/clothing/suit/space/hardsuit/syndi
+	cost = 4
+	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS
+
+/datum/uplink_item/suits/hardsuit/syndi_shielded
+	name = "Shielded hardsuit"
+	desc = "An advanced hardsuit with built in energy shielding."
+	item = /obj/item/clothing/suit/space/hardsuit/shielded/syndi
+	cost = 20
 	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS
 
 /datum/uplink_item/suits/energy_shield

@@ -783,6 +783,11 @@ GLOBAL_LIST_EMPTY(features_by_species)
 					accessory = GLOB.legs_list[source.dna.features["legs"]]
 				if("caps")
 					accessory = GLOB.caps_list[source.dna.features["caps"]]
+				if("beef_eyes")
+					if(source.get_organ_slot(ORGAN_SLOT_EYES)) // Only draw eyes if we got em
+						accessory = GLOB.eyes_beefman[source.dna.features["beef_eyes"]]
+				if("beef_mouth")
+					accessory = GLOB.mouths_beefman[source.dna.features["beef_mouth"]]
 
 			if(!accessory || accessory.icon_state == "none")
 				continue
@@ -1138,6 +1143,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 /datum/species/proc/help(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
 	if(SEND_SIGNAL(target, COMSIG_CARBON_PRE_HELP, user, attacker_style) & COMPONENT_BLOCK_HELP_ACT)
+		return TRUE
+
+	if(attacker_style?.help_act(user,target) == MARTIAL_ATTACK_SUCCESS)
 		return TRUE
 
 	if(target.body_position == STANDING_UP || target.appears_alive())

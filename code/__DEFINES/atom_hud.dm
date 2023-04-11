@@ -37,14 +37,16 @@
 #define GLAND_HUD "16"
 #define SENTIENT_DISEASE_HUD "17"
 #define AI_DETECT_HUD "18"
+#define NANITE_HUD "19"
+#define DIAG_NANITE_FULL_HUD "20"
 /// Displays launchpads' targeting reticle
-#define DIAG_LAUNCHPAD_HUD "19"
+#define DIAG_LAUNCHPAD_HUD "21"
 //for antag huds. these are used at the /mob level
-#define ANTAG_HUD "20"
+#define ANTAG_HUD "22"
 // for fans to identify pins
-#define FAN_HUD "21"
+#define FAN_HUD "23"
 /// Mech camera HUD
-#define DIAG_CAMERA_HUD "22"
+#define DIAG_CAMERA_HUD "24"
 
 //by default everything in the hud_list of an atom is an image
 //a value in hud_list with one of these will change that behavior

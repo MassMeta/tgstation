@@ -486,3 +486,270 @@
 	name = "Nest Vitalization"
 	desc = "The resin seems to pulsate around you. It seems to be sustaining your vital functions. You feel ill..."
 	icon_state = "nest_life"
+
+/datum/status_effect/miami
+	id = "miami"
+	tick_interval = 1
+	alert_type = /atom/movable/screen/alert/status_effect/miami
+	var/atom/cached_thrown_object
+	var/atom/movable/plane_master_controller/cached_game_plane_master_controller
+
+	var/elapsed_ticks = 0
+
+/datum/status_effect/miami/on_apply()
+	. = ..()
+	RegisterSignal(owner,COMSIG_LIVING_INTERACTED_WITH_DOOR,.proc/bust_open)
+	RegisterSignal(owner,COMSIG_CARBON_THROW,.proc/throw_relay)
+	RegisterSignal(owner,COMSIG_MOB_ITEM_AFTERATTACK,.proc/basically_curbstomp)
+	RegisterSignal(owner.reagents, COMSIG_REAGENTS_ADD_REAGENT,.proc/react_to_meds)
+
+	cached_game_plane_master_controller = owner.hud_used.plane_master_controllers[PLANE_MASTERS_GAME]
+
+	cached_game_plane_master_controller.add_filter("miami_blur",2,angular_blur_filter(0,0,0.25))
+
+/datum/status_effect/miami/tick()
+	. = ..()
+	elapsed_ticks++
+	cached_game_plane_master_controller.remove_filter("miami")
+	var/list/color_matrix = list(rgb(max(sin(elapsed_ticks)*220,120),0,0) , rgb(0,max(sin(elapsed_ticks + 120)*220,120),0) , rgb(0,0,max(sin(elapsed_ticks - 120)*220,120)))
+	cached_game_plane_master_controller.add_filter("miami",1,color_matrix_filter(color_matrix))
+	//похуй
+	//owner.hallucination = min(owner.hallucination + 1 , 12)
+
+/datum/status_effect/miami/on_remove()
+	cached_game_plane_master_controller.remove_filter("miami_blur")
+	cached_game_plane_master_controller.remove_filter("miami")
+	SEND_SIGNAL(owner,COMSIG_MIAMI_CURED_DISORDER)
+	return ..()
+
+/datum/status_effect/miami/proc/bust_open(datum/source,obj/machinery/door/door,destination_state)
+	SIGNAL_HANDLER
+
+	owner.do_attack_animation(door, no_effect = TRUE)
+
+	var/direction = get_dir(owner,door)
+
+	var/turf/turf_in_direction = get_step(door,direction)
+
+	for(var/mob/living/carbon/carbie in turf_in_direction)
+		carbie.Knockdown(5 SECONDS)
+
+
+/datum/status_effect/miami/proc/throw_relay(datum/source,atom/target,atom/thrown_thing)
+	SIGNAL_HANDLER
+	cached_thrown_object = thrown_thing
+	if(isliving(thrown_thing))
+		RegisterSignal(thrown_thing,COMSIG_MOVABLE_IMPACT,.proc/mob_throw_knockdown)
+
+	if(isitem(thrown_thing))
+		RegisterSignal(thrown_thing,COMSIG_MOVABLE_IMPACT,.proc/item_throw_knockdown)
+
+/datum/status_effect/miami/proc/item_throw_knockdown(datum/source,atom/hit_atom, datum/thrownthing/throwingdatum)
+	SIGNAL_HANDLER
+	UnregisterSignal(cached_thrown_object,COMSIG_MOVABLE_THROW_LANDED)
+
+	if(!iscarbon(hit_atom))
+		return
+
+	var/obj/item/this_item = source
+
+	if(this_item.w_class < WEIGHT_CLASS_NORMAL)
+		return
+
+	var/mob/living/carbon/carbie_hit = hit_atom
+
+	carbie_hit.Knockdown(3 SECONDS)
+
+/datum/status_effect/miami/proc/mob_throw_knockdown(datum/source,atom/hit_atom, datum/thrownthing/throwingdatum)
+	SIGNAL_HANDLER
+	UnregisterSignal(cached_thrown_object,COMSIG_MOVABLE_THROW_LANDED)
+
+	if(!iscarbon(hit_atom))
+		return
+
+	var/mob/living/this_mob = source
+
+	if(this_mob.mob_size < MOB_SIZE_HUMAN)
+		return
+
+	var/mob/living/carbon/carbie_hit = hit_atom
+
+	carbie_hit.Knockdown(4 SECONDS)
+
+/datum/status_effect/miami/proc/basically_curbstomp(mob/living/source, atom/target, obj/item/weapon, proximity_flag, click_parameters)
+	SIGNAL_HANDLER
+	if(!proximity_flag)
+		return
+
+	if(!isliving(target))
+		return
+
+	var/mob/living/living_target = target
+
+	if(!living_target.IsKnockdown())
+		return
+	INVOKE_ASYNC(src,.proc/continue_with_stomping,weapon,target,click_parameters)
+	living_target.AdjustKnockdown(1 SECONDS)
+
+/datum/status_effect/miami/proc/continue_with_stomping(obj/item/weapon,atom/target,click_parameters)
+	weapon.attack(target,owner,click_parameters)
+
+
+/datum/status_effect/miami/proc/react_to_meds(datum/source,datum/reagent/reagent , amount, reagtemp, data, no_react)
+	SIGNAL_HANDLER
+
+	if(!istype(reagent,/datum/reagent/medicine/haloperidol) && !istype(reagent, /datum/reagent/medicine/psicodine))
+		return
+	//15u syringe stuns for 3 seconds, 5u pill drops you for 1 second, BS syringe will drop you for 12 seconds
+	owner.Paralyze((amount / 5) SECONDS)
+
+	owner.remove_status_effect(type)
+
+	owner.drop_all_held_items()
+
+/atom/movable/screen/alert/status_effect/miami
+	name = "THE KILLING NEVER STOPS"
+	desc = "Do you like hurting other people?"
+	icon_state = "miami"
+
+/datum/status_effect/creep //allows darkspawn to move through lights without lightburn damage //Massmeta edit start
+	id = "creep"
+	duration = -1
+	alert_type = /atom/movable/screen/alert/status_effect/creep
+	var/datum/antagonist/darkspawn/darkspawn
+
+/datum/status_effect/creep/get_examine_text()
+	return span_warning("[owner.p_they(TRUE)] is surrounded by velvety, gently-waving black shadows!")
+
+/datum/status_effect/creep/on_creation(mob/living/owner, datum/antagonist/darkspawn)
+	. = ..()
+	if(!.)
+		return
+	src.darkspawn = darkspawn
+
+/datum/status_effect/creep/tick()
+	if(!darkspawn)
+		qdel(src)
+		return
+	if(!darkspawn.has_psi(5))
+		to_chat(owner, "<span class='warning'>Without the Psi to maintain it, your protective aura vanishes!</span>")
+		qdel(src)
+		return
+	darkspawn.use_psi(5)
+
+/atom/movable/screen/alert/status_effect/creep
+	name = "Creep"
+	desc = "You are immune to lightburn. Drains 1 Psi per second."
+	icon = 'massmeta/icons/mob/actions/actions_darkspawn.dmi'
+	icon_state = "creep"
+
+/datum/status_effect/shadow_dance //allows darkspawn to move through lights without lightburn damage //Massmeta edit start
+	id = "shadowdance"
+	duration = -1
+	alert_type = /atom/movable/screen/alert/status_effect/shadow_dance
+	var/datum/antagonist/darkspawn/darkspawn
+
+/datum/status_effect/shadow_dance/on_creation(mob/living/owner, datum/antagonist/darkspawn)
+	. = ..()
+	if(!.)
+		return
+	src.darkspawn = darkspawn
+
+/datum/status_effect/shadow_dance/tick()
+	if(!darkspawn)
+		qdel(src)
+		return
+	if(!darkspawn.has_psi(5))
+		to_chat(owner, "<span class='warning'>You dont have enough psi to mantain the dance!</span>")
+		qdel(src)
+		return
+	darkspawn.use_psi(5)
+
+/atom/movable/screen/alert/status_effect/shadow_dance
+	name = "Shadow Dance"
+	desc = "You are able to avoid projectiles while in darkness."
+	icon = 'icons/mob/actions/actions_minor_antag.dmi'
+	icon_state = "ninja_cloak"
+
+#define TIME_DILATION_TRAIT "time_dilation_trait"
+/datum/status_effect/time_dilation //used by darkspawn; greatly increases action times etc
+	id = "time_dilation"
+	duration = 600
+	alert_type = /atom/movable/screen/alert/status_effect/time_dilation
+
+/datum/status_effect/time_dilation/get_examine_text()
+	return span_warning("[owner.p_they(TRUE)] is moving jerkily and unpredictably!")
+
+/datum/status_effect/time_dilation/on_apply()
+	ADD_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, TIME_DILATION_TRAIT)
+	owner.add_movespeed_modifier(/datum/movespeed_modifier/status_effect/time_dilation)
+	owner.add_actionspeed_modifier(/datum/actionspeed_modifier/time_dilation)
+	return TRUE
+
+/datum/status_effect/time_dilation/on_remove()
+	REMOVE_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, TIME_DILATION_TRAIT)
+	owner.remove_movespeed_modifier(/datum/movespeed_modifier/status_effect/time_dilation)
+	owner.remove_actionspeed_modifier(/datum/actionspeed_modifier/time_dilation)
+
+/atom/movable/screen/alert/status_effect/time_dilation
+	name = "Time Dilation"
+	desc = "Your actions are twice as fast, and the delay between them is halved."
+	icon = 'massmeta/icons/mob/actions/actions_darkspawn.dmi'
+	icon_state = "time_dilation" 
+	
+/datum/status_effect/inathneqs_endowment
+	id = "inathneqs_endowment"
+	duration = 150
+	alert_type = /atom/movable/screen/alert/status_effect/inathneqs_endowment
+
+/atom/movable/screen/alert/status_effect/inathneqs_endowment
+	name = "Inath-neq's Endowment"
+	desc = "Adrenaline courses through you as the Resonant Cogwheel's energy shields you from all harm!"
+	icon_state = "inathneqs_endowment"
+	alerttooltipstyle = "clockcult"
+
+/datum/status_effect/inathneqs_endowment/on_apply()
+	owner.log_message("gained Inath-neq's invulnerability", LOG_ATTACK)
+	owner.visible_message("<span class='warning'>[owner] shines with azure light!</span>", "<span class='notice'>You feel Inath-neq's power flow through you! You're invincible!</span>")
+	var/oldcolor = owner.color
+	owner.color = "#1E8CE1"
+	owner.fully_heal()
+	owner.add_stun_absorption("inathneq", 150, 2, "'s flickering blue aura momentarily intensifies!", "Inath-neq's power absorbs the stun!", " glowing with a flickering blue light!")
+	owner.status_flags |= GODMODE
+	animate(owner, color = oldcolor, time = 150, easing = EASE_IN)
+	addtimer(CALLBACK(owner, /atom/proc/update_atom_colour), 150)
+	playsound(owner, 'sound/magic/ethereal_enter.ogg', 50, TRUE)
+	return ..()
+
+/datum/status_effect/inathneqs_endowment/on_remove()
+	owner.log_message("lost Inath-neq's invulnerability", LOG_ATTACK)
+	owner.visible_message("<span class='warning'>The light around [owner] flickers and dissipates!</span>", "<span class='boldwarning'>You feel Inath-neq's power fade from your body!</span>")
+	owner.status_flags &= ~GODMODE
+	playsound(owner, 'sound/magic/ethereal_exit.ogg', 50, TRUE)
+
+/datum/status_effect/cyborg_power_regen
+	id = "power_regen"
+	duration = 100
+	alert_type = /atom/movable/screen/alert/status_effect/power_regen
+	var/power_to_give = 0 //how much power is gained each tick
+
+/datum/status_effect/cyborg_power_regen/on_creation(mob/living/new_owner, new_power_per_tick)
+	. = ..()
+	if(. && isnum(new_power_per_tick))
+		power_to_give = new_power_per_tick
+
+/atom/movable/screen/alert/status_effect/power_regen
+	name = "Power Regeneration"
+	desc = "You are quickly regenerating power!"
+	icon_state = "power_regen"
+
+/datum/status_effect/cyborg_power_regen/tick()
+	var/mob/living/silicon/robot/cyborg = owner
+	if(!istype(cyborg) || !cyborg.cell)
+		qdel(src)
+		return
+	playsound(cyborg, 'sound/effects/light_flicker.ogg', 50, TRUE)
+	cyborg.cell.give(power_to_give)
+//Massmeta edit end
+
+#undef TIME_DILATION_TRAIT

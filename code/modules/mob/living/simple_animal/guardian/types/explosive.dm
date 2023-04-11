@@ -21,9 +21,9 @@
 	/// Static list of signals that activate the boom.
 	var/static/list/boom_signals = list(COMSIG_PARENT_ATTACKBY, COMSIG_ATOM_BUMPED, COMSIG_ATOM_ATTACK_HAND)
 	/// After this amount of time passses, boom deactivates.
-	var/decay_time = 1 MINUTES
+	var/decay_time = 10 MINUTES
 	/// Time between bombs.
-	var/bomb_cooldown_time = 20 SECONDS
+	var/bomb_cooldown_time = 5 SECONDS
 	/// The cooldown timer between bombs.
 	COOLDOWN_DECLARE(bomb_cooldown)
 

@@ -882,7 +882,17 @@
 		var/obj/item/bodypart/limb = target
 		if(!IS_ORGANIC_LIMB(limb))
 			var/list/skins = list()
-			var/static/list/style_list_icons = list("standard" = 'icons/mob/augmentation/augments.dmi', "engineer" = 'icons/mob/augmentation/augments_engineer.dmi', "security" = 'icons/mob/augmentation/augments_security.dmi', "mining" = 'icons/mob/augmentation/augments_mining.dmi')
+			var/static/list/style_list_icons = list("standard" = 'icons/mob/augmentation/augments.dmi', 
+													"engineer" = 'icons/mob/augmentation/augments_engineer.dmi', 
+													"security" = 'icons/mob/augmentation/augments_security.dmi', 
+													"mining" = 'icons/mob/augmentation/augments_mining.dmi', 
+													"white" = 'icons/mob/augmentation/bs2ipc.dmi',
+													"green" = 'icons/mob/augmentation/hsiipc.dmi',
+													"white 2" = 'icons/mob/augmentation/mcgipc.dmi',
+													"red" = 'icons/mob/augmentation/sgmipc.dmi',
+													"golden" = 'icons/mob/augmentation/wtmipc.dmi',
+													"rusty" = 'icons/mob/augmentation/xm2ipc.dmi',
+													"brown" = 'icons/mob/augmentation/xmgipc.dmi',)
 			for(var/skin_option in style_list_icons)
 				var/image/part_image = image(icon = style_list_icons[skin_option], icon_state = "[limb.limb_id]_[limb.body_zone]")
 				if(limb.aux_zone) //Hands

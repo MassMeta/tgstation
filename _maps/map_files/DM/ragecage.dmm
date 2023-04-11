@@ -1,0 +1,453 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/obj/effect/spawner/random/trash/graffiti,
+/turf/open/floor/plating,
+/area/deathmatch/fullbright)
+"c" = (
+/obj/structure/cable,
+/obj/structure/grille,
+/obj/structure/window/reinforced/spawner/directional/north,
+/obj/structure/window/reinforced/spawner/directional/west,
+/turf/open/floor/plating,
+/area/deathmatch/fullbright)
+"d" = (
+/obj/structure/cable,
+/obj/machinery/power/rtg/debug{
+	power_gen = 50000
+	},
+/turf/open/floor/plating,
+/area/deathmatch/fullbright)
+"f" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/deathmatch/fullbright)
+"h" = (
+/obj/effect/decal/cleanable/blood/gibs/torso,
+/turf/open/floor/plating,
+/area/deathmatch/fullbright)
+"i" = (
+/obj/machinery/light/floor,
+/turf/open/floor/plating,
+/area/deathmatch/fullbright)
+"k" = (
+/obj/structure/cable,
+/obj/structure/window/reinforced/spawner/directional/north,
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/deathmatch/fullbright)
+"l" = (
+/obj/structure/cable,
+/obj/structure/grille,
+/obj/structure/window/reinforced/spawner/directional/north,
+/turf/open/floor/plating,
+/area/deathmatch/fullbright)
+"m" = (
+/turf/open/indestructible/deathmatch,
+/area/deathmatch/fullbright)
+"o" = (
+/obj/structure/grille,
+/obj/structure/cable,
+/obj/structure/window/reinforced/spawner/directional/north,
+/turf/open/floor/plating,
+/area/deathmatch/fullbright)
+"q" = (
+/obj/structure/grille,
+/obj/structure/cable,
+/obj/structure/window/reinforced/spawner/directional/north,
+/obj/structure/window/reinforced/spawner/directional/east,
+/turf/open/floor/plating,
+/area/deathmatch/fullbright)
+"s" = (
+/obj/effect/decal/cleanable/blood/gibs/limb,
+/turf/open/floor/plating,
+/area/deathmatch/fullbright)
+"t" = (
+/obj/structure/cable,
+/obj/structure/window/reinforced/spawner/directional/north,
+/obj/structure/grille,
+/obj/machinery/light/floor,
+/turf/open/floor/plating,
+/area/deathmatch/fullbright)
+"w" = (
+/obj/structure/cable,
+/obj/structure/grille,
+/obj/structure/window/reinforced/spawner/directional/east,
+/turf/open/floor/plating,
+/area/deathmatch/fullbright)
+"z" = (
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/plating,
+/area/deathmatch/fullbright)
+"A" = (
+/turf/open/floor/plating,
+/area/deathmatch/fullbright)
+"D" = (
+/obj/structure/cable,
+/obj/structure/grille,
+/obj/structure/window/reinforced/spawner,
+/turf/open/floor/plating,
+/area/deathmatch/fullbright)
+"F" = (
+/obj/structure/cable,
+/obj/structure/grille,
+/obj/structure/window/reinforced/spawner/directional/west,
+/turf/open/floor/plating,
+/area/deathmatch/fullbright)
+"G" = (
+/obj/structure/cable,
+/obj/structure/grille,
+/obj/structure/window/reinforced/spawner/directional/east,
+/obj/structure/window/reinforced/spawner,
+/turf/open/floor/plating,
+/area/deathmatch/fullbright)
+"H" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating,
+/area/deathmatch/fullbright)
+"I" = (
+/obj/structure/grille,
+/obj/structure/cable,
+/obj/structure/window/reinforced/spawner/directional/east,
+/turf/open/floor/plating,
+/area/deathmatch/fullbright)
+"K" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/deathmatch/fullbright)
+"M" = (
+/obj/effect/decal/cleanable/blood/gibs/down,
+/turf/open/floor/plating,
+/area/deathmatch/fullbright)
+"P" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 10
+	},
+/turf/open/floor/plating,
+/area/deathmatch/fullbright)
+"Q" = (
+/obj/effect/landmark/deathmatch_player_spawn,
+/turf/open/floor/plating,
+/area/deathmatch/fullbright)
+"R" = (
+/obj/effect/spawner/random/trash/mess,
+/turf/open/floor/plating,
+/area/deathmatch/fullbright)
+"U" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/deathmatch/fullbright)
+"V" = (
+/obj/structure/cable,
+/obj/structure/window/reinforced/spawner/directional/west,
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/deathmatch/fullbright)
+"X" = (
+/obj/structure/cable,
+/obj/structure/window/reinforced/spawner/directional/west,
+/obj/structure/window/reinforced/spawner,
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/deathmatch/fullbright)
+"Z" = (
+/obj/structure/cable,
+/obj/structure/window/reinforced/spawner,
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/deathmatch/fullbright)
+
+(1,1,1) = {"
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+"}
+(2,1,1) = {"
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+"}
+(3,1,1) = {"
+m
+m
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+m
+m
+"}
+(4,1,1) = {"
+m
+m
+c
+F
+F
+F
+F
+F
+F
+F
+F
+V
+X
+m
+m
+"}
+(5,1,1) = {"
+m
+m
+l
+A
+A
+A
+H
+z
+P
+b
+A
+A
+Z
+m
+m
+"}
+(6,1,1) = {"
+m
+m
+l
+A
+i
+A
+A
+Q
+U
+A
+A
+A
+Z
+m
+m
+"}
+(7,1,1) = {"
+m
+m
+l
+A
+A
+b
+A
+A
+U
+i
+A
+A
+D
+m
+m
+"}
+(8,1,1) = {"
+m
+m
+l
+A
+A
+A
+R
+A
+A
+M
+A
+A
+D
+m
+m
+"}
+(9,1,1) = {"
+m
+d
+k
+A
+A
+A
+A
+A
+A
+A
+A
+b
+D
+m
+m
+"}
+(10,1,1) = {"
+m
+m
+l
+b
+A
+h
+A
+A
+A
+A
+A
+A
+D
+m
+m
+"}
+(11,1,1) = {"
+m
+m
+t
+A
+A
+i
+A
+A
+A
+A
+A
+A
+D
+m
+m
+"}
+(12,1,1) = {"
+m
+m
+o
+A
+A
+A
+A
+Q
+b
+A
+i
+R
+D
+m
+m
+"}
+(13,1,1) = {"
+m
+m
+o
+A
+A
+s
+A
+A
+A
+A
+A
+A
+D
+m
+m
+"}
+(14,1,1) = {"
+m
+m
+q
+I
+w
+w
+w
+w
+w
+w
+w
+w
+G
+m
+m
+"}
+(15,1,1) = {"
+m
+m
+K
+K
+K
+K
+K
+K
+K
+K
+K
+K
+K
+m
+m
+"}
+(16,1,1) = {"
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+"}
+(17,1,1) = {"
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+"}

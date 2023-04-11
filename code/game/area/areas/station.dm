@@ -22,6 +22,8 @@
 /area/station/maintenance/department/chapel
 	name = "Chapel Maintenance"
 	icon_state = "maint_chapel"
+	clockwork_warp_allowed = FALSE
+	clockwork_warp_fail = "The consecration here prevents you from warping in."
 
 /area/station/maintenance/department/chapel/monastery
 	name = "Monastery Maintenance"
@@ -39,6 +41,7 @@
 /area/station/maintenance/department/eva
 	name = "EVA Maintenance"
 	icon_state = "maint_eva"
+	clockwork_warp_allowed = FALSE
 
 /area/station/maintenance/department/eva/abandoned
 	name = "Abandoned EVA Storage"
@@ -376,6 +379,7 @@
 
 /area/station/command/heads_quarters
 	icon_state = "heads_quarters"
+	clockwork_warp_allowed = FALSE
 
 /area/station/command/heads_quarters/captain
 	name = "\improper Captain's Office"
@@ -661,6 +665,8 @@
 	ambience_index = AMBIENCE_HOLY
 	flags_1 = NONE
 	sound_environment = SOUND_AREA_LARGE_ENCLOSED
+	clockwork_warp_allowed = FALSE
+	clockwork_warp_fail = "The consecration here prevents you from warping in."
 
 /area/station/service/chapel/monastery
 	name = "\improper Monastery"
@@ -807,6 +813,8 @@
 	name = "\improper Gravity Generator Room"
 	icon_state = "grav_gen"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
+	clockwork_warp_allowed = FALSE
+	clockwork_warp_fail = "The gravitons generated here could throw off your warp's destination and possibly throw you into deep space."
 
 /area/station/engineering/storage
 	name = "Engineering Storage"
@@ -829,6 +837,8 @@
 	name = "Telecomms Storage"
 	icon_state = "tcom_storage"
 	area_flags = BLOBS_ALLOWED | UNIQUE_AREA | CULT_PERMITTED
+	clockwork_warp_allowed = FALSE
+	clockwork_warp_fail = "For safety reasons, warping here is disallowed; the radio and bluespace noise could cause catastrophic results."
 
 //Engineering - Construction
 
@@ -1068,10 +1078,12 @@
 /area/station/security/lockers
 	name = "\improper Security Locker Room"
 	icon_state = "securitylockerroom"
+	clockwork_warp_allowed = FALSE
 
 /area/station/security/brig
 	name = "\improper Brig"
 	icon_state = "brig"
+	clockwork_warp_allowed = FALSE
 
 /area/station/security/holding_cell
 	name = "\improper Holding Cell"
@@ -1101,6 +1113,7 @@
 	name = "\improper Prison Wing"
 	icon_state = "sec_prison"
 	area_flags = VALID_TERRITORY | BLOBS_ALLOWED | UNIQUE_AREA | CULT_PERMITTED | PERSISTENT_ENGRAVINGS
+	clockwork_warp_allowed = TRUE //Fun
 
 //Rad proof
 /area/station/security/prison/toilet
@@ -1162,6 +1175,7 @@
 	name = "Brig Control"
 	icon_state = "warden"
 	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
+	clockwork_warp_allowed = FALSE
 
 /area/station/security/evidence
 	name = "Evidence Storage"
@@ -1411,6 +1425,10 @@
 	icon_state = "abandoned_sci"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
+/area/science/nanite
+	name = "Nanite Lab"
+	icon_state = "nanite"
+
 /area/station/escapepodbay
 	name = "\improper Pod Bay"
 	icon_state = "podbay"
@@ -1429,6 +1447,8 @@
 
 /area/station/tcommsat
 	icon_state = "tcomsatcham"
+	clockwork_warp_allowed = FALSE
+	clockwork_warp_fail = "For safety reasons, warping here is disallowed; the radio and bluespace noise could cause catastrophic results."
 	ambientsounds = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg', 'sound/ambience/ambitech.ogg',\
 											'sound/ambience/ambitech2.ogg', 'sound/ambience/ambitech3.ogg', 'sound/ambience/ambimystery.ogg')
 	airlock_wires = /datum/wires/airlock/engineering
