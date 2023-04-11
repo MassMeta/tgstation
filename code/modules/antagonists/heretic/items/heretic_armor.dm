@@ -53,6 +53,7 @@
 	icon_state = "void_cloak"
 	clothing_flags = STOPSPRESSUREDAMAGE
 	flags_inv = NONE
+	flags_cover = NONE
 	item_flags = EXAMINE_SKIP
 	armor_type = /datum/armor/cult_hoodie_void
 
