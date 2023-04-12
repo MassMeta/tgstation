@@ -92,12 +92,8 @@
 
 /obj/item/clothing/suit/hooded/cultrobes/void/Initialize(mapload)
 	. = ..()
-
-	create_storage(storage_type = /datum/storage/pockets/void_cloak)
-
-/obj/item/clothing/suit/hooded/cultrobes/void/Initialize(mapload)
-	. = ..()
 	AddElement(/datum/element/heretic_focus)
+	create_storage(storage_type = /datum/storage/pockets/void_cloak)
 
 /obj/item/clothing/suit/hooded/cultrobes/void/Initialize(mapload)
 	. = ..()
