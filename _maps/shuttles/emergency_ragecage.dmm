@@ -43,8 +43,12 @@
 "dI" = (
 /obj/structure/cable,
 /obj/machinery/power/floodlight/ragecage,
-/obj/structure/window/reinforced/spawner/directional/north,
-/obj/structure/window/reinforced/spawner/directional/east,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "ej" = (
@@ -74,7 +78,9 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/trunk,
-/obj/structure/window/reinforced/spawner/directional/west,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /obj/machinery/door/window/brigdoor/left/directional/north,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "ragecage";
@@ -145,8 +151,10 @@
 /turf/open/floor/iron/dark,
 /area/shuttle/escape)
 "gK" = (
-/obj/structure/window/reinforced/plasma/spawner/directional/south,
-/obj/structure/window/reinforced/plasma/spawner/directional/east,
+/obj/structure/window/reinforced/plasma,
+/obj/structure/window/reinforced/plasma{
+	dir = 4
+	},
 /obj/machinery/computer/cargo/express{
 	dir = 1
 	},
@@ -275,7 +283,9 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 1
 	},
-/obj/structure/window/reinforced/spawner/directional/east,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
 /obj/machinery/door/window/brigdoor/right/directional/south,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "ragecage"
@@ -316,8 +326,10 @@
 /turf/open/floor/mineral/titanium/tiled/yellow,
 /area/shuttle/escape)
 "sK" = (
-/obj/structure/window/reinforced/plasma/spawner/directional/south,
-/obj/structure/window/reinforced/plasma/spawner/directional/west,
+/obj/structure/window/reinforced/plasma,
+/obj/structure/window/reinforced/plasma{
+	dir = 8
+	},
 /obj/machinery/computer/emergency_shuttle{
 	dir = 1
 	},
@@ -325,15 +337,19 @@
 /area/shuttle/escape)
 "sY" = (
 /obj/machinery/shower/directional/north,
-/obj/structure/window/spawner/directional/east,
+/obj/structure/window{
+	dir = 4
+	},
 /obj/effect/turf_decal/bot,
 /turf/open/floor/iron/white/herringbone,
 /area/shuttle/escape)
 "sZ" = (
 /obj/machinery/power/floodlight/ragecage,
 /obj/structure/cable,
-/obj/structure/window/reinforced/spawner/directional/east,
-/obj/structure/window/reinforced/spawner/directional/south,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "tj" = (
@@ -411,8 +427,12 @@
 "xG" = (
 /obj/machinery/power/floodlight/ragecage,
 /obj/structure/cable,
-/obj/structure/window/reinforced/spawner/directional/west,
-/obj/structure/window/reinforced/spawner/directional/north,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "yl" = (
@@ -426,7 +446,9 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/trunk,
-/obj/structure/window/reinforced/spawner/directional/east,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
 /obj/machinery/door/window/brigdoor/right/directional/north,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "ragecage";
@@ -516,7 +538,9 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 1
 	},
-/obj/structure/window/reinforced/spawner/directional/west,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /obj/machinery/door/window/brigdoor/left/directional/south,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "ragecage"
@@ -586,7 +610,9 @@
 /area/shuttle/escape)
 "Kv" = (
 /obj/machinery/shower/directional/north,
-/obj/structure/window/spawner/directional/west,
+/obj/structure/window{
+	dir = 8
+	},
 /obj/effect/turf_decal/bot,
 /turf/open/floor/iron/white/herringbone,
 /area/shuttle/escape)
@@ -683,7 +709,7 @@
 /turf/open/floor/iron/dark,
 /area/shuttle/escape)
 "Ra" = (
-/obj/structure/window/reinforced/spawner/directional/south,
+/obj/structure/window/reinforced,
 /obj/machinery/power/shuttle_engine/heater{
 	dir = 1
 	},
@@ -696,7 +722,9 @@
 	desc = "THIS BAD BOY PRODUCES POWER FROM THE HORRIBLE AMOUNTS OF VIOLENCE BREWING IN THE HEARTS OF SPACEMEN!"
 	},
 /obj/structure/cable,
-/obj/structure/window/reinforced/spawner/directional/west,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/open/floor/iron/dark,
 /area/shuttle/escape)
 "RP" = (
@@ -711,8 +739,10 @@
 "Sm" = (
 /obj/structure/cable,
 /obj/machinery/power/floodlight/ragecage,
-/obj/structure/window/reinforced/spawner/directional/south,
-/obj/structure/window/reinforced/spawner/directional/west,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "So" = (
@@ -733,8 +763,12 @@
 /turf/open/floor/iron/dark,
 /area/shuttle/escape)
 "TN" = (
-/obj/structure/window/reinforced/plasma/spawner/directional/east,
-/obj/structure/window/reinforced/plasma/spawner/directional/north,
+/obj/structure/window/reinforced/plasma{
+	dir = 4
+	},
+/obj/structure/window/reinforced/plasma{
+	dir = 1
+	},
 /obj/structure/table/reinforced,
 /obj/machinery/button/door{
 	name = "rage-cage entry control";
@@ -814,8 +848,12 @@
 /turf/open/floor/iron/dark,
 /area/shuttle/escape)
 "Wt" = (
-/obj/structure/window/reinforced/plasma/spawner/directional/west,
-/obj/structure/window/reinforced/plasma/spawner/directional/north,
+/obj/structure/window/reinforced/plasma{
+	dir = 8
+	},
+/obj/structure/window/reinforced/plasma{
+	dir = 1
+	},
 /obj/machinery/computer/communications,
 /turf/open/floor/mineral/titanium/tiled/purple,
 /area/shuttle/escape)

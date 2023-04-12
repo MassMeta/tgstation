@@ -9,7 +9,7 @@
 /area/station/maintenance/department/crew_quarters/dorms)
 "dS" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/generic_maintenance_landmark,
+/obj/effect/landmark/xeno_spawn,
 /turf/open/floor/iron/smooth,
 /area/station/maintenance/department/crew_quarters/dorms)
 "dU" = (

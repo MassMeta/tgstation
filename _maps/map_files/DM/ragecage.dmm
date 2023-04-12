@@ -6,8 +6,8 @@
 "c" = (
 /obj/structure/cable,
 /obj/structure/grille,
-/obj/structure/window/reinforced/spawner/directional/north,
-/obj/structure/window/reinforced/spawner/directional/west,
+/obj/structure/window/reinforced/spawner/north,
+/obj/structure/window/reinforced/spawner/west,
 /turf/open/floor/plating,
 /area/deathmatch/fullbright)
 "d" = (
@@ -33,14 +33,14 @@
 /area/deathmatch/fullbright)
 "k" = (
 /obj/structure/cable,
-/obj/structure/window/reinforced/spawner/directional/north,
+/obj/structure/window/reinforced/spawner/north,
 /obj/structure/grille,
 /turf/open/floor/plating,
 /area/deathmatch/fullbright)
 "l" = (
 /obj/structure/cable,
 /obj/structure/grille,
-/obj/structure/window/reinforced/spawner/directional/north,
+/obj/structure/window/reinforced/spawner/north,
 /turf/open/floor/plating,
 /area/deathmatch/fullbright)
 "m" = (
@@ -49,14 +49,14 @@
 "o" = (
 /obj/structure/grille,
 /obj/structure/cable,
-/obj/structure/window/reinforced/spawner/directional/north,
+/obj/structure/window/reinforced/spawner/north,
 /turf/open/floor/plating,
 /area/deathmatch/fullbright)
 "q" = (
 /obj/structure/grille,
 /obj/structure/cable,
-/obj/structure/window/reinforced/spawner/directional/north,
-/obj/structure/window/reinforced/spawner/directional/east,
+/obj/structure/window/reinforced/spawner/north,
+/obj/structure/window/reinforced/spawner/east,
 /turf/open/floor/plating,
 /area/deathmatch/fullbright)
 "s" = (
@@ -65,7 +65,7 @@
 /area/deathmatch/fullbright)
 "t" = (
 /obj/structure/cable,
-/obj/structure/window/reinforced/spawner/directional/north,
+/obj/structure/window/reinforced/spawner/north,
 /obj/structure/grille,
 /obj/machinery/light/floor,
 /turf/open/floor/plating,
@@ -73,7 +73,7 @@
 "w" = (
 /obj/structure/cable,
 /obj/structure/grille,
-/obj/structure/window/reinforced/spawner/directional/east,
+/obj/structure/window/reinforced/spawner/east,
 /turf/open/floor/plating,
 /area/deathmatch/fullbright)
 "z" = (
@@ -92,13 +92,13 @@
 "F" = (
 /obj/structure/cable,
 /obj/structure/grille,
-/obj/structure/window/reinforced/spawner/directional/west,
+/obj/structure/window/reinforced/spawner/west,
 /turf/open/floor/plating,
 /area/deathmatch/fullbright)
 "G" = (
 /obj/structure/cable,
 /obj/structure/grille,
-/obj/structure/window/reinforced/spawner/directional/east,
+/obj/structure/window/reinforced/spawner/east,
 /obj/structure/window/reinforced/spawner,
 /turf/open/floor/plating,
 /area/deathmatch/fullbright)
@@ -109,7 +109,7 @@
 "I" = (
 /obj/structure/grille,
 /obj/structure/cable,
-/obj/structure/window/reinforced/spawner/directional/east,
+/obj/structure/window/reinforced/spawner/east,
 /turf/open/floor/plating,
 /area/deathmatch/fullbright)
 "K" = (
@@ -144,13 +144,13 @@
 /area/deathmatch/fullbright)
 "V" = (
 /obj/structure/cable,
-/obj/structure/window/reinforced/spawner/directional/west,
+/obj/structure/window/reinforced/spawner/west,
 /obj/structure/grille,
 /turf/open/floor/plating,
 /area/deathmatch/fullbright)
 "X" = (
 /obj/structure/cable,
-/obj/structure/window/reinforced/spawner/directional/west,
+/obj/structure/window/reinforced/spawner/west,
 /obj/structure/window/reinforced/spawner,
 /obj/structure/grille,
 /turf/open/floor/plating,

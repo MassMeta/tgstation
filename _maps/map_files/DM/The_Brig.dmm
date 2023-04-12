@@ -4,7 +4,7 @@
 	id = "visitation";
 	name = "Visitation Shutters"
 	},
-/obj/structure/window/reinforced/spawner/directional/south,
+/obj/structure/window/reinforced,
 /obj/structure/table,
 /turf/open/floor/iron,
 /area/deathmatch)
@@ -198,7 +198,9 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
 	},
-/obj/structure/window/reinforced/spawner/directional/west,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/deathmatch)
@@ -336,7 +338,9 @@
 /turf/open/floor/iron,
 /area/deathmatch)
 "eB" = (
-/obj/structure/window/reinforced/spawner/directional/north,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
 	},
@@ -521,7 +525,9 @@
 /area/deathmatch)
 "hK" = (
 /obj/structure/table,
-/obj/structure/window/reinforced/spawner/directional/east,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
 /obj/item/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
@@ -868,7 +874,9 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/red,
-/obj/structure/window/reinforced/spawner/directional/west,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/open/floor/iron,
 /area/deathmatch)
 "mf" = (
@@ -1134,7 +1142,9 @@
 /obj/effect/turf_decal/trimline/brown/warning{
 	dir = 9
 	},
-/obj/structure/window/reinforced/spawner/directional/west,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /obj/effect/turf_decal/siding/red{
 	dir = 1
 	},
@@ -1623,7 +1633,9 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
-/obj/structure/window/reinforced/spawner/directional/east,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
 /obj/effect/turf_decal/trimline/brown/warning{
 	dir = 5
 	},
@@ -2067,7 +2079,9 @@
 /turf/open/floor/iron/dark,
 /area/deathmatch)
 "zq" = (
-/obj/structure/window/reinforced/spawner/directional/north,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
 /turf/open/floor/iron/grimy,
 /area/deathmatch)
 "zu" = (
@@ -2365,7 +2379,9 @@
 	id = "visitation";
 	name = "Visitation Shutters"
 	},
-/obj/structure/window/reinforced/spawner/directional/north,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
 /obj/structure/table,
 /turf/open/floor/iron,
 /area/deathmatch)
@@ -3038,7 +3054,9 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
-/obj/structure/window/reinforced/spawner/directional/west,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/open/floor/iron,
 /area/deathmatch)
 "KQ" = (
@@ -4194,7 +4212,9 @@
 /turf/open/floor/iron/dark,
 /area/deathmatch)
 "YZ" = (
-/obj/structure/window/reinforced/spawner/directional/east,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
 /obj/structure/rack,
 /obj/structure/cable,
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -4297,7 +4317,9 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
-/obj/structure/window/reinforced/spawner/directional/west,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/open/floor/iron,
 /area/deathmatch)
 "ZO" = (

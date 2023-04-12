@@ -379,7 +379,7 @@
 	dir = 5
 	},
 /obj/structure/table/glass,
-/obj/item/reagent_containers/cup/bowl/soup/monkey{
+/obj/item/food/soup/monkeysdelight{
 	pixel_y = 4
 	},
 /obj/item/reagent_containers/cup/soda_cans/monkey_energy{
@@ -783,7 +783,9 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 9
 	},
-/obj/structure/window/reinforced/spawner/directional/west,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /mob/living/simple_animal/bot/medbot{
 	name = "\improper emergency medibot";
 	pixel_x = -3;
@@ -905,7 +907,9 @@
 /area/shuttle/escape)
 "Jw" = (
 /obj/machinery/power/shuttle_engine/heater,
-/obj/structure/window/reinforced/spawner/directional/north,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
 /turf/open/floor/plating/airless,
 /area/shuttle/escape)
 "JD" = (

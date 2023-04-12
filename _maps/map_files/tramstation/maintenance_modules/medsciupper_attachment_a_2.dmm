@@ -6,7 +6,7 @@
 /turf/template_noop,
 /area/template_noop)
 "i" = (
-/obj/effect/landmark/generic_maintenance_landmark,
+/obj/effect/landmark/xeno_spawn,
 /turf/open/misc/asteroid,
 /area/station/maintenance/department/science)
 "j" = (

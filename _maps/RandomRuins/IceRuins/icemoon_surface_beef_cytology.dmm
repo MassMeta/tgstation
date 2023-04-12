@@ -925,7 +925,7 @@
 /turf/open/floor/iron/white,
 /area/ruin/powered/beefcyto)
 "Pc" = (
-/obj/structure/window/spawner/directional/south,
+/obj/structure/window,
 /turf/open/floor/iron/kitchen_coldroom,
 /area/ruin/powered/beefcyto)
 "Pg" = (

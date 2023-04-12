@@ -59,7 +59,7 @@
 /turf/open/floor/iron/dark,
 /area/centcom/ctf)
 "eF" = (
-/obj/machinery/ctf/spawner/blue,
+/obj/machinery/capture_the_flag/blue,
 /turf/open/floor/circuit/green/off,
 /area/centcom/ctf)
 "eH" = (
@@ -197,9 +197,10 @@
 /turf/open/floor/iron/dark,
 /area/centcom/ctf)
 "uG" = (
-/obj/item/ctf_flag{
+/obj/item/ctf{
 	desc = "A banner used to play capture the flag.";
-	name = "capture flag"
+	name = "capture flag";
+	team = "WHITE_TEAM"
 	},
 /turf/open/floor/circuit/green/anim,
 /area/centcom/ctf)
@@ -228,7 +229,7 @@
 /turf/open/floor/iron/dark,
 /area/centcom/ctf)
 "xx" = (
-/obj/machinery/ctf/spawner/green,
+/obj/machinery/capture_the_flag/green,
 /turf/open/floor/circuit/green/off,
 /area/centcom/ctf)
 "zp" = (
@@ -276,7 +277,7 @@
 /turf/template_noop,
 /area/template_noop)
 "DT" = (
-/obj/machinery/ctf/spawner/red,
+/obj/machinery/capture_the_flag/red,
 /turf/open/floor/circuit/green/off,
 /area/centcom/ctf)
 "EZ" = (
@@ -284,7 +285,7 @@
 /turf/open/floor/plating,
 /area/centcom/ctf)
 "FW" = (
-/obj/machinery/ctf/spawner/yellow,
+/obj/machinery/capture_the_flag/yellow,
 /turf/open/floor/circuit/green/off,
 /area/centcom/ctf)
 "Gm" = (

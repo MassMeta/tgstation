@@ -428,7 +428,9 @@
 /area/centcom/central_command_areas/holding)
 "lh" = (
 /obj/structure/toilet,
-/obj/structure/window/reinforced/survival_pod/spawner/directional/east,
+/obj/structure/window/reinforced/survival_pod{
+	dir = 4
+	},
 /obj/machinery/door/window/survival_pod,
 /turf/open/floor/iron/showroomfloor,
 /area/centcom/central_command_areas/holding)
@@ -1813,7 +1815,7 @@
 	},
 /area/centcom/central_command_areas/holding)
 "Rg" = (
-/obj/machinery/oven/range,
+/obj/machinery/oven,
 /obj/machinery/light/directional/north,
 /turf/open/floor/iron/cafeteria,
 /area/centcom/central_command_areas/holding)

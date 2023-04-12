@@ -9,7 +9,7 @@
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/powered/beef)
 "ao" = (
-/obj/structure/window/spawner/directional/south,
+/obj/structure/window,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/beef)
 "aq" = (
@@ -151,7 +151,7 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/powered/beef)
 "cF" = (
-/obj/structure/window/reinforced/spawner/directional/south,
+/obj/structure/window/reinforced,
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/powered/beef)
 "cJ" = (
@@ -295,8 +295,12 @@
 /turf/open/floor/iron/cafeteria,
 /area/ruin/space/has_grav/powered/beef)
 "dR" = (
-/obj/structure/window/reinforced/spawner/directional/north,
-/obj/structure/window/reinforced/spawner/directional/east,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/powered/beef)
 "dY" = (
@@ -784,7 +788,9 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/powered/beef)
 "ls" = (
-/obj/structure/window/spawner/directional/north,
+/obj/structure/window{
+	dir = 1
+	},
 /obj/machinery/iv_drip,
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -824,7 +830,7 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/powered/beef)
 "lQ" = (
-/obj/structure/window/reinforced/spawner/directional/south,
+/obj/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden/layer2,
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/powered/beef)
@@ -846,12 +852,16 @@
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/powered/beef/atmos)
 "mw" = (
-/obj/structure/window/reinforced/spawner/directional/west,
-/obj/structure/window/reinforced/spawner/directional/south,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/powered/beef)
 "mN" = (
-/obj/structure/window/spawner/directional/west,
+/obj/structure/window{
+	dir = 8
+	},
 /obj/effect/turf_decal/tile/neutral{
 	color = "#2e2e2e";
 	dir = 8
@@ -859,7 +869,9 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
-/obj/structure/window/spawner/directional/north,
+/obj/structure/window{
+	dir = 1
+	},
 /obj/structure/closet/crate/freezer/blood,
 /obj/effect/turf_decal/tile/neutral{
 	color = "#2e2e2e";
@@ -1006,7 +1018,9 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered/beef/atmos)
 "pJ" = (
-/obj/structure/window/spawner/directional/east,
+/obj/structure/window{
+	dir = 4
+	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
 /turf/open/floor/eighties,
 /area/ruin/space/has_grav/powered/beef)
@@ -1040,7 +1054,9 @@
 /turf/open/floor/eighties,
 /area/ruin/space/has_grav/powered/beef)
 "qq" = (
-/obj/structure/window/spawner/directional/west,
+/obj/structure/window{
+	dir = 8
+	},
 /obj/structure/table/glass,
 /obj/item/storage/backpack/duffelbag/med/surgery,
 /obj/effect/turf_decal/tile/neutral{
@@ -1085,12 +1101,14 @@
 /turf/open/floor/carpet/orange,
 /area/ruin/space/has_grav/powered/beef)
 "qy" = (
-/obj/structure/window/spawner/directional/south,
+/obj/structure/window,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/beef)
 "qz" = (
-/obj/structure/window/spawner/directional/west,
+/obj/structure/window{
+	dir = 8
+	},
 /obj/structure/table/glass,
 /obj/item/storage/medkit/o2,
 /obj/item/storage/medkit/toxin,
@@ -1109,7 +1127,9 @@
 /area/ruin/space/has_grav/powered/beef)
 "qD" = (
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden/layer2,
-/obj/structure/window/spawner/directional/north,
+/obj/structure/window{
+	dir = 1
+	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
@@ -1218,13 +1238,17 @@
 /turf/open/floor/carpet/royalblack,
 /area/ruin/space/has_grav/powered/beef)
 "sM" = (
-/obj/structure/window/spawner/directional/east,
+/obj/structure/window{
+	dir = 4
+	},
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/neutral{
 	color = "#2e2e2e";
 	dir = 4
 	},
-/obj/structure/window/spawner/directional/north,
+/obj/structure/window{
+	dir = 1
+	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
@@ -1584,7 +1608,9 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/powered/beef)
 "yP" = (
-/obj/structure/window/spawner/directional/west,
+/obj/structure/window{
+	dir = 8
+	},
 /obj/effect/turf_decal/tile/neutral{
 	color = "#2e2e2e";
 	dir = 4
@@ -1607,7 +1633,9 @@
 /turf/open/floor/plastic,
 /area/ruin/space/has_grav/powered/beef)
 "yV" = (
-/obj/structure/window/reinforced/spawner/directional/west,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/powered/beef)
 "zG" = (
@@ -1700,7 +1728,9 @@
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/beef)
 "Ce" = (
-/obj/structure/window/spawner/directional/west,
+/obj/structure/window{
+	dir = 8
+	},
 /obj/effect/turf_decal/tile/blue{
 	color = "#414ad1";
 	dir = 1
@@ -1766,7 +1796,9 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/powered/beef)
 "Dr" = (
-/obj/structure/window/reinforced/spawner/directional/east,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden/layer2{
 	dir = 4
 	},
@@ -2053,7 +2085,9 @@
 /turf/open/floor/carpet/orange,
 /area/ruin/space/has_grav/powered/beef)
 "Hu" = (
-/obj/structure/window/spawner/directional/east,
+/obj/structure/window{
+	dir = 4
+	},
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/neutral{
 	color = "#2e2e2e";
@@ -2106,7 +2140,9 @@
 /turf/open/floor/iron/cafeteria,
 /area/ruin/space/has_grav/powered/beef)
 "Ik" = (
-/obj/structure/window/reinforced/spawner/directional/north,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
 	},
@@ -2119,8 +2155,10 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered/beef/atmos)
 "Is" = (
-/obj/structure/window/spawner/directional/east,
-/obj/structure/window/spawner/directional/south,
+/obj/structure/window{
+	dir = 4
+	},
+/obj/structure/window,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/beef)
@@ -2157,13 +2195,19 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/powered/beef)
 "IO" = (
-/obj/structure/window/reinforced/spawner/directional/north,
-/obj/structure/window/reinforced/spawner/directional/west,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/powered/beef)
 "IT" = (
-/obj/structure/window/reinforced/spawner/directional/east,
-/obj/structure/window/reinforced/spawner/directional/south,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced,
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/powered/beef)
 "Jb" = (
@@ -2414,7 +2458,9 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/powered/beef)
 "NT" = (
-/obj/structure/window/spawner/directional/east,
+/obj/structure/window{
+	dir = 4
+	},
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/neutral{
 	color = "#2e2e2e";
@@ -2547,7 +2593,9 @@
 /turf/open/floor/mineral/silver,
 /area/ruin/space/has_grav/powered/beef)
 "Qk" = (
-/obj/structure/window/reinforced/spawner/directional/north,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/powered/beef)
@@ -2619,7 +2667,9 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/powered/beef)
 "Rn" = (
-/obj/structure/window/reinforced/spawner/directional/north,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/powered/beef)
 "RE" = (
@@ -2642,7 +2692,9 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/powered/beef)
 "RU" = (
-/obj/structure/window/spawner/directional/east,
+/obj/structure/window{
+	dir = 4
+	},
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/neutral{
 	color = "#2e2e2e";
@@ -2701,7 +2753,9 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/powered/beef)
 "ST" = (
-/obj/structure/window/spawner/directional/east,
+/obj/structure/window{
+	dir = 4
+	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/beef)
 "SU" = (
@@ -2748,7 +2802,9 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/powered/beef)
 "Tm" = (
-/obj/structure/window/spawner/directional/east,
+/obj/structure/window{
+	dir = 4
+	},
 /turf/open/floor/eighties,
 /area/ruin/space/has_grav/powered/beef)
 "Tr" = (
@@ -2791,7 +2847,9 @@
 /turf/open/floor/iron/cafeteria,
 /area/ruin/space/has_grav/powered/beef)
 "Uh" = (
-/obj/structure/window/spawner/directional/west,
+/obj/structure/window{
+	dir = 8
+	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
 /obj/effect/turf_decal/tile/blue{
 	color = "#414ad1";
@@ -2948,7 +3006,9 @@
 /turf/open/floor/light,
 /area/ruin/space/has_grav/powered/beef)
 "Xc" = (
-/obj/structure/window/reinforced/spawner/directional/east,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/powered/beef)
 "XP" = (
@@ -3081,7 +3141,9 @@
 /turf/open/floor/light,
 /area/ruin/space/has_grav/powered/beef)
 "ZY" = (
-/obj/structure/window/spawner/directional/north,
+/obj/structure/window{
+	dir = 1
+	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},

@@ -394,7 +394,9 @@
 /turf/open/floor/wood,
 /area/awaymission/cabin)
 "bo" = (
-/obj/structure/window/spawner/directional/east,
+/obj/structure/window{
+	dir = 4
+	},
 /turf/open/floor/wood,
 /area/awaymission/cabin)
 "bp" = (
@@ -452,7 +454,8 @@
 /turf/open/floor/iron/cafeteria,
 /area/awaymission/cabin)
 "by" = (
-/obj/machinery/oven/range,
+/obj/machinery/oven,
+/obj/item/plate/oven_tray,
 /turf/open/floor/iron/cafeteria,
 /area/awaymission/cabin)
 "bz" = (
@@ -3457,7 +3460,9 @@
 /turf/open/floor/wood,
 /area/awaymission/cabin)
 "nT" = (
-/obj/structure/window/spawner/directional/east,
+/obj/structure/window{
+	dir = 4
+	},
 /obj/structure/chair/stool/directional/west,
 /turf/open/floor/wood,
 /area/awaymission/cabin)
