@@ -1466,3 +1466,9 @@
 /obj/item/circuitboard/machine/clockwork
 	name = "clockwork board (Report This)"
 	icon_state = "clock_mod"
+
+/obj/item/circuitboard/machine/navbeacon
+	name = "Bot Navigational Beacon"
+	greyscale_colors = CIRCUIT_COLOR_SCIENCE
+	build_path = /obj/machinery/navbeacon
+	req_components = list()
