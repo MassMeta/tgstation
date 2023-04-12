@@ -97,6 +97,7 @@
 /obj/item/chainsaw/syndicate_chainsaw
 	name = "syndicate ripper"
 	desc = "Terror and madness"
+	icon = 'massmeta/icons/obj/ripper.dmi'
 	icon_state = "ripper_off"
 	lefthand_file = 'massmeta/icons/mob/inhands/ripper_lefthand.dmi'
 	righthand_file = 'massmeta/icons/mob/inhands/ripper_righthand.dmi'
