@@ -42,6 +42,7 @@
 	desc = "A cybernetic tongue."
 	id = "cybernetic_tongue"
 	construction_time = 50
+	build_type = MECHFAB | PROTOLATHE
 	materials = list(/datum/material/iron = 800, /datum/material/glass = 600)
 	build_path = /obj/item/organ/internal/tongue/cybernetic
 	category = list(

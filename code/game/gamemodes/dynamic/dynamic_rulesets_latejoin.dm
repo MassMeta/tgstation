@@ -197,7 +197,8 @@
 	required_candidates = 1
 	weight = 8
 	cost = 6
-	requirements = list(40,30,30,20,20,15,15,15,10,10)
+	requirements = list(101,101,50,10,10,10,10,10,10,10)
+	minimum_players = 10
 	repeatable = TRUE
 
 /datum/dynamic_ruleset/latejoin/heretic_smuggler/execute()
@@ -237,7 +238,8 @@
 	required_candidates = 1
 	weight = 6
 	cost = 10
-	requirements = list(60,50,40,30,30,20,20,10,10,10)
+	requirements = list(101,101,50,10,10,10,10,10,10,10)
+	minimum_players = 15
 	repeatable = FALSE
 
 /datum/dynamic_ruleset/latejoin/bloodsucker/execute()

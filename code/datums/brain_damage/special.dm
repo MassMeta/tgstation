@@ -10,9 +10,9 @@
 	gain_text = span_notice("You feel a higher power inside your mind...")
 	lose_text = span_warning("The divine presence leaves your head, no longer interested.")
 
-/datum/brain_trauma/special/godwoken/on_life(delta_time, times_fired)
+/datum/brain_trauma/special/godwoken/on_life(seconds_per_tick, times_fired)
 	..()
-	if(DT_PROB(2, delta_time))
+	if(SPT_PROB(2, seconds_per_tick))
 		if(prob(33) && (owner.IsStun() || owner.IsParalyzed() || owner.IsUnconscious()))
 			speak("unstun", TRUE)
 		else if(prob(60) && owner.health <= owner.crit_threshold)
@@ -47,6 +47,107 @@
 	playsound(get_turf(owner), 'sound/magic/clockwork/invoke_general.ogg', 200, TRUE, 5)
 	voice_of_god(message, owner, list("colossus","yell"), 2.5, include_owner, name)
 
+/datum/brain_trauma/special/bluespace_prophet
+	name = "Bluespace Prophecy"
+	desc = "Patient can sense the bob and weave of bluespace around them, showing them passageways no one else can see."
+	scan_desc = "bluespace attunement"
+	gain_text = span_notice("You feel the bluespace pulsing around you...")
+	lose_text = span_warning("The faint pulsing of bluespace fades into silence.")
+	/// Cooldown so we can't teleport literally everywhere on a whim
+	COOLDOWN_DECLARE(portal_cooldown)
+
+/datum/brain_trauma/special/bluespace_prophet/on_life(seconds_per_tick, times_fired)
+	if(!COOLDOWN_FINISHED(src, portal_cooldown))
+		return
+
+	COOLDOWN_START(src, portal_cooldown, 10 SECONDS)
+	var/list/turf/possible_turfs = list()
+	for(var/turf/T as anything in RANGE_TURFS(8, owner))
+		if(T.density)
+			continue
+
+		var/clear = TRUE
+		for(var/obj/O in T)
+			if(O.density)
+				clear = FALSE
+				break
+		if(clear)
+			possible_turfs += T
+
+	if(!LAZYLEN(possible_turfs))
+		return
+
+	var/turf/first_turf = pick(possible_turfs)
+	if(!first_turf)
+		return
+
+	possible_turfs -= (possible_turfs & range(first_turf, 3))
+
+	var/turf/second_turf = pick(possible_turfs)
+	if(!second_turf)
+		return
+
+	var/obj/effect/client_image_holder/bluespace_stream/first = new(first_turf, owner)
+	var/obj/effect/client_image_holder/bluespace_stream/second = new(second_turf, owner)
+
+	first.linked_to = second
+	second.linked_to = first
+
+/obj/effect/client_image_holder/bluespace_stream
+	name = "bluespace stream"
+	desc = "You see a hidden pathway through bluespace..."
+	image_icon = 'icons/effects/effects.dmi'
+	image_state = "bluestream"
+	image_layer = ABOVE_MOB_LAYER
+	image_plane = GAME_PLANE_UPPER
+	var/obj/effect/client_image_holder/bluespace_stream/linked_to
+
+/obj/effect/client_image_holder/bluespace_stream/Initialize(mapload, list/mobs_which_see_us)
+	. = ..()
+	QDEL_IN(src, 30 SECONDS)
+
+/obj/effect/client_image_holder/bluespace_stream/Destroy()
+	if(!QDELETED(linked_to))
+		qdel(linked_to)
+	linked_to = null
+	return ..()
+
+/obj/effect/client_image_holder/bluespace_stream/attack_hand(mob/user, list/modifiers)
+	. = ..()
+	if(.)
+		return
+
+	if(!(user in who_sees_us) || !linked_to)
+		return
+
+	var/slip_in_message = pick("slides sideways in an odd way, and disappears", "jumps into an unseen dimension",\
+		"sticks one leg straight out, wiggles [user.p_their()] foot, and is suddenly gone", "stops, then blinks out of reality", \
+		"is pulled into an invisible vortex, vanishing from sight")
+	var/slip_out_message = pick("silently fades in", "leaps out of thin air","appears", "walks out of an invisible doorway",\
+		"slides out of a fold in spacetime")
+
+	to_chat(user, span_notice("You try to align with the bluespace stream..."))
+	if(!do_after(user, 2 SECONDS, target = src))
+		return
+
+	var/turf/source_turf = get_turf(src)
+	var/turf/destination_turf = get_turf(linked_to)
+
+	new /obj/effect/temp_visual/bluespace_fissure(source_turf)
+	new /obj/effect/temp_visual/bluespace_fissure(destination_turf)
+
+	user.visible_message(span_warning("[user] [slip_in_message]."), ignored_mobs = user)
+
+	if(do_teleport(user, destination_turf, no_effects = TRUE))
+		user.visible_message(span_warning("[user] [slip_out_message]."), span_notice("...and find your way to the other side."))
+	else
+		user.visible_message(span_warning("[user] [slip_out_message], ending up exactly where they left."), span_notice("...and find yourself where you started?"))
+
+
+/obj/effect/client_image_holder/bluespace_stream/attack_tk(mob/user)
+	to_chat(user, span_warning("\The [src] actively rejects your mind, and the bluespace energies surrounding it disrupt your telekinesis!"))
+	return COMPONENT_CANCEL_ATTACK_CHAIN
+
 /datum/brain_trauma/special/quantum_alignment
 	name = "Quantum Alignment"
 	desc = "Patient is prone to frequent spontaneous quantum entanglement, against all odds, causing spatial anomalies."
@@ -59,7 +160,7 @@
 	/// Cooldown for snapbacks
 	COOLDOWN_DECLARE(snapback_cooldown)
 
-/datum/brain_trauma/special/quantum_alignment/on_life(delta_time, times_fired)
+/datum/brain_trauma/special/quantum_alignment/on_life(seconds_per_tick, times_fired)
 	if(linked)
 		if(QDELETED(linked_target))
 			linked_target = null
@@ -68,7 +169,7 @@
 		if(!returning && COOLDOWN_FINISHED(src, snapback_cooldown))
 			start_snapback()
 		return
-	if(DT_PROB(2, delta_time))
+	if(SPT_PROB(2, seconds_per_tick))
 		try_entangle()
 
 /datum/brain_trauma/special/quantum_alignment/proc/try_entangle()
@@ -205,9 +306,9 @@
 	/// A cooldown to prevent constantly erratic dolphining through the fabric of reality
 	COOLDOWN_DECLARE(crisis_cooldown)
 
-/datum/brain_trauma/special/existential_crisis/on_life(delta_time, times_fired)
+/datum/brain_trauma/special/existential_crisis/on_life(seconds_per_tick, times_fired)
 	..()
-	if(!veil && COOLDOWN_FINISHED(src, crisis_cooldown) && DT_PROB(1.5, delta_time))
+	if(!veil && COOLDOWN_FINISHED(src, crisis_cooldown) && SPT_PROB(1.5, seconds_per_tick))
 		if(isturf(owner.loc))
 			fade_out()
 
