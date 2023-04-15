@@ -125,9 +125,9 @@
 	for(var/obj/item/bodypart/all_bodyparts as anything in user.bodyparts)
 		bleed_rate += all_bodyparts.generic_bleedstacks
 
-/datum/species/beefman/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/user, delta_time, times_fired)
+/datum/species/beefman/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/user, seconds_per_tick, times_fired)
 	if(istype(chem, /datum/reagent/saltpetre) || istype(chem, /datum/reagent/consumable/salt))
-		if(!dehydrated || DT_PROB(10, delta_time))
+		if(!dehydrated || SPT_PROB(10, seconds_per_tick))
 			to_chat(user, span_alert("Your beefy mouth tastes dry."))
 		dehydrated++
 	return ..()

@@ -10,7 +10,7 @@
 		alpha = 64
 
 	// We get some passive bruteloss healing if we're not dead
-	if(stat != DEAD && DT_PROB(16, delta_time))
+	if(stat != DEAD && SPT_PROB(16, seconds_per_tick))
 		var/heal = 0.5
 		if(transformeffects & SLIME_EFFECT_PURPLE)
 			heal += 0.5
@@ -208,8 +208,8 @@
 		var/bonus_damage = 1
 		if(transformeffects & SLIME_EFFECT_RED)
 			bonus_damage = 1.1
-		prey.adjustCloneLoss(rand(2, 4) * bonus_damage * 0.5 * delta_time)
-		prey.adjustToxLoss(rand(1, 2) * bonus_damage * 0.5 * delta_time)
+		prey.adjustCloneLoss(rand(2, 4) * bonus_damage * 0.5 * seconds_per_tick)
+		prey.adjustToxLoss(rand(1, 2) * bonus_damage * 0.5 * seconds_per_tick)
 		prey.adjustCloneLoss(rand(2, 4) * 0.5 * seconds_per_tick)
 		prey.adjustToxLoss(rand(1, 2) * 0.5 * seconds_per_tick)
 
@@ -248,8 +248,8 @@
 		set_nutrition(700) //fuck you for using the base nutrition var
 		return
 
-	if(DT_PROB(7.5, delta_time) && !(transformeffects & SLIME_EFFECT_SILVER))
-		adjust_nutrition(-0.5 * (1 + is_adult) * delta_time)
+	if(SPT_PROB(7.5, seconds_per_tick) && !(transformeffects & SLIME_EFFECT_SILVER))
+		adjust_nutrition(-0.5 * (1 + is_adult) * seconds_per_tick)
 	if(SPT_PROB(7.5, seconds_per_tick))
 		adjust_nutrition(-0.5 * (1 + is_adult) * seconds_per_tick)
 
