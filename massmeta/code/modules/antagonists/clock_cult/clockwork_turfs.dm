@@ -549,8 +549,8 @@
 	base_icon_state = "clockwork_window"
 	icon_state = "clockwork_window-0"
 	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE)
-	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE)
+	smoothing_groups = SMOOTH_GROUP_WINDOW_FULLTILE_BRONZE + SMOOTH_GROUP_WINDOW_FULLTILE
+	canSmoothWith = SMOOTH_GROUP_WINDOW_FULLTILE_BRONZE
 	fulltile = TRUE
 	flags_1 = PREVENT_CLICK_UNDER_1
 	max_integrity = 120
