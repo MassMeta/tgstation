@@ -9,9 +9,8 @@
 	receive_ricochet_chance_mod = 0.6
 	pass_flags_self = PASSSTRUCTURE
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
-	armor_type = /datum/armor/obj_structure
-	burning_particles = /particles/smoke/burning
 	var/broken = FALSE
+	armor_type = /datum/armor/obj_structure
 
 /datum/armor/obj_structure
 	fire = 50

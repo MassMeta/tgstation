@@ -12123,8 +12123,8 @@
 /area/station/service/chapel)
 "cUW" = (
 /obj/structure/cable,
+/obj/structure/window/reinforced/plasma/spawner/directional/west,
 /obj/machinery/power/energy_accumulator/tesla_coil/anchored,
-/obj/structure/window/reinforced/plasma/spawner/directional/east,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter)
 "cVe" = (
@@ -23700,12 +23700,6 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/station/medical/chemistry)
-"fUY" = (
-/obj/structure/cable,
-/obj/machinery/power/energy_accumulator/tesla_coil/anchored,
-/obj/structure/window/reinforced/plasma/spawner/directional/north,
-/turf/open/floor/engine,
-/area/station/engineering/supermatter)
 "fVa" = (
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 9
@@ -57164,12 +57158,6 @@
 	dir = 1
 	},
 /area/station/engineering/gravity_generator)
-"ood" = (
-/obj/structure/cable,
-/obj/machinery/power/energy_accumulator/grounding_rod/anchored,
-/obj/structure/window/reinforced/plasma/spawner/directional/north,
-/turf/open/floor/engine,
-/area/station/engineering/supermatter)
 "ool" = (
 /obj/effect/turf_decal/trimline/neutral/warning{
 	dir = 5
@@ -63858,8 +63846,8 @@
 /area/station/hallway/primary/central/fore)
 "pXj" = (
 /obj/structure/cable,
+/obj/structure/window/reinforced/plasma/spawner/directional/west,
 /obj/machinery/power/energy_accumulator/grounding_rod/anchored,
-/obj/structure/window/reinforced/plasma/spawner/directional/east,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter)
 "pXk" = (
@@ -117916,7 +117904,7 @@ sHT
 msB
 kXR
 owf
-fUY
+cUW
 kMt
 chY
 vUV
@@ -118173,7 +118161,7 @@ mWq
 msB
 vcO
 owf
-ood
+pXj
 fNc
 jcL
 vUV
@@ -118430,7 +118418,7 @@ sHT
 msB
 kXR
 owf
-fUY
+cUW
 jjw
 tGr
 hCE

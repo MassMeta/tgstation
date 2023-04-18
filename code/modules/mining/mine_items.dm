@@ -108,10 +108,6 @@
 	roundstart_template = /datum/map_template/shuttle/mining/kilo
 	height = 10
 
-/obj/docking_port/stationary/mining_home/northstar
-	roundstart_template = /datum/map_template/shuttle/mining/northstar
-	height = 6
-
 /obj/docking_port/stationary/mining_home/common
 	name = "SS13: Common Mining Dock"
 	shuttle_id = "commonmining_home"
@@ -119,9 +115,6 @@
 
 /obj/docking_port/stationary/mining_home/common/kilo
 	roundstart_template = /datum/map_template/shuttle/mining_common/kilo
-
-/obj/docking_port/stationary/mining_home/common/northstar
-	roundstart_template = /datum/map_template/shuttle/mining_common/northstar
 
 /**********************Mining car (Crate like thing, not the rail car)**************************/
 

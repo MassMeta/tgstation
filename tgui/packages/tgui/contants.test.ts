@@ -14,11 +14,11 @@ describe('gas helper functions', () => {
     expect(gasLabel).toBe('fallback');
   });
 
-  it('should return none if no gas and no fallback is found', () => {
+  it('should return the id if no gas and no fallback is found', () => {
     const gasId = 'nonexistent';
     const gasLabel = getGasLabel(gasId);
 
-    expect(gasLabel).toBe('None');
+    expect(gasLabel).toBe('nonexistent');
   });
 
   it('should get the proper gas color', () => {
@@ -28,11 +28,11 @@ describe('gas helper functions', () => {
     expect(gasColor).toBe('maroon');
   });
 
-  it('should return a string if no gas is found', () => {
+  it('should return undefined if no gas is found', () => {
     const gasId = 'nonexistent';
     const gasColor = getGasColor(gasId);
 
-    expect(gasColor).toBe('black');
+    expect(gasColor).toBeUndefined();
   });
 
   it('should return the gas object if found', () => {

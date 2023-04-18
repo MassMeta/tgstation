@@ -291,54 +291,35 @@ const GASES = [
 
 // Returns gas label based on gasId
 export const getGasLabel = (gasId: string, fallbackValue?: string) => {
-  if (!gasId) return fallbackValue || 'None';
-
   const gasSearchString = gasId.toLowerCase();
-
-  for (let idx = 0; idx < GASES.length; idx++) {
-    if (GASES[idx].id === gasSearchString) {
-      return GASES[idx].label;
-    }
-  }
-
-  return fallbackValue || 'None';
+  const gas = GASES.find(
+    (gas) =>
+      gas.id === gasSearchString || gas.name.toLowerCase() === gasSearchString
+  );
+  return gas?.label || fallbackValue || gasId;
 };
 
 // Returns gas color based on gasId
 export const getGasColor = (gasId: string) => {
-  if (!gasId) return 'black';
-
   const gasSearchString = gasId.toLowerCase();
-
-  for (let idx = 0; idx < GASES.length; idx++) {
-    if (GASES[idx].id === gasSearchString) {
-      return GASES[idx].color;
-    }
-  }
-
-  return 'black';
+  const gas = GASES.find(
+    (gas) =>
+      gas.id === gasSearchString || gas.name.toLowerCase() === gasSearchString
+  );
+  return gas?.color;
 };
 
 // Returns gas object based on gasId
 export const getGasFromId = (gasId: string): Gas | undefined => {
-  if (!gasId) return;
-
   const gasSearchString = gasId.toLowerCase();
-
-  for (let idx = 0; idx < GASES.length; idx++) {
-    if (GASES[idx].id === gasSearchString) {
-      return GASES[idx];
-    }
-  }
+  const gas = GASES.find(
+    (gas) =>
+      gas.id === gasSearchString || gas.name.toLowerCase() === gasSearchString
+  );
+  return gas;
 };
 
 // Returns gas object based on gasPath
 export const getGasFromPath = (gasPath: string): Gas | undefined => {
-  if (!gasPath) return;
-
-  for (let idx = 0; idx < GASES.length; idx++) {
-    if (GASES[idx].path === gasPath) {
-      return GASES[idx];
-    }
-  }
+  return GASES.find((gas) => gas.path === gasPath);
 };
