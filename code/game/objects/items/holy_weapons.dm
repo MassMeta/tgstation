@@ -622,3 +622,14 @@
 	attack_verb_simple = list("stab", "poke", "slash", "clock")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	menu_description = "A pointy spear which penetrates armor a little. Can be worn only on the belt."
+
+/obj/item/nullrod/armblade/ultrakill
+	name = "knuckleblaster"
+	desc = "A very strong metalic fist." //Убейте меня
+	icon_state = "knuckleblaster"
+	inhand_icon_state = "knuckleblaster"
+	menu_description = "An undroppable fist capable of inflicting deep wounds. Capable of an ineffective butchering of bodies. Disappears if the arm holding it is cut off."
+	icon = 'massmeta/icons/obj/staff.dmi'
+	lefthand_file = 'massmeta/icons/mob/inhands/knuckleblaster_left.dmi'
+	righthand_file = 'massmeta/icons/mob/inhands/knuckleblaster_right.dmi'
+	hitsound = SFX_SWING_HIT
