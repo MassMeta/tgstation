@@ -97,6 +97,7 @@
 /obj/item/chainsaw/syndicate_chainsaw
 	name = "syndicate ripper"
 	desc = "Terror and madness"
+	icon = 'massmeta/icons/obj/ripper.dmi'
 	icon_state = "ripper_off"
 	lefthand_file = 'massmeta/icons/mob/inhands/ripper_lefthand.dmi'
 	righthand_file = 'massmeta/icons/mob/inhands/ripper_righthand.dmi'
@@ -132,6 +133,41 @@
 		target.emote("scream")
 	else
 		. = ..()
+
+/obj/item/chainsaw/syndicate_chainsaw/mounted_ripper
+	name = "mounted ripper"
+	desc = "A ripper that has replaced your arm."
+	inhand_icon_state = "mounted_chainsaw"
+	item_flags = ABSTRACT | DROPDEL
+	throwforce = 0
+	throw_range = 0
+	throw_speed = 0
+	toolspeed = 1
+
+/obj/item/chainsaw/syndicate_chainsaw/mounted_ripper/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
+
+/obj/item/chainsaw/syndicate_chainsaw/mounted_ripper/Destroy()
+	var/obj/item/bodypart/part
+	new /obj/item/chainsaw/syndicate_chainsaw(get_turf(src))
+	if(iscarbon(loc))
+		var/mob/living/carbon/holder = loc
+		var/index = holder.get_held_index_of_item(src)
+		if(index)
+			part = holder.hand_bodyparts[index]
+	. = ..()
+	if(part)
+		part.drop_limb()
+
+/obj/item/chainsaw/syndicate_chainsaw/mounted_ripper/apply_components()
+	AddComponent(/datum/component/butchering, \
+		speed = 3 SECONDS, \
+		effectiveness = 100, \
+		bonus_modifier = 0, \
+		butcher_sound = 'sound/weapons/chainsawhit.ogg', \
+		disabled = TRUE, \
+	)
 
 /obj/item/chainsaw/mounted_chainsaw
 	name = "mounted chainsaw"
