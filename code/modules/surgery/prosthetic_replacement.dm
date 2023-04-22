@@ -31,6 +31,7 @@
 	implements = list(
 		/obj/item/bodypart = 100,
 		/obj/item/borg/apparatus/organ_storage = 100,
+		/obj/item/chainsaw/syndicate_chainsaw = 100,
 		/obj/item/chainsaw = 100,
 		/obj/item/melee/synthetic_arm_blade = 100)
 	time = 32
@@ -122,7 +123,12 @@
 			span_notice("[user] finishes the attachment procedure!"),
 		)
 		display_pain(target, "You feel a strange sensation from your new [parse_zone(target_zone)].", TRUE)
-		if(istype(tool, /obj/item/chainsaw))
+		if(istype(tool, /obj/item/chainsaw/syndicate_chainsaw))
+			qdel(tool)
+			var/obj/item/chainsaw/syndicate_chainsaw/mounted_ripper/new_arm = new(target)
+			target_zone == BODY_ZONE_R_ARM ? target.put_in_r_hand(new_arm) : target.put_in_l_hand(new_arm)
+			return
+		else if(istype(tool, /obj/item/chainsaw))
 			qdel(tool)
 			var/obj/item/chainsaw/mounted_chainsaw/new_arm = new(target)
 			target_zone == BODY_ZONE_R_ARM ? target.put_in_r_hand(new_arm) : target.put_in_l_hand(new_arm)
