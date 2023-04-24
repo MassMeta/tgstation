@@ -72,8 +72,6 @@
 
 /obj/item/organ/internal/cyberimp/arm/cooler/on_life()
 	. = ..()
-	if(!check_compatibility())
-		return
 	var/amt = BODYTEMP_NORMAL - owner.get_body_temp_normal()
 	if(amt == 0)
 		return
@@ -94,8 +92,6 @@
 
 /obj/item/organ/internal/cyberimp/arm/heater/on_life()
 	. = ..()
-	if(!check_compatibility())
-		return
 	var/amt = BODYTEMP_NORMAL - owner.get_body_temp_normal()
 	if(amt == 0)
 		return
@@ -126,8 +122,6 @@
 
 /obj/item/organ/internal/cyberimp/chest/filtration/on_life()
 	. = ..()
-	if(!check_compatibility())
-		return
 
 	for(var/R in owner.reagents.reagent_list)
 		if(istype(R,/datum/reagent/toxin) || istype(R,/datum/reagent/drug) || is_type_in_list(R,reagent_quirks))
@@ -208,16 +202,8 @@
 	desc = "Implant that allows you quickly glide tables. You need to implant this in both of your legs to make it work."
 	double_legged = TRUE
 
-/obj/item/organ/internal/cyberimp/leg/table_glider/update_implants()
-	if(!check_compatibility())
-		REMOVE_TRAIT(owner,TRAIT_FAST_CLIMBER,type)
-		return
-	ADD_TRAIT(owner,TRAIT_FAST_CLIMBER,type)
-
 /obj/item/organ/internal/cyberimp/leg/table_glider/on_full_insert(mob/living/carbon/M, special, drop_if_replaced)
 	. = ..()
-	if(!check_compatibility())
-		return
 	ADD_TRAIT(owner,TRAIT_FAST_CLIMBER,type)
 
 /obj/item/organ/internal/cyberimp/leg/table_glider/Remove(mob/living/carbon/M, special)
@@ -229,16 +215,8 @@
 	desc = "Implant that allows you to resist shoves, instead shoves deal pure stamina damage. You need to implant this in both of your legs to make it work."
 	double_legged = TRUE
 
-/obj/item/organ/internal/cyberimp/leg/table_glider/update_implants()
-	if(!check_compatibility())
-		REMOVE_TRAIT(owner,TRAIT_SHOVE_RESIST,type)
-		return
-	ADD_TRAIT(owner,TRAIT_SHOVE_RESIST,type)
-
 /obj/item/organ/internal/cyberimp/leg/shove_resist/on_full_insert(mob/living/carbon/M, special, drop_if_replaced)
 	. = ..()
-	if(!check_compatibility())
-		return
 	ADD_TRAIT(owner,TRAIT_SHOVE_RESIST,type)
 
 /obj/item/organ/internal/cyberimp/leg/shove_resist/Remove(mob/living/carbon/M, special)
@@ -276,15 +254,13 @@
 	. = ..()
 
 /obj/item/organ/internal/cyberimp/leg/chemplant/on_life()
-	if(!check_compatibility())
-		return
-		//Cost of refilling is a little bit of nutrition, some blood and getting jittery
+	//Cost of refilling is a little bit of nutrition, some blood and getting jittery
 	if(owner.nutrition > NUTRITION_LEVEL_STARVING && owner.blood_volume > BLOOD_VOLUME_SURVIVE && current_ticks_cooldown > 0)
 
 		owner.nutrition -= 5
 		owner.blood_volume--
-		owner.Jitter(1)
-		owner.Dizzy(1)
+		owner.adjust_jitter(1 SECONDS)
+		owner.adjust_dizzy(1 SECONDS)
 
 		current_ticks_cooldown -= SSmobs.wait
 

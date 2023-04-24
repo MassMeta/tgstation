@@ -112,6 +112,8 @@
 #define ORGAN_SLOT_TONGUE "tongue"
 #define ORGAN_SLOT_VOICE "vocal_cords"
 #define ORGAN_SLOT_ZOMBIE "zombie_infection"
+#define ORGAN_SLOT_RIGHT_LEG_AUG "r_leg_device"
+#define ORGAN_SLOT_LEFT_LEG_AUG "l_leg_device"
 
 /// Organ slot external
 #define ORGAN_SLOT_EXTERNAL_TAIL "tail"
@@ -155,6 +157,8 @@ GLOBAL_LIST_INIT(organ_process_order, list(
 	ORGAN_SLOT_APPENDIX,
 	ORGAN_SLOT_RIGHT_ARM_AUG,
 	ORGAN_SLOT_LEFT_ARM_AUG,
+	ORGAN_SLOT_RIGHT_LEG_AUG,
+	ORGAN_SLOT_LEFT_LEG_AUG,
 	ORGAN_SLOT_STOMACH,
 	ORGAN_SLOT_STOMACH_AID,
 	ORGAN_SLOT_BREATHING_TUBE,
