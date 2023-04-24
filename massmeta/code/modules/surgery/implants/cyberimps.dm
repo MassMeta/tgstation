@@ -265,6 +265,7 @@
 	desc = "You shouldn't see this!"
 	icon_state = "chemplant"
 	implant_overlay = "chemplant_overlay"
+	icon = 'massmeta/icons/obj/organs.dmi'
 	var/list/reagent_list = list()
 	var/health_threshold = 40
 	var/max_ticks_cooldown = 60 SECONDS
@@ -304,7 +305,7 @@
 	punk.color = implant_color
 	owner.reagents.add_reagent_list(reagent_list)
 
-	overlay = mutable_appearance('icons/effects/effects.dmi', "biogas",ABOVE_MOB_LAYER)
+	overlay = mutable_appearance('massmeta/icons/effects/effects.dmi', "biogas",ABOVE_MOB_LAYER)
 	overlay.color = implant_color
 
 	RegisterSignal(owner,COMSIG_ATOM_UPDATE_OVERLAYS,.proc/update_owner_overlay)
@@ -326,7 +327,7 @@
 	UnregisterSignal(owner,COMSIG_ATOM_UPDATE_OVERLAYS)
 
 /obj/effect/temp_visual/chempunk
-	icon = 'icons/effects/96x96.dmi'
+	icon = 'massmeta/icons/effects/biogas.dmi'
 	icon_state = "chempunk"
 	pixel_x = -32 //So the big ol' 96x96 sprite shows up right
 	pixel_y = -32
