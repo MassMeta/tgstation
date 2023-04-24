@@ -1685,6 +1685,7 @@
 	name = "Kvass"
 	description = "Kvaaaaaaass."
 	color = "#351300"
+	quality = DRINK_GOOD
 	taste_description = "kvass mmmmm"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 

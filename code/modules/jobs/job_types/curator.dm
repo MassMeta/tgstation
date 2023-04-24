@@ -17,7 +17,7 @@
 	paycheck = PAYCHECK_CREW
 	paycheck_department = ACCOUNT_SRV
 
-	mind_traits = list(TRAIT_TOWER_OF_BABEL)
+	mind_traits = list(TRAIT_TOWER_OF_BABEL, TRAIT_BLOODSUCKER_HUNTER)
 
 	display_order = JOB_DISPLAY_ORDER_CURATOR
 	departments_list = list(

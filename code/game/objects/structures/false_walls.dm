@@ -386,8 +386,8 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	mineral_amount = 1
 	smoothing_flags = SMOOTH_CORNERS
-	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_SILVER_WALLS)
-	canSmoothWith = list(SMOOTH_GROUP_SILVER_WALLS)
+	smoothing_groups = SMOOTH_GROUP_CLOSED_TURFS + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_SILVER_WALLS
+	canSmoothWith = SMOOTH_GROUP_SILVER_WALLS
 	girder_type = /obj/structure/girder/bronze
 	walltype = /turf/closed/wall/clockwork
 	mineral = /obj/item/stack/tile/bronze

@@ -83,3 +83,45 @@
 	max_players = 8
 	allowed_loadouts = list(/datum/deathmatch_loadout/operative)
 	map_path = "_maps/map_files/DM/mech_madness.dmm"
+
+/datum/deathmatch_map/Sunrise
+	name = "Sunrise"
+	desc = "Fuck catgirls"
+	min_players = 2
+	max_players = 8
+	allowed_loadouts = list(/datum/deathmatch_loadout/samurai)
+	map_path = "_maps/map_files/DM/chainatown.dmm"
+
+/datum/deathmatch_map/meatower
+	name = "Meat Tower"
+	desc = "There can only be one chef in this kitchen"
+	min_players = 2
+	max_players = 8
+	allowed_loadouts = list(/datum/deathmatch_loadout/chef)
+	map_path = "_maps/map_files/DM/meatower.dmm"
+
+/datum/deathmatch_map/sniperelite
+	name = "Sniper Elite"
+	desc = "Agent 777... I don't know where we are"
+	min_players = 2
+	max_players = 8
+	allowed_loadouts = list(/datum/deathmatch_loadout/operative/sniper)
+	map_path = "_maps/map_files/DM/Sniper_elite.dmm"
+
+/datum/deathmatch_map/starwars
+	name = "Arena Station"
+	desc = "Choose your battler"
+	min_players = 2
+	max_players = 8
+	allowed_loadouts = list(
+		/datum/deathmatch_loadout/battler/soldier,
+		/datum/deathmatch_loadout/battler/botanist,
+		/datum/deathmatch_loadout/battler/northstar,
+		/datum/deathmatch_loadout/battler/janitor,
+		/datum/deathmatch_loadout/battler/enginer,
+		/datum/deathmatch_loadout/battler/surgeon,
+		/datum/deathmatch_loadout/battler/raider,
+		/datum/deathmatch_loadout/battler/clown,
+		/datum/deathmatch_loadout/battler/tgcoder
+	)
+	map_path = "_maps/map_files/DM/starwars.dmm"

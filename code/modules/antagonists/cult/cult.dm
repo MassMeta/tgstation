@@ -500,6 +500,7 @@
 		return FALSE
 
 	if(HAS_TRAIT(target, TRAIT_MINDSHIELD) || issilicon(target) || isbot(target) || is_servant_of_ratvar(target) ||  isdrone(target) || !target.client)
+		return FALSE
 	
 	if(target.mind.unconvertable)
 		return FALSE

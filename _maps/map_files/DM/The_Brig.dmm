@@ -4,7 +4,6 @@
 	id = "visitation";
 	name = "Visitation Shutters"
 	},
-/obj/structure/window/reinforced/spawner/directional/south,
 /obj/structure/table,
 /turf/open/floor/iron,
 /area/deathmatch)
@@ -33,7 +32,7 @@
 /obj/structure/rack,
 /obj/machinery/camera/motion{
 	c_tag = "Armory - Internal";
-	dir = 4
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue{
@@ -198,7 +197,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
 	},
-/obj/structure/window/reinforced/spawner/directional/west,
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/deathmatch)
@@ -336,7 +334,6 @@
 /turf/open/floor/iron,
 /area/deathmatch)
 "eB" = (
-/obj/structure/window/reinforced/spawner/directional/north,
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
 	},
@@ -521,7 +518,6 @@
 /area/deathmatch)
 "hK" = (
 /obj/structure/table,
-/obj/structure/window/reinforced/spawner/directional/east,
 /obj/item/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
@@ -529,6 +525,9 @@
 /obj/item/pen,
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 5
+	},
+/obj/structure/window{
+	dir = 4
 	},
 /turf/open/floor/iron/white,
 /area/deathmatch)
@@ -868,7 +867,6 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/red,
-/obj/structure/window/reinforced/spawner/directional/west,
 /turf/open/floor/iron,
 /area/deathmatch)
 "mf" = (
@@ -1134,10 +1132,10 @@
 /obj/effect/turf_decal/trimline/brown/warning{
 	dir = 9
 	},
-/obj/structure/window/reinforced/spawner/directional/west,
 /obj/effect/turf_decal/siding/red{
 	dir = 1
 	},
+/obj/structure/window/reinforced/spawner/west,
 /turf/open/floor/iron,
 /area/deathmatch)
 "oN" = (
@@ -1623,7 +1621,6 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
-/obj/structure/window/reinforced/spawner/directional/east,
 /obj/effect/turf_decal/trimline/brown/warning{
 	dir = 5
 	},
@@ -1634,6 +1631,7 @@
 	dir = 1
 	},
 /obj/structure/reagent_dispensers/fueltank,
+/obj/structure/window/reinforced/spawner/east,
 /turf/open/floor/iron,
 /area/deathmatch)
 "uN" = (
@@ -2066,10 +2064,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/deathmatch)
-"zq" = (
-/obj/structure/window/reinforced/spawner/directional/north,
-/turf/open/floor/iron/grimy,
-/area/deathmatch)
 "zu" = (
 /obj/machinery/door/firedoor,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
@@ -2359,15 +2353,6 @@
 	name = "Lockdown door"
 	},
 /turf/open/space/basic,
-/area/deathmatch)
-"Dz" = (
-/obj/machinery/door/poddoor/shutters{
-	id = "visitation";
-	name = "Visitation Shutters"
-	},
-/obj/structure/window/reinforced/spawner/directional/north,
-/obj/structure/table,
-/turf/open/floor/iron,
 /area/deathmatch)
 "DD" = (
 /obj/structure/table/wood,
@@ -3038,7 +3023,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
-/obj/structure/window/reinforced/spawner/directional/west,
 /turf/open/floor/iron,
 /area/deathmatch)
 "KQ" = (
@@ -4194,7 +4178,6 @@
 /turf/open/floor/iron/dark,
 /area/deathmatch)
 "YZ" = (
-/obj/structure/window/reinforced/spawner/directional/east,
 /obj/structure/rack,
 /obj/structure/cable,
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -4206,6 +4189,9 @@
 /obj/item/storage/medkit/regular,
 /obj/item/healthanalyzer{
 	pixel_y = -2
+	},
+/obj/structure/window{
+	dir = 4
 	},
 /turf/open/floor/iron/white,
 /area/deathmatch)
@@ -4297,7 +4283,6 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
-/obj/structure/window/reinforced/spawner/directional/west,
 /turf/open/floor/iron,
 /area/deathmatch)
 "ZO" = (
@@ -4347,7 +4332,7 @@ ZF
 Yh
 aa
 pg
-Dz
+aa
 Yh
 li
 qS
@@ -5091,7 +5076,7 @@ Yh
 Yh
 xe
 Qt
-zq
+Pt
 Zz
 IJ
 "}
@@ -5147,7 +5132,7 @@ YQ
 YQ
 uN
 qv
-zq
+Pt
 Fr
 IJ
 "}

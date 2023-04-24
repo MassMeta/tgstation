@@ -755,6 +755,12 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/centcom/central_command_areas/admin)
+"eg" = (
+/obj/effect/landmark/deathmatch_map_corner{
+	location_id = "big1"
+	},
+/turf/open/space/basic,
+/area/space)
 "ei" = (
 /obj/item/kirbyplants{
 	icon_state = "plant-21"
@@ -1195,6 +1201,12 @@
 	},
 /turf/open/floor/iron/white,
 /area/centcom/tdome/observation)
+"gz" = (
+/obj/effect/landmark/deathmatch_map_corner{
+	location_id = "small1"
+	},
+/turf/open/space/basic,
+/area/space)
 "gA" = (
 /obj/item/storage/briefcase{
 	pixel_x = -3;
@@ -2232,6 +2244,12 @@
 	},
 /turf/open/floor/iron/grimy,
 /area/centcom/central_command_areas/courtroom)
+"kJ" = (
+/obj/effect/landmark/deathmatch_map_corner{
+	location_id = "big2"
+	},
+/turf/open/space,
+/area/space)
 "kR" = (
 /obj/structure/sign/warning/secure_area,
 /turf/closed/indestructible/riveted,
@@ -4517,6 +4535,12 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/centcom/central_command_areas/admin)
+"uW" = (
+/obj/effect/landmark/deathmatch_map_corner{
+	location_id = "big2"
+	},
+/turf/open/space/basic,
+/area/space)
 "uX" = (
 /obj/machinery/shower/directional/east,
 /obj/effect/turf_decal/tile/green{
@@ -6377,6 +6401,12 @@
 	},
 /turf/open/floor/iron/dark/textured_large,
 /area/centcom/central_command_areas/evacuation/ship)
+"DB" = (
+/obj/effect/landmark/deathmatch_map_corner{
+	location_id = "big1"
+	},
+/turf/open/space,
+/area/space)
 "DF" = (
 /obj/structure/sign/warning/no_smoking,
 /turf/closed/indestructible/riveted,
@@ -6598,6 +6628,12 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/centcom/central_command_areas/courtroom)
+"Fm" = (
+/obj/effect/landmark/deathmatch_map_corner{
+	location_id = "big3"
+	},
+/turf/open/space/basic,
+/area/space)
 "Fo" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/sign/directions/engineering{
@@ -7214,6 +7250,12 @@
 /obj/effect/turf_decal/tile/neutral/full,
 /turf/open/floor/iron/dark/textured_large,
 /area/centcom/central_command_areas/evacuation/ship)
+"JF" = (
+/obj/effect/landmark/deathmatch_map_corner{
+	location_id = "big3"
+	},
+/turf/open/space,
+/area/space)
 "JH" = (
 /obj/structure/rack,
 /obj/item/clothing/under/color/red,
@@ -7643,6 +7685,12 @@
 	},
 /turf/open/floor/carpet/red,
 /area/centcom/central_command_areas/evacuation/ship)
+"LS" = (
+/obj/effect/landmark/deathmatch_map_corner{
+	location_id = "small3"
+	},
+/turf/open/space/basic,
+/area/space)
 "LU" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/machinery/computer/records/medical{
@@ -8661,6 +8709,12 @@
 	},
 /turf/open/floor/iron/dark/herringbone,
 /area/centcom/central_command_areas/evacuation/ship)
+"QE" = (
+/obj/effect/landmark/deathmatch_map_corner{
+	location_id = "small2"
+	},
+/turf/open/space/basic,
+/area/space)
 "QH" = (
 /obj/effect/turf_decal/siding/wideplating_new/dark,
 /obj/effect/turf_decal/tile/neutral/full,
@@ -15266,7 +15320,7 @@ aa
 "}
 (19,1,1) = {"
 aa
-aa
+DB
 aa
 aa
 aa
@@ -19678,7 +19732,7 @@ aa
 aa
 aa
 aa
-aa
+gz
 aa
 aa
 aa
@@ -25844,7 +25898,7 @@ aa
 aa
 aa
 aa
-aa
+eg
 aa
 aa
 aa
@@ -26317,7 +26371,7 @@ aa
 "}
 (62,1,1) = {"
 aa
-aa
+kJ
 aa
 aa
 aa
@@ -28708,7 +28762,7 @@ aa
 aa
 aa
 aa
-aa
+gz
 aa
 aa
 aa
@@ -29187,7 +29241,7 @@ aa
 aa
 aa
 aa
-aa
+QE
 aa
 aa
 aa
@@ -36895,7 +36949,7 @@ aa
 aa
 aa
 aa
-aa
+uW
 aa
 aa
 aa
@@ -37368,7 +37422,7 @@ aa
 "}
 (105,1,1) = {"
 aa
-aa
+JF
 aa
 aa
 aa
@@ -38217,7 +38271,7 @@ aa
 aa
 aa
 aa
-aa
+QE
 aa
 aa
 aa
@@ -38696,7 +38750,7 @@ aa
 aa
 aa
 aa
-aa
+LS
 aa
 aa
 aa
@@ -47726,7 +47780,7 @@ aa
 aa
 aa
 aa
-aa
+LS
 aa
 aa
 aa
@@ -47946,7 +48000,7 @@ aa
 aa
 aa
 aa
-aa
+Fm
 aa
 aa
 aa

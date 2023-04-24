@@ -95,21 +95,9 @@
 /turf/open/indestructible,
 /area/deathmatch)
 "hj" = (
-/obj/machinery/conveyor/auto{
-	dir = 8
-	},
 /obj/structure/cable,
 /obj/machinery/conveyor/auto{
 	dir = 4
-	},
-/turf/open/indestructible,
-/area/deathmatch)
-"hJ" = (
-/obj/machinery/conveyor/auto{
-	dir = 4
-	},
-/obj/machinery/conveyor/auto{
-	dir = 8
 	},
 /turf/open/indestructible,
 /area/deathmatch)
@@ -151,7 +139,9 @@
 /turf/open/space/basic,
 /area/template_noop)
 "jf" = (
-/obj/structure/window/reinforced/plasma/spawner/directional/north,
+/obj/structure/window/reinforced/plasma{
+	dir = 1
+	},
 /obj/machinery/power/energy_accumulator/grounding_rod/anchored,
 /obj/structure/cable,
 /turf/open/indestructible,
@@ -165,7 +155,6 @@
 /turf/open/indestructible,
 /area/deathmatch)
 "kP" = (
-/obj/machinery/conveyor/auto,
 /obj/machinery/conveyor/auto{
 	dir = 1
 	},
@@ -192,9 +181,6 @@
 /turf/open/indestructible,
 /area/deathmatch)
 "lU" = (
-/obj/machinery/conveyor/auto{
-	dir = 1
-	},
 /obj/machinery/conveyor/auto,
 /turf/open/indestructible,
 /area/deathmatch)
@@ -207,9 +193,6 @@
 /turf/open/indestructible,
 /area/deathmatch)
 "mw" = (
-/obj/machinery/conveyor/auto{
-	dir = 8
-	},
 /obj/structure/closet,
 /obj/item/soap/nanotrasen,
 /obj/machinery/conveyor/auto{
@@ -237,7 +220,6 @@
 /turf/open/indestructible,
 /area/deathmatch)
 "or" = (
-/obj/machinery/conveyor/auto,
 /obj/structure/closet/firecloset,
 /obj/machinery/conveyor/auto{
 	dir = 1
@@ -249,9 +231,6 @@
 /turf/open/indestructible,
 /area/deathmatch)
 "pe" = (
-/obj/machinery/conveyor/auto{
-	dir = 1
-	},
 /obj/item/clothing/glasses/meson/engine/tray,
 /obj/machinery/conveyor/auto,
 /turf/open/indestructible,
@@ -305,7 +284,6 @@
 /turf/open/indestructible,
 /area/deathmatch)
 "sX" = (
-/obj/machinery/conveyor/auto,
 /obj/item/stack/sheet/cardboard,
 /obj/machinery/conveyor/auto{
 	dir = 1
@@ -351,9 +329,6 @@
 /turf/open/indestructible,
 /area/deathmatch)
 "ub" = (
-/obj/machinery/conveyor/auto{
-	dir = 1
-	},
 /obj/machinery/light/no_nightlight/directional/west,
 /obj/machinery/conveyor/auto,
 /turf/open/indestructible,
@@ -414,7 +389,6 @@
 /turf/open/indestructible,
 /area/deathmatch)
 "wL" = (
-/obj/machinery/conveyor/auto,
 /obj/item/shard,
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -425,7 +399,6 @@
 /turf/open/indestructible,
 /area/deathmatch)
 "xa" = (
-/obj/machinery/conveyor/auto,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -442,9 +415,6 @@
 /turf/open/indestructible,
 /area/deathmatch)
 "xj" = (
-/obj/machinery/conveyor/auto{
-	dir = 1
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -452,23 +422,11 @@
 /turf/open/indestructible,
 /area/deathmatch)
 "xs" = (
-/obj/machinery/conveyor/auto{
-	dir = 1
-	},
 /obj/item/crowbar/red,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /obj/machinery/conveyor/auto,
-/turf/open/indestructible,
-/area/deathmatch)
-"xC" = (
-/obj/machinery/conveyor/auto{
-	dir = 8
-	},
-/obj/machinery/conveyor/auto{
-	dir = 4
-	},
 /turf/open/indestructible,
 /area/deathmatch)
 "xF" = (
@@ -499,9 +457,6 @@
 /turf/open/indestructible,
 /area/deathmatch)
 "yj" = (
-/obj/machinery/conveyor/auto{
-	dir = 1
-	},
 /obj/structure/closet,
 /obj/item/toy/crayon/spraycan,
 /obj/machinery/conveyor/auto,
@@ -526,7 +481,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/window/reinforced/plasma/spawner/directional/south,
+/obj/structure/window/reinforced/plasma,
 /obj/machinery/power/energy_accumulator/grounding_rod/anchored,
 /obj/structure/cable,
 /turf/open/indestructible,
@@ -656,7 +611,6 @@
 /turf/open/indestructible,
 /area/deathmatch)
 "CR" = (
-/obj/machinery/conveyor/auto,
 /obj/structure/closet/crate,
 /obj/item/toy/spinningtoy,
 /obj/machinery/conveyor/auto{
@@ -697,11 +651,10 @@
 /turf/open/indestructible,
 /area/deathmatch)
 "Es" = (
-/obj/machinery/conveyor/auto,
+/obj/effect/mob_spawn/corpse/human/assistant,
 /obj/machinery/conveyor/auto{
 	dir = 1
 	},
-/obj/effect/mob_spawn/corpse/human/assistant,
 /turf/open/indestructible,
 /area/deathmatch)
 "EY" = (
@@ -769,7 +722,6 @@
 /turf/open/indestructible,
 /area/deathmatch)
 "Gx" = (
-/obj/machinery/conveyor/auto,
 /obj/structure/cable,
 /obj/machinery/conveyor/auto{
 	dir = 1
@@ -777,7 +729,6 @@
 /turf/open/indestructible,
 /area/deathmatch)
 "Gz" = (
-/obj/machinery/conveyor/auto,
 /obj/item/multitool,
 /obj/machinery/conveyor/auto{
 	dir = 1
@@ -785,19 +736,13 @@
 /turf/open/indestructible,
 /area/deathmatch)
 "GB" = (
-/obj/machinery/conveyor/auto{
-	dir = 1
-	},
 /obj/item/tank/internals/oxygen,
 /obj/machinery/conveyor/auto,
 /turf/open/indestructible,
 /area/deathmatch)
 "GE" = (
-/obj/machinery/conveyor/auto{
-	dir = 1
-	},
-/obj/machinery/conveyor/auto,
 /obj/effect/mob_spawn/corpse/human/engineer,
+/obj/machinery/conveyor/auto,
 /turf/open/indestructible,
 /area/deathmatch)
 "GH" = (
@@ -912,7 +857,9 @@
 /turf/open/indestructible,
 /area/deathmatch)
 "MB" = (
-/obj/structure/window/reinforced/plasma/spawner/directional/north,
+/obj/structure/window/reinforced/plasma{
+	dir = 1
+	},
 /obj/machinery/power/energy_accumulator/tesla_coil/anchored,
 /obj/structure/cable,
 /turf/open/indestructible,
@@ -992,7 +939,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/window/reinforced/plasma/spawner/directional/south,
+/obj/structure/window/reinforced/plasma,
 /obj/machinery/power/energy_accumulator/tesla_coil/anchored,
 /obj/structure/cable,
 /turf/open/indestructible,
@@ -1003,9 +950,6 @@
 /turf/open/indestructible,
 /area/deathmatch)
 "RF" = (
-/obj/machinery/conveyor/auto{
-	dir = 1
-	},
 /obj/structure/closet/crate,
 /obj/item/stack/medical/suture{
 	amount = 6
@@ -1021,7 +965,6 @@
 /turf/open/indestructible,
 /area/deathmatch)
 "SR" = (
-/obj/machinery/conveyor/auto,
 /obj/item/tank/internals/oxygen,
 /obj/machinery/conveyor/auto{
 	dir = 1
@@ -1029,9 +972,6 @@
 /turf/open/indestructible,
 /area/deathmatch)
 "SW" = (
-/obj/machinery/conveyor/auto{
-	dir = 1
-	},
 /obj/structure/closet/cardboard,
 /obj/item/dualsaber/toy,
 /obj/machinery/conveyor/auto,
@@ -1057,9 +997,6 @@
 /turf/open/indestructible,
 /area/deathmatch)
 "Uu" = (
-/obj/machinery/conveyor/auto{
-	dir = 1
-	},
 /obj/structure/closet,
 /obj/item/pizzabox/meat{
 	desc = "In honor of those who fell during the infamous Pizza Riot."
@@ -1113,9 +1050,6 @@
 /turf/open/indestructible,
 /area/deathmatch)
 "Yn" = (
-/obj/machinery/conveyor/auto{
-	dir = 4
-	},
 /obj/structure/cable,
 /obj/machinery/conveyor/auto{
 	dir = 8
@@ -1123,9 +1057,6 @@
 /turf/open/indestructible,
 /area/deathmatch)
 "Yz" = (
-/obj/machinery/conveyor/auto{
-	dir = 4
-	},
 /obj/structure/cable,
 /obj/item/clothing/glasses/meson/engine/tray,
 /obj/machinery/conveyor/auto{
@@ -1680,7 +1611,7 @@ je
 bl
 do
 hj
-xC
+Vu
 cA
 cA
 cA
@@ -1694,7 +1625,7 @@ cA
 cA
 cA
 cA
-hJ
+lu
 Yn
 Px
 bl

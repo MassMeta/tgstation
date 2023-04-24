@@ -446,3 +446,27 @@
 	desc = "A medical spray bottle.This one contains hercuri, a medicine used to negate the effects of dangerous high-temperature environments. Careful not to freeze the patient!"
 	icon_state = "sprayer_large"
 	list_reagents = list(/datum/reagent/medicine/c2/hercuri = 100)
+
+//lube
+/obj/item/reagent_containers/spray/lube
+	name = "Lube"
+	desc = "Clown like it"
+	icon_state = "cleaner"
+	volume = 100
+	list_reagents = list(/datum/reagent/lube = 100)
+	amount_per_transfer_from_this = 2
+	possible_transfer_amounts = list(2,5)
+
+/obj/item/reagent_containers/spray/cleaner/suicide_act(mob/living/user)
+	user.visible_message(span_suicide("[user] is putting the nozzle of \the [src] in [user.p_their()] mouth. It looks like [user.p_theyre()] trying to commit suicide!"))
+	if(do_after(user, 3 SECONDS, user))
+		if(reagents.total_volume >= amount_per_transfer_from_this)//if not empty
+			user.visible_message(span_suicide("[user] pulls the trigger!"))
+			spray(user)
+			return BRUTELOSS
+		else
+			user.visible_message(span_suicide("[user] pulls the trigger...but \the [src] is empty!"))
+			return SHAME
+	else
+		user.visible_message(span_suicide("[user] decided life was worth living."))
+		return MANUAL_SUICIDE_NONLETHAL

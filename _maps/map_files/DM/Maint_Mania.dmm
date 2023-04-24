@@ -151,6 +151,11 @@
 	},
 /turf/open/indestructible,
 /area/deathmatch)
+"qt" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/cup/mortar,
+/turf/open/indestructible,
+/area/deathmatch)
 "qK" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/reagent_containers/pill/maintenance,
@@ -243,9 +248,9 @@
 /turf/open/space/basic,
 /area/template_noop)
 "Dl" = (
-/obj/structure/closet/crate/coffin,
 /obj/item/storage/fancy/candle_box,
-/obj/item/clothing/under/costume/skeleton,
+/obj/structure/closet/crate/trashcart/laundry,
+/obj/item/clothing/shoes/clown_shoes/makasini,
 /turf/open/indestructible,
 /area/deathmatch)
 "Dt" = (
@@ -354,9 +359,7 @@
 "LB" = (
 /obj/structure/closet/crate/wooden,
 /obj/item/clothing/neck/heretic_focus,
-/obj/item/knife/shiv,
-/obj/item/trash/boritos,
-/obj/item/trash/candy,
+/obj/item/melee/sickly_blade/rust,
 /turf/open/indestructible,
 /area/deathmatch)
 "LJ" = (
@@ -375,7 +378,7 @@
 /area/deathmatch)
 "Na" = (
 /obj/structure/rack,
-/obj/item/stock_parts/cell,
+/obj/item/reagent_containers/cup/soda_cans/kvass,
 /turf/open/indestructible,
 /area/deathmatch)
 "Ns" = (
@@ -455,9 +458,8 @@
 /area/deathmatch)
 "Rn" = (
 /obj/structure/closet/crate/engineering/electrical,
-/obj/item/wrench/caravan,
-/obj/item/stack/sticky_tape,
 /obj/item/reagent_containers/cup/glass/bottle/vodka/badminka,
+/obj/item/stock_parts/cell/high,
 /turf/open/indestructible,
 /area/deathmatch)
 "Su" = (
@@ -974,7 +976,7 @@ aD
 sl
 aD
 QN
-BV
+qt
 aD
 ih
 aD
