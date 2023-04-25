@@ -538,6 +538,8 @@
 	name = "exosuit energy relay"
 	desc = "An exosuit module that wirelessly drains energy from any available power channel in area. The performance index is quite low."
 	icon_state = "tesla"
+	range = MECHA_MELEE
+	equipment_slot = MECHA_POWER
 	energy_drain = 0
 	range = 0
 	var/coeff = 100
