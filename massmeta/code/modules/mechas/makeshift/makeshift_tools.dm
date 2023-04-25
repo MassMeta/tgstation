@@ -8,7 +8,7 @@
 	drill_delay = 15
 
 /obj/item/mecha_parts/mecha_equipment/drill/makeshift/can_attach(obj/vehicle/sealed/mecha/M as obj)
-	if(istype(M, /obj/vehicle/sealed/mecha/makeshift))
+	if(istype(M, /obj/vehicle/sealed/mecha/working/makeshift))
 		return TRUE
 	return FALSE
 
@@ -19,6 +19,6 @@
 	clamp_damage = 10
 
 /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/makeshift/can_attach(obj/vehicle/sealed/mecha/M as obj)
-	if(istype(M, /obj/vehicle/sealed/mecha/makeshift))
+	if(istype(M, /obj/vehicle/sealed/mecha/working/makeshift))
 		return TRUE
 	return FALSE
