@@ -571,18 +571,6 @@
 		break
 	return pow_chan
 
-/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/Topic(href, href_list)
-	..()
-	if(href_list["toggle_relay"])
-		activated = !activated //now set to FALSE and active, so update the UI
-		update_equip_info()
-		if(activated) //inactive
-			START_PROCESSING(SSobj, src)
-			log_message("Activated.", LOG_MECHA)
-		else
-			STOP_PROCESSING(SSobj, src)
-			log_message("Deactivated.", LOG_MECHA)
-
 /obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/get_snowflake_data()
 	return list(
 		"snowflake_id" = MECHA_SNOWFLAKE_ID_MODE,
@@ -597,12 +585,6 @@
 	if(action == "change_mode")
 		activated = !activated
 		return TRUE
-
-/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/get_equip_info()
-	if(!chassis)
-		return
-	return "<span style=\"color:[activated?"#0f0":"#f00"];\">*</span>&nbsp; [src.name] - <a href='?src=[REF(src)];toggle_relay=1'>[activated?"Deactivate":"Activate"]</a>"
-
 
 /obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/process(delta_time)
 	if(!chassis || chassis.internal_damage & MECHA_INT_SHORT_CIRCUIT)
