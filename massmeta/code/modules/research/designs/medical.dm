@@ -49,3 +49,17 @@
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_ORGANS_1
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
+
+
+/datum/design/cyberimp_nanite_heart
+	name = "Nanite Heart"
+	desc = "A heart that improves the functions of nanites"
+	id = "ci-nanite-heart"
+	build_type = MECHFAB | PROTOLATHE
+	construction_time = 60
+	materials = list(/datum/material/iron = 200, /datum/material/glass = 500, /datum/material/silver = 300, /datum/material/gold = 300)
+	build_path = /obj/item/organ/internal/heart/nanite
+	category = list(
+		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_COMBAT
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
