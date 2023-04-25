@@ -104,7 +104,7 @@ GLOBAL_VAR_INIT(horse_stance_effects, FALSE) // ensures the horse stance gains i
 		for(var/turf/T in range(1,A))
 			turfs.Add(T)
 		R.cast(turfs)
-		add_exp(4, A)
+		add_exp(4, A, D)
 		log_combat(A, D, "sloppily flailed around (Armstrong)")
 		A.playsound_local(get_turf(A), 'sound/effects/fart.ogg', 100, FALSE, pressure_affected = FALSE)
 		return
@@ -131,7 +131,7 @@ GLOBAL_VAR_INIT(horse_stance_effects, FALSE) // ensures the horse stance gains i
 	A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
 	D.adjustBruteLoss(8) //Decentish damage. It racks up to 18 if the victim hits a wall.
 	D.Knockdown(15) //Minimal knockdown, but becomes a potential stunlock if they hit a wall.
-	add_exp(8, A)
+	add_exp(8, A, D)
 	var/atom/throw_target = get_edge_target_turf(D, get_dir(D, get_step_away(D, A)))
 	D.throw_at(throw_target, 1, 1)
 	return
@@ -146,7 +146,7 @@ GLOBAL_VAR_INIT(horse_stance_effects, FALSE) // ensures the horse stance gains i
 	D.throw_at(throw_target, 2, 4,A)
 	D.adjust_fire_stacks(1)
 	D.ignite_mob()
-	add_exp(8, A)
+	add_exp(8, A, D)
 	log_combat(A, D, "fireball-one (Armstrong)")
 	return
 
@@ -157,7 +157,7 @@ GLOBAL_VAR_INIT(horse_stance_effects, FALSE) // ensures the horse stance gains i
 	D.Knockdown(15)
 	D.adjustBruteLoss(12)
 	A.Knockdown(5)
-	add_exp(12, A)
+	add_exp(12, A, D)
 	var/atom/throw_target = get_edge_target_turf(D, get_dir(D, get_step_away(D, A)))
 	A.throw_at(throw_target, 1, 1)
 	D.visible_message("<span class='danger'>[A] dropkicks [D]!</span>", \
@@ -172,7 +172,7 @@ GLOBAL_VAR_INIT(horse_stance_effects, FALSE) // ensures the horse stance gains i
 		D.Knockdown(50)
 		D.emote("scream")
 		D.adjustBruteLoss(5)
-		add_exp(8, A)
+		add_exp(8, A, D)
 		if(D.gender == FEMALE)
 			D.visible_message("<span class='notice'>[A] scares [D] and they sheepishly fall over.</span>", \
 									"<span class='userdanger'>[A] 'surprised' [D]!</span>") // we're not citadel
@@ -192,7 +192,7 @@ GLOBAL_VAR_INIT(horse_stance_effects, FALSE) // ensures the horse stance gains i
 	D.adjustBruteLoss(18) //punch punch punch
 	SloppyAnimate(A)
 	D.Stun(10)
-	add_exp(12, A)
+	add_exp(12, A, D)
 	return
 
 /datum/martial_art/armstrong/proc/FireballTwo(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -209,7 +209,7 @@ GLOBAL_VAR_INIT(horse_stance_effects, FALSE) // ensures the horse stance gains i
 	var/datum/effect_system/explosion/E = new
 	E.set_up(get_turf(D))
 	E.start()
-	add_exp(8, A)
+	add_exp(8, A, D)
 	log_combat(A, D, "fireball-two (Armstrong)")
 	return
 
@@ -222,7 +222,7 @@ GLOBAL_VAR_INIT(horse_stance_effects, FALSE) // ensures the horse stance gains i
 	A.playsound_local(get_turf(A), 'sound/weapons/armstrong_success.ogg', 50, FALSE, pressure_affected = FALSE)
 	D.AdjustUnconscious(15)
 	D.adjustOrganLoss(ORGAN_SLOT_BRAIN, 30)
-	add_exp(12, A)
+	add_exp(12, A, D)
 	var/datum/effect_system/explosion/E = new
 	E.set_up(get_turf(D))
 	E.start()
@@ -237,7 +237,7 @@ GLOBAL_VAR_INIT(horse_stance_effects, FALSE) // ensures the horse stance gains i
 		D.Knockdown(80)
 		D.adjustBruteLoss(10)
 		A.Knockdown(5)
-		add_exp(12, A)
+		add_exp(12, A, D)
 		var/atom/throw_target = get_edge_target_turf(D, get_dir(D, get_step_away(D, A)))
 		A.throw_at(throw_target, 3, 3)
 		D.visible_message("<span class='danger'>[A] headslides underneath [D], tripping them!</span>", \
@@ -257,7 +257,7 @@ GLOBAL_VAR_INIT(horse_stance_effects, FALSE) // ensures the horse stance gains i
 	A.throw_at(throw_target, 1, 1)
 	A.Knockdown(3)
 	D.adjustBruteLoss(10)
-	add_exp(8, A)
+	add_exp(8, A, D)
 	log_combat(A, D, "cannonballed (Armstrong)")
 	A.playsound_local(get_turf(A), 'sound/weapons/armstrong_success.ogg', 50, FALSE, pressure_affected = FALSE)
 	return
@@ -275,7 +275,7 @@ GLOBAL_VAR_INIT(horse_stance_effects, FALSE) // ensures the horse stance gains i
 						  "<span class='userdanger'>[A] [atk_verb_help] you!</span>")
 		D.apply_damage(rand(6,13), BRUTE) // lower base damage
 		D.adjustStaminaLoss(rand(6,10)) // but higher stamina damage
-		add_exp(rand(1,3), A)
+		add_exp(rand(1,3), A, D)
 		playsound(get_turf(D), 'sound/weapons/armstrong_punch.ogg', 75, 0, -1)
 		A.playsound_local(get_turf(A), 'sound/weapons/armstrong_combo.ogg', 25, FALSE, pressure_affected = FALSE)
 		if(prob(D.getBruteLoss()) && !D.body_position == LYING_DOWN)
@@ -301,7 +301,7 @@ GLOBAL_VAR_INIT(horse_stance_effects, FALSE) // ensures the horse stance gains i
 						  "<span class='userdanger'>[A] [atk_verb_harm] you!</span>")
 		D.apply_damage(rand(8,15), BRUTE) // higher base damage
 		D.adjustStaminaLoss(rand(4,8)) // but lower stamina damage
-		add_exp(rand(1,3), A)
+		add_exp(rand(1,3), A, D)
 		playsound(get_turf(D), 'sound/weapons/armstrong_punch.ogg', 50, 0, -1)
 		A.playsound_local(get_turf(A), 'sound/weapons/armstrong_combo.ogg', 25, FALSE, pressure_affected = FALSE)
 		if(prob(D.getBruteLoss()) && !D.body_position == LYING_DOWN)
@@ -329,7 +329,7 @@ GLOBAL_VAR_INIT(horse_stance_effects, FALSE) // ensures the horse stance gains i
 		D.adjustStaminaLoss(rand(4,9)) // left hand stamina damage
 		D.apply_damage(rand(6,12), BRUTE) // right hand brute damage - weakened
 		D.adjustStaminaLoss(rand(3,8)) // right hand stamina damage
-		add_exp(rand(2,4), A)
+		add_exp(rand(2,4), A, D)
 		playsound(get_turf(D), 'sound/weapons/armstrong_zipper.ogg', 50, 0, -1)
 		A.playsound_local(get_turf(A), 'sound/weapons/armstrong_combo.ogg', 25, FALSE, pressure_affected = FALSE)
 		if(prob(D.getBruteLoss()) && !D.body_position == LYING_DOWN)
@@ -354,7 +354,7 @@ GLOBAL_VAR_INIT(horse_stance_effects, FALSE) // ensures the horse stance gains i
 						  "<span class='userdanger'>[A] [atk_verb_disarm] you!</span>")
 		D.apply_damage(rand(3,5), BRUTE) // weakest brute damage
 		D.adjustStaminaLoss(rand(10,20)) // strongest stamina damage
-		add_exp(rand(2,4), A)
+		add_exp(rand(2,4), A, D)
 		playsound(get_turf(D), 'sound/weapons/armstrong_palmthrust.ogg', 50, 0, -1)
 		A.playsound_local(get_turf(A), 'sound/weapons/armstrong_combo.ogg', 25, FALSE, pressure_affected = FALSE)
 		if(prob(D.getBruteLoss()) && !D.body_position == LYING_DOWN)
@@ -491,8 +491,10 @@ GLOBAL_VAR_INIT(horse_stance_effects, FALSE) // ensures the horse stance gains i
 			to_chat(owner, "<span class = 'notice'><b>You can now Headslide without needing to combo.</b></span>")
 			head_slide.Grant(owner) */ //todo: make this a spell - action code is garbage.
 
-/datum/martial_art/armstrong/proc/add_exp(amt, mob/owner)
+/datum/martial_art/armstrong/proc/add_exp(amt, mob/owner, mob/living/target)
 	if(current_level == level_cap)
+		return
+	if(!istype(target) || !target.mind)
 		return
 	current_exp += amt
 	if(current_exp >= next_level_exp)

@@ -32,7 +32,12 @@
 	return (get_charge() >= amount)
 
 /obj/vehicle/sealed/mecha/proc/get_charge()
-	return cell?.charge
+	for(var/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/R in flat_equipment)
+		var/relay_charge = R.get_charge()
+		if(relay_charge)
+			return relay_charge
+	if(cell)
+		return max(0, cell.charge)
 
 /obj/vehicle/sealed/mecha/proc/use_power(amount)
 	return (get_charge() && cell.use(amount))
