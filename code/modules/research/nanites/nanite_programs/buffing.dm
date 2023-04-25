@@ -109,3 +109,18 @@
 	. = ..()
 	REMOVE_TRAIT(host_mob, TRAIT_MINDSHIELD, NANITES_TRAIT)
 	host_mob.sec_hud_set_implants()
+
+/datum/nanite_program/adrenaline
+	name = "Adrenaline Burst"
+	desc = "The nanites cause a burst of adrenaline when triggered, allowing the user to push their body past its normal limits."
+	can_trigger = TRUE
+	trigger_cost = 25
+	trigger_cooldown = 1200
+	rogue_types = list(/datum/nanite_program/toxic, /datum/nanite_program/nerve_decay)
+
+/datum/nanite_program/adrenaline/on_trigger()
+	to_chat(host_mob, "<span class='notice'>You feel a sudden surge of energy!</span>")
+	host_mob.SetAllImmobility(0)
+	host_mob.adjustStaminaLoss(-75)
+	host_mob.set_resting(FALSE)
+	host_mob.reagents.add_reagent(/datum/reagent/medicine/stimulants, 1.5)
