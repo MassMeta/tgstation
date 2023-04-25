@@ -583,6 +583,21 @@
 			STOP_PROCESSING(SSobj, src)
 			log_message("Deactivated.", LOG_MECHA)
 
+/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/get_snowflake_data()
+	return list(
+		"snowflake_id" = MECHA_SNOWFLAKE_ID_MODE,
+		"name" = "Tesla energy relay",
+		"mode" = (activated ? "Activated" : "Deactivated"),
+	)
+
+/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/ui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
+	if(action == "change_mode")
+		activated = !activated
+		return TRUE
+
 /obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/get_equip_info()
 	if(!chassis)
 		return
