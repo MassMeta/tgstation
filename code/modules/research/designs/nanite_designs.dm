@@ -234,17 +234,17 @@
 		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_MEDICAL
 	)
 
-/datum/design/nanites/defib
-	name = "Defibrillation"
-	desc = "The nanites, when triggered, send a defibrillating shock to the host's heart."
-	id = "defib_nanites"
-	program_type = /datum/nanite_program/defib
-	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_MEDICAL
-	)
-
 
 ////////////////////AUGMENTATION NANITES//////////////////////////////////////
+
+/datum/design/nanites/adrenaline
+	name = "Adrenaline Burst"
+	desc = "The nanites cause a burst of adrenaline when triggered, waking the host from stuns and temporarily increasing their speed."
+	id = "adrenaline_nanites"
+	program_type = /datum/nanite_program/adrenaline
+	category = list(
+		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_AUGMENTATION
+	)
 
 /datum/design/nanites/nervous
 	name = "Nerve Support"
