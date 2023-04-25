@@ -531,3 +531,76 @@
 	mech.chassis_camera = new /obj/machinery/camera/exosuit (mech)
 	mech.chassis_camera.update_c_tag(mech)
 	mech.diag_hud_set_camera()
+
+/////////////////////////////////// TESLA ENERGY RELAY ////////////////////////////////////////////////
+
+/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay
+	name = "exosuit energy relay"
+	desc = "An exosuit module that wirelessly drains energy from any available power channel in area. The performance index is quite low."
+	icon_state = "tesla"
+	energy_drain = 0
+	range = 0
+	var/coeff = 100
+	var/list/use_channels = list(AREA_USAGE_EQUIP,AREA_USAGE_ENVIRON,AREA_USAGE_LIGHT)
+	selectable = FALSE
+
+/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	return ..()
+
+/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/detach()
+	STOP_PROCESSING(SSobj, src)
+	return ..()
+
+/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/proc/get_charge()
+	if(activated) //disabled
+		return
+	var/pow_chan = get_chassis_area_power(get_area(chassis))
+	if(pow_chan)
+		return 1000 //making magic
+
+
+/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/proc/get_chassis_area_power(area/A)
+	if(!A)
+		return
+	var/pow_chan = 0
+	for(var/c in use_channels)
+		if(!A.powered(c))
+			continue
+		pow_chan = c
+		break
+	return pow_chan
+
+/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/Topic(href, href_list)
+	..()
+	if(href_list["toggle_relay"])
+		activated = !activated //now set to FALSE and active, so update the UI
+		update_equip_info()
+		if(activated) //inactive
+			START_PROCESSING(SSobj, src)
+			log_message("Activated.", LOG_MECHA)
+		else
+			STOP_PROCESSING(SSobj, src)
+			log_message("Deactivated.", LOG_MECHA)
+
+/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/get_equip_info()
+	if(!chassis)
+		return
+	return "<span style=\"color:[activated?"#0f0":"#f00"];\">*</span>&nbsp; [src.name] - <a href='?src=[REF(src)];toggle_relay=1'>[activated?"Deactivate":"Activate"]</a>"
+
+
+/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/process(delta_time)
+	if(!chassis || chassis.internal_damage & MECHA_INT_SHORT_CIRCUIT)
+		return PROCESS_KILL
+	var/cur_charge = chassis.get_charge()
+	if(isnull(cur_charge) || !chassis.cell)
+		to_chat(chassis.occupants, "[icon2html(src, chassis.occupants)][span_notice("No power cell detected.")]")
+		return PROCESS_KILL
+	if(cur_charge >= chassis.cell.maxcharge)
+		return
+	var/area/A = get_area(chassis)
+	var/pow_chan = get_chassis_area_power(A)
+	if(pow_chan)
+		var/delta = min(10 * delta_time, chassis.cell.maxcharge-cur_charge)
+		chassis.give_power(delta)
+		A.use_power(delta*coeff, pow_chan)
