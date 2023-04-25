@@ -1869,6 +1869,7 @@
 	prereq_ids = list("adv_mecha", "bluespace_power")
 	design_ids = list(
 		"mech_ccw_armor",
+		"mech_energy_relay",
 		"mech_proj_armor",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
@@ -2401,10 +2402,10 @@
 	design_ids = list(
 		"aggressive_nanites",
 		"brainheal_plus_nanites",
-		"defib_nanites",
 		"fakedeath_nanites",
 		"purging_plus_nanites",
 		"regenerative_plus_nanites",
+		"adrenaline_nanites",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 3000, TECHWEB_POINT_TYPE_NANITES = 3000)
 
