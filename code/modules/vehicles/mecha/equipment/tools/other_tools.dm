@@ -542,7 +542,6 @@
 	range = 0
 	var/coeff = 100
 	var/list/use_channels = list(AREA_USAGE_EQUIP,AREA_USAGE_ENVIRON,AREA_USAGE_LIGHT)
-	selectable = FALSE
 
 /obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -586,7 +585,7 @@
 		activated = !activated
 		return TRUE
 
-/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/process(delta_time)
+/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/process(seconds_per_tick)
 	if(!chassis || chassis.internal_damage & MECHA_INT_SHORT_CIRCUIT)
 		return PROCESS_KILL
 	var/cur_charge = chassis.get_charge()
@@ -598,6 +597,6 @@
 	var/area/A = get_area(chassis)
 	var/pow_chan = get_chassis_area_power(A)
 	if(pow_chan)
-		var/delta = min(10 * delta_time, chassis.cell.maxcharge-cur_charge)
+		var/delta = min(10 * seconds_per_tick, chassis.cell.maxcharge-cur_charge)
 		chassis.give_power(delta)
 		A.use_power(delta*coeff, pow_chan)
