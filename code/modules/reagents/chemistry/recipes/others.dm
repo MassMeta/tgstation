@@ -957,3 +957,12 @@
 	for(var/i in rand(1, created_volume) to created_volume)
 		new /mob/living/simple_animal/hostile/ant(location)
 	..()
+
+/datum/chemical_reaction/naniteremover
+	name = "Nanolytic Agent"
+	results = list(/datum/reagent/medicine/naniteremover = 3)
+	required_reagents = list(/datum/reagent/stable_plasma = 1, /datum/reagent/toxin/acid = 1, /datum/reagent/ammonia = 1)
+	
+	optimal_ph_min = 3
+	optimal_ph_max = 12
+	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_CHEMICAL

@@ -5,7 +5,7 @@
 	build_type = NANITE_COMPILER
 	construction_time = 50
 	category = list()
-	research_icon = 'icons/obj/device.dmi'
+	research_icon = 'massmeta/icons/misc/nanite_tools.dmi'
 	research_icon_state = "nanite_program"
 	var/program_type = /datum/nanite_program
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE

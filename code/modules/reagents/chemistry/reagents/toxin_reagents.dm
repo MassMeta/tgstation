@@ -1282,3 +1282,21 @@
 /datum/reagent/toxin/viperspider/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
 	affected_mob.adjust_hallucinations(10 SECONDS * REM * seconds_per_tick)
 	return ..()
+
+/datum/reagent/toxin/naniteremover
+	name = "Nanolytic Agent"
+	description = "Creates an environment that in unsuitable for nanites, causing them to rapidly break down."
+	reagent_state = LIQUID
+	color = "#ff00d4"
+	metabolization_rate = 0.5 * REAGENTS_METABOLISM
+	creation_purity = REAGENT_STANDARD_PURITY
+	purity = REAGENT_STANDARD_PURITY
+	taste_description = "acidic oil"
+	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
+	toxpwr = 0
+	var/nanite_reduction = -5
+
+/datum/reagent/toxin/naniteremover/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
+	if(SEND_SIGNAL(affected_mob, COMSIG_HAS_NANITES))
+		SEND_SIGNAL(affected_mob, COMSIG_NANITE_ADJUST_VOLUME, nanite_reduction * REM * normalise_creation_purity() * seconds_per_tick)
+	return ..()
