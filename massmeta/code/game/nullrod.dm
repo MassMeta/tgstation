@@ -97,7 +97,8 @@
 	icon_state = "dualleft"
 	inhand_icon_state = "dualleft"
 
-/obj/item/nullrod/handedsword/attack(mob/living/M, mob/living/user, secondattack = FALSE)
+/obj/item/nullrod/handedsword/attack(mob/living/target_mob, mob/living/user, params, secondattack = FALSE)
+	set waitfor = FALSE
 	. = ..()
 	var/obj/item/nullrod/handedsword/secondsword = user.get_inactive_held_item()
 	if(istype(secondsword, /obj/item/nullrod/handedsword) && !secondattack)
@@ -105,7 +106,7 @@
 		if(QDELETED(secondsword) || QDELETED(src))
 			return
 		user.swap_hand()
-		secondsword.attack(M, user, TRUE)
+		secondsword.attack(target_mob, user, params, TRUE)
 		user.changeNext_move(CLICK_CD_MELEE)
 	return
 
