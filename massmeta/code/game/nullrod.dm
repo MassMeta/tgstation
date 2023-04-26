@@ -10,7 +10,8 @@
 	force = 12
 	block_chance = 10
 	wound_bonus = -20
-	attack_verb = list("thwacked")
+	attack_verb_continuous = list("thwacks")
+	attack_verb_simple = list("thwack")
 	menu_description = "A sheath, containing two holy blades. Can be Atl+Clicked while worn to draw the blades from it."
 	var/swords = TRUE
 	var/obj/item/nullrod/handedsword/swordright
@@ -73,9 +74,6 @@
 	. = ..()
 	worn_icon_state = swords ? "fulldual" : "emptydual"
 	icon_state = worn_icon_state
-	if(ishuman(loc))
-		var/mob/living/carbon/human/H = loc
-		H.update_inv_belt()
 
 /obj/item/nullrod/handedsword
 	name = "Justice"
@@ -84,8 +82,9 @@
 	icon_state = "dualright"
 	inhand_icon_state = "dualright"
 	lefthand_file = 'massmeta/icons/mob/inhands/swords_lefthand.dmi'
-	righthand_file = 'massmeta/icons/mob/inhands/weapons/swords_righthand.dmi'
-	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "ripped", "diced", "cut")
+	righthand_file = 'massmeta/icons/mob/inhands/swords_righthand.dmi'
+	attack_verb_continuous = list("attacks", "slashes", "stabbs", "slices", "ripps", "dices", "cuts")
+	attack_verb_simple = list("attack", "slash", "stab", "slice", "ripp", "dice", "cut")
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	w_class = WEIGHT_CLASS_HUGE
 	chaplain_spawnable = FALSE
