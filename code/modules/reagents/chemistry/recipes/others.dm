@@ -959,8 +959,7 @@
 	..()
 
 /datum/chemical_reaction/naniteremover
-	name = "Nanolytic Agent"
-	results = list(/datum/reagent/medicine/naniteremover = 3)
+	results = list(/datum/reagent/toxin/naniteremover = 3)
 	required_reagents = list(/datum/reagent/stable_plasma = 1, /datum/reagent/toxin/acid = 1, /datum/reagent/ammonia = 1)
 	
 	optimal_ph_min = 3
