@@ -102,6 +102,7 @@
 #define ROLE_SPACE_BARTENDER "Space Bartender"
 #define ROLE_SPACE_BAR_PATRON "Space Bar Patron"
 #define ROLE_SKELETON "Skeleton"
+#define ROLE_XPERSON "Xperson"
 #define ROLE_ZOMBIE "Zombie"
 #define ROLE_MAINTENANCE_DRONE "Maintenance Drone"
 #define ROLE_BATTLECRUISER_CREW "Battlecruiser Crew"

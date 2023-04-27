@@ -325,3 +325,21 @@
 		/obj/item/gun/ballistic/automatic/pistol/aps,
 		/obj/item/paper/fluff/ruins/forgottenship/password,
 	)
+
+//Сamouflage loadout to make your person
+/obj/effect/mob_spawn/ghost_role/human/xperson
+	name = "X Person"
+	prompt_name = "xperson"
+	you_are_text = "Make your person and enjoy the event."
+	flavour_text = "You just a pice of everything. No one know why creater call you in this world but just obey his demands."
+	important_text = "Enjoy your meaning of life"
+	spawner_job_path = /datum/job/xperson
+	outfit = /datum/outfit/xperson
+/datum/outfit/xperson
+	name = "X Person"
+	uniform = /obj/item/clothing/under/color/grey
+	shoes = /obj/item/clothing/shoes/sneakers/black
+	back = /obj/item/storage/backpack
+	backpack_contents = list(
+		/obj/item/storage/box/syndie_kit/chameleon,
+	)
