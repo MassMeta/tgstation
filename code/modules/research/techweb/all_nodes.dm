@@ -2373,7 +2373,6 @@
 		"brainheal_nanites",
 		"good_mood_nanites",
 		"nervous_nanites",
-		"paralyzing_nanites",
 		"selfscan_nanites",
 		"stun_nanites",
 	)

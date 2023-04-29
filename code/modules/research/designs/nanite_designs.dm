@@ -496,15 +496,6 @@
 		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_SUPRESSION
 	)
 
-/datum/design/nanites/paralyzing
-	name = "Paralysis"
-	desc = "The nanites actively suppress nervous pulses, effectively paralyzing the host."
-	id = "paralyzing_nanites"
-	program_type = /datum/nanite_program/paralyzing
-	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_SUPRESSION
-	)
-
 /datum/design/nanites/fake_death
 	name = "Death Simulation"
 	desc = "The nanites induce a death-like coma into the host, able to fool most medical scans."

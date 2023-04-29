@@ -174,7 +174,7 @@
 	if(programs.len >= max_programs)
 		return COMPONENT_PROGRAM_NOT_INSTALLED
 	if(source_program)
-		source_program.copy_programming(new_program)
+		source_program.copy_programming(new_program, TRUE)
 	programs += new_program
 	new_program.on_add(src)
 	return COMPONENT_PROGRAM_INSTALLED
