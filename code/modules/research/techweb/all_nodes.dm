@@ -2354,6 +2354,7 @@
 		"coagulating_nanites",
 		"flesheating_nanites",
 		"poison_nanites",
+		"preserving_nanites",
 		"regenerative_nanites",
 		"sensor_crit_nanites",
 		"sensor_damage_nanites",

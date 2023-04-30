@@ -361,6 +361,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_PERMANENTLY_ONFIRE "permanently_onfire"
 /// Indicates if the mob is currently speaking with sign language
 #define TRAIT_SIGN_LANG "sign_language"
+#define TRAIT_ORGAN_PRESERVATION "organ_preservation" //Prevents organ decay while dead
 /// The mob's nanites are sending a monitoring signal visible on diag HUD
 #define TRAIT_NANITE_MONITORING "nanite_monitoring"
 /// This mob is able to use sign language over the radio.

@@ -18,7 +18,7 @@
 	id = "metabolic_nanites"
 	program_type = /datum/nanite_program/metabolic_synthesis
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_UTILITY
+		RND_SUBCATEGORY_NANITES_UTILITY
 	)
 
 /datum/design/nanites/viral
@@ -27,7 +27,7 @@
 	id = "viral_nanites"
 	program_type = /datum/nanite_program/viral
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_UTILITY
+		RND_SUBCATEGORY_NANITES_UTILITY
 	)
 
 /datum/design/nanites/monitoring
@@ -36,7 +36,7 @@
 	id = "monitoring_nanites"
 	program_type = /datum/nanite_program/monitoring
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_UTILITY
+		RND_SUBCATEGORY_NANITES_UTILITY
 	)
 
 /datum/design/nanites/self_scan
@@ -45,7 +45,7 @@
 	id = "selfscan_nanites"
 	program_type = /datum/nanite_program/self_scan
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_UTILITY
+		RND_SUBCATEGORY_NANITES_UTILITY
 	)
 
 /datum/design/nanites/dermal_button
@@ -54,7 +54,7 @@
 	id = "dermal_button_nanites"
 	program_type = /datum/nanite_program/dermal_button
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_UTILITY
+		RND_SUBCATEGORY_NANITES_UTILITY
 	)
 
 /datum/design/nanites/stealth
@@ -63,7 +63,7 @@
 	id = "stealth_nanites"
 	program_type = /datum/nanite_program/stealth
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_UTILITY
+		RND_SUBCATEGORY_NANITES_UTILITY
 	)
 
 /datum/design/nanites/nanite_debugging
@@ -73,7 +73,7 @@
 	id = "debugging_nanites"
 	program_type = /datum/nanite_program/nanite_debugging
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_UTILITY
+		RND_SUBCATEGORY_NANITES_UTILITY
 	)
 
 /datum/design/nanites/access
@@ -82,7 +82,7 @@
 	id = "access_nanites"
 	program_type = /datum/nanite_program/access
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_UTILITY
+		RND_SUBCATEGORY_NANITES_UTILITY
 	)
 
 /datum/design/nanites/relay
@@ -91,7 +91,7 @@
 	id = "relay_nanites"
 	program_type = /datum/nanite_program/relay
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_UTILITY
+		RND_SUBCATEGORY_NANITES_UTILITY
 	)
 
 /datum/design/nanites/repeater
@@ -100,7 +100,7 @@
 	id = "repeater_nanites"
 	program_type = /datum/nanite_program/sensor/repeat
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_UTILITY
+		RND_SUBCATEGORY_NANITES_UTILITY
 	)
 
 /datum/design/nanites/relay_repeater
@@ -109,7 +109,7 @@
 	id = "relay_repeater_nanites"
 	program_type = /datum/nanite_program/sensor/relay_repeat
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_UTILITY
+		RND_SUBCATEGORY_NANITES_UTILITY
 	)
 
 /datum/design/nanites/emp
@@ -118,7 +118,7 @@
 	id = "emp_nanites"
 	program_type = /datum/nanite_program/emp
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_UTILITY
+		RND_SUBCATEGORY_NANITES_UTILITY
 	)
 
 /datum/design/nanites/spreading
@@ -128,7 +128,7 @@
 	id = "spreading_nanites"
 	program_type = /datum/nanite_program/spreading
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_UTILITY
+		RND_SUBCATEGORY_NANITES_UTILITY
 	)
 
 /datum/design/nanites/nanite_sting
@@ -137,7 +137,7 @@
 	id = "nanite_sting_nanites"
 	program_type = /datum/nanite_program/nanite_sting
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_UTILITY
+		RND_SUBCATEGORY_NANITES_UTILITY
 	)
 
 /datum/design/nanites/mitosis
@@ -147,7 +147,7 @@
 	id = "mitosis_nanites"
 	program_type = /datum/nanite_program/mitosis
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_UTILITY
+		RND_SUBCATEGORY_NANITES_UTILITY
 	)
 
 ////////////////////MEDICAL NANITES//////////////////////////////////////
@@ -157,7 +157,16 @@
 	id = "regenerative_nanites"
 	program_type = /datum/nanite_program/regenerative
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_MEDICAL
+		RND_SUBCATEGORY_NANITES_MEDICAL
+	)
+
+/datum/design/nanites/preserving
+	name = "Organ Preservation"
+	desc = "The nanites preserve the host's organs in case of death, preventing their decay."
+	id = "preserving_nanites"
+	program_type = /datum/nanite_program/preserving
+	category = list(
+		RND_SUBCATEGORY_NANITES_MEDICAL
 	)
 
 /datum/design/nanites/regenerative_advanced
@@ -167,7 +176,7 @@
 	id = "regenerative_plus_nanites"
 	program_type = /datum/nanite_program/regenerative_advanced
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_MEDICAL
+		RND_SUBCATEGORY_NANITES_MEDICAL
 	)
 
 /datum/design/nanites/temperature
@@ -176,7 +185,7 @@
 	id = "temperature_nanites"
 	program_type = /datum/nanite_program/temperature
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_MEDICAL
+		RND_SUBCATEGORY_NANITES_MEDICAL
 	)
 
 /datum/design/nanites/purging
@@ -185,7 +194,7 @@
 	id = "purging_nanites"
 	program_type = /datum/nanite_program/purging
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_MEDICAL
+		RND_SUBCATEGORY_NANITES_MEDICAL
 	)
 
 /datum/design/nanites/purging_advanced
@@ -195,7 +204,7 @@
 	id = "purging_plus_nanites"
 	program_type = /datum/nanite_program/purging_advanced
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_MEDICAL
+		RND_SUBCATEGORY_NANITES_MEDICAL
 	)
 
 /datum/design/nanites/brain_heal
@@ -204,7 +213,7 @@
 	id = "brainheal_nanites"
 	program_type = /datum/nanite_program/brain_heal
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_MEDICAL
+		RND_SUBCATEGORY_NANITES_MEDICAL
 	)
 
 /datum/design/nanites/brain_heal_advanced
@@ -213,7 +222,7 @@
 	id = "brainheal_plus_nanites"
 	program_type = /datum/nanite_program/brain_heal_advanced
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_MEDICAL
+		RND_SUBCATEGORY_NANITES_MEDICAL
 	)
 
 /datum/design/nanites/blood_restoring
@@ -222,7 +231,7 @@
 	id = "bloodheal_nanites"
 	program_type = /datum/nanite_program/blood_restoring
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_MEDICAL
+		RND_SUBCATEGORY_NANITES_MEDICAL
 	)
 
 /datum/design/nanites/repairing
@@ -231,7 +240,7 @@
 	id = "repairing_nanites"
 	program_type = /datum/nanite_program/repairing
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_MEDICAL
+		RND_SUBCATEGORY_NANITES_MEDICAL
 	)
 
 
@@ -243,7 +252,7 @@
 	id = "adrenaline_nanites"
 	program_type = /datum/nanite_program/adrenaline
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_AUGMENTATION
+		RND_SUBCATEGORY_NANITES_AUGMENTATION
 	)
 
 /datum/design/nanites/nervous
@@ -252,7 +261,7 @@
 	id = "nervous_nanites"
 	program_type = /datum/nanite_program/nervous
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_AUGMENTATION
+		RND_SUBCATEGORY_NANITES_AUGMENTATION
 	)
 
 /datum/design/nanites/hardening
@@ -261,7 +270,7 @@
 	id = "hardening_nanites"
 	program_type = /datum/nanite_program/hardening
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_AUGMENTATION
+		RND_SUBCATEGORY_NANITES_AUGMENTATION
 	)
 
 /datum/design/nanites/refractive
@@ -270,7 +279,7 @@
 	id = "refractive_nanites"
 	program_type = /datum/nanite_program/refractive
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_AUGMENTATION
+		RND_SUBCATEGORY_NANITES_AUGMENTATION
 	)
 
 /datum/design/nanites/coagulating
@@ -279,7 +288,7 @@
 	id = "coagulating_nanites"
 	program_type = /datum/nanite_program/coagulating
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_AUGMENTATION
+		RND_SUBCATEGORY_NANITES_AUGMENTATION
 	)
 
 /datum/design/nanites/conductive
@@ -288,7 +297,7 @@
 	id = "conductive_nanites"
 	program_type = /datum/nanite_program/conductive
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_AUGMENTATION
+		RND_SUBCATEGORY_NANITES_AUGMENTATION
 	)
 
 /datum/design/nanites/mindshield
@@ -297,7 +306,7 @@
 	id = "mindshield_nanites"
 	program_type = /datum/nanite_program/mindshield
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_AUGMENTATION
+		RND_SUBCATEGORY_NANITES_AUGMENTATION
 	)
 
 ////////////////////DEFECTIVE NANITES//////////////////////////////////////
@@ -308,7 +317,7 @@
 	id = "glitch_nanites"
 	program_type = /datum/nanite_program/glitch
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_DEFECTIVE
+		RND_SUBCATEGORY_NANITES_DEFECTIVE
 	)
 
 /datum/design/nanites/necrotic
@@ -317,7 +326,7 @@
 	id = "necrotic_nanites"
 	program_type = /datum/nanite_program/necrotic
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_DEFECTIVE
+		RND_SUBCATEGORY_NANITES_DEFECTIVE
 	)
 
 /datum/design/nanites/toxic
@@ -326,7 +335,7 @@
 	id = "toxic_nanites"
 	program_type = /datum/nanite_program/toxic
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_DEFECTIVE
+		RND_SUBCATEGORY_NANITES_DEFECTIVE
 	)
 
 /datum/design/nanites/suffocating
@@ -335,7 +344,7 @@
 	id = "suffocating_nanites"
 	program_type = /datum/nanite_program/suffocating
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_DEFECTIVE
+		RND_SUBCATEGORY_NANITES_DEFECTIVE
 	)
 
 /datum/design/nanites/brain_misfire
@@ -344,7 +353,7 @@
 	id = "brainmisfire_nanites"
 	program_type = /datum/nanite_program/brain_misfire
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_DEFECTIVE
+		RND_SUBCATEGORY_NANITES_DEFECTIVE
 	)
 
 /datum/design/nanites/skin_decay
@@ -353,7 +362,7 @@
 	id = "skindecay_nanites"
 	program_type = /datum/nanite_program/skin_decay
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_DEFECTIVE
+		RND_SUBCATEGORY_NANITES_DEFECTIVE
 	)
 
 /datum/design/nanites/nerve_decay
@@ -362,7 +371,7 @@
 	id = "nervedecay_nanites"
 	program_type = /datum/nanite_program/nerve_decay
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_DEFECTIVE
+		RND_SUBCATEGORY_NANITES_DEFECTIVE
 	)
 
 /datum/design/nanites/brain_decay
@@ -371,7 +380,7 @@
 	id = "braindecay_nanites"
 	program_type = /datum/nanite_program/brain_decay
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_DEFECTIVE
+		RND_SUBCATEGORY_NANITES_DEFECTIVE
 	)
 
 ////////////////////WEAPONIZED NANITES/////////////////////////////////////
@@ -382,7 +391,7 @@
 	id = "flesheating_nanites"
 	program_type = /datum/nanite_program/flesh_eating
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_WEAPONIZED
+		RND_SUBCATEGORY_NANITES_WEAPONIZED
 	)
 
 /datum/design/nanites/poison
@@ -391,7 +400,7 @@
 	id = "poison_nanites"
 	program_type = /datum/nanite_program/poison
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_WEAPONIZED
+		RND_SUBCATEGORY_NANITES_WEAPONIZED
 	)
 
 /datum/design/nanites/memory_leak
@@ -400,7 +409,7 @@
 	id = "memleak_nanites"
 	program_type = /datum/nanite_program/memory_leak
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_WEAPONIZED
+		RND_SUBCATEGORY_NANITES_WEAPONIZED
 	)
 
 /datum/design/nanites/aggressive_replication
@@ -409,7 +418,7 @@
 	id = "aggressive_nanites"
 	program_type = /datum/nanite_program/aggressive_replication
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_WEAPONIZED
+		RND_SUBCATEGORY_NANITES_WEAPONIZED
 	)
 
 /datum/design/nanites/meltdown
@@ -419,7 +428,7 @@
 	id = "meltdown_nanites"
 	program_type = /datum/nanite_program/meltdown
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_WEAPONIZED
+		RND_SUBCATEGORY_NANITES_WEAPONIZED
 	)
 
 /datum/design/nanites/cryo
@@ -428,7 +437,7 @@
 	id = "cryo_nanites"
 	program_type = /datum/nanite_program/cryo
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_WEAPONIZED
+		RND_SUBCATEGORY_NANITES_WEAPONIZED
 	)
 
 /datum/design/nanites/pyro
@@ -437,7 +446,7 @@
 	id = "pyro_nanites"
 	program_type = /datum/nanite_program/pyro
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_WEAPONIZED
+		RND_SUBCATEGORY_NANITES_WEAPONIZED
 	)
 
 /datum/design/nanites/heart_stop
@@ -446,7 +455,7 @@
 	id = "heartstop_nanites"
 	program_type = /datum/nanite_program/heart_stop
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_WEAPONIZED
+		RND_SUBCATEGORY_NANITES_WEAPONIZED
 	)
 
 /datum/design/nanites/explosive
@@ -455,7 +464,7 @@
 	id = "explosive_nanites"
 	program_type = /datum/nanite_program/explosive
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_WEAPONIZED
+		RND_SUBCATEGORY_NANITES_WEAPONIZED
 	)
 
 /datum/design/nanites/mind_control
@@ -464,7 +473,7 @@
 	id = "mindcontrol_nanites"
 	program_type = /datum/nanite_program/comm/mind_control
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_WEAPONIZED
+		RND_SUBCATEGORY_NANITES_WEAPONIZED
 	)
 
 ////////////////////SUPPRESSION NANITES//////////////////////////////////////
@@ -475,7 +484,7 @@
 	id = "shock_nanites"
 	program_type = /datum/nanite_program/shocking
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_SUPRESSION
+		RND_SUBCATEGORY_NANITES_SUPRESSION
 	)
 
 /datum/design/nanites/stun
@@ -484,7 +493,7 @@
 	id = "stun_nanites"
 	program_type = /datum/nanite_program/stun
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_SUPRESSION
+		RND_SUBCATEGORY_NANITES_SUPRESSION
 	)
 
 /datum/design/nanites/sleepy
@@ -493,7 +502,7 @@
 	id = "sleep_nanites"
 	program_type = /datum/nanite_program/sleepy
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_SUPRESSION
+		RND_SUBCATEGORY_NANITES_SUPRESSION
 	)
 
 /datum/design/nanites/fake_death
@@ -502,7 +511,7 @@
 	id = "fakedeath_nanites"
 	program_type = /datum/nanite_program/fake_death
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_SUPRESSION
+		RND_SUBCATEGORY_NANITES_SUPRESSION
 	)
 
 /datum/design/nanites/pacifying
@@ -511,7 +520,7 @@
 	id = "pacifying_nanites"
 	program_type = /datum/nanite_program/pacifying
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_SUPRESSION
+		RND_SUBCATEGORY_NANITES_SUPRESSION
 	)
 
 /datum/design/nanites/blinding
@@ -520,7 +529,7 @@
 	id = "blinding_nanites"
 	program_type = /datum/nanite_program/blinding
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_SUPRESSION
+		RND_SUBCATEGORY_NANITES_SUPRESSION
 	)
 
 /datum/design/nanites/mute
@@ -529,7 +538,7 @@
 	id = "mute_nanites"
 	program_type = /datum/nanite_program/mute
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_SUPRESSION
+		RND_SUBCATEGORY_NANITES_SUPRESSION
 	)
 
 /datum/design/nanites/voice
@@ -538,7 +547,7 @@
 	id = "voice_nanites"
 	program_type = /datum/nanite_program/comm/voice
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_SUPRESSION
+		RND_SUBCATEGORY_NANITES_SUPRESSION
 	)
 
 /datum/design/nanites/speech
@@ -547,7 +556,7 @@
 	id = "speech_nanites"
 	program_type = /datum/nanite_program/comm/speech
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_SUPRESSION
+		RND_SUBCATEGORY_NANITES_SUPRESSION
 	)
 
 /datum/design/nanites/hallucination
@@ -556,7 +565,7 @@
 	id = "hallucination_nanites"
 	program_type = /datum/nanite_program/comm/hallucination
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_SUPRESSION
+		RND_SUBCATEGORY_NANITES_SUPRESSION
 	)
 
 /datum/design/nanites/good_mood
@@ -565,7 +574,7 @@
 	id = "good_mood_nanites"
 	program_type = /datum/nanite_program/good_mood
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_SUPRESSION
+		RND_SUBCATEGORY_NANITES_SUPRESSION
 	)
 
 /datum/design/nanites/bad_mood
@@ -574,7 +583,7 @@
 	id = "bad_mood_nanites"
 	program_type = /datum/nanite_program/bad_mood
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_SUPRESSION
+		RND_SUBCATEGORY_NANITES_SUPRESSION
 	)
 
 ////////////////////SENSOR NANITES//////////////////////////////////////
@@ -585,7 +594,7 @@
 	id = "sensor_health_nanites"
 	program_type = /datum/nanite_program/sensor/health
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_SENSOR
+		RND_SUBCATEGORY_NANITES_SENSOR
 	)
 
 /datum/design/nanites/sensor_damage
@@ -594,7 +603,7 @@
 	id = "sensor_damage_nanites"
 	program_type = /datum/nanite_program/sensor/damage
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_SENSOR
+		RND_SUBCATEGORY_NANITES_SENSOR
 	)
 
 /datum/design/nanites/sensor_crit
@@ -603,7 +612,7 @@
 	id = "sensor_crit_nanites"
 	program_type = /datum/nanite_program/sensor/crit
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_SENSOR
+		RND_SUBCATEGORY_NANITES_SENSOR
 	)
 
 /datum/design/nanites/sensor_death
@@ -612,7 +621,7 @@
 	id = "sensor_death_nanites"
 	program_type = /datum/nanite_program/sensor/death
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_SENSOR
+		RND_SUBCATEGORY_NANITES_SENSOR
 	)
 
 /datum/design/nanites/sensor_voice
@@ -621,7 +630,7 @@
 	id = "sensor_voice_nanites"
 	program_type = /datum/nanite_program/sensor/voice
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_SENSOR
+		RND_SUBCATEGORY_NANITES_SENSOR
 	)
 
 /datum/design/nanites/sensor_nanite_volume
@@ -630,7 +639,7 @@
 	id = "sensor_nanite_volume"
 	program_type = /datum/nanite_program/sensor/nanite_volume
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_SENSOR
+		RND_SUBCATEGORY_NANITES_SENSOR
 	)
 
 /datum/design/nanites/sensor_species
@@ -639,7 +648,7 @@
 	id = "sensor_species_nanites"
 	program_type = /datum/nanite_program/sensor/species
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_SENSOR
+		RND_SUBCATEGORY_NANITES_SENSOR
 	)
 
 ////////////////////NANITE PROTOCOLS//////////////////////////////////////
@@ -649,7 +658,7 @@
 	id = "kickstart_nanites"
 	program_type = /datum/nanite_program/protocol/kickstart
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_PROTOCOLS
+		RND_SUBCATEGORY_NANITES_PROTOCOLS
 	)
 
 /datum/design/nanites/factory
@@ -658,7 +667,7 @@
 	id = "factory_nanites"
 	program_type = /datum/nanite_program/protocol/factory
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_PROTOCOLS
+		RND_SUBCATEGORY_NANITES_PROTOCOLS
 	)
 
 /datum/design/nanites/pyramid
@@ -667,7 +676,7 @@
 	id = "pyramid_nanites"
 	program_type = /datum/nanite_program/protocol/pyramid
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_PROTOCOLS
+		RND_SUBCATEGORY_NANITES_PROTOCOLS
 	)
 
 /datum/design/nanites/offline
@@ -676,7 +685,7 @@
 	id = "offline_nanites"
 	program_type = /datum/nanite_program/protocol/offline
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_PROTOCOLS
+		RND_SUBCATEGORY_NANITES_PROTOCOLS
 	)
 
 /datum/design/nanites/hive
@@ -685,7 +694,7 @@
 	id = "hive_nanites"
 	program_type = /datum/nanite_program/protocol/hive
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_PROTOCOLS
+		RND_SUBCATEGORY_NANITES_PROTOCOLS
 	)
 
 /datum/design/nanites/zip
@@ -694,7 +703,7 @@
 	id = "zip_nanites"
 	program_type = /datum/nanite_program/protocol/zip
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_PROTOCOLS
+		RND_SUBCATEGORY_NANITES_PROTOCOLS
 	)
 
 /datum/design/nanites/free_range
@@ -703,7 +712,7 @@
 	id = "free_range_nanites"
 	program_type = /datum/nanite_program/protocol/free_range
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_PROTOCOLS
+		RND_SUBCATEGORY_NANITES_PROTOCOLS
 	)
 
 /datum/design/nanites/unsafe_storage
@@ -713,5 +722,5 @@
 	id = "unsafe_storage_nanites"
 	program_type = /datum/nanite_program/protocol/unsafe_storage
 	category = list(
-		RND_CATEGORY_NANITES + RND_SUBCATEGORY_NANITES_PROTOCOLS
+		RND_SUBCATEGORY_NANITES_PROTOCOLS
 	)
