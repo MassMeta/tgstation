@@ -104,6 +104,10 @@
 	clothing_flags = CASTING_CLOTHES
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 
+/obj/item/clothing/suit/wizrobe/Initialize()
+	. = ..()
+	AddComponent(/datum/component/anti_artifact, INFINITY, FALSE, 100)
+
 /datum/armor/suit_wizrobe
 	melee = 30
 	bullet = 20

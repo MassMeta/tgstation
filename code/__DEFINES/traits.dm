@@ -334,6 +334,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 /// Allows the species to equip items that normally require a jumpsuit without having one equipped. Used by golems.
 #define TRAIT_NO_JUMPSUIT "no_jumpsuit"
 #define TRAIT_NAIVE "naive"
+#define TRAIT_MINDSWAPPED "mindswapped"
 /// always detect storms on icebox
 #define TRAIT_DETECT_STORM "detect_storm"
 #define TRAIT_PRIMITIVE "primitive"

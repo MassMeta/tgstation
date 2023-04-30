@@ -14,6 +14,7 @@
 
 /obj/item/clothing/head/bio_hood/Initialize(mapload)
 	. = ..()
+	AddComponent(/datum/component/anti_artifact, INFINITY, FALSE, 75)
 	if(flags_inv & HIDEFACE)
 		AddComponent(/datum/component/clothing_fov_visor, FOV_90_DEGREES)
 

@@ -495,6 +495,10 @@
 	jetpack = /obj/item/tank/jetpack/suit
 	cell = /obj/item/stock_parts/cell/hyper
 
+/obj/item/clothing/suit/space/hardsuit/syndi/Initialize()
+	. = ..()
+	AddComponent(/datum/component/anti_artifact, INFINITY, FALSE, 100)
+
 /datum/armor/hardsuit_syndi
 	melee = 40
 	bullet = 50
@@ -642,7 +646,7 @@
 /obj/item/clothing/suit/space/hardsuit/wizard/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/anti_magic, TRUE, FALSE, FALSE, ITEM_SLOT_OCLOTHING, INFINITY, FALSE)
-
+	AddComponent(/datum/component/anti_artifact, INFINITY, FALSE, 100)
 
 	//Medical hardsuit
 /obj/item/clothing/head/helmet/space/hardsuit/medical
@@ -698,6 +702,7 @@
 /obj/item/clothing/head/helmet/space/hardsuit/rd/Initialize(mapload)
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_EXPLOSION, .proc/sense_explosion)
+	AddComponent(/datum/component/anti_artifact, INFINITY, FALSE, 100)
 
 /obj/item/clothing/head/helmet/space/hardsuit/rd/equipped(mob/living/carbon/human/user, slot)
 	..()
@@ -1336,6 +1341,10 @@
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/shielded/syndi
 	slowdown = 0
 	jetpack = /obj/item/tank/jetpack/suit
+
+/obj/item/clothing/suit/space/hardsuit/shielded/syndi/Initialize()
+	. = ..()
+	AddComponent(/datum/component/anti_artifact, INFINITY, FALSE, 100)
 
 /obj/item/clothing/suit/space/hardsuit/shielded/syndi/setup_shielding()
 	AddComponent(/datum/component/shielded, max_charges = 3, recharge_start_delay = 20 SECONDS, charge_increment_delay = 1 SECONDS, charge_recovery = 1, lose_multiple_charges = FALSE, shield_icon = "shield-red")

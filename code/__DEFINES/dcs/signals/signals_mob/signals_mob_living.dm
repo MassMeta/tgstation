@@ -148,3 +148,6 @@
 #define COMSIG_LIVING_INTERACTED_WITH_DOOR "living_interacted_with_door"
 	#define DOOR_CLOSE "close"
 	#define DOOR_OPEN "open"
+
+#define COMSIG_MOB_RECEIVE_ARTIFACT "mob_receive_artifact"			//
+	#define COMPONENT_BLOCK_ARTIFACT 1

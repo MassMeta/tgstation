@@ -168,6 +168,10 @@
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH | PEPPERPROOF
 	resistance_flags = NONE
 
+/obj/item/clothing/suit/radiation/Initialize()
+	. = ..()
+	AddComponent(/datum/component/anti_artifact, INFINITY, FALSE, 100)
+
 /datum/armor/utility_radiation
 	bio = 60
 	fire = 30

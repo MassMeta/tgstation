@@ -75,6 +75,31 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
+/datum/design/xenoartifact_labeler
+	name = "Artifact Labeler"
+	desc = "A scientific labeler used to warn others of the dangers of an alien artifact."
+	id = "xenoa_labeler"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 2000, /datum/material/glass = 1000, /datum/material/silver = 1000, /datum/material/gold = 3000)
+	build_path = /obj/item/xenoartifact_labeler
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_SCIENCE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design/artifact_pinchers
+	name = "Anti-Tactile Pinchers"
+	desc = "A pair of precise operable pinchers, used to examine artifacts."
+	id = "xenoa_gloves"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 2000, /datum/material/silver = 1000)
+	build_path = /obj/item/clothing/gloves/artifact_pinchers
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_SCIENCE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+
 /////////////////////////////////////////
 //////////////////Misc///////////////////
 /////////////////////////////////////////
