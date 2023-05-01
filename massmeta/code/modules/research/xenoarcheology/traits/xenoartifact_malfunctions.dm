@@ -125,7 +125,13 @@
 	label_desc = "Radioactive: The Artifact Emmits harmful particles when a reaction takes place."
 
 /datum/xenoartifact_trait/malfunction/radioactive/on_init(obj/item/xenoartifact/X)
-	X.rad_act(25)
+	radiation_pulse(
+		X,
+		max_range = 1,
+		threshold = RAD_VERY_LIGHT_INSULATION,
+		chance = (URANIUM_IRRADIATION_CHANCE / 3),
+		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+		)
 
 /datum/xenoartifact_trait/malfunction/radioactive/on_item(obj/item/xenoartifact/X, atom/user, atom/item)
 	if(istype(item, /obj/item/geiger_counter))
@@ -138,4 +144,10 @@
 	return TRUE
 
 /datum/xenoartifact_trait/malfunction/radioactive/activate(obj/item/xenoartifact/X)
-	X.rad_act(25)
+	radiation_pulse(
+		X,
+		max_range = 1,
+		threshold = RAD_VERY_LIGHT_INSULATION,
+		chance = (URANIUM_IRRADIATION_CHANCE / 3),
+		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+		)

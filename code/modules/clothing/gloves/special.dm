@@ -155,8 +155,11 @@
 /datum/action/item_action/artifact_pincher_mode
 	name = "Toggle Safety"
 
-/datum/action/item_action/artifact_pincher_mode/Trigger()
+/datum/action/item_action/artifact_pincher_mode/Trigger(trigger_flags)
+	. = ..()
+	if(!.)
+		return FALSE
 	var/obj/item/clothing/gloves/artifact_pinchers/pinchy = target
 	if(istype(pinchy))
 		pinchy.safety = !pinchy.safety
-		button.icon_state = (pinchy.safety ? "template_active" : "template")
+		button.button_icon_state = (pinchy.safety ? "template_active" : "template")

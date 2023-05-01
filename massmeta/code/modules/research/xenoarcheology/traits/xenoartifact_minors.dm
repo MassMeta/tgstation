@@ -83,7 +83,7 @@
 	X.sharpness = SHARP_EDGED
 	X.force = X.charge_req*0.12
 	X.attack_verb_simple = list("cleave", "slash", "stab", "slice", "tore", "ripp", "dice", "cut")
-	X.attack_verb_continous = list("cleaves", "slashes", "stabbs", "slices", "tores", "ripps", "dices", "cuts")
+	X.attack_verb_continuous = list("cleaves", "slashes", "stabbs", "slices", "tores", "ripps", "dices", "cuts")
 	X.attack_weight = 2
 	X.armour_penetration = 5
 
@@ -115,14 +115,14 @@
 
 /datum/xenoartifact_trait/minor/delicate/on_init(obj/item/xenoartifact/X)
 	X.max_integrity = pick(200, 300, 500, 800, 1000)
-	X.obj_integrity = X.max_integrity
+	X.atom_integrity = X.max_integrity
 	X.alpha = X.alpha * 0.55
 
 /datum/xenoartifact_trait/minor/delicate/activate(obj/item/xenoartifact/X, atom/user)
-	if(X.obj_integrity)
-		X.obj_integrity -= 100
+	if(X.atom_integrity)
+		X.atom_integrity -= 100
 		X.visible_message("<span class='danger'>The [X.name] cracks!</span>", "<span class='danger'>The [X.name] cracks!</span>")
-	else if(X.obj_integrity <= 0)
+	else if(X.atom_integrity <= 0)
 		X.visible_message("<span class='danger'>The [X.name] shatters!</span>", "<span class='danger'>The [X.name] shatters!</span>")
 		var/obj/effect/decal/cleanable/ash/A = new(get_turf(X))
 		A.color = X.material
@@ -188,9 +188,7 @@
 	flags = BLUESPACE_TRAIT | PLASMA_TRAIT | URANIUM_TRAIT
 
 /datum/xenoartifact_trait/minor/blocking/on_init(obj/item/xenoartifact/X)
-	X.block_level = pick(1, 2, 3, 4)
-	X.block_upgrade_walk = 1
-	X.block_power = 25 * pick(0.8, 1, 1.3, 1.5)
+	X.block_chance = 25 * pick(0.8, 1, 1.3, 1.5,2)
 
 //============
 // Light, allows artifact to be thrown far
@@ -254,7 +252,7 @@
 		var/mob/living/holder = X.loc
 		holder.dropItemToGround(X)
 	X.visible_message("<span class='danger'>The [X.name] buckles to the floor!</span>")
-	X.setAnchored(TRUE)
+	X.set_anchored(TRUE)
 	X.density = TRUE
 
 /datum/xenoartifact_trait/minor/anchor/on_item(obj/item/xenoartifact/X, atom/user, obj/item/item)
@@ -263,7 +261,7 @@
 		if(isliving(X.loc))
 			var/mob/living/holder = X.loc
 			holder.dropItemToGround(X)
-		X.setAnchored(!X.anchored)
+		X.set_anchored(!X.anchored)
 		if(!X.get_trait(/datum/xenoartifact_trait/minor/dense))
 			X.density = !X.density
 		return TRUE

@@ -94,7 +94,7 @@
 	if(isliving(target) && get_dist(target, X.loc || user) <= 1)
 		var/mob/living/victim = target
 		victim.adjust_fire_stacks(5*(X.charge/X.charge_req))
-		victim.IgniteMob()
+		victim.ignite_mob()
 		return
 	var/obj/projectile/A
 	switch(X.charge)
@@ -330,6 +330,7 @@
 /datum/xenoartifact_trait/major/horn/activate(obj/item/xenoartifact/X, atom/target, atom/user)
 	playsound(get_turf(target), sound, 50, FALSE)
 
+/*
 ///============
 /// Gas, replaces a random gas with another random gas
 ///============
@@ -374,48 +375,5 @@
 	if(moles)
 		air.adjust_moles(input_id, -moles)
 		air.adjust_moles(output_id, moles)
+*/
 
-///============
-/// Destabilizing, teleports the victim to that weird place from the exploration meme.
-///============
-/datum/xenoartifact_trait/major/distablizer
-	desc = "Destabilizing"
-	label_desc = "Destabilizing: The Artifact collapses an improper bluespace matrix on the target, sending them to an unknown location."
-	weight = 25
-	flags = URANIUM_TRAIT
-	var/obj/item/xenoartifact/exit
-
-/datum/xenoartifact_trait/major/distablizer/on_init(obj/item/xenoartifact/X)
-	exit = X
-	GLOB.destabliization_exits += X
-
-/datum/xenoartifact_trait/major/distablizer/on_item(obj/item/xenoartifact/X, mob/living/carbon/human/user, atom/item)
-	var/obj/item/clothing/gloves/artifact_pinchers/P
-	if(istype(user))
-		P = user.get_item_by_slot(ITEM_SLOT_GLOVES)
-	if(!P?.safety && do_banish(item))
-		to_chat(user, "<span class='warning'>The [item] dissapears!</span>")
-		return TRUE
-	..()
-
-/datum/xenoartifact_trait/major/distablizer/activate(obj/item/xenoartifact/X, atom/target, atom/user)
-	if(do_banish(target))
-		X.cooldownmod = X.charge*0.2 SECONDS
-
-/datum/xenoartifact_trait/major/distablizer/proc/do_banish(atom/target)
-	. = FALSE
-	if(isliving(exit.loc))
-		var/mob/living/holder = exit.loc
-		holder.dropItemToGround(exit)
-	if(istype(target, /obj/item/xenoartifact))
-		return
-	if(ismovable(target))
-		var/atom/movable/AM = target
-		if(AM.anchored)
-			return
-		if(AM.forceMove(pick(GLOB.destabilization_spawns)))
-			return TRUE
-
-/datum/xenoartifact_trait/major/distablizer/Destroy()
-	GLOB.destabliization_exits -= exit
-	..()

@@ -360,11 +360,13 @@
 		return
 	SEND_SIGNAL(src, XENOA_SIGNAL, null, get_target_in_proximity(max_range), get_target_in_proximity(max_range)) //I don't think this sends a signal
 
-/obj/item/xenoartifact/on_block(mob/living/carbon/human/owner, atom/movable/hitby)
-	. = ..()
+/obj/item/xenoartifact/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+	if(!prob(block_chance))
+		return FALSE
 	if(!(COOLDOWN_FINISHED(src, xenoa_cooldown)) || !get_trait(/datum/xenoartifact_trait/minor/blocking))
-		return
+		return TRUE
 	SEND_SIGNAL(src, COMSIG_PARENT_ATTACKBY, src, owner, hitby) //I don't think this sends a signal
+	return TRUE
 
 /obj/item/xenoartifact/process(seconds_per_tick)
 	switch(process_type)
