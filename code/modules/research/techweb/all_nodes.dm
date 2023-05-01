@@ -623,8 +623,6 @@
 	design_ids = list(
 		"anomaly_neutralizer",
 		"reactive_armour",
-		"xenoa_list_console",
-		"xenoa_list_pad",
 		"xenoa_gloves",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)

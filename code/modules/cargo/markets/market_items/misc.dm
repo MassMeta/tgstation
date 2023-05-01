@@ -95,3 +95,13 @@
 	price_max = CARGO_CRATE_VALUE * 6
 	stock_max = 1
 	availability_prob = 15
+
+/datum/market_item/misc/artifact
+	name = "Xenoartifact"
+	desc = "A strange alien artifact with unknown properties."
+	item = /obj/item/xenoartifact
+
+	price_min = CARGO_CRATE_VALUE * 1.25
+	price_max = CARGO_CRATE_VALUE * 1.75
+	stock_max = 3
+	availability_prob = 55
