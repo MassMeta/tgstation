@@ -228,6 +228,8 @@
 	// Place this above shadows so it always glows.
 	image_layer = ABOVE_MOB_LAYER
 
+	stream_type = /obj/effect/client_image_holder/bluespace_stream/phobetor
+
 	/// How long this will exist for
 	var/exist_length = 50 SECONDS
 	/// The time of this tear's creation
