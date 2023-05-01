@@ -80,9 +80,10 @@
 	return TRUE
 
 /datum/xenoartifact_trait/minor/sharp/on_init(obj/item/xenoartifact/X)
-	X.sharpness = IS_SHARP_ACCURATE
+	X.sharpness = SHARP_EDGED
 	X.force = X.charge_req*0.12
-	X.attack_verb = list("cleaved", "slashed", "stabbed", "sliced", "tore", "ripped", "diced", "cut")
+	X.attack_verb_simple = list("cleave", "slash", "stab", "slice", "tore", "ripp", "dice", "cut")
+	X.attack_verb_continous = list("cleaves", "slashes", "stabbs", "slices", "tores", "ripps", "dices", "cuts")
 	X.attack_weight = 2
 	X.armour_penetration = 5
 
@@ -123,7 +124,7 @@
 	addtimer(CALLBACK(src, .proc/get_canidate, X), 5 SECONDS)
 
 /datum/xenoartifact_trait/minor/sentient/proc/get_canidate(obj/item/xenoartifact/X)
-	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as the maleviolent force inside the [X.name]?", ROLE_SENTIENCE, null, FALSE, 5 SECONDS, POLL_IGNORE_SENTIENCE_POTION)
+	var/list/mob/dead/observer/candidates = poll_ghost_candidates("Do you want to play as the maleviolent force inside the [X.name]?", ROLE_SENTIENCE, ROLE_SENTIENCE, 5 SECONDS, POLL_IGNORE_SENTIENCE_POTION)
 	if(LAZYLEN(candidates))
 		var/mob/dead/observer/C = pick(candidates)
 		setup_sentience(X, C.ckey)

@@ -184,7 +184,7 @@
 
 /datum/xenoartifact_trait/major/lamp/on_init(obj/item/xenoartifact/X)
 	X.light_system = MOVABLE_LIGHT
-	X.light_color = pick(LIGHT_COLOR_FIRE, LIGHT_COLOR_BLUE, LIGHT_COLOR_GREEN, LIGHT_COLOR_RED, LIGHT_COLOR_ORANGE, LIGHT_COLOR_PINK)
+	X.light_color = pick(LIGHT_COLOR_FIRE, LIGHT_COLOR_BLUE, LIGHT_COLOR_GREEN, COLOR_RED, LIGHT_COLOR_ORANGE, LIGHT_COLOR_PINK)
 
 /datum/xenoartifact_trait/major/lamp/activate(obj/item/xenoartifact/X, atom/target, atom/user)
 	X.set_light(1.4+(X.charge*0.5), max(X.charge*0.05, 0.1), X.light_color)
@@ -264,7 +264,7 @@
 
 /datum/xenoartifact_trait/major/chem/on_init(obj/item/xenoartifact/X)
 	amount = pick(5, 9, 10, 15)
-	formula = get_random_reagent_id(CHEMICAL_RNG_GENERAL)
+	formula = get_random_reagent_id()
 
 /datum/xenoartifact_trait/major/chem/activate(obj/item/xenoartifact/X, atom/target)
 	if(target?.reagents)
@@ -349,15 +349,15 @@
 		/datum/gas/hypernoblium = 1,
 		/datum/gas/plasma = 3,
 		/datum/gas/tritium = 2,
-		/datum/gas/nitryl = 1
+		/datum/gas/nitrium = 1
 	)
 	var/datum/gas/input
 	var/datum/gas/output
 
 /datum/xenoartifact_trait/major/gas/on_init(obj/item/xenoartifact/X)
-	input = pickweight(valid_inputs)
+	input = pick_weight(valid_inputs)
 	valid_outputs -= input //in the rare case the artifact wants to exhcange plasma for more plasma.
-	output = pickweight(valid_outputs)
+	output = pick_weight(valid_outputs)
 
 /datum/xenoartifact_trait/major/gas/on_item(obj/item/xenoartifact/X, atom/user, atom/item)
 	if(istype(item, /obj/item/analyzer))

@@ -1,6 +1,6 @@
 /obj/item/xenoartifact
 	name = "artifact"
-	icon = 'icons/obj/xenoarchaeology/xenoartifact.dmi'
+	icon = 'massmeta/icons/obj/xenoarchaeology/xenoartifact.dmi'
 	icon_state = "map_editor"
 	w_class = WEIGHT_CLASS_NORMAL
 	light_color = LIGHT_COLOR_FIRE
@@ -50,19 +50,16 @@
 	//snowflake variable for shaped
 	var/transfer_prints = FALSE
 
-/obj/item/xenoartifact/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/xenoartifact_pricing)
-	AddComponent(/datum/component/discoverable, XENOA_DP, TRUE) //Same values as original artifacts from exploration
-
 /obj/item/xenoartifact/Initialize(mapload, difficulty)
 	. = ..()
+
+	AddComponent(/datum/component/xenoartifact_pricing)
 
 	generate_xenoa_statics() //This wont load if it's already done, aka this wont spam
 
 	material = difficulty //Difficulty is set, in most cases
 	if(!material)
-		material = pickweight(list(XENOA_BLUESPACE = 8, XENOA_PLASMA = 5, XENOA_URANIUM = 3, XENOA_BANANIUM = 1)) //Maint artifacts and similar situations
+		material = pick_weight(list(XENOA_BLUESPACE = 8, XENOA_PLASMA = 5, XENOA_URANIUM = 3, XENOA_BANANIUM = 1)) //Maint artifacts and similar situations
 
 	var/price
 	var/extra_masks = 0
@@ -104,16 +101,16 @@
 
 	//Sprite process
 	//Base texture
-	var/icon/texture = new('icons/obj/xenoarchaeology/xenoartifact.dmi', "texture-[material]-[pick(1, 2, 3)]")
+	var/icon/texture = new('massmeta/icons/obj/xenoarchaeology/xenoartifact.dmi', "texture-[material]-[pick(1, 2, 3)]")
 	//Masking
 	var/list/indecies = list(1, 2, 3, 4, 5) //Indecies for masks
 	var/index = pick(indecies)
 	indecies -= index
-	var/icon/mask = new('icons/obj/xenoarchaeology/xenoartifact.dmi', "mask-[material]-[index]")
+	var/icon/mask = new('massmeta/icons/obj/xenoarchaeology/xenoartifact.dmi', "mask-[material]-[index]")
 	for(var/i in 1 to extra_masks)
 		index = pick(indecies)
 		indecies -= index
-		var/icon/extra_mask = new('icons/obj/xenoarchaeology/xenoartifact.dmi', "mask-[material]-[index]")
+		var/icon/extra_mask = new('massmeta/icons/obj/xenoarchaeology/xenoartifact.dmi', "mask-[material]-[index]")
 		mask.Blend(extra_mask, ICON_UNDERLAY)
 	texture.AddAlphaMask(mask)
 	icon = texture
@@ -287,7 +284,7 @@
 	if(selection.len < 1)
 		log_game("An impossible event has occured. [src] has failed to generate any traits!")
 		return
-	new_trait = pickweight(selection)
+	new_trait = pick_weight(selection)
 	blacklist += new_trait //Add chosen trait to blacklist
 	traits += new new_trait
 	new_trait = new new_trait //type converting doesn't work too well here but this should be fine.
@@ -313,7 +310,7 @@
 		if(H.wear_suit && H.head && isclothing(H.wear_suit) && isclothing(H.head))
 			if(H.anti_artifact_check())
 				to_chat(target, "<span class='warning'>The [name] was unable to target you!</span>")
-				playsound(get_turf(target), 'sound/weapons/deflect.ogg', 25, TRUE) 
+				playsound(get_turf(target), 'massmeta/sounds/misc/deflect.ogg', 25, TRUE) 
 				return
 
 	if(isliving(target)) //handle pulling
@@ -333,7 +330,7 @@
 /obj/item/xenoartifact/proc/create_beam(atom/target)
 	if((locate(src) in target?.contents) || !get_turf(target))
 		return
-	var/datum/beam/xenoa_beam/B = new((!isturf(loc) ? loc : src), target, time=1.5 SECONDS, beam_icon='icons/obj/xenoarchaeology/xenoartifact.dmi', beam_icon_state="xenoa_beam", btype=/obj/effect/ebeam/xenoa_ebeam)
+	var/datum/beam/xenoa_beam/B = new((!isturf(loc) ? loc : src), target, time=1.5 SECONDS, beam_icon='massmeta/icons/obj/xenoarchaeology/xenoartifact.dmi', beam_icon_state="xenoa_beam", btype=/obj/effect/ebeam/xenoa_ebeam)
 	B.set_color(material)
 	INVOKE_ASYNC(B, /datum/beam/xenoa_beam.proc/Start)
 
@@ -369,7 +366,7 @@
 		return
 	SEND_SIGNAL(src, COMSIG_PARENT_ATTACKBY, src, owner, hitby) //I don't think this sends a signal
 
-/obj/item/xenoartifact/process(delta_time)
+/obj/item/xenoartifact/process(seconds_per_tick)
 	switch(process_type)
 		if(PROCESS_TYPE_LIT) //Burning
 			true_target = list(get_target_in_proximity(min(max_range, 5)))
@@ -383,7 +380,7 @@
 			visible_message("<span class='danger' size='10'>The [name] ticks.</span>")
 			true_target = list(get_target_in_proximity(min(max_range, 5)))
 			default_activate(25, null, null)
-			if(DT_PROB(XENOA_TICK_CANCEL_PROB, delta_time) && COOLDOWN_FINISHED(src, xenoa_cooldown))
+			if(SPT_PROB(XENOA_TICK_CANCEL_PROB, seconds_per_tick) && COOLDOWN_FINISHED(src, xenoa_cooldown))
 				process_type = null
 				return PROCESS_KILL
 		else
@@ -421,7 +418,7 @@
 	traits += new /datum/xenoartifact_trait/special/objective
 	..()
 
-/obj/item/xenoartifact/objective/ComponentInitialize()
+/obj/item/xenoartifact/objective/Initialize()
 	AddComponent(/datum/component/gps, "[scramble_message_replace_chars("#########", 100)]", TRUE)
 	..()
 
@@ -446,9 +443,9 @@
 	var/length = round(sqrt((DX)**2+(DY)**2)) //hypotenuse of the triangle formed by target and origin's displacement
 
 	for(n in 0 to length-1 step 32)//-1 as we want < not <=, but we want the speed of X in Y to Z and step X
-		if(QDELETED(src) || finished)
+		if(QDELETED(src))
 			break
-		var/obj/effect/ebeam/xenoa_ebeam/X = new(origin_oldloc) // Start Xenoartifact - This assigns colour to the beam
+		var/obj/effect/ebeam/xenoa_ebeam/X = new(origin_turf, src) // Start Xenoartifact - This assigns colour to the beam
 		X.color = color
 		X.owner = src
 		elements += X // End Xenoartifact
@@ -460,7 +457,7 @@
 			II.DrawBox(null,1,(length-n),32,32)
 			X.icon = II
 		else
-			X.icon = base_icon
+			X.icon = initial(X.icon)
 		X.transform = rot_matrix
 
 		//Calculate pixel offsets (If necessary)

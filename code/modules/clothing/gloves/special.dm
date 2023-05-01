@@ -147,9 +147,8 @@
 	name = "anti-tactile pinchers"
 	desc = "Used for the fine manipulation and examination of artifacts."
 	icon_state = "pincher"
-	item_state = "pincher"
 	worn_icon_state = "pincher"
-	transfer_prints = FALSE
+	clothing_traits = list()
 	actions_types = list(/datum/action/item_action/artifact_pincher_mode)
 	var/safety = FALSE
 

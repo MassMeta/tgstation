@@ -166,7 +166,6 @@
 				final_price = max(X.modifier*X.price, 1)
 				budget.adjust_money(final_price)
 				linked_techweb.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, (final_price*2.3) * (final_price >= X.price))
-				linked_techweb.add_point_type(TECHWEB_POINT_TYPE_DISCOVERY, (XENOA_SOLD_DP*(final_price/X.price)) * (final_price >= X.price))
 
 				//Handle player info
 				entry.main = "[selling_item.name] sold at [station_time_timestamp()] for [final_price] credits, bought for [X.price]."
@@ -200,13 +199,11 @@
 	var/datum/xenoartifact_seller/S = new
 	S.generate()
 	sellers += S
-	ui_update()
 
 /obj/machinery/computer/xenoartifact_console/proc/generate_new_buyer()
 	var/datum/xenoartifact_seller/buyer/B = new
 	B.generate()
 	buyers += B
-	ui_update()
 
 /obj/machinery/computer/xenoartifact_console/proc/sync_devices()
 	for(var/obj/machinery/xenoartifact_inbox/I in oview(9,src))

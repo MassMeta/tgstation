@@ -1,6 +1,6 @@
 /obj/item/xenoartifact_labeler
 	name = "artifact labeler"
-	icon = 'icons/obj/xenoarchaeology/xenoartifact_tech.dmi'
+	icon = 'massmeta/icons/obj/xenoarchaeology/xenoartifact_tech.dmi'
 	icon_state = "xenoartifact_labeler"
 	desc = "A tool scientists use to label their alien bombs."
 	throw_speed = 3
@@ -120,7 +120,6 @@
 	selected_minor_traits = list()
 	selected_major_traits = list()
 	selected_malfunction_traits = list()
-	ui_update()
 
 /obj/item/xenoartifact_labeler/proc/create_label(new_name, mob/target, mob/user)
 	var/obj/item/xenoartifact_label/P = new(get_turf(src))
@@ -157,7 +156,7 @@
 
 // Not to be confused with labeler
 /obj/item/xenoartifact_label
-	icon = 'icons/obj/xenoarchaeology/xenoartifact_sticker.dmi'
+	icon = 'massmeta/icons/obj/xenoarchaeology/xenoartifact_sticker.dmi'
 	icon_state = "sticker_star"
 	name = "artifact label"
 	desc = "An adhesive label describing the characteristics of a Xenoartifact."
