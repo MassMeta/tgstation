@@ -155,11 +155,7 @@
 /datum/action/item_action/artifact_pincher_mode
 	name = "Toggle Safety"
 
-/datum/action/item_action/artifact_pincher_mode/Trigger(trigger_flags)
-	. = ..()
-	if(!.)
-		return FALSE
-	var/obj/item/clothing/gloves/artifact_pinchers/pinchy = target
-	if(istype(pinchy))
-		pinchy.safety = !pinchy.safety
-		button_icon_state = (pinchy.safety ? "template_active" : "template")
+/obj/item/clothing/gloves/artifact_pinchers/ui_action_click(owner, src)
+	pinchy.safety = !pinchy.safety
+	button_icon_state = (pinchy.safety ? "template_active" : "template")
+	owner.balloon_alert(owner, "safety [safety ? "on" : "off"]")

@@ -1,11 +1,9 @@
 /obj/item/circuitboard/computer/xenoartifact_console
 	name = "research and development listing console (Computer Board)"
-	icon_state = "science"
 	build_path = /obj/machinery/computer/xenoartifact_console
 
 /obj/item/circuitboard/machine/xenoartifact_inbox
 	name = "bluespace straythread pad (Machine Board)"
-	icon_state = "science"
 	build_path = /obj/machinery/xenoartifact_inbox
 	req_components = list(
 		/obj/item/stack/ore/bluespace_crystal = 1,
