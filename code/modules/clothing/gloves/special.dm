@@ -157,4 +157,4 @@
 
 /obj/item/clothing/gloves/artifact_pinchers/ui_action_click(mob/user, actiontype)
 	safety = safety
-	owner.balloon_alert(owner, "safety [safety ? "on" : "off"]")
+	user.balloon_alert(user, "safety [safety ? "on" : "off"]")
