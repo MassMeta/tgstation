@@ -84,7 +84,6 @@
 	X.force = X.charge_req*0.12
 	X.attack_verb_simple = list("cleave", "slash", "stab", "slice", "tore", "ripp", "dice", "cut")
 	X.attack_verb_continuous = list("cleaves", "slashes", "stabbs", "slices", "tores", "ripps", "dices", "cuts")
-	X.attack_weight = 2
 	X.armour_penetration = 5
 
 //============

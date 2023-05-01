@@ -162,4 +162,4 @@
 	var/obj/item/clothing/gloves/artifact_pinchers/pinchy = target
 	if(istype(pinchy))
 		pinchy.safety = !pinchy.safety
-		button.button_icon_state = (pinchy.safety ? "template_active" : "template")
+		button_icon_state = (pinchy.safety ? "template_active" : "template")

@@ -125,7 +125,7 @@
 	label_desc = "Weighted: The material is weighted and produces a reaction when picked up."
 	charge = 25
 	signals = list(COMSIG_ITEM_PICKUP)
-	blacklist_traits = list(/datum/xenoartifact_trait/minor/dense, /datum/xenoartifact_trait/minor/anchor, /datum/xenoartifact_trait/major/distablizer)
+	blacklist_traits = list(/datum/xenoartifact_trait/minor/dense, /datum/xenoartifact_trait/minor/anchor)
 	flags = BLUESPACE_TRAIT | URANIUM_TRAIT
 
 /datum/xenoartifact_trait/activator/weighted/pass_input(datum/source, obj/item/thing, mob/living/carbon/user, mob/living/carbon/human/target)
