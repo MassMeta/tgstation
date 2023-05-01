@@ -445,7 +445,7 @@
 	for(n in 0 to length-1 step 32)//-1 as we want < not <=, but we want the speed of X in Y to Z and step X
 		if(QDELETED(src))
 			break
-		var/obj/effect/ebeam/xenoa_ebeam/X = new(origin_turf, src) // Start Xenoartifact - This assigns colour to the beam
+		var/obj/effect/ebeam/xenoa_ebeam/X = new /obj/effect/ebeam/xenoa_ebeam (get_turf(origin), src) // Start Xenoartifact - This assigns colour to the beam
 		X.color = color
 		X.owner = src
 		elements += X // End Xenoartifact
@@ -486,4 +486,3 @@
 		X.pixel_x = Pixel_x
 		X.pixel_y = Pixel_y
 		CHECK_TICK
-	afterDraw()
