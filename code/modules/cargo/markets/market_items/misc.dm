@@ -99,7 +99,7 @@
 /datum/market_item/misc/artifact
 	name = "Xenoartifact"
 	desc = "A strange alien artifact with unknown properties."
-	item = /obj/item/xenoartifact
+	item = /obj/item/xenoartifact/maint
 
 	price_min = CARGO_CRATE_VALUE * 1.25
 	price_max = CARGO_CRATE_VALUE * 1.75
