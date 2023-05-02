@@ -58,7 +58,7 @@
 			clothing_list += I
 		//Stops this from stripping funky stuff
 		var/obj/item/clothing/C = pick(clothing_list)
-		if(!HAS_TRAIT_FROM(C, TRAIT_NODROP, GLUED_ITEM_TRAIT))
+		if(!HAS_TRAIT(C, TRAIT_NODROP))
 			victim.dropItemToGround(C)
 			X.cooldown += 10 SECONDS
 
@@ -197,7 +197,8 @@
 	speed = 0
 	maxHealth = 10
 	health = 10
-	melee_damage = 5
+	melee_damage_lower = 1
+	melee_damage_upper = 10
 	attack_verb_continuous ="punches"
 	attack_verb_simple ="punch"
 	attack_sound = 'sound/weapons/punch1.ogg'
@@ -207,7 +208,6 @@
 	faction = list("evil_clone")
 	status_flags = CANPUSH
 	del_on_death = TRUE
-	do_footstep = TRUE
 
 //============
 // explode, a very small explosion takes place, destroying the artifact in the process
@@ -236,5 +236,5 @@
 
 /datum/xenoartifact_trait/malfunction/hallucination/activate(obj/item/xenoartifact/X, atom/target, atom/user, setup)
 	if(isliving(target))
-		var/datum/hallucination/H = pick(GLOB.hallucination_list)
-		H = new H(target)
+		var/mob/living/living_target = target
+		target.adjust_hallucinations(random(20 SECONDS, 60 SECONDS))

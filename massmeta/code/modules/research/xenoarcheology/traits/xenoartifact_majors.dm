@@ -397,8 +397,8 @@
 	flags = URANIUM_TRAIT | PLASMA_TRAIT | BLUESPACE_TRAIT
 
 /datum/xenoartifact_trait/major/smokey/activate(obj/item/xenoartifact/X, atom/target, atom/user, setup)
-	var/datum/effect_system/smoke_spread/E = new()
-	E.set_up(max(3, X.charge*0.08), get_turf(X))
+	var/datum/effect_system/steam_spread/E = new()
+	E.set_up(max(3, X.charge*0.08), 0, get_turf(X))
 	E.start()
 
 ///============
