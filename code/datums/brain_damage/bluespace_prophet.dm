@@ -128,6 +128,8 @@
 	gain_text = "<span class='notice'>Your mind snaps, and you wake up. You <i>really</i> wake up."
 	lose_text = "<span class='warning'>You succumb once more to the sleepless dream of the unwoken."
 
+	stream_type = /obj/effect/client_image_holder/phobetor
+
 	///Created tears, only checking the FIRST one, not the one it's created to link to.
 	var/list/created_firsts = list()
 
@@ -227,8 +229,6 @@
 	image_state = "phobetor_tear"
 	// Place this above shadows so it always glows.
 	image_layer = ABOVE_MOB_LAYER
-
-	stream_type = /obj/effect/client_image_holder/phobetor
 
 	/// How long this will exist for
 	var/exist_length = 50 SECONDS
