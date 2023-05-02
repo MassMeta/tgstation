@@ -29,3 +29,9 @@ GLOBAL_LIST(xenoa_uranium_blacklist)
     GLOB.xenoa_bluespace_blacklist = compile_artifact_blacklist(BLUESPACE_TRAIT)
     GLOB.xenoa_plasma_blacklist = compile_artifact_blacklist(PLASMA_TRAIT)
     GLOB.xenoa_uranium_blacklist = compile_artifact_blacklist(URANIUM_TRAIT)
+
+///List of emotes for emote-trait
+GLOBAL_LIST_INIT(xenoa_emote, list(/datum/emote/flip, /datum/emote/spin, /datum/emote/living/laugh, 
+	/datum/emote/living/scream, /datum/emote/living/tremble, /datum/emote/living/whimper,
+	/datum/emote/living/smile, /datum/emote/living/pout, /datum/emote/living/gag,
+	/datum/emote/living/deathgasp, /datum/emote/living/dance, /datum/emote/living/blush))
