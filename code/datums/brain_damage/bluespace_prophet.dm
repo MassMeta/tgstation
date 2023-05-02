@@ -223,12 +223,12 @@
 /obj/effect/client_image_holder/phobetor
 	name = "phobetor tear"
 	desc = "A subdimensional rip in reality, which gives extra-spacial passage to those who have woken from the sleepless dream."
-	image_icon = 'fulp_modules/features/species/icons/phobetor_tear.dmi'
+	image_icon = 'icons/effects/effects.dmi'
 	image_state = "phobetor_tear"
 	// Place this above shadows so it always glows.
 	image_layer = ABOVE_MOB_LAYER
 
-	stream_type = /obj/effect/client_image_holder/bluespace_stream/phobetor
+	stream_type = /obj/effect/client_image_holder/phobetor
 
 	/// How long this will exist for
 	var/exist_length = 50 SECONDS
