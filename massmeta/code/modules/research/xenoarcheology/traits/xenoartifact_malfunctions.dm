@@ -225,16 +225,3 @@
 /datum/xenoartifact_trait/malfunction/explode/proc/explode(obj/item/xenoartifact/X)
 	SSexplosions.explode(X, 0, 1, 2, 1)
 	qdel(X)
-
-//============
-// Hallucination, shows a random hallucination to the target once
-//============
-/datum/xenoartifact_trait/malfunction/hallucination
-	label_name = "Hallucinogenic"
-	label_desc = "Hallucinogenic: The Artifact causes the target to hallucinate."
-	flags = BLUESPACE_TRAIT | URANIUM_TRAIT | PLASMA_TRAIT
-
-/datum/xenoartifact_trait/malfunction/hallucination/activate(obj/item/xenoartifact/X, atom/target, atom/user, setup)
-	if(isliving(target))
-		var/mob/living/living_target = target
-		target.adjust_hallucinations(random(20 SECONDS, 60 SECONDS))

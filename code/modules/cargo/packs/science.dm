@@ -177,3 +177,11 @@
 	contains = list(/obj/item/mod/core/standard = 3)
 	crate_name = "\improper MOD core crate"
 	crate_type = /obj/structure/closet/crate/secure/science
+
+/datum/supply_pack/science/xenoartifact
+	name = "Xenoartifact"
+	desc = "Contains an alien artifact with unknown properties."
+	cost = CARGO_CRATE_VALUE * 8
+	contains = list(/obj/item/xenoartifact)
+	crate_name = "xenoartifact crate"
+	crate_type = /obj/structure/closet/crate/secure/science
