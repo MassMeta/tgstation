@@ -181,7 +181,7 @@
 /datum/supply_pack/science/xenoartifact
 	name = "Xenoartifact"
 	desc = "Contains an alien artifact with unknown properties."
-	cost = CARGO_CRATE_VALUE * 8
+	cost = CARGO_CRATE_VALUE * 5
 	contains = list(/obj/item/xenoartifact)
 	crate_name = "xenoartifact crate"
 	crate_type = /obj/structure/closet/crate/secure/science
