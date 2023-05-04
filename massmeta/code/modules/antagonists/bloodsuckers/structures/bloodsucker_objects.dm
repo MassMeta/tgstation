@@ -285,9 +285,6 @@
 	else
 		to_chat(user, span_notice("You fail to draw any conclusions to [target] being a Bloodsucker."))
 
-/obj/item/book/kindred/on_read(mob/living/user)
-	ui_interact(user)
-
 /obj/item/book/kindred/ui_interact(mob/living/user, datum/tgui/ui)
 	if(user.mind && !HAS_TRAIT(user.mind, TRAIT_BLOODSUCKER_HUNTER))
 		if(IS_BLOODSUCKER(user))

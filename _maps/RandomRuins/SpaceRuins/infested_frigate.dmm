@@ -36,17 +36,6 @@
 /obj/item/shard,
 /turf/open/space/basic,
 /area/template_noop)
-"aI" = (
-/obj/structure/cable,
-/obj/machinery/airalarm/all_access{
-	dir = 1;
-	pixel_y = 23
-	},
-/obj/machinery/icecream_vat{
-	desc = "Waffle co. actually ordered these guys to steal one of these just to be sure."
-	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/infested_frigate)
 "aV" = (
 /obj/machinery/light/small/red/dim/directional/north,
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
@@ -396,10 +385,7 @@
 /obj/machinery/light/red/dim/directional/east,
 /turf/open/floor/pod/dark,
 /area/ruin/space/has_grav/infested_frigate)
-"fl" = (
-/turf/open/space/basic,
-/area/template_noop)
-"fE" = (
+"fe" = (
 /obj/structure/cable,
 /obj/effect/spawner/random/trash,
 /obj/structure/alien/weeds/node,
@@ -410,25 +396,18 @@
 /obj/machinery/power/rtg,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/infested_frigate)
+"fl" = (
+/turf/open/space/basic,
+/area/template_noop)
 "fM" = (
 /obj/structure/door_assembly/door_assembly_ext,
 /turf/open/space/basic,
 /area/template_noop)
-"fX" = (
-/obj/structure/toilet{
-	dir = 4
-	},
-/obj/effect/spawner/random/trash/mess,
-/obj/effect/spawner/random/contraband/narcotics,
-/obj/effect/spawner/random/entertainment/drugs,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/infested_frigate)
-"gi" = (
+"fT" = (
 /obj/effect/mapping_helpers/broken_floor,
 /obj/effect/spawner/random/exotic/languagebook,
-/obj/machinery/airalarm/all_access{
-	pixel_y = -24
-	},
+/obj/machinery/airalarm/directional/south,
+/obj/effect/mapping_helpers/airalarm/all_access,
 /obj/effect/decal/cleanable/blood/gibs{
 	icon_state = "gib6-old"
 	},
@@ -450,6 +429,15 @@
 /obj/structure/cable,
 /obj/effect/spawner/random/trash,
 /turf/open/floor/pod/dark,
+/area/ruin/space/has_grav/infested_frigate)
+"fX" = (
+/obj/structure/toilet{
+	dir = 4
+	},
+/obj/effect/spawner/random/trash/mess,
+/obj/effect/spawner/random/contraband/narcotics,
+/obj/effect/spawner/random/entertainment/drugs,
+/turf/open/floor/plating,
 /area/ruin/space/has_grav/infested_frigate)
 "gG" = (
 /obj/effect/spawner/random/trash/food_packaging,
@@ -1099,15 +1087,6 @@
 /obj/effect/decal/cleanable/plastic,
 /turf/open/floor/pod/dark,
 /area/ruin/space/has_grav/infested_frigate)
-"si" = (
-/obj/machinery/airalarm/all_access{
-	dir = 8;
-	pixel_x = -24
-	},
-/obj/structure/alien/weeds,
-/obj/effect/decal/cleanable/plastic,
-/turf/open/floor/mineral/plastitanium,
-/area/ruin/space/has_grav/infested_frigate)
 "so" = (
 /obj/effect/mapping_helpers/broken_floor,
 /obj/item/broken_missile,
@@ -1737,6 +1716,28 @@
 	},
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/ruin/space/has_grav/infested_frigate)
+"AE" = (
+/obj/machinery/airalarm/directional/west,
+/obj/effect/mapping_helpers/airalarm/all_access,
+/obj/effect/decal/cleanable/blood/gibs{
+	icon_state = "ltrails_1";
+	dir = 1
+	},
+/obj/machinery/light/small/broken/directional/west,
+/obj/effect/turf_decal{
+	icon_state = "warningline_white";
+	dir = 1
+	},
+/obj/effect/turf_decal{
+	icon_state = "warningline_white";
+	dir = 8
+	},
+/obj/effect/turf_decal{
+	icon_state = "warningline_white"
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden,
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/infested_frigate)
 "AH" = (
 /obj/structure/cable,
 /obj/item/wallframe/telescreen/entertainment{
@@ -1807,6 +1808,26 @@
 "BO" = (
 /turf/closed/wall/mineral/plastitanium/overspace,
 /area/ruin/space/has_grav/infested_frigate)
+"Cd" = (
+/obj/machinery/iv_drip,
+/obj/item/clothing/mask/facehugger/dead,
+/obj/machinery/airalarm/directional/west,
+/obj/effect/mapping_helpers/airalarm/all_access,
+/obj/effect/turf_decal{
+	icon_state = "warningline_white";
+	dir = 1
+	},
+/obj/machinery/light/broken/directional/west,
+/obj/effect/turf_decal{
+	icon_state = "warningline_white";
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/pod/dark,
+/area/ruin/space/has_grav/infested_frigate)
 "Cm" = (
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/infested_frigate)
@@ -1866,6 +1887,15 @@
 /obj/item/stack/rods,
 /turf/open/space/basic,
 /area/template_noop)
+"El" = (
+/obj/structure/cable,
+/obj/machinery/airalarm/directional/north,
+/obj/effect/mapping_helpers/airalarm/all_access,
+/obj/machinery/icecream_vat{
+	desc = "Waffle co. actually ordered these guys to steal one of these just to be sure."
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/infested_frigate)
 "Er" = (
 /obj/effect/turf_decal{
 	icon_state = "arrows_red";
@@ -2415,28 +2445,6 @@
 /obj/item/ammo_casing/spent,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/infested_frigate)
-"MB" = (
-/obj/machinery/iv_drip,
-/obj/item/clothing/mask/facehugger/dead,
-/obj/machinery/airalarm/all_access{
-	dir = 8;
-	pixel_x = -24
-	},
-/obj/effect/turf_decal{
-	icon_state = "warningline_white";
-	dir = 1
-	},
-/obj/machinery/light/broken/directional/west,
-/obj/effect/turf_decal{
-	icon_state = "warningline_white";
-	dir = 8
-	},
-/obj/structure/cable,
-/obj/item/ammo_casing/spent,
-/obj/item/ammo_casing/spent,
-/obj/item/ammo_casing/spent,
-/turf/open/floor/pod/dark,
-/area/ruin/space/has_grav/infested_frigate)
 "ME" = (
 /obj/structure/cable,
 /obj/effect/turf_decal{
@@ -2508,6 +2516,13 @@
 /obj/effect/decal/cleanable/glass{
 	dir = 4
 	},
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/infested_frigate)
+"NU" = (
+/obj/machinery/airalarm/directional/west,
+/obj/effect/mapping_helpers/airalarm/all_access,
+/obj/structure/alien/weeds,
+/obj/effect/decal/cleanable/plastic,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/infested_frigate)
 "NX" = (
@@ -3139,30 +3154,6 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/infested_frigate)
-"YT" = (
-/obj/machinery/airalarm/all_access{
-	dir = 8;
-	pixel_x = -24
-	},
-/obj/effect/decal/cleanable/blood/gibs{
-	icon_state = "ltrails_1";
-	dir = 1
-	},
-/obj/machinery/light/small/broken/directional/west,
-/obj/effect/turf_decal{
-	icon_state = "warningline_white";
-	dir = 1
-	},
-/obj/effect/turf_decal{
-	icon_state = "warningline_white";
-	dir = 8
-	},
-/obj/effect/turf_decal{
-	icon_state = "warningline_white"
-	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden,
-/turf/open/floor/mineral/plastitanium,
-/area/ruin/space/has_grav/infested_frigate)
 "YV" = (
 /obj/effect/turf_decal{
 	icon_state = "warningline_white"
@@ -3426,7 +3417,7 @@ fl
 Mm
 mG
 wP
-fE
+fe
 wc
 sQ
 KZ
@@ -3453,7 +3444,7 @@ fl
 wP
 EQ
 wP
-aI
+El
 SM
 ME
 KT
@@ -3588,7 +3579,7 @@ fl
 vj
 OC
 OC
-si
+NU
 JO
 zK
 wP
@@ -3699,7 +3690,7 @@ mw
 wP
 sL
 sA
-MB
+Cd
 wP
 dx
 wP
@@ -4104,7 +4095,7 @@ Bw
 ip
 BA
 sZ
-YT
+AE
 Ai
 KC
 vj
@@ -4185,7 +4176,7 @@ cX
 wP
 jy
 PV
-gi
+fT
 wP
 OK
 vj

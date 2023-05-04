@@ -19,7 +19,6 @@
 	desc = "Are you sure this is tomato juice?"
 	icon_state = "glass_red"
 
-
 	// FEED ME
 /datum/reagent/blood/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray)
 	if(!check_tray(chems, mytray))
@@ -302,7 +301,7 @@
 /datum/reagent/water/holywater/on_mob_metabolize(mob/living/affected_mob)
 	..()
 	ADD_TRAIT(affected_mob, TRAIT_HOLY, type)
-	
+
 /datum/reagent/water/holywater/on_mob_add(mob/living/affected_mob, amount)
 	. = ..()
 	if(data)

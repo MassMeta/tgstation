@@ -137,6 +137,7 @@
 	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
 	inhand_x_dimension = 32
 	inhand_y_dimension = 32
+	projectile_damage_multiplier = 1.2
 	weapon_weight = WEAPON_MEDIUM
 	mag_type = /obj/item/ammo_box/magazine/m12g
 	can_suppress = FALSE
@@ -291,6 +292,19 @@
 	sawn_desc = "A sawn-off hunting shotgun. In its new state, it's remarkably less effective at hunting... anything."
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/dual/slugs
 
+/obj/item/gun/ballistic/shotgun/doublebarrel/ripper
+	name = "ripper shotgun"
+	desc = "Double-barreled shotgun pistol. Skeleton mask sold separately"
+	mag_type = /obj/item/ammo_box/magazine/internal/shot/dual/improvised
+	can_be_sawn_off = FALSE
+	icon_state = "ripper_shotgun"
+	inhand_icon_state = "ripper_shotgun"
+	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
+	inhand_x_dimension = 32
+	inhand_y_dimension = 32
+	slot_flags = ITEM_SLOT_POCKETS
+	weapon_weight = WEAPON_MEDIUM
 /obj/item/gun/ballistic/shotgun/hook
 	name = "hook modified sawn-off shotgun"
 	desc = "Range isn't an issue when you can bring your victim to you."

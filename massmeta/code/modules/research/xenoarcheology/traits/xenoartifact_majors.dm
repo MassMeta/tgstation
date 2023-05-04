@@ -23,7 +23,7 @@
 		addtimer(CALLBACK(src, .proc/release, X, AM), X.charge*0.5 SECONDS)
 		AM.forceMove(X)
 		X.buckle_mob(AM)
-		if(isliving(target)) //stop awful hobbit-sis from wriggling 
+		if(isliving(target)) //stop awful hobbit-sis from wriggling
 			var/mob/living/victim = target
 			victim.Paralyze(X.charge*0.5 SECONDS, ignore_canstun = TRUE)
 		X.cooldownmod = X.charge*0.6 SECONDS
@@ -35,7 +35,7 @@
 	AM.anchored = FALSE
 	AM.forceMove(T)
 	if(spawn_russian)
-		new /mob/living/simple_animal/hostile/russian(T)
+		new /mob/living/basic/syndicate/russian(T)
 		log_game("[X] spawned (/mob/living/simple_animal/hostile/russian) at [world.time]. [X] located at [X.x] [X.y] [X.z]")
 		spawn_russian = FALSE
 
@@ -56,11 +56,11 @@
 	if(istype(target, /obj/item/stock_parts/cell))
 		var/obj/item/stock_parts/cell/C = target //Have to type convert to work with other traits
 		C.give((X.charge/100)*C.maxcharge)
-		
+
 	else if(istype(target, /mob/living))
 		var/damage = X.charge*0.25
 		var/mob/living/carbon/victim = target
-		victim.electrocute_act(damage, X, 1, 1)
+		victim.electrocute_act(damage, X, 1, flags = SHOCK_NOSTUN)
 		playsound(get_turf(X), 'sound/machines/defib_zap.ogg', 50, TRUE)
 	X.cooldownmod = (X.charge*0.1) SECONDS
 
@@ -104,9 +104,13 @@
 			A = new /obj/projectile/beam/laser
 		if(80 to 200)
 			A = new /obj/projectile/beam/laser/heavylaser
+	//If target is our own turf, aka someone probably threw us, target a random direction to avoid always shooting east
+	if(istype(target, /turf) && X.loc == target)
+		target = get_edge_target_turf(pick(NORTH, EAST, SOUTH, WEST))
+	//FIRE!
 	A.preparePixelProjectile(get_turf(target), X)
 	A.fire()
-	playsound(get_turf(src), 'sound/mecha/mech_shield_deflect.ogg', 50, TRUE) 
+	playsound(get_turf(src), 'sound/mecha/mech_shield_deflect.ogg', 50, TRUE)
 
 ///============
 /// EMP, produces an empulse
@@ -187,7 +191,8 @@
 	X.light_color = pick(LIGHT_COLOR_FIRE, LIGHT_COLOR_BLUE, LIGHT_COLOR_GREEN, COLOR_RED, LIGHT_COLOR_ORANGE, LIGHT_COLOR_PINK)
 
 /datum/xenoartifact_trait/major/lamp/activate(obj/item/xenoartifact/X, atom/target, atom/user)
-	X.set_light(1.4+(X.charge*0.5), max(X.charge*0.05, 0.1), X.light_color)
+	X.visible_message("<span class='notice'>The [X] lights up!</span>")
+	X.set_light(X.charge*0.08, max(X.charge*0.05, 5), X.light_color)
 	addtimer(CALLBACK(src, .proc/unlight, X), (X.charge*0.6) SECONDS)
 	X.cooldownmod = (X.charge*0.6) SECONDS
 
@@ -210,14 +215,19 @@
 	if(size >= 1)
 		new /obj/effect/forcefield/xenoartifact_type(get_turf(X.loc), (X.charge*0.4) SECONDS)
 	if(size >= 3)
-		new /obj/effect/forcefield/xenoartifact_type(get_step(X, NORTH), (X.charge*0.4) SECONDS)
-		new /obj/effect/forcefield/xenoartifact_type(get_step(X, SOUTH), (X.charge*0.4) SECONDS)
+		var/outcome = pick(0, 1)
+		if(outcome || size >= 5)
+			new /obj/effect/forcefield/xenoartifact_type(get_step(X, NORTH), (X.charge*0.4) SECONDS)
+			new /obj/effect/forcefield/xenoartifact_type(get_step(X, SOUTH), (X.charge*0.4) SECONDS)
+		else
+			new /obj/effect/forcefield/xenoartifact_type(get_step(X, EAST), (X.charge*0.4) SECONDS)
+			new /obj/effect/forcefield/xenoartifact_type(get_step(X, WEST), (X.charge*0.4) SECONDS)
 	if(size >= 5)
 		new /obj/effect/forcefield/xenoartifact_type(get_step(X, WEST), (X.charge*0.4) SECONDS)
 		new /obj/effect/forcefield/xenoartifact_type(get_step(X, EAST), (X.charge*0.4) SECONDS)
 
 	X.cooldownmod = (X.charge*0.4) SECONDS
-	
+
 /obj/effect/forcefield/xenoartifact_type //Special wall type for artifact
 	desc = "An impenetrable artifact wall."
 
@@ -259,6 +269,7 @@
 	desc = "Hypodermic"
 	label_desc = "Hypodermic: The Artifact's shape is comprised of many twisting tubes and vials, it seems a liquid may be inside."
 	flags = BLUESPACE_TRAIT | PLASMA_TRAIT | URANIUM_TRAIT
+	blacklist_traits = list(/datum/xenoartifact_trait/minor/long)
 	var/datum/reagent/formula
 	var/amount
 
@@ -270,8 +281,8 @@
 	if(target?.reagents)
 		playsound(get_turf(X), pick('sound/items/hypospray.ogg','sound/items/hypospray2.ogg'), 50, TRUE)
 		var/datum/reagents/R = target.reagents
-		R.add_reagent(formula, amount)
-		log_game("[X] injected [key_name_admin(target)] with [amount]u of [formula] at [world.time]. [X] located at [X.x] [X.y] [X.z]")
+		R.add_reagent(formula, amount*(initial(formula.metabolization_rate)))
+		log_game("[X] injected [key_name_admin(target)] with [amount]u of [formula] at [world.time]. [X] located at [AREACOORD(X)]")
 
 ///============
 /// Push, pushes target away from artifact
@@ -321,7 +332,7 @@
 	var/sound
 
 /datum/xenoartifact_trait/major/horn/on_init(obj/item/xenoartifact/X)
-	sound = pick(list('sound/effects/adminhelp.ogg', 'sound/effects/applause.ogg', 'sound/effects/bubbles.ogg', 
+	sound = pick(list('sound/effects/adminhelp.ogg', 'sound/effects/applause.ogg', 'sound/effects/bubbles.ogg',
 					'sound/effects/empulse.ogg', 'sound/effects/explosion1.ogg', 'sound/effects/explosion_distant.ogg',
 					'sound/effects/laughtrack.ogg', 'sound/effects/magic.ogg', 'sound/effects/meteorimpact.ogg',
 					'sound/effects/phasein.ogg', 'sound/effects/supermatter.ogg', 'sound/weapons/armbomb.ogg',
@@ -377,3 +388,60 @@
 		air.adjust_moles(output_id, moles)
 */
 
+///============
+/// Dissipating, the artifact creates a could of smoke.
+///============
+/datum/xenoartifact_trait/major/smokey
+	desc = "Dissipating"
+	label_desc = "Dissipating: The Artifact is dissipating as if it was made of smoke."
+	flags = URANIUM_TRAIT | PLASMA_TRAIT | BLUESPACE_TRAIT
+
+/datum/xenoartifact_trait/major/smokey/activate(obj/item/xenoartifact/X, atom/target, atom/user, setup)
+	var/datum/effect_system/steam_spread/E = new()
+	E.set_up(max(3, X.charge*0.08), 0, get_turf(X))
+	E.start()
+
+///============
+/// Marker, colors target with a random color
+///============
+/datum/xenoartifact_trait/major/marker
+	label_name = "Marker"
+	label_desc = "Marker: The Artifact causes the target to refract a unique color index."
+	flags = PLASMA_TRAIT | BLUESPACE_TRAIT
+	///The color this artifact dispenses
+	var/color
+
+/datum/xenoartifact_trait/major/marker/on_init(obj/item/xenoartifact/X)
+	color = pick(COLOR_RED, COLOR_GREEN, COLOR_BLUE, COLOR_PURPLE, COLOR_ORANGE, COLOR_YELLOW, COLOR_CYAN, COLOR_PINK, "all")
+
+/datum/xenoartifact_trait/major/marker/activate(obj/item/xenoartifact/X, atom/target, atom/user, setup)
+	if(color == "all")
+		target.color = pick(COLOR_RED, COLOR_GREEN, COLOR_BLUE, COLOR_PURPLE, COLOR_ORANGE, COLOR_YELLOW, COLOR_CYAN, COLOR_PINK)
+	else
+		target.color = color
+
+///============
+/// emote, makes user do a random emote
+///============
+/datum/xenoartifact_trait/major/emote
+	label_name = "Emotional"
+	label_desc = "Emotional: The Artifact causes the target to experience, or preform, a random emotion."
+	flags = PLASMA_TRAIT | BLUESPACE_TRAIT | URANIUM_TRAIT
+	///Emote to preform
+	var/datum/emote/emote
+
+/datum/xenoartifact_trait/major/emote/on_init(obj/item/xenoartifact/X)
+	emote = pick(GLOB.xenoa_emote)
+	emote = new emote()
+
+/datum/xenoartifact_trait/major/emote/activate(obj/item/xenoartifact/X, atom/target, atom/user, setup)
+	if(iscarbon(target))
+		emote.run_emote(target)
+	//Not all mobs can preform the given emotes, spin is pretty common though
+	else if(isliving(target))
+		var/datum/emote/spin/E = new()
+		E.run_emote(target)
+
+/datum/xenoartifact_trait/major/emote/Destroy()
+	. = ..()
+	QDEL_NULL(emote)

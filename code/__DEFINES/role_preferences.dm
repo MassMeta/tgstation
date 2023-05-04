@@ -50,6 +50,7 @@
 #define ROLE_HERETIC_SMUGGLER "Heretic Smuggler"
 #define ROLE_PROVOCATEUR "Provocateur"
 #define ROLE_SYNDICATE_INFILTRATOR "Syndicate Infiltrator"
+#define ROLE_STOWAWAY_CHANGELING "Stowaway Changeling"
 #define ROLE_VAMPIRICACCIDENT "Vampiric Accident"
 
 // Other roles
@@ -158,6 +159,7 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_HERETIC_SMUGGLER = 0,
 	ROLE_PROVOCATEUR = 14,
 	ROLE_SYNDICATE_INFILTRATOR = 0,
+	ROLE_STOWAWAY_CHANGELING = 0,
 	ROLE_VAMPIRICACCIDENT = 0,
 
 	// I'm not too sure why these are here, but they're not moving.

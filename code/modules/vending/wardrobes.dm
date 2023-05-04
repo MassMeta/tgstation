@@ -17,6 +17,7 @@
 	vend_reply = "Thank you for using the SecDrobe!"
 	products = list(
 		/obj/item/clothing/suit/hooded/wintercoat/security = 3,
+		/obj/item/clothing/suit/hooded/wintercoat/security/fluffy = 3,
 		/obj/item/storage/backpack/security = 3,
 		/obj/item/storage/backpack/satchel/sec = 3,
 		/obj/item/storage/backpack/duffelbag/sec = 3,

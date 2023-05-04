@@ -106,3 +106,8 @@
 
 /obj/item/clothing/neck/cloak/skill_reward/playing/check_wearable(mob/user)
 	return user.client?.is_veteran()
+
+/obj/item/clothing/neck/cloak/botancloak
+	name = "Druid Cloak"
+	desc = "Popular among potatos"
+	icon_state = "botancloak"

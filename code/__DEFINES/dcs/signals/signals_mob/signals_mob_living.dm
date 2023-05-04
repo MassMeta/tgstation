@@ -144,6 +144,30 @@
 /// From /mob/living/unfriend() : (mob/living/old_friend)
 #define COMSIG_LIVING_UNFRIENDED "living_unfriended"
 
+/// From /obj/effect/temp_visual/resonance/burst() : (mob/creator, mob/living/hit_living)
+#define COMSIG_LIVING_RESONATOR_BURST "living_resonator_burst"
+
+/// From /obj/projectile/attempt_parry() : (obj/projectile/parried_projectile)
+#define COMSIG_LIVING_PROJECTILE_PARRYING "living_projectile_parrying"
+	/// Return to allow the parry to happen
+	#define ALLOW_PARRY (1<<0)
+
+/// From /obj/projectile/on_parry() : (obj/projectile/parried_projectile)
+#define COMSIG_LIVING_PROJECTILE_PARRIED "living_projectile_parried"
+	/// Return to prevent the projectile from executing any code in on_parry()
+	#define INTERCEPT_PARRY_EFFECTS (1<<0)
+
+/// From /turf/closed/mineral/gibtonite/defuse() : (det_time)
+#define COMSIG_LIVING_DEFUSED_GIBTONITE "living_defused_gibtonite"
+
+/// From /obj/item/kinetic_crusher/afterattack() : (mob/living/target, obj/item/kinetic_crusher/crusher, backstabbed)
+#define COMSIG_LIVING_CRUSHER_DETONATE "living_crusher_detonate"
+
+/// From /obj/structure/geyser/attackby() : (obj/structure/geyser/geyser)
+#define COMSIG_LIVING_DISCOVERED_GEYSER "living_discovered_geyser"
+
+//MassMetaEdit start
+
 ///from somewhere in door i dunno use the fucking search function
 #define COMSIG_LIVING_INTERACTED_WITH_DOOR "living_interacted_with_door"
 	#define DOOR_CLOSE "close"
@@ -151,3 +175,6 @@
 
 #define COMSIG_MOB_RECEIVE_ARTIFACT "mob_receive_artifact"			//
 	#define COMPONENT_BLOCK_ARTIFACT 1
+	
+//MassMetaEdit end
+

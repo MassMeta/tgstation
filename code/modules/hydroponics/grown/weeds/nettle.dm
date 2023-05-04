@@ -32,6 +32,22 @@
 	rarity = 20
 	graft_gene = /datum/plant_gene/trait/stinging
 
+/obj/item/seeds/nettle/death/powerful
+	name = "pack of powerful death-nettle"
+	desc = "More powerful then standart death-nettle... Without GMO."
+	icon_state = "seed-deathnettle"
+	species = "deathnettle"
+	plantname = "Death Nettles"
+	product = /obj/item/food/grown/nettle/death/powerful
+	endurance = 100
+	maturation = 8
+	yield = 2
+	genes = list(/datum/plant_gene/trait/repeated_harvest, /datum/plant_gene/trait/plant_type/weed_hardy, /datum/plant_gene/trait/stinging, /datum/plant_gene/trait/attack/nettle_attack/death, /datum/plant_gene/trait/backfire/nettle_burn/death)
+	mutatelist = null
+	reagents_add = list(/datum/reagent/toxin/acid/fluacid = 0.5, /datum/reagent/toxin/acid = 0.5)
+	rarity = 100
+	graft_gene = /datum/plant_gene/trait/stinging
+
 /obj/item/food/grown/nettle // "snack"
 	seed = /obj/item/seeds/nettle
 	name = "\improper nettle"
@@ -65,3 +81,8 @@
 	force = 30
 	wound_bonus = CANT_WOUND
 	throwforce = 15
+
+/obj/item/food/grown/nettle/death/powerful
+	seed = /obj/item/seeds/nettle/death/powerful
+	force = 40
+	throwforce = 20

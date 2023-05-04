@@ -29,6 +29,10 @@
 	name = "double-barrel shotgun internal magazine (slugs)"
 	ammo_type = /obj/item/ammo_casing/shotgun
 
+/obj/item/ammo_box/magazine/internal/shot/dual/improvised
+	name = "double-barrel shotgun internal magazine (improvised)"
+	ammo_type = /obj/item/ammo_casing/shotgun/improvised
+
 /obj/item/ammo_box/magazine/internal/shot/riot
 	name = "riot shotgun internal magazine"
 	ammo_type = /obj/item/ammo_casing/shotgun/rubbershot

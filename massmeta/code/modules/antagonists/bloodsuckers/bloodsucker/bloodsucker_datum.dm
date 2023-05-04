@@ -245,10 +245,12 @@
 		//Give old punch damage values
 		new_left_arm = new_body.get_bodypart(BODY_ZONE_L_ARM)
 		new_right_arm = new_body.get_bodypart(BODY_ZONE_R_ARM)
-		new_left_arm.unarmed_damage_low = old_left_arm_unarmed_damage_low
-		new_left_arm.unarmed_damage_high = old_left_arm_unarmed_damage_high
-		new_right_arm.unarmed_damage_low = old_right_arm_unarmed_damage_low
-		new_right_arm.unarmed_damage_high = old_right_arm_unarmed_damage_high
+		if(old_left_arm_unarmed_damage_low)
+			new_left_arm.unarmed_damage_low = old_left_arm_unarmed_damage_low
+			new_left_arm.unarmed_damage_high = old_left_arm_unarmed_damage_high
+		if(old_right_arm_unarmed_damage_low)
+			new_right_arm.unarmed_damage_low = old_right_arm_unarmed_damage_low
+			new_right_arm.unarmed_damage_high = old_right_arm_unarmed_damage_high
 
 	//Give Bloodsucker Traits
 	for(var/all_traits in bloodsucker_traits)

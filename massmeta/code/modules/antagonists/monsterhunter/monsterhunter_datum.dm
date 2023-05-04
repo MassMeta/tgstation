@@ -254,7 +254,7 @@
 	SIGNAL_HANDLER
 
 	var/datum/round_event_control/wonderlandapocalypse/invasion = new
-	invasion.runEvent()
+	invasion.run_event()
 
 
 

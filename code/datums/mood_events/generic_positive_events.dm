@@ -317,10 +317,6 @@
 	mood_change = 2
 	timeout = 3 MINUTES
 
-/datum/mood_event/garland
-	description = "These flowers are rather soothing."
-	mood_change = 1
-
 /datum/mood_event/playing_cards/add_effects(param)
 	var/card_players = 1
 	for(var/mob/living/carbon/player in viewers(COMBAT_MESSAGE_RANGE, owner))
@@ -332,6 +328,10 @@
 
 	mood_change *= card_players
 	return ..()
+
+/datum/mood_event/garland
+	description = "These flowers are rather soothing."
+	mood_change = 1
 
 /datum/mood_event/russian_roulette_win
 	description = "I gambled my life and won! I'm lucky to be alive..."
@@ -367,6 +367,16 @@
 	special_screen_obj = "birthday"
 	special_screen_replace = FALSE
 
+/datum/mood_event/basketball_score
+	description = "Swish! Nothing but net."
+	mood_change = 2
+	timeout = 5 MINUTES
+	
+/datum/mood_event/basketball_dunk
+	description = "Slam dunk! Boom, shakalaka!"
+	mood_change = 2
+	timeout = 5 MINUTES
+
 /datum/mood_event/thrall
 	description = "<span class='velvet'><i>The darkness is true. I love them. I love the masters.</i></span>\n"
 	mood_change = 40
@@ -374,3 +384,4 @@
 /datum/mood_event/sling
 	description = "<span class='velvet'><b>The keys to reality are within my grasp.</b></span>\n"
 	mood_change = 20
+

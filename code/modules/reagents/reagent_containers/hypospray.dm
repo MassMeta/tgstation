@@ -337,3 +337,13 @@
 	volume = 15
 	amount_per_transfer_from_this = 15
 	list_reagents = list(/datum/reagent/medicine/mutadone = 15)
+
+/obj/item/reagent_containers/hypospray/medipen/penthrite
+	name = "penthrite autoinjector"
+	desc = "20 u of penthrite make you more powerful then clown."
+	icon_state = "stimpen"
+	inhand_icon_state = "stimpen"
+	base_icon_state = "stimpen"
+	volume = 30
+	amount_per_transfer_from_this = 20
+	list_reagents = list(/datum/reagent/medicine/c2/penthrite = 20)

@@ -26,9 +26,13 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 		list("Clown Enjoyer", "Mime Fan", "Pride Pin"), 
 		list("Bad Touch", "Friendly"),
 		list("Extrovert", "Introvert"),
+		list("Prosthetic Limb", "Quadruple Amputee", "Body Purist"),
+		list("Quadruple Amputee", "Paraplegic"),
+		list("Quadruple Amputee", "Frail"),
 		list("Prosthetic Limb", "Quadruple Amputee", "Body Purist", "Augmented"),
 		list("Quadruple Amputee", "Paraplegic", "Augmented"),
 		list("Quadruple Amputee", "Frail", "Augmented"),
+		list("Social Anxiety", "Mute"),
 	)
 
 /datum/controller/subsystem/processing/quirks/Initialize()
