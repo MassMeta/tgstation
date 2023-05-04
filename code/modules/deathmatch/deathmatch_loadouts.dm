@@ -192,6 +192,8 @@
 	equipment = list(
 		/obj/item/gun/ballistic/bow = ITEM_SLOT_HANDS,
 		/obj/item/ammo_casing/caseless/arrow = ITEM_SLOT_HANDS,
+		list(/obj/item/reagent_containers/syringe/crude/mushroomhallucinogen) = ITEM_SLOT_BACKPACK,
+		list(/obj/item/reagent_containers/syringe/crude/blastoff) = ITEM_SLOT_BACKPACK,
 		list(/obj/item/ammo_casing/caseless/arrow) = ITEM_SLOT_BACKPACK,
 		list(/obj/item/food/grown/nettle/death/powerful = 2) = ITEM_SLOT_BACKPACK,
 		list(/obj/item/food/grown/banana = 2) = ITEM_SLOT_BACKPACK,
@@ -210,6 +212,7 @@
 	player.equip_to_slot(new /obj/item/clothing/glasses/thermal, ITEM_SLOT_EYES)
 	player.equip_to_slot(new /obj/item/clothing/neck/cloak/botancloak, ITEM_SLOT_NECK)
 	player.equip_to_slot(new /obj/item/clothing/gloves/botanic_leather, ITEM_SLOT_GLOVES)
+	player.equip_to_slot(new /obj/item/gun/syringe/blowgun, ITEM_SLOT_BELT)
 	player.equip_to_slot(new /obj/item/storage/backpack/santabag, ITEM_SLOT_BACK)
 	player.equip_to_slot(new /obj/item/clothing/shoes/sandal, ITEM_SLOT_FEET)
 	. = ..()

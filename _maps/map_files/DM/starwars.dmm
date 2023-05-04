@@ -52,12 +52,6 @@
 	},
 /turf/open/indestructible/darklarge,
 /area/deathmatch)
-"cr" = (
-/obj/effect/turf_decal/tile/brown/fourcorners,
-/obj/structure/table,
-/obj/item/pizzabox,
-/turf/open/indestructible,
-/area/deathmatch)
 "cs" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -75,11 +69,6 @@
 "cM" = (
 /obj/effect/turf_decal/bot,
 /turf/open/indestructible/smoothlarge,
-/area/deathmatch)
-"cS" = (
-/obj/structure/table/glass,
-/obj/item/storage/medkit/o2,
-/turf/open/indestructible/whitelarge,
 /area/deathmatch)
 "cU" = (
 /obj/effect/mapping_helpers/broken_floor,
@@ -100,6 +89,7 @@
 /obj/structure/closet/crate/cardboard,
 /obj/effect/turf_decal/tile/brown/fourcorners,
 /obj/item/mail/junkmail,
+/obj/item/ammo_casing/a357,
 /obj/item/reagent_containers/syringe/plasma,
 /turf/open/indestructible,
 /area/deathmatch)
@@ -306,11 +296,9 @@
 /turf/open/indestructible/white,
 /area/deathmatch)
 "kz" = (
-/obj/effect/turf_decal/tile/brown/fourcorners,
-/obj/structure/chair{
-	dir = 4
-	},
-/turf/open/indestructible,
+/obj/item/storage/medkit/fire,
+/obj/structure/table/glass,
+/turf/open/indestructible/white,
 /area/deathmatch)
 "kA" = (
 /obj/effect/spawner/random/maintenance/three,
@@ -925,12 +913,6 @@
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/indestructible/plating,
 /area/deathmatch)
-"Il" = (
-/obj/structure/closet/crate/large,
-/obj/item/reagent_containers/medigel/synthflesh,
-/obj/item/mail/junkmail,
-/turf/open/indestructible/large,
-/area/deathmatch)
 "Is" = (
 /obj/machinery/light/floor,
 /turf/open/indestructible/vault,
@@ -1003,7 +985,7 @@
 /area/deathmatch)
 "Kz" = (
 /obj/effect/spawner/random/trash/box,
-/obj/item/ammo_box/c38,
+/obj/item/ammo_box/a357,
 /turf/open/indestructible/plating,
 /area/deathmatch)
 "KC" = (
@@ -1069,7 +1051,7 @@
 /area/deathmatch)
 "Me" = (
 /obj/structure/rack,
-/obj/item/ammo_box/c38,
+/obj/item/throwing_star,
 /turf/open/indestructible/vault,
 /area/deathmatch)
 "Mk" = (
@@ -1160,11 +1142,6 @@
 	},
 /obj/machinery/computer,
 /turf/open/indestructible/smoothlarge,
-/area/deathmatch)
-"OS" = (
-/obj/structure/table/glass,
-/obj/item/storage/medkit/fire,
-/turf/open/indestructible/whitelarge,
 /area/deathmatch)
 "Pj" = (
 /obj/effect/turf_decal/bot,
@@ -1365,7 +1342,12 @@
 /area/deathmatch)
 "Ye" = (
 /obj/effect/turf_decal/tile/brown/fourcorners,
-/turf/closed/indestructible/reinforced,
+/obj/structure/closet/crate/large,
+/obj/item/mail/junkmail,
+/obj/item/mail/junkmail,
+/obj/item/mail/junkmail,
+/obj/item/reagent_containers/medigel/synthflesh,
+/turf/open/indestructible,
 /area/deathmatch)
 "Yf" = (
 /obj/effect/turf_decal/tile/red/anticorner,
@@ -1427,6 +1409,7 @@ bE
 bE
 bE
 bE
+tV
 KX
 KX
 KX
@@ -1438,8 +1421,7 @@ KX
 KX
 KX
 KX
-KX
-KX
+tV
 tV
 tV
 tV
@@ -1470,7 +1452,7 @@ sx
 kF
 KX
 KX
-KX
+tV
 tV
 tV
 tV
@@ -1481,8 +1463,8 @@ tV
 bE
 bE
 tV
-KX
-IC
+tV
+tV
 IC
 US
 Vz
@@ -1500,7 +1482,7 @@ Ve
 kF
 tU
 KX
-KX
+tV
 tV
 tV
 tV
@@ -1509,9 +1491,9 @@ tV
 (4,1,1) = {"
 bE
 tV
-KX
-KX
-OS
+tV
+IC
+IC
 rU
 US
 ub
@@ -1538,9 +1520,9 @@ tV
 (5,1,1) = {"
 bE
 tV
+tV
 IC
-cS
-sZ
+kz
 Xk
 Fg
 sl
@@ -1560,8 +1542,7 @@ LY
 Yk
 Is
 KX
-KX
-
+tV
 tV
 tV
 "}
@@ -1591,7 +1572,7 @@ Yk
 Yk
 iz
 KX
-KX
+tV
 tV
 "}
 (7,1,1) = {"
@@ -1624,7 +1605,7 @@ KX
 tV
 "}
 (8,1,1) = {"
-KX
+tV
 KX
 jh
 Yg
@@ -1650,7 +1631,7 @@ US
 kF
 kF
 KX
-KX
+tV
 "}
 (9,1,1) = {"
 KX
@@ -1972,7 +1953,7 @@ gf
 KX
 "}
 (20,1,1) = {"
-KX
+tV
 KX
 MT
 Ax
@@ -1998,7 +1979,7 @@ KJ
 LM
 rj
 KX
-KX
+tV
 "}
 (21,1,1) = {"
 tV
@@ -2025,13 +2006,13 @@ Pp
 Ef
 BC
 fs
-Ye
+rj
 KX
 tV
 "}
 (22,1,1) = {"
 tV
-KX
+tV
 KX
 KS
 US
@@ -2053,7 +2034,7 @@ Pp
 Pp
 zp
 gE
-kz
+Df
 IC
 tV
 bE
@@ -2061,7 +2042,7 @@ bE
 (23,1,1) = {"
 tV
 tV
-KX
+tV
 KX
 AT
 Qh
@@ -2082,8 +2063,8 @@ BC
 BC
 gE
 Df
-cr
 IC
+tV
 tV
 bE
 "}
@@ -2108,11 +2089,11 @@ KJ
 BC
 qf
 fs
-Il
+fs
 dw
-Df
-KX
-KX
+IC
+IC
+tV
 tV
 bE
 "}
@@ -2121,7 +2102,7 @@ tV
 tV
 tV
 tV
-KX
+tV
 KX
 HL
 Bm
@@ -2139,8 +2120,8 @@ ZC
 rj
 Ye
 IC
-IC
-KX
+tV
+tV
 bE
 tV
 bE
@@ -2151,7 +2132,7 @@ tV
 tV
 tV
 tV
-KX
+tV
 KX
 KX
 Bt
@@ -2182,6 +2163,7 @@ tV
 tV
 tV
 tV
+tV
 KX
 KX
 KX
@@ -2193,8 +2175,7 @@ KX
 KX
 KX
 KX
-KX
-KX
+tV
 tV
 bE
 bE
