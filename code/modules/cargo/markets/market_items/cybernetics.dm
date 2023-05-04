@@ -119,7 +119,7 @@
 	price_min = 200
 	price_max = 400
 
-/datum/blackmarket_item/cybernetics/medibeam
+/datum/market_item/cybernetics/medibeam
 	name = "medibeam toolset cybernetic"
 	desc = "An old design of a medibeam used by terragov doctors in dire situations, very rare."
 	item = /obj/item/organ/internal/cyberimp/arm/medibeam
@@ -127,7 +127,7 @@
 	price_min = 1200
 	price_max = 2200
 
-/datum/blackmarket_item/cybernetics/flash
+/datum/market_item/cybernetics/flash
 	name = "integrated high-intensity photon projector"
 	desc = "Can be quite handy, especially since it is quite literally, built into your hand."
 	item = /obj/item/organ/internal/cyberimp/arm/flash
@@ -135,7 +135,7 @@
 	price_min = 600
 	price_max = 800
 
-/datum/blackmarket_item/cybernetics/cook
+/datum/market_item/cybernetics/cook
 	name = "cooking toolset cybernetic"
 	desc = "Useful for extra-fast cooking."
 	item = /obj/item/organ/cyberimp/arm/cook
@@ -143,7 +143,7 @@
 	price_min = 300
 	price_max = 500
 
-/datum/blackmarket_item/cybernetics/janitor
+/datum/market_item/cybernetics/janitor
 	name = "janitorial toolset cybernetic"
 	desc = "Useful for extra-fast cleaning."
 	item = /obj/item/organ/cyberimp/arm/janitor
@@ -151,7 +151,7 @@
 	price_min = 300
 	price_max = 500
 
-/datum/blackmarket_item/cybernetics/atmos
+/datum/market_item/cybernetics/atmos
 	name = "atmos toolset cybernetic"
 	desc = "Useful for extra-fast firefighting."
 	item = /obj/item/organ/cyberimp/arm/atmospherics
