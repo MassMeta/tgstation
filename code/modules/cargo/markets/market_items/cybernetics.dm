@@ -1,6 +1,6 @@
 /datum/market_item/cybernetics
 	category = "Cybernetics"
-	stock_max = 2
+	stock_max = 1
 
 // LEGS
 
@@ -10,6 +10,8 @@
 	item = /obj/item/organ/internal/cyberimp/leg/table_glider
 	availability_prob = 20
 	stock = 2 // ok, ok these require 2 implants on each leg to work
+	stock_max = 2
+	stock_min = 2
 	price_min = 200
 	price_max = 400
 
@@ -19,6 +21,8 @@
 	item = /obj/item/organ/internal/cyberimp/leg/shove_resist
 	availability_prob = 15
 	stock = 2 // ok, ok these require 2 implants on each leg to work
+	stock_max = 2
+	stock_min = 2
 	price_min = 300
 	price_max = 600
 
@@ -28,6 +32,8 @@
 	item = /obj/item/organ/internal/cyberimp/leg/accelerator
 	availability_prob = 10
 	stock = 2 // ok, ok these require 2 implants on each leg to work
+	stock_max = 2
+	stock_min = 2
 	price_min = 400
 	price_max = 800
 
@@ -112,3 +118,43 @@
 	availability_prob = 20
 	price_min = 200
 	price_max = 400
+
+/datum/blackmarket_item/cybernetics/medibeam
+	name = "medibeam toolset cybernetic"
+	desc = "An old design of a medibeam used by terragov doctors in dire situations, very rare."
+	item = /obj/item/organ/internal/cyberimp/arm/medibeam
+	availability_prob = 10
+	price_min = 1200
+	price_max = 2200
+
+/datum/blackmarket_item/cybernetics/flash
+	name = "integrated high-intensity photon projector"
+	desc = "Can be quite handy, especially since it is quite literally, built into your hand."
+	item = /obj/item/organ/internal/cyberimp/arm/flash
+	availability_prob = 20
+	price_min = 600
+	price_max = 800
+
+/datum/blackmarket_item/cybernetics/cook
+	name = "cooking toolset cybernetic"
+	desc = "Useful for extra-fast cooking."
+	item = /obj/item/organ/cyberimp/arm/cook
+	availability_prob = 25
+	price_min = 300
+	price_max = 500
+
+/datum/blackmarket_item/cybernetics/janitor
+	name = "janitorial toolset cybernetic"
+	desc = "Useful for extra-fast cleaning."
+	item = /obj/item/organ/cyberimp/arm/janitor
+	availability_prob = 25
+	price_min = 300
+	price_max = 500
+
+/datum/blackmarket_item/cybernetics/atmos
+	name = "atmos toolset cybernetic"
+	desc = "Useful for extra-fast firefighting."
+	item = /obj/item/organ/cyberimp/arm/atmospherics
+	availability_prob = 25
+	price_min = 300
+	price_max = 500
