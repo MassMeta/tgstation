@@ -84,6 +84,74 @@
 /turf/open/indestructible/permalube
 	icon_state = "darkfull"
 
+/turf/open/indestructible/kitchen
+	icon_state = "kitchen"
+
+/turf/open/indestructible/woodlarge
+	icon_state = "wood_large"
+
+/turf/open/indestructible/woodparquet
+	icon_state = "wood_parquet"
+
+/turf/open/indestructible/woodtile
+	icon_state = "wood_tile"
+
+/turf/open/indestructible/cult
+	icon_state = "cult"
+
+/turf/open/indestructible/stone
+	icon_state = "stone_floor"
+
+/turf/open/indestructible/large
+	icon_state = "floor_large"
+
+/turf/open/indestructible/darklarge
+	icon_state = "dark_large"
+
+/turf/open/indestructible/whitelarge
+	icon_state = "white_large"
+
+/turf/open/indestructible/smoothlarge
+	icon_state = "smooth_large"
+
+/turf/open/indestructible/plating
+	icon_state = "plating"
+
+/turf/open/indestructible/vault
+	icon_state = "rockvault"
+
+/turf/open/indestructible/glass
+	icon = 'icons/turf/floors/glass.dmi'
+	icon_state = "glass-0"
+
+/turf/open/indestructible/carpetgreen
+	icon = 'icons/turf/floors/carpet_green.dmi'
+	icon_state = "carpet_green-255"
+
+/turf/open/indestructible/carpet
+	icon = 'icons/turf/floors/carpet.dmi'
+	icon_state = "carpet-0"
+
+/turf/open/indestructible/bamboo
+	icon = 'icons/turf/floors/bamboo_mat.dmi'
+	icon_state = "mat-0"
+
+/turf/open/indestructible/bamboo/tatamigreen
+	icon_state = "tatami_green"
+
+/turf/open/indestructible/bamboo/tatamipurple
+	icon_state = "tatami_purple"
+
+/turf/open/indestructible/grass
+	icon_state = "grass0"
+
+/turf/open/indestructible/water
+	icon_state = "riverwater_motion"
+	slowdown = 2
+
+/turf/open/indestructible/dirt
+	icon_state = "sand"
+
 /turf/open/indestructible/permalube/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/wet_floor, TURF_WET_LUBE, INFINITY, 0, INFINITY, TRUE)

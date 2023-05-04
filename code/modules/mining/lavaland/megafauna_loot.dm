@@ -365,6 +365,7 @@
 	throwforce = 17
 	armour_penetration = 50
 	sharpness = SHARP_EDGED
+	slot_flags = ITEM_SLOT_BACK
 	bare_wound_bonus = 10
 	layer = MOB_LAYER
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF

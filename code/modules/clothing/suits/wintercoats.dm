@@ -254,6 +254,16 @@
 	icon_state = "hood_security"
 	armor_type = /datum/armor/winterhood_security
 
+/obj/item/clothing/suit/hooded/wintercoat/security/fluffy
+	name = "security winter coat"
+	icon = 'massmeta/icons/obj/clothing/suits/wintercoat.dmi'
+	worn_icon = 'massmeta/icons/mob/clothing/suits/wintercoat.dmi'
+	hoodtype = /obj/item/clothing/head/hooded/winterhood/security/fluffy
+
+/obj/item/clothing/head/hooded/winterhood/security/fluffy
+	worn_icon = 'massmeta/icons/mob/clothing/head/fluffywinterhood.dmi'
+
+
 // Medical Doctor
 /datum/armor/winterhood_security
 	melee = 25

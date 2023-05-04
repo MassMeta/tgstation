@@ -294,3 +294,9 @@
 
 /obj/item/reagent_containers/syringe/contraband/morphine
 	list_reagents = list(/datum/reagent/medicine/morphine = 15)
+
+/obj/item/reagent_containers/syringe/crude/blastoff
+	list_reagents = list(/datum/reagent/drug/blastoff = 10)
+
+/obj/item/reagent_containers/syringe/crude/mushroomhallucinogen
+	list_reagents = list(/datum/reagent/drug/mushroomhallucinogen = 10)

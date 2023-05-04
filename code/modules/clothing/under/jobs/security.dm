@@ -10,8 +10,8 @@
  */
 
 /obj/item/clothing/under/rank/security
-	icon = 'icons/obj/clothing/under/security.dmi'
-	worn_icon = 'icons/mob/clothing/under/security.dmi'
+	icon = 'massmeta/icons/obj/clothing/security.dmi'
+	worn_icon = 'massmeta/icons/mob/clothing/security.dmi'
 	armor_type = /datum/armor/rank_security
 	strip_delay = 50
 	sensor_mode = SENSOR_COORDS

@@ -302,7 +302,7 @@
 /datum/reagent/water/holywater/on_mob_metabolize(mob/living/affected_mob)
 	..()
 	ADD_TRAIT(affected_mob, TRAIT_HOLY, type)
-	
+
 /datum/reagent/water/holywater/on_mob_add(mob/living/affected_mob, amount)
 	. = ..()
 	if(data)

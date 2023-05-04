@@ -37,6 +37,7 @@
 		/datum/reagent/uranium/radium,
 		/datum/reagent/silicon,
 		/datum/reagent/sodium,
+		/datum/reagent/silver,
 		/datum/reagent/stable_plasma,
 		/datum/reagent/consumable/sugar,
 		/datum/reagent/sulfur,
@@ -173,6 +174,5 @@
 		/datum/reagent/consumable/ethanol/vodka,
 		/datum/reagent/consumable/ethanol/whiskey,
 		/datum/reagent/consumable/ethanol/wine,
-		/datum/reagent/silver,
 	)
 
