@@ -6,13 +6,15 @@
 
 /// Start Sol, called when someone is assigned Bloodsucker
 /datum/antagonist/bloodsucker/proc/check_start_sunlight()
-	if(length(get_antag_minds(/datum/antagonist/bloodsucker)))
+	var/list/existing_suckers = get_antag_minds(/datum/antagonist/bloodsucker) - owner
+	if(!length(existing_suckers))
 		message_admins("New Sol has been created due to Bloodsucker assignment.")
 		SSsunlight.can_fire = TRUE
 
 /// End Sol, if you're the last Bloodsucker
 /datum/antagonist/bloodsucker/proc/check_cancel_sunlight()
-	if(!length(get_antag_minds(/datum/antagonist/bloodsucker)))
+	var/list/existing_suckers = get_antag_minds(/datum/antagonist/bloodsucker) - owner
+	if(!length(existing_suckers))
 		message_admins("Sol has been deleted due to the lack of Bloodsuckers")
 		SSsunlight.can_fire = FALSE
 
