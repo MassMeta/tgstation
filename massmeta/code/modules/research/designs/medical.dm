@@ -7,7 +7,7 @@
 	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/silver = 600, /datum/material/gold = 600, /datum/material/uranium = 1000,)
 	build_path = /obj/item/organ/internal/eyes/night_vision/cyber
 	category = list(
-		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_COMBAT
+		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_ORGANS_MISC
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
@@ -61,5 +61,18 @@
 	build_path = /obj/item/organ/internal/heart/nanite
 	category = list(
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_COMBAT
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
+
+/datum/design/tableclimber
+	name = "Table-gliding cybernetic"
+	desc = "A cybernetic implant, which increases your climbing speed, through it doesn't help with getting down. You should insert two of them in order to make them work."
+	id = "ci-tableclimber"
+	build_type = MECHFAB | PROTOLATHE
+	construction_time = 40
+	materials = list(/datum/material/iron = 7000, /datum/material/silver = 2000)
+	build_path = /obj/item/organ/internal/cyberimp/leg/table_glider
+	category = list(
+		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_ORGANS_MISC
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
