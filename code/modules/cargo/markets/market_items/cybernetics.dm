@@ -158,3 +158,25 @@
 	availability_prob = 25
 	price_min = 300
 	price_max = 500
+
+/datum/market_item/cybernetics/jumpboots
+	name = "Jump Boot implant"
+	desc = "A cybernetic enchancement that allows you to perform short-range dashes."
+	item = /obj/item/organ/internal/cyberimp/leg/jumpboots
+	availability_prob = 20
+	stock = 2
+	stock_max = 2
+	stock_min = 2
+	price_min = 300
+	price_max = 800
+
+/datum/market_item/cybernetics/noslip
+	name = "Antislip Implant"
+	desc = "An implant that uses sensors and motors to detect when you are slipping and attempt to prevent it."
+	item = /obj/item/organ/internal/cyberimp/leg/galosh
+	availability_prob = 25
+	stock = 2
+	stock_max = 2
+	stock_min = 2
+	price_min = 250
+	price_max = 600

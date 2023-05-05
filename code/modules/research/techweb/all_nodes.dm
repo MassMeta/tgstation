@@ -1328,6 +1328,7 @@
 		"ci-surgery",
 		"ci-toolset",
 		"ci-tableclimber",
+		"magbootimplant",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 

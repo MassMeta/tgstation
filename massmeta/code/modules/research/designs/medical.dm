@@ -76,3 +76,16 @@
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_ORGANS_MISC
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
+
+/datum/design/magbootimplant
+	name = "Magboot implant"
+	desc = "Integrated maglock implant, allows easy movement in a zero-gravity environment."
+	id = "magbootimplant"
+	build_type = PROTOLATHE | MECHFAB
+	construction_time = 80
+	materials = list(/datum/material/iron = 4000, /datum/material/glass = 1000, /datum/material/gold = 500, /datum/material/diamond = 200)
+	build_path = /obj/item/organ/internal/cyberimp/leg/magboot
+	category = list(
+		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_ORGANS_MISC
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL

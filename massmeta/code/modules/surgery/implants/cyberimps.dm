@@ -205,6 +205,67 @@
 	REMOVE_TRAIT(owner,TRAIT_FAST_CLIMBER,type)
 	return ..()
 
+/obj/item/organ/internal/cyberimp/leg/galosh
+	name = "Antislip Implant"
+	desc = "An implant that uses sensors and motors to detect when you are slipping and attempt to prevent it. It probably won't help if the floor is too slippery."
+	double_legged = TRUE
+
+/obj/item/organ/internal/cyberimp/leg/galosh/on_full_insert(mob/living/carbon/M, special, drop_if_replaced)
+	. = ..()
+	ADD_TRAIT(owner, TRAIT_NO_SLIP_WATER, type)
+	ADD_TRAIT(owner, TRAIT_NO_SLIP_ICE, type)
+
+/obj/item/organ/internal/cyberimp/leg/galosh/Remove()
+	REMOVE_TRAIT(owner, TRAIT_NO_SLIP_WATER, type)
+	REMOVE_TRAIT(owner, TRAIT_NO_SLIP_ICE, type)
+	return ..()
+
+/obj/item/organ/internal/cyberimp/leg/jumpboots
+	name = "Jumpboots implant"
+	desc = "An implant with a specialized propulsion system for rapid foward movement."
+	actions_types = list(/datum/action/item_action/bhop/implant)
+	double_legged = TRUE
+	var/jumpdistance = 5 //-1 from to see the actual distance, e.g 4 goes over 3 tiles
+	var/jumpspeed = 3
+	var/recharging_rate = 60 //default 6 seconds between each dash
+	var/recharging_time = 0 //time until next dash
+
+/obj/item/organ/internal/cyberimp/leg/jumpboots/ui_action_click()
+	var/obj/item/organ/organ = M.get_organ_slot(slot == ORGAN_SLOT_LEFT_LEG_AUG ? ORGAN_SLOT_RIGHT_LEG_AUG : ORGAN_SLOT_LEFT_LEG_AUG)
+	if(!organ || organ.type != type)
+		owner.balloon_alert(owner, "need two implants")
+		return
+	
+	if(!isliving(owner))
+		return
+
+	if(recharging_time > world.time)
+		to_chat(owner, span_warning("The boot's internal propulsion needs to recharge still!"))
+		return
+
+	var/atom/target = get_edge_target_turf(owner, owner.dir) //gets the user's direction
+
+	ADD_TRAIT(owner, TRAIT_MOVE_FLOATING, LEAPING_TRAIT)  //Throwing itself doesn't protect mobs against lava (because gulag).
+	if (owner.throw_at(target, jumpdistance, jumpspeed, spin = FALSE, diagonals_first = TRUE, callback = TRAIT_CALLBACK_REMOVE(owner, TRAIT_MOVE_FLOATING, LEAPING_TRAIT)))
+		playsound(owner, 'sound/effects/stealthoff.ogg', 50, TRUE, TRUE)
+		owner.visible_message(span_warning("[usr] dashes forward into the air!"))
+		recharging_time = world.time + recharging_rate
+	else
+		to_chat(owner, span_warning("Something prevents you from dashing forward!"))
+
+/obj/item/organ/internal/cyberimp/leg/magboot
+	name = "table-glider implant"
+	desc = "Implant that allows you quickly glide tables. You need to implant this in both of your legs to make it work."
+	double_legged = TRUE
+
+/obj/item/organ/internal/cyberimp/leg/magboot/on_full_insert(mob/living/carbon/M, special, drop_if_replaced)
+	. = ..()
+	ADD_TRAIT(owner,TRAIT_NEGATES_GRAVITY,type)
+
+/obj/item/organ/internal/cyberimp/leg/magboot/Remove(mob/living/carbon/M, special)
+	REMOVE_TRAIT(owner,TRAIT_NEGATES_GRAVITY,type)
+	return ..()
+
 /obj/item/organ/internal/cyberimp/leg/shove_resist
 	name = "BU-TAM resistor implant"
 	desc = "Implant that allows you to resist shoves, instead shoves deal pure stamina damage. You need to implant this in both of your legs to make it work."
