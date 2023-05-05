@@ -138,7 +138,7 @@
 /datum/market_item/cybernetics/cook
 	name = "cooking toolset cybernetic"
 	desc = "Useful for extra-fast cooking."
-	item = /obj/item/organ/cyberimp/arm/cook
+	item = /obj/item/organ/internal/cyberimp/arm/cook
 	availability_prob = 25
 	price_min = 300
 	price_max = 500
@@ -146,7 +146,7 @@
 /datum/market_item/cybernetics/janitor
 	name = "janitorial toolset cybernetic"
 	desc = "Useful for extra-fast cleaning."
-	item = /obj/item/organ/cyberimp/arm/janitor
+	item = /obj/item/organ/internal/cyberimp/arm/janitor
 	availability_prob = 25
 	price_min = 300
 	price_max = 500
@@ -154,7 +154,7 @@
 /datum/market_item/cybernetics/atmos
 	name = "atmos toolset cybernetic"
 	desc = "Useful for extra-fast firefighting."
-	item = /obj/item/organ/cyberimp/arm/atmospherics
+	item = /obj/item/organ/internal/cyberimp/arm/atmospherics
 	availability_prob = 25
 	price_min = 300
 	price_max = 500
