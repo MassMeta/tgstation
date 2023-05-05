@@ -88,6 +88,8 @@
 	/// The amount of smoke to create on cast. This is a range, so a value of 5 will create enough smoke to cover everything within 5 steps.
 	var/smoke_amt = 0
 
+	var/psi_cost = 0
+
 /datum/action/cooldown/spell/Grant(mob/grant_to)
 	// If our spell is mind-bound, we only wanna grant it to our mind
 	if(istype(target, /datum/mind))
@@ -208,6 +210,14 @@
 			if(feedback)
 				to_chat(owner, span_warning("[src] can't be cast in this state!"))
 			return FALSE
+
+		if(spell_requirements & SPELL_REQUIRES_PSI)
+			var/signal_result = SEND_SIGNAL(owner, COMSIG_PSIONIC_HAS_ENERGY, psi_cost, feedback)
+			if(!signal_result)
+				owner.balloon_alert(owner, "not a psionic!")
+				return FALSE
+			if(signal_result & COMPONENT_NO_PSIONIC_ENERGY)
+				return FALSE
 
 		// Being put into a card form breaks a lot of spells, so we'll just forbid them in these states
 		if(ispAI(owner) || (isAI(owner) && istype(owner.loc, /obj/item/aicard)))

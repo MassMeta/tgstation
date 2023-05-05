@@ -15,3 +15,9 @@
 
 ///Trying to spend psionic energy
 #define COMSIG_PSIONIC_SPEND_ENERGY "psionic_spend_energy"
+
+///Checking if the mob has a psionic path
+#define COMSIG_PSIONIC_CHECK_PATH "psionic_has_path"
+
+///Awakaning latent psionic powers inside a person
+#define COMSIG_PSIONIC_AWAKEN "psionic_awaken"

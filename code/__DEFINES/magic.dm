@@ -64,6 +64,8 @@
 /// (effectively making the invocation flavor, instead of required).
 #define SPELL_CASTABLE_WITHOUT_INVOCATION (1 << 8)
 
+#define SPELL_REQUIRES_PSI (1 << 9)
+
 DEFINE_BITFIELD(spell_requirements, list(
 	"SPELL_CASTABLE_AS_BRAIN" = SPELL_CASTABLE_AS_BRAIN,
 	"SPELL_CASTABLE_WHILE_PHASED" = SPELL_CASTABLE_WHILE_PHASED,
