@@ -231,7 +231,7 @@
 	var/recharging_time = 0 //time until next dash
 
 /obj/item/organ/internal/cyberimp/leg/jumpboots/ui_action_click()
-	var/obj/item/organ/organ = M.get_organ_slot(slot == ORGAN_SLOT_LEFT_LEG_AUG ? ORGAN_SLOT_RIGHT_LEG_AUG : ORGAN_SLOT_LEFT_LEG_AUG)
+	var/obj/item/organ/organ = owner.get_organ_slot(slot == ORGAN_SLOT_LEFT_LEG_AUG ? ORGAN_SLOT_RIGHT_LEG_AUG : ORGAN_SLOT_LEFT_LEG_AUG)
 	if(!organ || organ.type != type)
 		owner.balloon_alert(owner, "need two implants")
 		return
