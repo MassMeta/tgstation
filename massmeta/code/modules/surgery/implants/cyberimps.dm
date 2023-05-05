@@ -322,18 +322,3 @@
 	desc = "Extremely dangerous system that fills the user with a mix of potent drugs in dire situation."
 	implant_color = "#ce3914"
 	reagent_list = list(/datum/reagent/determination = 2, /datum/reagent/medicine/c2/penthrite = 3 , /datum/reagent/drug/bath_salts = 5 , /datum/reagent/medicine/ephedrine = 5)
-
-/obj/item/organ/internal/cyberimp/arm/cook
-	name = "kitchenware toolset implant"
-	desc = "A set of kitchen tools hidden behind a concealed panel on the user's arm."
-	items_to_create = list(/obj/item/kitchen/rollingpin,/obj/item/knife/kitchen,/obj/item/reagent_containers/cup/beaker)
-
-/obj/item/organ/internal/cyberimp/arm/janitor
-	name = "janitorial toolset implant"
-	desc = "A set of janitorial tools hidden behind a concealed panel on the user's arm."
-	items_to_create = list(/obj/item/mop/advanced,/obj/item/reagent_containers/cup/bucket,/obj/item/soap,/obj/item/reagent_containers/spray/cleaner)
-
-/obj/item/organ/internal/cyberimp/arm/atmospherics
-	name = "atmospherics toolset implant"
-	desc = "A set of atmospheric tools hidden behind a concealed panel on the user's arm."
-	items_to_create = list(/obj/item/extinguisher,/obj/item/analyzer,/obj/item/crowbar,/obj/item/holosign_creator/atmos)
