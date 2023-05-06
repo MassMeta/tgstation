@@ -46,6 +46,7 @@
 	var/weapon_type = /obj/item
 	var/obj/item/summoned_item
 	var/remove_verb = "dispell"
+	var/form_sound = 'sound/magic/disable_tech.ogg'
 
 /datum/action/cooldown/spell/form_item/cast(mob/living/cast_on)
 	. = ..()
@@ -54,10 +55,6 @@
 		qdel(summoned_item)
 		summoned_item = null
 	else
-		var/energy_check = SEND_SIGNAL(owner, COMSIG_PSIONIC_SPEND_ENERGY, psi_cost)
-		if(energy_check & COMPONENT_NO_PSIONIC_ENERGY)
-			owner.balloon_alert(owner, "not enough energy!")
-			return
 		var/mob/living/carbon/carbon_user = owner
 		if(!istype(carbon_user))
 			carbon_user.balloon_alert(carbon_user, "not in this form!")
@@ -66,7 +63,13 @@
 		if(held && !carbon_user.dropItemToGround(held))
 			carbon_user.balloon_alert(carbon_user, "hand occupied!")
 			return
-		var/obj/item/summoned_item = new weapon_type(carbon_user)
+
+		var/energy_check = SEND_SIGNAL(carbon_user, COMSIG_PSIONIC_SPEND_ENERGY, psi_cost, TRUE)
+		if(energy_check & COMPONENT_NO_PSIONIC_ENERGY)
+			return
+
+		playsound(get_turf(owner), form_sound, 50, TRUE)
+		summoned_item = new weapon_type(carbon_user)
 		carbon_user.put_in_hands(summoned_item)
 
 //Psiforge path spells
@@ -74,8 +77,6 @@
 /datum/action/cooldown/spell/form_item/psiblade
 	name = "Form Psionic Blade"
 	desc = "Form a psionic blade in your active hand, the blade gets stronger if you are a level 3 psionic. Costs 30 psi energy to activate."
-
-	sound = 'sound/magic/disable_tech.ogg'
 
 	button_icon = 'massmeta/icons/obj/psychic_powers.dmi'
 	button_icon_state = "psiblade_long"

@@ -4,6 +4,8 @@
 	icon = 'massmeta/icons/obj/psychic_powers.dmi'
 	icon_state = "psiblade_long"
 	inhand_icon_state = "psiblade_long"
+	lefthand_file = 'massmeta/icons/mob/inhands/psiblade_lefthand.dmi'
+	righthand_file = 'massmeta/icons/mob/inhands/psiblade_righthand.dmi'
 	item_flags = ABSTRACT | DROPDEL
 	w_class = WEIGHT_CLASS_HUGE
 	force = 23
@@ -31,6 +33,7 @@
 /obj/item/melee/psiblade/short
 	force = 16
 	name = "lesser psionic blade"
+	icon_state = "psiblade_short"
 	armour_penetration = 10
 
 /obj/item/debug/omnitool/psi_tool //Kill me
@@ -38,8 +41,15 @@
 	desc = "An energy... tool? Use it inhands to choose it's behaviour"
 	icon = 'massmeta/icons/obj/psychic_powers.dmi'
 	icon_state = "tinker"
-	inhand_icon_state = "tinker"
+	inhand_icon_state = "psiblade"
+	usesound = list('sound/weapons/blade1.ogg')
+	lefthand_file = 'massmeta/icons/mob/inhands/psiblade_lefthand.dmi'
+	righthand_file = 'massmeta/icons/mob/inhands/psiblade_righthand.dmi'
 	toolspeed = 1
+
+/obj/item/debug/omnitool/psi_tool/Initialize()
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, INNATE_TRAIT)
 
 /obj/item/debug/omnitool/psi_tool/better
 	toolspeed = 0.6
@@ -84,7 +94,6 @@
 	desc = "a complex device, which is capable of increasing psionic strength of a human."
 	icon = 'massmeta/icons/obj/psychic_powers.dmi'
 	icon_state = "volkite"
-	var/can_awake = FALSE
 
 /obj/item/psi_enchancer/attack_self(mob/living/user)
 	if(!isliving(user))
@@ -100,6 +109,6 @@
 		return
 	user.visible_message(span_warning("[user] stab themself with [src]!"), "<span class='warning'>You stab yourself with [src], and</span> <span class='hypnophrase'>feel power flooding through your mind!</span>")
 	user.adjust_confusion(rand(5 SECONDS, 10 SECONDS))
-	user.adjust_eye_blur(rand(2 SECONDS, 6 SECONDS))
+	user.adjust_eye_blur(rand(5 SECONDS, 10 SECONDS))
 	user.adjust_hallucinations(rand(15 SECONDS, 30 SECONDS))
 	qdel(src)

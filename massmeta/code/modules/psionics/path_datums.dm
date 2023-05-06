@@ -8,7 +8,7 @@ GLOBAL_LIST_INIT(psionic_pathes, subtypesof(/datum/psionic_path))
 
 	var/datum/component/psionics/psi_component
 	var/list/spell_map = list(
-		1 = /datum/action/cooldown/spell
+		/datum/action/cooldown/spell = 1
 	)
 
 /datum/psionic_path/proc/on_level_advance()
@@ -39,17 +39,20 @@ GLOBAL_LIST_INIT(psionic_pathes, subtypesof(/datum/psionic_path))
 		psi_component.add_level(null, amount, FALSE)
 	qdel(psi_component.path_spell)
 
+/datum/psionic_path/proc/on_special_progression_effect(effect_string, progression_level)
+	return
+
 /datum/psionic_path/fabricator
 	name = "Fabricator"
 	desc = "A path, that allows you to form weapons and various tools from your energy"
 	spell_map = list (
-		1 = /datum/action/cooldown/spell/form_item/psiblade,
-		2 = /datum/action/cooldown/spell/form_item/psiblade/tool,
-		3 = "change_tool_and_weapon",
-		4 = /datum/action/cooldown/spell/form_item/psiblade/gun,
+		/datum/action/cooldown/spell/form_item/psiblade = 1,
+		/datum/action/cooldown/spell/form_item/psiblade/tool = 2,
+		"change_tool_and_weapon" = 3,
+		/datum/action/cooldown/spell/form_item/psiblade/gun = 4,
 	)
 
-/datum/psionic_path/proc/on_special_progression_effect(effect_string, progression_level)
+/datum/psionic_path/fabricator/on_special_progression_effect(effect_string, progression_level)
 	if("change_tool_and_weapon")
 		for(var/datum/action/cooldown/spell/form_item/form_spell in psi_component.psionic_mob.actions)
 			if(istype(form_spell, /datum/action/cooldown/spell/form_item/psiblade))

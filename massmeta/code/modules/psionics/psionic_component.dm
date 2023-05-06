@@ -46,6 +46,8 @@
 	return COMPONENT_NO_PSIONIC_ENERGY
 
 /datum/component/psionics/proc/add_level(datum/source, amount, only_active_levels = FALSE, req_awakened = FALSE, feedback = FALSE)
+	SIGNAL_HANDLER
+
 	if(psi_level >= psi_level_max)
 		if(only_active_levels && amount > 0)
 			if(feedback)
@@ -57,13 +59,20 @@
 			psionic_mob.balloon_alert(psionic_mob, "powers unactive!")
 		return COMPONENT_PSIONIC_NO_ADVANCE
 
-	if(!psi_path || (psi_level >= psi_level_max && !only_active_levels) || !awakened)
+	if(!psi_path && only_active_levels)
+		if(feedback)
+			psionic_mob.balloon_alert(psionic_mob, "choose a path first!")
+		return COMPONENT_PSIONIC_NO_ADVANCE
+
+	if((psi_level >= psi_level_max && !only_active_levels) || !awakened)
 		psi_levels_unspent += 1
 	else
 		psi_level += 1
 		psi_path.on_level_advance()
 
 /datum/component/psionics/proc/assign_path(datum/source, datum/psionic_path/new_psionic_path)
+	SIGNAL_HANDLER
+
 	var/datum/psionic_path/new_psipath
 	if(!ispath(new_psionic_path))
 		new_psipath = new_psionic_path
@@ -75,37 +84,38 @@
 	new_psipath.on_assign(src)
 
 /datum/component/psionics/proc/try_spend_energy(datum/source, amount, feedback)
+	SIGNAL_HANDLER
+
 	var/result = has_energy(source, amount, feedback)
 	if(result & COMPONENT_NO_PSIONIC_ENERGY)
 		return COMPONENT_NO_PSIONIC_ENERGY //Cursed
 	adjust_energy(-amount)
 
 /datum/component/psionics/proc/adjust_energy(amount)
-	psi_energy += energy_regen
-	if(psi_energy > psi_energy_max)
-		psi_energy = psi_energy_max
-	if(psi_energy < 0)
-		psi_energy = 0
+	psi_energy += max(min(psi_energy_max, psi_energy + amount), 0)
 
 /datum/component/psionics/proc/on_mob_life()
+	SIGNAL_HANDLER
+
 	adjust_energy(energy_regen)
 
 /datum/component/psionics/proc/wake_up(datum/source, awakening_thing)
+	SIGNAL_HANDLER
+
 	if(awakened)
 		return COMPONENT_PSIONIC_AWAKENING_FAILED
+
 	awakened = TRUE
 	awakened_source = awakening_thing
 	psionic_mob.playsound_local(get_turf(psionic_mob), 'sound/ambience/antag/bloodcult.ogg', 100, FALSE, pressure_affected = FALSE, use_reverb = FALSE)
 	to_chat(psionic_mob, span_reallybig(span_hypnophrase("Your psionic powers have awoken")))
-	if(!psi_path)
-		if(!path_spell || QDELETED(path_spell))
-			path_spell = new path_spell ()
-		path_spell.Grant(psionic_mob)
-	else
-		psi_path.on_level_advance()
+	assign_path(source, /datum/psionic_path/fabricator)
+
 	return COMPONENT_PSIONIC_AWAKENING_SUCESSFULL
 
 /datum/component/psionics/proc/unactivate(datum/source, force, unawakening_thing)
+	SIGNAL_HANDLER
+
 	if(!force && unawakening_thing != awakened_source)
 		return
 	awakened_source = null
@@ -114,7 +124,10 @@
 		path_spell = null
 	psi_levels_unspent += psi_level
 	psi_level = 0
+	awakaned = FALSE
 	psi_path.on_level_advance()
 
 /datum/component/psionics/proc/return_path(datum/source)
+	SIGNAL_HANDLER
+
 	return psi_path ? psi_path : FALSE
