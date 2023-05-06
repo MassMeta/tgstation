@@ -420,15 +420,10 @@
 	..()
 
 /turf/closed/wall/mineral/reagent/ex_act()
-	if(fakeholder && fakeholder.reagents && !QDELETED(fakeholder))
-		for(var/datum/reagent/R in fakeholder.reagents.reagent_list)
-			R.on_ex_act()
-	else
+	if(!(fakeholder && fakeholder.reagents && !QDELETED(fakeholder)))
 		fakeholder = new(get_turf(src))
 		fakeholder.create_reagents(50)
 		fakeholder.reagents.add_reagent(reagent_type.type, 50)
-		for(var/datum/reagent/R in fakeholder.reagents.reagent_list)
-			R.on_ex_act()
 		fakeholder.reagents.handle_reactions()
 		QDEL_IN(fakeholder, 150)
 	..()
