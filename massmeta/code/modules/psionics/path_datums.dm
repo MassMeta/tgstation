@@ -56,7 +56,7 @@ GLOBAL_LIST_INIT(psionic_pathes, subtypesof(/datum/psionic_path))
 				if(progression_level <= psi_component.psi_level)
 					form_spell.weapon_type = /obj/item/melee/psiblade
 				else
-					form_spell.eapon_type = /obj/item/melee/psiblade/short
+					form_spell.weapon_type = /obj/item/melee/psiblade/short
 			
 			if(istype(form_spell, /datum/action/cooldown/spell/form_item/psiblade/tool))
 				if(progression_level <= psi_component.psi_level)

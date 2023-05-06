@@ -66,8 +66,8 @@
 		if(held && !carbon_user.dropItemToGround(held))
 			carbon_user.balloon_alert(carbon_user, "hand occupied!")
 			return
-		var/obj/item/summoned_item/W = new weapon_type(carbon_user)
-		carbon_user.put_in_hands(W)
+		var/obj/item/summoned_item = new weapon_type(carbon_user)
+		carbon_user.put_in_hands(summoned_item)
 
 //Psiforge path spells
 
