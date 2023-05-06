@@ -12,6 +12,8 @@
 	var/psi_energy_max = 100
 	var/energy_regen = 2
 
+	var/atom/movable/screen/psionic/counter
+
 	var/mob/living/psionic_mob
 	var/datum/psionic_path/psi_path
 	var/datum/action/cooldown/spell/pick_path/path_spell
@@ -24,6 +26,10 @@
 	if(!latent)
 		wake_up(null, awakening_thing)
 
+/datum/component/psionics/Destroy()
+	unactivate(null, TRUE)
+	. = ..()
+
 /datum/component/psionics/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_PSIONIC_HAS_ENERGY, PROC_REF(has_energy))
 	RegisterSignal(parent, COMSIG_PSIONIC_ADVANCE_LEVEL, PROC_REF(add_level))
@@ -33,6 +39,18 @@
 	RegisterSignal(parent, COMSIG_PSIONIC_AWAKEN, PROC_REF(wake_up))
 	RegisterSignal(parent, COMSIG_PSIONIC_DEACTIVATE, PROC_REF(unactivate))
 	RegisterSignal(parent, COMSIG_LIVING_LIFE, PROC_REF(on_mob_life))
+	RegisterSignal(parent, COMSIG_MOB_HUD_CREATED, PROC_REF(on_hud_created))
+
+/datum/component/psionics/UnregisterFromParent()
+	UnregisterSignal(parent, list(COMSIG_PSIONIC_HAS_ENERGY,
+								COMSIG_PSIONIC_ADVANCE_LEVEL,
+								COMSIG_PSIONIC_ASSIGN_PATH,
+								COMSIG_PSIONIC_SPEND_ENERGY,
+								COMSIG_PSIONIC_CHECK_PATH,
+								COMSIG_PSIONIC_AWAKEN,
+								COMSIG_PSIONIC_DEACTIVATE,
+								COMSIG_LIVING_LIFE,
+								COMSIG_MOB_HUD_CREATED,))
 
 /datum/component/psionics/proc/has_energy(datum/source, amount, feedback)
 	SIGNAL_HANDLER
@@ -93,11 +111,14 @@
 
 /datum/component/psionics/proc/adjust_energy(amount)
 	psi_energy += max(min(psi_energy_max, psi_energy + amount), 0)
+	if(counter)
+		counter.update_count(psi_energy)
 
 /datum/component/psionics/proc/on_mob_life()
 	SIGNAL_HANDLER
 
-	adjust_energy(energy_regen)
+	if(awakened)
+		adjust_energy(energy_regen)
 
 /datum/component/psionics/proc/wake_up(datum/source, awakening_thing)
 	SIGNAL_HANDLER
@@ -110,6 +131,7 @@
 	psionic_mob.playsound_local(get_turf(psionic_mob), 'sound/ambience/antag/bloodcult.ogg', 100, FALSE, pressure_affected = FALSE, use_reverb = FALSE)
 	to_chat(psionic_mob, span_reallybig(span_hypnophrase("Your psionic powers have awoken")))
 	assign_path(source, /datum/psionic_path/fabricator)
+	on_hud_created(source)
 
 	return COMPONENT_PSIONIC_AWAKENING_SUCESSFULL
 
@@ -126,8 +148,27 @@
 	psi_level = 0
 	awakaned = FALSE
 	psi_path.on_level_advance()
+	var/datum/hud/hud_used = psionic_mob.hud_used
+	hud_used.infodisplay -= counter
+	QDEL_NULL(counter)
 
 /datum/component/psionics/proc/return_path(datum/source)
 	SIGNAL_HANDLER
 
 	return psi_path ? psi_path : FALSE
+
+/datum/component/psionics/proc/on_hud_created(datum/source)
+	SIGNAL_HANDLER
+
+	if(!awakened)
+		return
+
+	var/datum/hud/psi_hud = psionic_mob.hud_used
+
+	counter = new /atom/movable/screen/psionic ()
+	counter.hud = psi_hud
+	psi_hud.infodisplay += counter
+
+	counter.update_count(psi_energy)
+
+	psi_hud.show_hud(psi_hud.hud_version)
