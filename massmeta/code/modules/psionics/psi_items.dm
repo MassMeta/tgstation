@@ -3,7 +3,7 @@
 	desc = "My life for Aiur!"
 	icon = 'massmeta/icons/obj/psychic_powers.dmi'
 	icon_state = "psiblade_long"
-	inhand_icon_state = "psiblade_long"
+	inhand_icon_state = "psiblade"
 	lefthand_file = 'massmeta/icons/mob/inhands/psiblade_lefthand.dmi'
 	righthand_file = 'massmeta/icons/mob/inhands/psiblade_righthand.dmi'
 	item_flags = ABSTRACT | DROPDEL

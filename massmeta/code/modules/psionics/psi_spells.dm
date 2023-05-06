@@ -72,7 +72,7 @@
 		summoned_item = new weapon_type(carbon_user)
 		carbon_user.put_in_hands(summoned_item)
 
-//Psiforge path spells
+//Fabricator path spells
 
 /datum/action/cooldown/spell/form_item/psiblade
 	name = "Form Psionic Blade"

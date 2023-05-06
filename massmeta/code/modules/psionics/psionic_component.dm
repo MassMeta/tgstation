@@ -82,8 +82,13 @@
 			psionic_mob.balloon_alert(psionic_mob, "choose a path first!")
 		return COMPONENT_PSIONIC_NO_ADVANCE
 
-	if((psi_level >= psi_level_max && !only_active_levels) || !awakened)
-		psi_levels_unspent += 1
+	if(psi_level >= psi_level_max || !awakened)
+		if(!only_active_levels)
+			psi_levels_unspent += 1
+			return
+		else 
+			if(!awakened && feedback)
+				psionic_mob.balloon_alert(psionic_mob, "powers unactive!")
 	else
 		psi_level += 1
 		psi_path.on_level_advance()
@@ -110,7 +115,7 @@
 	adjust_energy(-amount)
 
 /datum/component/psionics/proc/adjust_energy(amount)
-	psi_energy += max(min(psi_energy_max, psi_energy + amount), 0)
+	psi_energy = max(min(psi_energy_max, psi_energy + amount), 0)
 	if(counter)
 		counter.update_count(psi_energy)
 
