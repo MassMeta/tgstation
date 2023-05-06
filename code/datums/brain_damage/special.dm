@@ -428,3 +428,23 @@
 		to_chat(victim, "[span_name("[name]")] exclaims, \"[span_robot("[beepskys_cry]")]")
 		if(victim.client?.prefs.read_preference(/datum/preference/toggle/enable_runechat))
 			victim.create_chat_message(src, raw_message = beepskys_cry, spans = list("robotic"))
+
+/datum/brain_trauma/special/psionic_awakening
+	name = "Psionic Awakaning"
+	desc = "The patient has their psionic powers awakaned."
+	scan_desc = "something unknown"
+	gain_text = span_warning("You mind feels stronger...")
+	lose_text = span_notice("You feel parts of your psionic powers fade away.")
+
+/datum/brain_trauma/special/psionic_awakening/on_gain()
+	..()
+	var/signal_result = SEND_SIGNAL(owner, COMSIG_PSIONIC_AWAKEN, src)
+	if(!signal_result)
+		owner.AddComponent(/datum/component/psionics, FASLE, 1, src)
+	else if(signal_result & COMPONENT_PSIONIC_AWAKENING_FAILED)
+		SEND_SIGNAL(owner, COMSIG_PSIONIC_ADVANCE_LEVEL, 1, FALSE)
+
+/datum/brain_trauma/special/psionic_awakening/on_lose()
+	..()
+	SEND_SIGNAL(owner, COMSIG_PSIONIC_ADVANCE_LEVEL, -1, FALSE)
+	SEND_SIGNAL(owner, COMSIG_PSIONIC_DEACTIVATE, FALSE, src)

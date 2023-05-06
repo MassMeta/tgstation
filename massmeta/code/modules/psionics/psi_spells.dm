@@ -17,7 +17,7 @@
 
 	for (var/_the_path in GLOB.psionic_pathes)
 		var/datum/psionic_path/the_path = _the_path
-		var/image/path_icon = image('icons/mob/nonhuman-player/blob.dmi', the_path.icon_state)
+		var/image/path_icon = image('massmeta/icons/obj/psychic_powers.dmi', the_path.icon_state)
 
 		var/info_text = span_boldnotice("[initial(the_path.name)]")
 		info_text += "<br>[span_notice("[initial(the_path.desc)]")]"
@@ -50,10 +50,14 @@
 /datum/action/cooldown/spell/form_item/cast(mob/living/cast_on)
 	. = ..()
 	if(summoned_item && !QDELETED(summoned_item))
-		to_chat(owner, "You [remove_verb] the [summoned_item.name]")
+		owner.visible_message(span_notice("[owner] [remove_verb]s [summoned_item.name]."), span_notice("You [remove_verb] the [summoned_item.name]."))
 		qdel(summoned_item)
 		summoned_item = null
 	else
+		var/energy_check = SEND_SIGNAL(owner, COMSIG_PSIONIC_SPEND_ENERGY, psi_cost)
+		if(energy_check & COMPONENT_NO_PSIONIC_ENERGY)
+			owner.balloon_alert(owner, "not enough energy!")
+			return
 		var/mob/living/carbon/carbon_user = owner
 		if(!istype(carbon_user))
 			carbon_user.balloon_alert(carbon_user, "not in this form!")
@@ -73,6 +77,9 @@
 
 	sound = 'sound/magic/disable_tech.ogg'
 
+	button_icon = 'massmeta/icons/obj/psychic_powers.dmi'
+	button_icon_state = "psiblade_long"
+
 	cooldown_time = 0
 	cooldown_reduction_per_rank = 0
 	spell_requirements = SPELL_NO_FEEDBACK | SPELL_REQUIRES_PSI
@@ -88,7 +95,20 @@
 	name = "Form Psionic Tool"
 	desc = "Form a psionic tool in your active hand, it's tool behaviour can be changed at your will. Costs 20 psi energy to activate."
 
+	button_icon_state = "tinker"
+
 	psi_cost = 20
 
 	weapon_type = /obj/item/debug/omnitool/psi_tool
+
+/datum/action/cooldown/spell/form_item/psiblade/gun
+	name = "Form Psionic Gun"
+	desc = "Form a psionic gun in your active hand, it has 6 shots and can't be dropped or recharged. Costs 55 psi energy to activate."
+
+	charge_overlay_icon = 'icons/effects/effects.dmi'
+	charge_overlay_state = "plasmasoul"
+
+	psi_cost = 55
+
+	weapon_type = /obj/item/gun/energy/e_gun/mini/psionic
 
