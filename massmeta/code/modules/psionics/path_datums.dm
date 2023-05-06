@@ -60,26 +60,26 @@ GLOBAL_LIST_INIT(psionic_pathes, subtypesof(/datum/psionic_path))
 	var/datum/action/cooldown/spell/form_item/psiblade/tool/tool_spell
 	var/datum/action/cooldown/spell/form_item/psiblade/gun/gun_spell
 
-/datum/psionic_path/fabricator/proc/on_level_advance()
-	if(psionic_component.psi_level >= 1)
+/datum/psionic_path/fabricator/on_level_advance()
+	if(psi_component.psi_level >= 1)
 		if(!blade_spell || QDELETED(blade_spell))
-			blade_spell = new blade_spell (psionic_component.psionic_mob)
-			blade_spell.Grant(psionic_component.psionic_mob)
+			blade_spell = new blade_spell (psi_component.psionic_mob)
+			blade_spell.Grant(psi_component.psionic_mob)
 	else
-		blade_spell.Remove(psionic_component.psionic_mob)
+		blade_spell.Remove(psi_component.psionic_mob)
 		qdel(blade_spell)
 		blade_spell = null
 
-	if(psionic_component.psi_level >= 2)
+	if(psi_component.psi_level >= 2)
 		if(!tool_spell || QDELETED(tool_spell))
-			tool_spell = new tool_spell (psionic_component.psionic_mob)
-			tool_spell.Grant(psionic_component.psionic_mob)
+			tool_spell = new tool_spell (psi_component.psionic_mob)
+			tool_spell.Grant(psi_component.psionic_mob)
 	else
-		tool_spell.Remove(psionic_component.psionic_mob)
+		tool_spell.Remove(psi_component.psionic_mob)
 		qdel(tool_spell)
 		tool_spell = null
 
-	if(psionic_component.psi_level >= 3)
+	if(psi_component.psi_level >= 3)
 		blade_spell.weapon_type = /obj/item/melee/psiblade
 		tool_spell.weapon_type = /obj/item/debug/omnitool/psi_tool/better
 	else
@@ -88,12 +88,12 @@ GLOBAL_LIST_INIT(psionic_pathes, subtypesof(/datum/psionic_path))
 		if(tool_spell)
 			tool_spell.weapon_type = initial(tool_spell.weapon_type)
 
-	if(psionic_component.psi_level >= 4)
+	if(psi_component.psi_level >= 4)
 		if(!gun_spell || QDELETED(gun_spell))
-			gun_spell = new gun_spell (psionic_component.psionic_mob)
-			gun_spell.Grant(psionic_component.gun_spell)
+			gun_spell = new gun_spell (psi_component.psionic_mob)
+			gun_spell.Grant(psi_component.gun_spell)
 	else
-		gun_spell.Remove(psionic_component.gun_spell)
+		gun_spell.Remove(psi_component.gun_spell)
 		qdel(gun_spell)
 		gun_spell = null
 
