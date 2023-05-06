@@ -39,7 +39,7 @@ GLOBAL_LIST_INIT(psionic_pathes, subtypesof(/datum/psionic_path))
 		psi_component.psi_levels_unspent -= amount
 		psi_component.add_level(null, amount, FALSE)
 		if(debug)
-			to_chat(psionic_mob, span_notice("[amount] inactive levels converted"))
+			to_chat(psi_component.psionic_mob, span_notice("[amount] inactive levels converted"))
 	on_level_advance()
 	qdel(psi_component.path_spell)
 
@@ -60,7 +60,7 @@ GLOBAL_LIST_INIT(psionic_pathes, subtypesof(/datum/psionic_path))
 	var/datum/action/cooldown/spell/form_item/psiblade/tool/tool_spell
 	var/datum/action/cooldown/spell/form_item/psiblade/gun/gun_spell
 
-/datum/psionic_path/proc/on_level_advance()
+/datum/psionic_path/fabricator/proc/on_level_advance()
 	if(psionic_component.psi_level >= 1)
 		if(!blade_spell || QDELETED(blade_spell))
 			blade_spell = new blade_spell (psionic_component.psionic_mob)
