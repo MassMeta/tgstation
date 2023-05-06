@@ -97,7 +97,7 @@
 	awakened_source = awakening_thing
 	psionic_mob.playsound_local(get_turf(psionic_mob), 'sound/ambience/antag/bloodcult.ogg', 100, FALSE, pressure_affected = FALSE, use_reverb = FALSE)
 	to_chat(psionic_mob, span_reallybig(span_hypnophrase("Your psionic powers have awoken")))
-	if(!psionic_path)
+	if(!psi_path)
 		if(!path_spell || QDELETED(path_spell))
 			path_spell = new path_spell ()
 		path_spell.Grant(psionic_mob)
