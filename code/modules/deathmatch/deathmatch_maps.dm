@@ -129,3 +129,11 @@
 		/datum/deathmatch_loadout/battler/clown
 	)
 	map_path = "_maps/map_files/DM/starwars.dmm"
+	
+/datum/deathmatch_map/RnD_Madness
+	name = "RnD Madness"
+	desc = "Recreation of Meta RnD but for DM"
+	min_players = 2
+	max_players = 5
+	allowed_loadouts = list(/datum/deathmatch_loadout/assistant)
+	map_path = "_maps/map_files/DM/RnD_Madness.dmm"
