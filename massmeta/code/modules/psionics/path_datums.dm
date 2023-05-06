@@ -91,9 +91,9 @@ GLOBAL_LIST_INIT(psionic_pathes, subtypesof(/datum/psionic_path))
 	if(psi_component.psi_level >= 4)
 		if(!gun_spell || QDELETED(gun_spell))
 			gun_spell = new gun_spell (psi_component.psionic_mob)
-			gun_spell.Grant(psi_component.gun_spell)
+			gun_spell.Grant(psi_component.psionic_mob)
 	else
-		gun_spell.Remove(psi_component.gun_spell)
+		gun_spell.Remove(psi_component.psionic_mob)
 		qdel(gun_spell)
 		gun_spell = null
 
