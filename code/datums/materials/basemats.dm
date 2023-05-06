@@ -547,3 +547,15 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	victim.apply_damage(30, BURN, BODY_ZONE_HEAD, wound_bonus = 5)
 	source_item?.reagents?.add_reagent(/datum/reagent/toxin/plasma, source_item.reagents.total_volume*5)
 	return TRUE
+
+//exists because otherwise material_ref throws a MASSIVE shit
+/datum/material/custom
+	name = "custom material"
+	desc = "You aren't supposed to see this"
+	color = "#000000"
+	greyscale_colors = "#000000"
+	sheet_type = /obj/item/stack/sheet/mineral/reagent
+	init_flags = MATERIAL_INIT_BESPOKE
+	categories = list(MAT_CATEGORY_ITEM_MATERIAL=TRUE)
+	value_per_unit = 0
+	id = "reagent"
