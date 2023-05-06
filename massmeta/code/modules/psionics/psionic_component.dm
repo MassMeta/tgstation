@@ -146,7 +146,7 @@
 		path_spell = null
 	psi_levels_unspent += psi_level
 	psi_level = 0
-	awakaned = FALSE
+	awakened = FALSE
 	psi_path.on_level_advance()
 	var/datum/hud/hud_used = psionic_mob.hud_used
 	hud_used.infodisplay -= counter

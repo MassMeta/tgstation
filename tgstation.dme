@@ -5504,6 +5504,7 @@
 #include "massmeta\code\modules\research\designs\misc.dm"
 #include "massmeta\code\modules\mechas\makeshift\lockermech.dm"
 #include "massmeta\code\modules\mechas\makeshift\makeshift_tools.dm"
+#include "massmeta\code\modules\psionics\hud.dm"
 #include "massmeta\code\modules\psionics\path_datums.dm"
 #include "massmeta\code\modules\psionics\psi_items.dm"
 #include "massmeta\code\modules\psionics\psi_spells.dm"
