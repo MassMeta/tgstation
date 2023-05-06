@@ -12,7 +12,6 @@ GLOBAL_LIST_INIT(psionic_pathes, subtypesof(/datum/psionic_path))
 	)
 
 /datum/psionic_path/proc/on_level_advance()
-	var/new_level = psi_component.psi_level
 	for (var/progression_level in 1 to psi_component.psi_level_max)
 		var/datum/action/cooldown/spell/power = spell_map[progression_level]
 		if(!istype(power))
@@ -31,7 +30,7 @@ GLOBAL_LIST_INIT(psionic_pathes, subtypesof(/datum/psionic_path))
 			power = new spell_map[progression_level] ()
 			power.Grant(psi_component.psionic_mob)
 
-/datum/psionic_path/proc/on_assign(/datum/component/psionics/new_component)
+/datum/psionic_path/proc/on_assign(datum/component/psionics/new_component)
 	psi_component = new_component
 	psi_component.path_spell.Remove(psi_component.psionic_mob)
 	var/amount = min(psi_component.psi_levels_unspent, psi_component.psi_level_max)
@@ -53,13 +52,13 @@ GLOBAL_LIST_INIT(psionic_pathes, subtypesof(/datum/psionic_path))
 /datum/psionic_path/proc/on_special_progression_effect(effect_string, progression_level)
 	if("change_tool_and_weapon")
 		for(var/datum/action/cooldown/spell/form_item/form_spell in psi_component.psionic_mob.actions)
-			if(istype(/datum/action/cooldown/spell/form_item/psiblade))
+			if(istype(form_spell, /datum/action/cooldown/spell/form_item/psiblade))
 				if(progression_level <= psi_component.psi_level)
 					weapon_type = /obj/item/melee/psiblade
 				else
 					weapon_type = /obj/item/melee/psiblade/short
 			
-			if(istype(/datum/action/cooldown/spell/form_item/psiblade/tool))
+			if(istype(form_spell, /datum/action/cooldown/spell/form_item/psiblade/tool))
 				if(progression_level <= psi_component.psi_level)
 					weapon_type = /obj/item/debug/omnitool/psi_tool/better
 				else

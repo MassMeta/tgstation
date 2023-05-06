@@ -1,7 +1,7 @@
 /obj/item/melee/psiblade
 	name = "psionic blade"
 	desc = "My life for Aiur!"
-	icon_icon = 'massmeta/icons/obj/psychic_powers.dmi'
+	icon = 'massmeta/icons/obj/psychic_powers.dmi'
 	icon_state = "psiblade_long"
 	inhand_icon_state = "psiblade_long"
 	item_flags = ABSTRACT | DROPDEL
@@ -36,7 +36,7 @@
 /obj/item/debug/omnitool/psi_tool //Kill me
 	name = "psi tool"
 	desc = "An energy... tool? Use it inhands to choose it's behaviour"
-	icon_icon = 'massmeta/icons/obj/psychic_powers.dmi'
+	icon = 'massmeta/icons/obj/psychic_powers.dmi'
 	icon_state = "tinker"
 	inhand_icon_state = "tinker"
 	toolspeed = 1
@@ -82,7 +82,7 @@
 /obj/item/psi_enchancer
 	name = "psi enchancer"
 	desc = "a complex device, which is capable of increasing psionic strength of a human."
-	icon_icon = 'massmeta/icons/obj/psychic_powers.dmi'
+	icon = 'massmeta/icons/obj/psychic_powers.dmi'
 	icon_state = "volkite"
 	var/can_awake = FALSE
 

@@ -26,7 +26,7 @@
 		choice.image = path_icon
 		choice.info = info_text
 
-		path_choices[initial(path.name)] = choice
+		path_choices[initial(the_path.name)] = choice
 
 
 	var/path_result = show_radial_menu(owner, owner, path_choices, radius = 6, tooltips = TRUE)
