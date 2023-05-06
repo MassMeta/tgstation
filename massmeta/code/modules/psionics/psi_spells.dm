@@ -13,7 +13,7 @@
 /datum/action/cooldown/spell/pick_path/cast(mob/living/cast_on)
 	. = ..()
 
-	path_choices = list()
+	var/path_choices = list()
 
 	for (var/_the_path in GLOB.psionic_pathes)
 		var/datum/psionic_path/the_path = _the_path
@@ -29,7 +29,7 @@
 		path_choices[initial(path.name)] = choice
 
 
-	var/path_result = show_radial_menu(owner, owner, path_choices, radius = BLOB_REROLL_RADIUS, tooltips = TRUE)
+	var/path_result = show_radial_menu(owner, owner, path_choices, radius = 6, tooltips = TRUE)
 	if (isnull(path_result))
 		return
 
@@ -44,7 +44,7 @@
 
 /datum/action/cooldown/spell/form_item
 	var/weapon_type = /obj/item
-	var/item/summoned_item
+	var/obj/item/summoned_item
 	var/remove_verb = "dispell"
 
 /datum/action/cooldown/spell/form_item/cast(mob/living/cast_on)
@@ -64,7 +64,7 @@
 			return
 		var/obj/item/held = carbon_user.get_active_held_item()
 		if(held && !carbon_user.dropItemToGround(held))
-			user.balloon_alert(carbon_user, "hand occupied!")
+			carbon_user.balloon_alert(carbon_user, "hand occupied!")
 			return
 		var/item/summoned_item/W = new weapon_type(carbon_user)
 		carbon_user.put_in_hands(W)
@@ -105,8 +105,8 @@
 	name = "Form Psionic Gun"
 	desc = "Form a psionic gun in your active hand, it has 6 shots and can't be dropped or recharged. Costs 55 psi energy to activate."
 
-	charge_overlay_icon = 'icons/effects/effects.dmi'
-	charge_overlay_state = "plasmasoul"
+	button_icon = 'icons/effects/effects.dmi'
+	button_icon_state = "plasmasoul"
 
 	psi_cost = 55
 

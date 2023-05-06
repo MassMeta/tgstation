@@ -60,10 +60,10 @@
 	if(!psi_path || (psi_level >= psi_level_max && !only_active_levels) || !awakened)
 		psi_levels_unspent += 1
 	else
-		psi_levels += 1
+		psi_level += 1
 		psi_path.on_level_advance()
 
-/datum/component/psionics/proc/assign_path(datum/source, /datum/psionic_path/new_psionic_path)
+/datum/component/psionics/proc/assign_path(datum/source, datum/psionic_path/new_psionic_path)
 	var/datum/psionic_path/new_psipath
 	if(!ispath(new_psionic_path))
 		new_psipath = new_psionic_path

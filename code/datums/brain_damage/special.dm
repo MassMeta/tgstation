@@ -440,7 +440,7 @@
 	..()
 	var/signal_result = SEND_SIGNAL(owner, COMSIG_PSIONIC_AWAKEN, src)
 	if(!signal_result)
-		owner.AddComponent(/datum/component/psionics, FASLE, 1, src)
+		owner.AddComponent(/datum/component/psionics, FALSE, 1, src)
 	else if(signal_result & COMPONENT_PSIONIC_AWAKENING_FAILED)
 		SEND_SIGNAL(owner, COMSIG_PSIONIC_ADVANCE_LEVEL, 1, FALSE)
 
