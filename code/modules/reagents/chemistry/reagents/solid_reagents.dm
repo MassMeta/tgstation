@@ -7,8 +7,6 @@
 	obj_flags = UNIQUE_RENAME
 	var/reagent_type
 	foodtypes = TOXIC
-	volume = 200
-	reagent_flags = TRANSPARENT
 
 /obj/item/food/solid_reagent/Initialize()
 	. = ..()
