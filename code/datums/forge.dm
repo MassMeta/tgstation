@@ -241,7 +241,7 @@
 		if(isliving(I))
 			var/mob/living/M = target
 			M.adjust_fire_stacks(1)//only one because chances are this is already a chem that adds fire stacks
-			M.IgniteMob()
+			M.ignite_mob()
 
 	if(user && iscarbon(user))
 		var/mob/living/carbon/C = user

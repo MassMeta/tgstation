@@ -348,7 +348,7 @@
 	var/datum/reagent/reagent_type
 	var/obj/effect/particle_effect/fakeholder
 
-/obj/structure/mineral_door/transparent/reagent/ComponentInitialize()
+/obj/structure/mineral_door/transparent/reagent/Initialize()
 	return
 
 /obj/structure/mineral_door/transparent/reagent/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
@@ -403,15 +403,11 @@
 	..()
 
 /obj/structure/mineral_door/transparent/reagent/ex_act()
-	if(fakeholder && fakeholder.reagents && !QDELETED(fakeholder))
-		for(var/datum/reagent/R in fakeholder.reagents.reagent_list)
-			R.on_ex_act()
+	if(!(fakeholder && fakeholder.reagents && !QDELETED(fakeholder)))
 	else
 		fakeholder = new(get_turf(src))
 		fakeholder.create_reagents(30)
 		fakeholder.reagents.add_reagent(reagent_type.type, 100)
-		for(var/datum/reagent/R in fakeholder.reagents.reagent_list)
-			R.on_ex_act()
 		fakeholder.reagents.handle_reactions()
 		QDEL_IN(fakeholder, 150)
 	..()

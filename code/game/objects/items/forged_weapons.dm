@@ -1,7 +1,7 @@
 /obj/item/forged
 	icon = 'massmeta/icons/obj/forged_weapons.dmi'
-	lefthand_file = 'massmeta/icons/mob/inhands/weapons/melee_lefthand.dmi'
-	righthand_file = 'massmeta/icons/mob/inhands/weapons/melee_righthand.dmi'
+	lefthand_file = 'massmeta/icons/mob/inhands/melee_lefthand.dmi'
+	righthand_file = 'massmeta/icons/mob/inhands/melee_righthand.dmi'
 	var/datum/reagent/reagent_type
 	var/weapon_type
 	var/identifier = FORGED_MELEE_SINGLEHANDED
@@ -107,8 +107,8 @@
 
 /obj/item/twohanded/forged
 	icon = 'massmeta/icons/obj/forged_weapons.dmi'
-	lefthand_file = 'massmeta/icons/mob/inhands/weapons/melee_lefthand.dmi'
-	righthand_file = 'massmeta/icons/mob/inhands/weapons/melee_righthand.dmi'
+	lefthand_file = 'massmeta/icons/mob/inhands/melee_lefthand.dmi'
+	righthand_file = 'massmeta/icons/mob/inhands/melee_righthand.dmi'
 	var/datum/reagent/reagent_type
 	var/weapon_type = MELEE_TYPE_GREATSWORD
 	var/identifier = FORGED_MELEE_TWOHANDED
@@ -122,11 +122,11 @@
 	var/force_wielded = 0
 	var/wielded = FALSE
 
-/obj/item/twohanded/forged/warhammer/ComponentInitialize()
+/obj/item/twohanded/forged/warhammer/Initialize()
 	. = ..()
 	AddComponent(/datum/component/two_handed, force_unwielded=force_unwielded, force_wielded=force_wielded, icon_wielded="forged_hammer1")
 
-/obj/item/twohanded/forged/greatsword/ComponentInitialize()
+/obj/item/twohanded/forged/greatsword/Initialize()
 	. = ..()
 	AddComponent(/datum/component/two_handed, force_unwielded=force_unwielded, force_wielded=force_wielded)
 

@@ -39,14 +39,14 @@
 				return
 			if(!currently_forging || !currently_forging.type)
 				//OBSERVE NOW AS I DO SOMETHING **STUPID**
-				trueamount += R.amount*MINERAL_MATERIAL_AMOUNT
+				trueamount += R.amount*SHEET_MATERIAL_AMOUNT
 				to_chat(user, span_notice("You add [R] to [src]"))
 				qdel(R)
 				currently_forging = new R.reagent_type.type
 				return
 
 			if(currently_forging && currently_forging.type && R.reagent_type.type == currently_forging.type)//preventing unnecessary references from being made
-				trueamount += R.amount*MINERAL_MATERIAL_AMOUNT
+				trueamount += R.amount*SHEET_MATERIAL_AMOUNT
 				qdel(R)
 				to_chat(user, span_notice("You add [R] to [src]."))
 				return
@@ -148,8 +148,8 @@
 	var/obj/item/forged/R //since all forged weapons have the same vars/procs this lets it compile as the actual type is assigned at runtime during this proc
 	special_traits = list()
 
-	if(istype(I, /obj/item/reagent_containers/glass/beaker))
-		var/obj/item/reagent_containers/glass/beaker/W = I
+	if(istype(I, /obj/item/reagent_containers/cup/beaker))
+		var/obj/item/reagent_containers/cup/beaker/W = I
 		if(LAZYLEN(W.reagents.reagent_list) == 1)
 			for(var/X in W.reagents.reagent_list)
 				var/datum/reagent/S = X
@@ -375,7 +375,7 @@
 	return ..()
 
 /obj/machinery/reagent_sheet/proc/create_sheets(amount)
-	var/sheet_amount = max(round(amount / MINERAL_MATERIAL_AMOUNT), 1)
+	var/sheet_amount = max(round(amount / SHEET_MATERIAL_AMOUNT), 1)
 	var/obj/item/stack/sheet/mineral/reagent/RS = new(get_turf(src))
 	visible_message(span_notice("[src] finishes processing."))
 	playsound(src, 'sound/machines/ping.ogg', 50, 0)

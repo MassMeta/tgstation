@@ -21,24 +21,16 @@
 
 
 /obj/item/food/solid_reagent/ex_act()
-	if(reagents)
-		for(var/datum/reagent/R in reagents.reagent_list)
-			R.on_ex_act()
-	if(!QDELETED(src))
 		..()
 
 /obj/item/food/solid_reagent/fire_act(exposed_temperature, exposed_volume)
 	reagents.expose_temperature(exposed_temperature)
-	if(volume <= 0)
-		qdel(src)
 
 /obj/item/food/solid_reagent/attackby(obj/item/I, mob/user, params)
 	var/hotness = I.get_temperature()
 	if(hotness && reagents)
 		reagents.expose_temperature(hotness)
-		to_chat(user, "<span class='notice'>You heat [src] with [I].</span>")
-		if(volume <= 0)
-			qdel(src)
+		to_chat(user, "<span class='notice'>You heat [src] with [I].</span>"))
 
 
 /obj/item/food/solid_reagent/afterattack(obj/target, mob/user , proximity)

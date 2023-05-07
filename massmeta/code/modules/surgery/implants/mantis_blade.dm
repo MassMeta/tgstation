@@ -2,8 +2,8 @@
 	name = "implanted arm blade"
 	desc = "A long, sharp, mantis-like blade implanted into someones arm. Cleaves through flesh like its particularly strong butter."
 	icon = 'massmeta/icons/obj/mantis_blade.dmi'
-	righthand_file = 'massmeta/icons/mob/inhands/mantis_blade_lefthand.dmi'
-	lefthand_file = 'massmeta/icons/mob/inhands/mantis_blade_righthand.dmi'
+	lefthand_file = 'massmeta/icons/mob/inhands/mantis_blade_lefthand.dmi'
+	righthand_file = 'massmeta/icons/mob/inhands/mantis_blade_righthand.dmi'
 	icon_state = "mantis_blade"
 	w_class = WEIGHT_CLASS_BULKY
 	flags_1 = CONDUCT_1
