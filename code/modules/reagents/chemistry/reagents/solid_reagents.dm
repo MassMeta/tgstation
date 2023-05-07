@@ -30,7 +30,7 @@
 	var/hotness = I.get_temperature()
 	if(hotness && reagents)
 		reagents.expose_temperature(hotness)
-		to_chat(user, "<span class='notice'>You heat [src] with [I].</span>"))
+		to_chat(user, "<span class='notice'>You heat [src] with [I].</span>")
 
 
 /obj/item/food/solid_reagent/afterattack(obj/target, mob/user , proximity)
