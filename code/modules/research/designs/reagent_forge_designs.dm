@@ -1,6 +1,9 @@
 /datum/design/forge//this should ONLY be used for items with a reagent_type var and assign_properties proc, if you use it in any other manner I will shout at you
 	build_type = REAGENT_FORGE
-
+	build_path = /obj/item/forged
+	materials = list(/datum/material/custom = 2000)
+	category = list("initial", "Weaponry")
+	id = "killurself"
 
 /datum/design/forge/forged_dagger
 	name = "Custom Dagger"
