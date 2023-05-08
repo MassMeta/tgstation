@@ -18,8 +18,7 @@
 	reqs = list(/obj/item/forging/complete/sword = 1,
 				/obj/item/stack/sheet/mineral/wood = 2)
 	time = 40
-	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/reagent_staff
 	name = "Reagent Staff"
@@ -27,8 +26,7 @@
 	reqs = list(/obj/item/forging/complete/staff = 1,
 				/obj/item/stack/sheet/mineral/wood = 2)
 	time = 40
-	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON_MELEE
 
 //cargo supply pack for items
 /datum/supply_pack/service/forging_items

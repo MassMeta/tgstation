@@ -8,7 +8,6 @@
 	resistance_flags = FIRE_PROOF
 	var/list/imbued_reagent = list()
 	var/world_pausing = 0
-	mutant_variants = NONE
 
 /obj/item/clothing/suit/armor/reagent_clothing/Initialize()
 	. = ..()
@@ -41,7 +40,6 @@
 	resistance_flags = FIRE_PROOF
 	var/list/imbued_reagent = list()
 	var/world_pausing = 0
-	mutant_variants = NONE
 
 /obj/item/clothing/gloves/reagent_clothing/Initialize()
 	. = ..()
