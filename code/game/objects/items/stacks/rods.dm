@@ -97,6 +97,17 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 		user.put_in_inactive_hand(new_item)
 		return TOOL_ACT_TOOLTYPE_SUCCESS
 
+/obj/item/stack/rods/attackby(obj/item/W, mob/user, params)
+	if(istype(W, /obj/item/forging/tongs))
+		var/obj/searchObj = locate(/obj) in W.contents
+		if(searchObj)
+			to_chat(user, span_warning("The tongs are already holding something, make room."))
+			return
+		forceMove(W)
+		W.icon_state = "tong_full"
+		return
+	return ..()
+
 /obj/item/stack/rods/cyborg/Initialize(mapload)
 	AddElement(/datum/element/update_icon_blocker)
 	return ..()
