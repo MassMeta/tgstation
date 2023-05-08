@@ -106,10 +106,6 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	/// When ordered in a restaurant, what custom order do we create?
 	var/restaurant_order = /datum/custom_order/reagent/drink
 
-	///If this chemical can be used in the forge
-	var/can_forge = TRUE
-
-
 /datum/reagent/New()
 	SHOULD_CALL_PARENT(TRUE)
 	. = ..()
