@@ -168,7 +168,7 @@ obj/structure/reagent_forge
 		to_chat(user, span_notice("You successfully line the forge with sinew."))
 		return
 
-	if(istype(I, /obj/item/organ/internal/monster_core/regenerative_core/))
+	if(istype(I, /obj/item/organ/internal/monster_core/regenerative_core))
 		if(reagent_forging) //if its already able to reagent forge, why continue wasting?
 			to_chat(user, span_warning("This forge is already upgraded."))
 			return
@@ -176,7 +176,7 @@ obj/structure/reagent_forge
 			to_chat(user, span_warning("You cannot do multiple things at the same time!"))
 			return
 		in_use = TRUE
-		var/obj/item/organ/internal/monster_core/regenerative_core//usedCore = I
+		var/obj/item/organ/internal/monster_core/regenerative_core/usedCore = I
 		if(usedCore.inert) //no inert cores allowed
 			to_chat(user, span_warning("You cannot use an inert regenerative core."))
 			in_use = FALSE
