@@ -4,6 +4,8 @@
 	desc = "A glowing black orb. It's fading fast."
 	icon = 'massmeta/icons/obj/darkspawn_items.dmi'
 	icon_state = "dark_bead"
+	lefthand_file = 'icons/mob/inhands/items/touchspell_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/items/touchspell_righthand.dmi'
 	inhand_icon_state = "disintegrate"
 	resistance_flags = FIRE_PROOF | LAVA_PROOF | UNACIDABLE | INDESTRUCTIBLE
 	item_flags = DROPDEL

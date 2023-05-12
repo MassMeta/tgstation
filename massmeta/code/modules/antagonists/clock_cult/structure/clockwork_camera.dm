@@ -30,10 +30,10 @@
 	if(teleport_area &&!teleport_area.clockwork_warp_allowed)
 		to_chat(owner, span_brass(teleport_area.clockwork_warp_fail))
 		return
-	do_sparks(5, TRUE, get_turf(cam))
+	do_sparks(5, TRUE, target_loc)
 	warping = TRUE
 	button_icon_state = "warp_cancel"
-	var/warp_time = 20 SECONDS
+	var/warp_time = 15 SECONDS
 	if(istype(target_loc, /turf/open/floor/clockwork))
 		warp_time = 5 SECONDS
 	else
@@ -43,8 +43,9 @@
 		for(var/obj/item/clockwork/clockwork_slab/slab in M.get_all_contents())
 			if(istype(slab.active_scripture, /datum/clockcult/scripture/slab/kindle))
 				slab.active_scripture.end_invokation() //Cultist jumpscare
-		if(!istype(target_loc, /turf/open/floor/clockwork) && (M.getStaminaLoss() <= 60))
-			M.setStaminaLoss(60)
+		if(!istype(target_loc, /turf/open/floor/clockwork) && (M.getStaminaLoss() <= 30))
+			M.setStaminaLoss(30)
+		do_sparks(5, TRUE, target_loc)
 		var/obj/machinery/computer/camera_advanced/console = cam.origin
 		console.remove_eye_control(M)
 	button_icon_state = "warp_down"

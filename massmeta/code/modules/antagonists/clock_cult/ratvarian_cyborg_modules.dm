@@ -39,7 +39,7 @@
 	new_scripture.begin_invoke(user, internal_slab, TRUE)
 
 /obj/item/clock_module/abscond
-	scripture_datum = /datum/clockcult/scripture/create_structure/dimensional_gate
+	scripture_datum = /datum/clockcult/scripture/abscond
 
 /obj/item/clock_module/kindle
 	scripture_datum = /datum/clockcult/scripture/slab/kindle

@@ -11,7 +11,7 @@
 	invokation_text = list("Заковать еретика...", "Разбейте их телом и духом!")
 	slab_overlay = "hateful_manacles"
 	use_time = 200
-	cogs_required = 1
+	cogs_required = 0
 	category = SPELLTYPE_SERVITUDE
 
 /datum/clockcult/scripture/slab/hateful_manacles/apply_effects(atom/A)

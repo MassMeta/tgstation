@@ -1,4 +1,4 @@
-//==================================//
+/*//==================================//
 // !      Dimensional Gate        ! //
 //==================================//
 /datum/clockcult/scripture/create_structure/dimensional_gate
@@ -29,6 +29,7 @@
 /datum/clockcult/scripture/create_structure/dimensional_gate/begin_invoke(mob/living/M, obj/item/clockwork/clockwork_slab/slab, bypass_unlock_checks)
 	invokation_time = 15 SECONDS + (5 SECONDS * GLOB.dimensional_gates.len)
 	. = ..()
+*/
 
 //===============
 // Dimensional Gate Structure
