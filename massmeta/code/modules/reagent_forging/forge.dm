@@ -28,6 +28,8 @@ obj/structure/reagent_forge
 	var/world_check = 0
 	//the variable that stops spamming
 	var/in_use = FALSE
+
+	var/goliath_ore_improvement = 0
 	
 /obj/structure/reagent_forge/examine(mob/user)
 	. = ..()
