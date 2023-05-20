@@ -29,7 +29,7 @@ obj/structure/reagent_forge
 	//the variable that stops spamming
 	var/in_use = FALSE
 
-	var/goliath_ore_improvement = 0
+	var//goliath_ore_improvement = 1
 	
 /obj/structure/reagent_forge/examine(mob/user)
 	. = ..()
