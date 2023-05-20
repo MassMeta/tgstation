@@ -1,5 +1,6 @@
 /obj/item/forging
 	icon = 'massmeta/icons/obj/forge_items.dmi'
+	var/work_time = 2 SECONDS
 
 /obj/item/forging/tongs
 	name = "forging tongs"
@@ -15,15 +16,26 @@
 		icon_state = "tong_empty"
 		return
 
+/obj/item/forging/tongs/primitive
+	name = "primitive forging tongs"
+	work_time = 3 SECONDS
+
 /obj/item/forging/hammer
 	name = "forging hammer"
 	desc = "A hammer specifically crafted for use in forging. Used to slowly shape metal; careful, you could break something with it!"
 	icon_state = "hammer"
 
+/obj/item/forging/hammer/primitive
+	name = "primitive forging hammer"
+
 /obj/item/forging/billow
 	name = "forging billow"
 	desc = "A billow specifically crafted for use in forging. Used to stoke the flames and keep the forge lit."
 	icon_state = "billow"
+
+/obj/item/forging/billow/primitive
+	name = "primitive forging billow"
+	work_time = 3 SECONDS
 
 //incomplete pre-complete items
 /obj/item/forging/incomplete
@@ -67,6 +79,11 @@
 	icon_state = "hot_staffhead"
 	spawn_item = /obj/item/forging/complete/staff
 
+/obj/item/forging/incomplete/spear
+	name = "incomplete spear head"
+	icon_state = "hot_spearhead"
+	spawn_item = /obj/item/forging/complete/spear
+
 //"complete" pre-complete items
 /obj/item/forging/complete/chain
 	name = "chain"
@@ -82,3 +99,8 @@
 	name = "staff head"
 	desc = "A staff head, ready to get some wood for completion."
 	icon_state = "staffhead"
+
+/obj/item/forging/complete/spear
+	name = "spear head"
+	desc = "A spear head, ready to get some wood for completion."
+	icon_state = "spearhead"
