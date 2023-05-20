@@ -28,6 +28,24 @@ obj/structure/reagent_forge
 	var/world_check = 0
 	//the variable that stops spamming
 	var/in_use = FALSE
+	
+/obj/structure/reagent_forge/examine(mob/user)
+	. = ..()
+
+	if(!forge_fuel_weak && !forge_fuel_strong)
+		. += span_notice("You can fuel [src] by using some <b>wood<b> or <b>coal<b>.")
+	else
+		. += span_notice("You can increase the heat inside [src] by using a <b>billow<b>.")
+		
+	. += span_notice("Place some <b>iron rods<b> inside [src] using some <b>tongs<b> in order to make an <b>incomplete forging item<b>.")
+	
+	if(sinew_lower_chance < 100)
+		. += span_notice("You can upgrade [src]'s ability for storing heat by using some <b>watcher sinew<b> on it.")
+		
+	if(!reagent_forging)
+		. += span_notice("You can upgrade [src] to a <b>reagent forge<b> by using 3 active <b>legion cores<b> on it. Currently, it has [current_core] cores stored.")
+	else
+		. += span_notice("[src] is upgraded to a <b>reagent forg<b>e and can infuse <b>reagent weapons<b> with reagents.")
 
 /obj/structure/reagent_forge/Initialize()
 	. = ..()
