@@ -939,6 +939,7 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 	name = "The Ark of the Clockwork Justicar"
 	desc = "Shows infomation about the Ark of the Clockwork Justicar"
 	icon_state = "clockinfo"
+	icon = 'massmeta/icons/mob/screen_alert.dmi'
 	alerttooltipstyle = "clockcult"
 
 /atom/movable/screen/alert/clockwork/clocksense/Initialize()
@@ -969,3 +970,4 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 	name = "Eternal Servitude"
 	desc = "Hazardous functions detected, sentience prohibation drivers offline. Glory to Rat'var."
 	icon_state = "ratvar_hack"
+	icon = 'massmeta/icons/mob/screen_alert.dmi'

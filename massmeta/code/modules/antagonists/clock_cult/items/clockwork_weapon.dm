@@ -95,7 +95,7 @@
 
 /obj/item/clockwork/weapon/brass_battlehammer/Initialize()
 	. = ..()
-	AddComponent(/datum/component/two_handed, force_unwielded=15, force_wielded=25, block_power_wielded=25)
+	AddComponent(/datum/component/two_handed, force_unwielded=17, force_wielded=25)
 
 /obj/item/clockwork/weapon/brass_battlehammer/hit_effect(mob/living/target, mob/living/user, thrown=FALSE)
 	var/atom/throw_target = get_edge_target_turf(target, get_dir(src, get_step_away(target, src)))

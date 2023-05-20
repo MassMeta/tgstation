@@ -124,7 +124,6 @@
 	icon_state = "kindle"
 	alerttooltipstyle = "clockcult"
 
-
 //Ichorial Stain: Applied to servants revived by a vitality matrix. Prevents them from being revived by one again until the effect fades.
 /datum/status_effect/ichorial_stain
 	id = "ichorial_stain"
@@ -149,6 +148,7 @@
 	desc = "Your body is covered in blue ichor! You can't be revived by vitality matrices."
 	icon_state = "ichorial_stain"
 	alerttooltipstyle = "clockcult"
+	icon = 'massmeta/icons/mob/screen_alert.dmi'
 
 //Clock cult
 /datum/status_effect/interdiction
@@ -179,3 +179,4 @@
 	name = "Interdicted"
 	desc = "I don't think I am meant to go this way..."
 	icon_state = "inathneqs_endowment"
+	icon = 'massmeta/icons/mob/screen_alert.dmi'
