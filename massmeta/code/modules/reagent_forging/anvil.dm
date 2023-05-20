@@ -33,12 +33,12 @@
 		var/obj/item/forging/incomplete/searchIncompleteItem = locate(/obj/item/forging/incomplete) in I.contents
 		if(searchIncompleteSrc && !searchIncompleteItem)
 			searchIncompleteSrc.forceMove(I)
-			icon_state = "anvil_empty"
+			update_appearance()
 			I.icon_state = "tong_full"
 			return
 		if(!searchIncompleteSrc && searchIncompleteItem)
 			searchIncompleteItem.forceMove(src)
-			icon_state = "anvil_full"
+			update_appearance()
 			I.icon_state = "tong_empty"
 		return
 	if(I.tool_behaviour == TOOL_WRENCH)
@@ -46,3 +46,18 @@
 		qdel(src)
 		return
 	return ..()
+	
+/obj/structure/reagent_anvil/update_appearance()
+	. = ..()
+	cut_overlays()
+	var/obj/item/forging/incomplete/searchIncompleteSrc = locate(/obj/item/forging/incomplete) in contents
+	if(!searchIncompleteSrc)
+		return
+
+	var/image/overlayed_item = image(icon = searchIncompleteSrc.icon, icon_state = searchIncompleteSrc.icon_state)
+	overlayed_item.transform = matrix(, 0, 0, 0, 0.8, 0)
+	add_overlay(overlayed_item)
+
+/obj/structure/reagent_anvil/examine(mob/user)
+	. = ..()
+	. += span_notice("You can place <b>hot metal objects</b> on this by using some <b>tongs</b>.")
