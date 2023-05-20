@@ -5,6 +5,11 @@
 	icon_state = "water_basin"
 	anchored = TRUE
 	density = TRUE
+	
+/obj/structure/reagent_water_basin/examine(mob/user)
+	. = ..()
+	
+	. += span_notice("Put an </b>incomplete forging item</b> on it to cool it down.")
 
 /obj/structure/reagent_water_basin/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/forging/tongs))
